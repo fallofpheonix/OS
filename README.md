@@ -206,3 +206,4 @@ Arch/Linux base
 ```
 
 Starting directly from a custom kernel for this cybersecurity scope is inefficient. Begin with Arch/LFS, build the cyber stack, then progressively replace components.
+
