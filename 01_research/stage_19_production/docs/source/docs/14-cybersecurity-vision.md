@@ -2,7 +2,7 @@
 
 ## Project
 
-SentinelOS.
+Pheonix.
 
 ## Type
 

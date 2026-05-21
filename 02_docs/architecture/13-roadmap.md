@@ -1,11 +1,11 @@
-# SentinelOS Architecture Roadmap
+# Pheonix Architecture Roadmap
 
-This document outlines the long-term system architecture evolution of SentinelOS, detailing the alignment between OS runtime engineering and the mathematical-physical-game security layers.
+This document outlines the long-term system architecture evolution of Pheonix, detailing the alignment between OS runtime engineering and the mathematical-physical-game security layers.
 
 ---
 
 ## 1. System Evolution Path
-SentinelOS progresses through eight discrete integration layers, ensuring that mathematical, physical, game, and economic models are fully defined and validated in userspace before being pushed down into custom kernel behaviors.
+Pheonix progresses through eight discrete integration layers, ensuring that mathematical, physical, game, and economic models are fully defined and validated in userspace before being pushed down into custom kernel behaviors.
 
 ```text
 Linux Security Stack
@@ -20,7 +20,7 @@ Game & Economic Engine (L5.5)
         ↓
 Control OS (L5)
         ↓
-Hybrid SentinelOS (Kernel Patches)
+Hybrid Pheonix (Kernel Patches)
         ↓
 Custom Security OS (L7)
 ```
@@ -64,7 +64,7 @@ Custom Security OS (L7)
 *   **Security Core:** Moving eBPF entropy filters and threat-weighted scheduling parameters directly into the CFS scheduler.
 *   **Verification:** In-kernel tracking overhead $\le 1\%$ CPU; scheduler-induced containment action time $\le 500$ $\mu\text{s}$.
 
-### Phase F: Autonomous Swarm SentinelOS (Months 37+)
+### Phase F: Autonomous Swarm Pheonix (Months 37+)
 *   **Active Stages:** Stage 17 (Hybrid OS), Stage 18 (Custom OS), Stage 28 (Complex Systems Swarms).
 *   **OS Baseline:** Bootable custom microkernel or customized security distribution.
 *   **Mathematical Models:** Multi-Agent Reinforcement Learning (MARL), cellular automata.

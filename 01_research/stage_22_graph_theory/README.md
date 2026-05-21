@@ -1,7 +1,7 @@
-# Stage 22: Graph Theory in SentinelOS
+# Stage 22: Graph Theory in Pheonix
 
 ## 1. Core Objective
-To represent all OS telemetry as a dynamic, heterogeneous, directed graph of system entity interactions. By executing real-time graph algorithms directly on process lineage, file, and socket access logs, SentinelOS isolates lateral movement, detects anomalous communities, and determines the optimal, minimal-impact containment actions during an active attack.
+To represent all OS telemetry as a dynamic, heterogeneous, directed graph of system entity interactions. By executing real-time graph algorithms directly on process lineage, file, and socket access logs, Pheonix isolates lateral movement, detects anomalous communities, and determines the optimal, minimal-impact containment actions during an active attack.
 
 ---
 

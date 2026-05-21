@@ -1,7 +1,7 @@
-# SentinelOS Master Architecture & Roadmap (5-7 Year Plan)
+# Pheonix Master Architecture & Roadmap (5-7 Year Plan)
 
 ## Core Principle
-`Physics + Mathematics + Security + Operating Systems = SentinelOS`
+`Physics + Mathematics + Security + Operating Systems = Pheonix`
 
 ## Master System Stack (GTOS Model)
 - **L7:** Autonomous Security Layer (Multi-Agent Swarm)
@@ -55,5 +55,5 @@
 - **E1:** Physics/Game-aware Scheduler
 - **E2:** Energy/Entropy tracking memory allocation
 
-## Phase F: Autonomous SentinelOS (Months 37+)
+## Phase F: Autonomous Pheonix (Months 37+)
 - Full LLM/Graph reasoning runtime.

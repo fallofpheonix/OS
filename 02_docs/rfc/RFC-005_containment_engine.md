@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the Containment Engine Primitives for SentinelOS. These primitives allow the system to quickly isolate compromised processes and network connections. The engine provides low-latency isolation techniques to minimize threat propagation while preserving forensic data for triage.
+This RFC specifies the Containment Engine Primitives for Pheonix. These primitives allow the system to quickly isolate compromised processes and network connections. The engine provides low-latency isolation techniques to minimize threat propagation while preserving forensic data for triage.
 
 ## 2. Containment Sequence Flow
 ```mermaid
@@ -46,7 +46,7 @@ type ContainmentEngine interface {
 
 ## 4. Security Policies & Whitelists
 To prevent self-denial of service, the Containment Engine enforces **immutable whitelists**:
-*   **Daemon Whitelist:** Under no circumstances will the agent suspend or terminate PID `1` (systemd/launchd), PID `0` (idle), or the SentinelOS agent itself.
+*   **Daemon Whitelist:** Under no circumstances will the agent suspend or terminate PID `1` (systemd/launchd), PID `0` (idle), or the Pheonix agent itself.
 *   **Network Whitelist:** Loopback interface `127.0.0.1`, DNS resolution ports, and active SSH socket ports (Port 22/tcp) are excluded from blocking.
 
 ---

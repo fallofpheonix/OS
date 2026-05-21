@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the AI Correlator and Incident Graph Engine for SentinelOS. This module maintains an in-memory graph of process lineages, filesystem activities, and network connections. It uses deterministic rules to trigger alerts and connects to an offline local AI inference engine to provide security analysis.
+This RFC specifies the AI Correlator and Incident Graph Engine for Pheonix. This module maintains an in-memory graph of process lineages, filesystem activities, and network connections. It uses deterministic rules to trigger alerts and connects to an offline local AI inference engine to provide security analysis.
 
 ## 2. Architecture & Data Structures
 

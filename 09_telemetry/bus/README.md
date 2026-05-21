@@ -1,6 +1,6 @@
 # Event Bus (L3)
 
-High-performance in-memory event distribution for SentinelOS.
+High-performance in-memory event distribution for Pheonix.
 
 ## Purpose
 Decouple telemetry collectors from analysis engines.

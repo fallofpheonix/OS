@@ -1,7 +1,7 @@
 # Stage 29: Game Theory (The GTOS Model)
 
 ## Core Objective
-Evolve SentinelOS into a Game-Theoretic Operating System where every resource decision and security response is a strategic game.
+Evolve Pheonix into a Game-Theoretic Operating System where every resource decision and security response is a strategic game.
 
 ## GTOS Pillars (Phase G1-G8)
 
@@ -33,5 +33,5 @@ Evolve SentinelOS into a Game-Theoretic Operating System where every resource de
 - **Goal:** Truthful bidding for bandwidth/bursts.
 - **Module:** `10_kernel/game_network/auction/`
 
-### G8: Multi-Agent SentinelOS
+### G8: Multi-Agent Pheonix
 - **Goal:** Cooperative defense swarm (Telemetry, Graph, Physics, Game, Control agents).

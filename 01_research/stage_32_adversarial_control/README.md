@@ -1,14 +1,14 @@
-# Stage 32: Adversarial Control in SentinelOS
+# Stage 32: Adversarial Control in Pheonix
 
 ## 1. Core Objective
-To mathematically integrate continuous feedback control systems (PID, state-space models) with game-theoretic utility payoffs. By synthesizing control systems with adversarial game strategies, SentinelOS ensures that physical system dynamics remain stable and optimal even under hostile manipulation and active evasion attempts.
+To mathematically integrate continuous feedback control systems (PID, state-space models) with game-theoretic utility payoffs. By synthesizing control systems with adversarial game strategies, Pheonix ensures that physical system dynamics remain stable and optimal even under hostile manipulation and active evasion attempts.
 
 ---
 
 ## 2. Mathematical Synthesis
 
 ### 2.1. Game-Controlled Feedback Loop
-In standard control systems, the controller parameters (e.g. PID gains $K_p, K_i, K_d$) are static. In SentinelOS, these parameters are dynamically adjusted by the Game Engine based on the active player strategy.
+In standard control systems, the controller parameters (e.g. PID gains $K_p, K_i, K_d$) are static. In Pheonix, these parameters are dynamically adjusted by the Game Engine based on the active player strategy.
 
 ```text
                +----------------------------------+
@@ -30,16 +30,16 @@ $$\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k + \mathbf{B}_D \mathbf{u}_k + \mathb
 
 Where:
 *   $\mathbf{x}_k \in \mathbb{R}^n$: State vector of the host (resource usages, queue sizes).
-*   $\mathbf{u}_k \in \mathbb{R}^m$: Control input chosen by SentinelOS (cgroups CPU quota, bandwidth).
+*   $\mathbf{u}_k \in \mathbb{R}^m$: Control input chosen by Pheonix (cgroups CPU quota, bandwidth).
 *   $\mathbf{v}_k \in \mathbb{R}^p$: Disturbance input chosen by the Attacker (encryption rate, process spawn speed).
 *   $\mathbf{w}_k$: Environmental process noise.
 
 #### Linear-Quadratic Dynamic Game (LQ Game):
-SentinelOS minimizes system cost while the attacker maximizes damage:
+Pheonix minimizes system cost while the attacker maximizes damage:
 $$J_D = \sum_{k=0}^{\infty} \left( \mathbf{x}_k^T \mathbf{Q}_D \mathbf{x}_k + \mathbf{u}_k^T \mathbf{R}_D \mathbf{u}_k \right)$$
 $$J_A = \sum_{k=0}^{\infty} \left( \mathbf{x}_k^T \mathbf{Q}_A \mathbf{x}_k + \mathbf{v}_k^T \mathbf{R}_A \mathbf{v}_k \right)$$
 
-SentinelOS solves the coupled Riccati equations to find the optimal feedback policy $\mathbf{u}_k = -\mathbf{K}_D \mathbf{x}_k$ that is robust against the worst-case strategic attack input $\mathbf{v}_k$.
+Pheonix solves the coupled Riccati equations to find the optimal feedback policy $\mathbf{u}_k = -\mathbf{K}_D \mathbf{x}_k$ that is robust against the worst-case strategic attack input $\mathbf{v}_k$.
 
 ---
 
