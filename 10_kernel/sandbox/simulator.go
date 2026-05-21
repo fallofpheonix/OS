@@ -7,18 +7,31 @@ import (
 
 // KernelSimulator mocks eBPF and kernel runtime constraints.
 type KernelSimulator struct {
-	MaxMapEntries int
-	CurrentEntries int
-	StackDepth    int
-	MaxStackDepth int
+	MaxMapEntries      int
+	CurrentEntries     int
+	StackDepth         int
+	MaxStackDepth      int
+	GlobalEnergyBudget float64
+	ConsumedEnergy     float64
 }
 
 // NewKernelSimulator initializes a mock kernel environment.
 func NewKernelSimulator() *KernelSimulator {
 	return &KernelSimulator{
-		MaxMapEntries: 1024,
-		MaxStackDepth: 512, // eBPF limit
+		MaxMapEntries:      1024,
+		MaxStackDepth:      512, // eBPF limit
+		GlobalEnergyBudget: 1000.0, // Default energy budget
+		ConsumedEnergy:     0.0,
 	}
+}
+
+// RequestEnergy attempts to consume energy from the global budget.
+func (k *KernelSimulator) RequestEnergy(amount float64) error {
+	if k.ConsumedEnergy+amount > k.GlobalEnergyBudget {
+		return fmt.Errorf("energy budget exceeded: requested %.2f, available %.2f", amount, k.GlobalEnergyBudget-k.ConsumedEnergy)
+	}
+	k.ConsumedEnergy += amount
+	return nil
 }
 
 // UpdateMap simulates writing to an eBPF map.
