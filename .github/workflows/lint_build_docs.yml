@@ -48,7 +48,7 @@ jobs:
         run: |
           if [ -f go.work ]; then
             echo "Building with go.work..."
-            go build ./...
+            go build all
           else
             echo "Building individual modules..."
             modules=(
