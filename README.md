@@ -1,8 +1,10 @@
 # Pheonix OS (formerly SentinelOS)
 
+![Pheonix Logo](assets/pheonix/logo_simple.svg)
+
 Pheonix is a security-focused operating system project (formerly SentinelOS) built from scratch or as a custom Linux derived from Arch/Kali.
 
-Project symbols (SVGs): `assets/pheonix/logo_simple.svg`, `assets/pheonix/logo_fire.svg`, `assets/pheonix/logo_shield.svg`
+Project symbols (SVGs): `assets/pheonix/logo_simple.svg`, `assets/pheonix/logo_fire.svg`, `assets/pheonix/logo_shield.svg` — raster fallbacks: `assets/pheonix/raster/*.png`
 
 This repository contains the minimal documentation, source layout, and build planning files for:
 
