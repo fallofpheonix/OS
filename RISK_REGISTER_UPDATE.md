@@ -1,4 +1,4 @@
-Risk Register Update — SentinelOS
+Risk Register Update — Pheonix
 ================================
 
 Seeded risks detected during repo audit:

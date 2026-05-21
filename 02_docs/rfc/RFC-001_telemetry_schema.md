@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC standardizes the schema for all system-level telemetry captured within the SentinelOS (CyberAI-OS) ecosystem. The schema must support ingestion from both raw Linux-native eBPF collectors and simulated host-telemetry sources on non-Linux development machines (macOS).
+This RFC standardizes the schema for all system-level telemetry captured within the Pheonix (CyberAI-OS) ecosystem. The schema must support ingestion from both raw Linux-native eBPF collectors and simulated host-telemetry sources on non-Linux development machines (macOS).
 
 ## 2. Dependencies
 *   **Compile-time:** Protobuf v3 / Go JSON parser

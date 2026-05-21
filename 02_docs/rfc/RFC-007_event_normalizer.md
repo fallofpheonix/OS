@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the Event Normalizer component of the SentinelOS Unified Event Bus. The Event Normalizer is responsible for validating raw telemetry events against the JSON schema (`02_docs/schemas/telemetry_events.json`), parsing them into strongly-typed Go structures, and enriching them with system metadata (such as usernames and normalized file paths).
+This RFC specifies the Event Normalizer component of the Pheonix Unified Event Bus. The Event Normalizer is responsible for validating raw telemetry events against the JSON schema (`02_docs/schemas/telemetry_events.json`), parsing them into strongly-typed Go structures, and enriching them with system metadata (such as usernames and normalized file paths).
 
 ## 2. Ingestion & Normalizer Interface
 

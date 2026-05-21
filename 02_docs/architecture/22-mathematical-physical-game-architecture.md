@@ -1,8 +1,8 @@
-# SentinelOS Master Mathematical-Physical-Game Architecture
+# Pheonix Master Mathematical-Physical-Game Architecture
 
 ## 1. System Stack Layers (L1–L7)
 
-SentinelOS is architected as seven distinct logical layers, building from physical hardware up to decentralized, autonomous swarm defense mechanisms. Telemetry state transitions flow upwards through the stack, while containment and scheduling control actions flow downwards.
+Pheonix is architected as seven distinct logical layers, building from physical hardware up to decentralized, autonomous swarm defense mechanisms. Telemetry state transitions flow upwards through the stack, while containment and scheduling control actions flow downwards.
 
 ```text
 +-----------------------------------------------------------------------+
@@ -47,7 +47,7 @@ SentinelOS is architected as seven distinct logical layers, building from physic
 
 ```mermaid
 gantt
-    title SentinelOS Long-Term Development Roadmap
+    title Pheonix Long-Term Development Roadmap
     dateFormat  YYYY-MM
     section Foundations
     Phase A: Math Primitives & Telemetry   :active, des1, 2026-05, 6m
@@ -101,12 +101,12 @@ gantt
     *   Entropy-aware page allocator and slab monitor.
 *   **Success Metrics:** In-kernel tracking overhead $\le 1\%$ CPU; scheduler-induced containment action time $\le 500$ $\mu\text{s}$.
 
-### Phase F: Autonomous Swarm SentinelOS (Months 37+)
+### Phase F: Autonomous Swarm Pheonix (Months 37+)
 *   **Goals:** Establish cooperative, network-wide self-healing containment using decentralized game mechanics.
 *   **Deliverables:**
     *   Decentralized cellular automata network blocker.
     *   Multi-Agent Reinforcement Learning (MARL) collaborative defense daemon.
-    *   Standalone bootable SentinelOS installation image.
+    *   Standalone bootable Pheonix installation image.
 *   **Success Metrics:** Cluster threat containment convergence $\le 100$ ms; overall Mean Time to Detect (MTTD) reduced by $\ge 50\%$.
 
 ---
@@ -114,7 +114,7 @@ gantt
 ## 3. Mathematical, Physical, Game, & Control Models
 
 ### 3.1. Telemetry Information Theory (L3)
-SentinelOS measures the information density of active filesystem operations. Given a sliding byte stream window $X$, the Shannon entropy $H(X)$ is computed as:
+Pheonix measures the information density of active filesystem operations. Given a sliding byte stream window $X$, the Shannon entropy $H(X)$ is computed as:
 $$H(X) = -\sum_{i=0}^{255} P(x_i) \log_2 P(x_i)$$
 Where $P(x_i)$ is the empirical probability of occurrence of byte value $x_i$ in the stream.
 
@@ -139,7 +139,7 @@ $$k = A e^{-\frac{E_a}{k_B T}}$$
 Where $E_a$ is the security barrier height (Seccomp sandbox restrictions), $T$ is the threat temperature ($T \propto \theta_{\text{SDI}}$), and $k_B$ is the system scaling constant.
 
 ### 3.3. Stackelberg Security Games (L5.5)
-The interaction between SentinelOS (Leader) committing to a monitoring profile and an Attacker (Follower) selecting a target $t \in \mathcal{T}$ is modeled as a Strong Stackelberg Equilibrium (SSE):
+The interaction between Pheonix (Leader) committing to a monitoring profile and an Attacker (Follower) selecting a target $t \in \mathcal{T}$ is modeled as a Strong Stackelberg Equilibrium (SSE):
 $$\max_{\mathbf{x}, t^*} \quad U_D(t^*, x_{t^*}) = x_{t^*} U_D^c(t^*) + (1 - x_{t^*}) U_D^u(t^*)$$
 $$\text{subject to} \quad t^* \in \arg\max_{t \in \mathcal{T}} \left( x_t U_A^c(t) + (1 - x_t) U_A^u(t) \right)$$
 $$\sum_{t \in \mathcal{T}} x_t \le k$$
@@ -154,7 +154,7 @@ $$p_i = \max_{y \in \mathcal{X}} \sum_{j \neq i} \hat{v}_j(y) - \sum_{j \neq i} 
 ### 3.5. Closed-Loop Adversarial Control (L5)
 The host state trajectory $\mathbf{x}_k$ under defender action $\mathbf{u}_k$ and attacker disruption $\mathbf{v}_k$ is modeled as:
 $$\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k + \mathbf{B}_D \mathbf{u}_k + \mathbf{B}_A \mathbf{v}_k + \mathbf{w}_k$$
-In this dynamic Linear-Quadratic (LQ) game, SentinelOS minimizes $J_D$ while the attacker maximizes $J_A$:
+In this dynamic Linear-Quadratic (LQ) game, Pheonix minimizes $J_D$ while the attacker maximizes $J_A$:
 $$J_D = \sum_{k=0}^{\infty} \left( \mathbf{x}_k^T \mathbf{Q}_D \mathbf{x}_k + \mathbf{u}_k^T \mathbf{R}_D \mathbf{u}_k \right)$$
 $$J_A = \sum_{k=0}^{\infty} \left( \mathbf{x}_k^T \mathbf{Q}_A \mathbf{x}_k + \mathbf{v}_k^T \mathbf{R}_A \mathbf{v}_k \right)$$
 The optimal robust control input is computed by solving the coupled algebraic Riccati equations to obtain feedback matrix $\mathbf{K}_D$, yielding $\mathbf{u}_k = -\mathbf{K}_D \mathbf{x}_k$.
@@ -229,7 +229,7 @@ The optimal robust control input is computed by solving the coupled algebraic Ri
 
 ## 5. Integration Order Constraints
 
-SentinelOS enforces a strict dependency sequence. No downstream implementation should proceed until upstream mathematical models have been defined and validated:
+Pheonix enforces a strict dependency sequence. No downstream implementation should proceed until upstream mathematical models have been defined and validated:
 
 $$\text{Telemetry Math (L3)} \longrightarrow \text{Lineage Graphs (L4)} \longrightarrow \text{Incident Physics (L6)} \longrightarrow \text{Game Engine (L5.5)} \longrightarrow \text{Control Systems (L5)} \longrightarrow \text{Kernel Scheduler (L1)}$$
 

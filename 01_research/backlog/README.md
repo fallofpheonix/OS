@@ -1,6 +1,6 @@
 # Research Backlog Index
 
-This directory contains the continuous research backlog for the SentinelOS (CyberAI-OS) project, structured by priority.
+This directory contains the continuous research backlog for the Pheonix (CyberAI-OS) project, structured by priority.
 
 ## Backlog Items
 

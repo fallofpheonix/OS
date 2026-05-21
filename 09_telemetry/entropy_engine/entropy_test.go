@@ -1,4 +1,4 @@
-package main
+package entropy_engine
 
 import (
 	"math"

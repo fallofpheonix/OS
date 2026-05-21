@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "SentinelOS Normalized Event",
+  "title": "Pheonix Normalized Event",
   "type": "object",
   "properties": {
     "timestamp": {"type": "number"},

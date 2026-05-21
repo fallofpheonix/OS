@@ -8,7 +8,7 @@ Using Game Theory to move beyond static rules into dynamic, strategic response.
 
 ## Game Model: OS vs. Ransomware
 ### 1. Players
-- **Defender ($D$):** SentinelOS Containment Engine.
+- **Defender ($D$):** Pheonix Containment Engine.
 - **Attacker ($A$):** Suspected Ransomware process.
 
 ### 2. Actions

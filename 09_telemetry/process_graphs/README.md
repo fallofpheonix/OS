@@ -1,6 +1,6 @@
 # Process Graph (L4)
 
-Causal lineage DAG for SentinelOS telemetry.
+Causal lineage DAG for Pheonix telemetry.
 
 ## Purpose
 Convert raw timeline events into directed process-resource graphs.

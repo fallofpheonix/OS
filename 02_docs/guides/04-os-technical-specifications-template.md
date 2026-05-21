@@ -115,7 +115,7 @@ Document:
 
 ## AI/Cybersecurity Modules
 
-For SentinelOS-style systems:
+For Pheonix-style systems:
 
 | Module | Status | Notes |
 |---|---|---|

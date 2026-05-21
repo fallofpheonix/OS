@@ -4,11 +4,11 @@
 Proposed
 
 ## 1. Purpose
-This RFC specifies the unified mathematical-physical architecture of SentinelOS. It defines the L1–L7 structural system stack and outlines the data processing flow pipeline where the **Game Engine** operates as a strategic decision-making layer, consuming telemetry metrics (L3), graph states (L4), and physical disorder indexes (L6) to compute optimal control and containment inputs (L5).
+This RFC specifies the unified mathematical-physical architecture of Pheonix. It defines the L1–L7 structural system stack and outlines the data processing flow pipeline where the **Game Engine** operates as a strategic decision-making layer, consuming telemetry metrics (L3), graph states (L4), and physical disorder indexes (L6) to compute optimal control and containment inputs (L5).
 
 ---
 
-## 2. SentinelOS System Stack (L1–L7)
+## 2. Pheonix System Stack (L1–L7)
 The static architecture of the OS is structured into seven logical layers:
 
 ```text
@@ -105,7 +105,7 @@ The Game Engine manages uncertainty using recursive Bayesian updating. The proba
 $$P(\theta_{ran} \mid e_{ent}) = \frac{P(e_{ent} \mid \theta_{ran}) P(\theta_{ran})}{P(e_{ent} \mid \theta_{ran}) P(\theta_{ran}) + P(e_{ent} \mid \theta_{ben}) P(\theta_{ben})}$$
 
 ### 5.2 Stackelberg Commitment
-SentinelOS commits to monitoring densities and throttle rates. Let $U_D(c, a)$ be the Defender's utility when deploying containment action $c$ against attack action $a$. The Game Engine maximizes utility:
+Pheonix commits to monitoring densities and throttle rates. Let $U_D(c, a)$ be the Defender's utility when deploying containment action $c$ against attack action $a$. The Game Engine maximizes utility:
 $$\max_{\mathbf{p} \in \Delta(\mathcal{C})} \sum_{c \in \mathcal{C}} p_c U_D(c, a^*(p))$$
 Where $a^*(p)$ is the attacker's best response to the defender's mixed strategy $\mathbf{p}$.
 

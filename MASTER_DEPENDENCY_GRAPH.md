@@ -1,4 +1,4 @@
-# SentinelOS Master Dependency Graph
+# Pheonix Master Dependency Graph
 
 ## Execution Path Constraint
 No implementation stage starts before its research prerequisites and gate conditions are complete.

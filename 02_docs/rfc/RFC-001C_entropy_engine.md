@@ -1,4 +1,4 @@
-# RFC-001C: SentinelOS Entropy Engine
+# RFC-001C: Pheonix Entropy Engine
 
 ## Status
 Proposed

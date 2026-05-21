@@ -203,7 +203,7 @@ Research directions:
 
 Cybersecurity relevance:
 
-- Local inference in SentinelOS.
+- Local inference in Pheonix.
 - Portable model deployment.
 - Fast malware/telemetry scoring.
 
