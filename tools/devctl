@@ -1,5 +1,5 @@
 #!/bin/bash
-# SentinelOS devctl - Development Orchestrator CLI
+# PhoenixOS devctl - Development Orchestrator CLI
 # Enforces the 12-stage engineering lifecycle
 
 # Colors

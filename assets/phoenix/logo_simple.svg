@@ -11,5 +11,5 @@
     <path d="M0 -140 C60 -120 100 -60 80 0 C60 60 0 80 0 140 C0 80 -60 60 -80 0 C-100 -60 -60 -120 0 -140 Z" fill="url(#g1)"/>
     <circle cx="0" cy="-20" r="10" fill="#fff" opacity="0.9"/>
   </g>
-  <text x="50%" y="92%" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="28">Pheonix</text>
+  <text x="50%" y="92%" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="28">Phoenix</text>
 </svg>

@@ -1,17 +1,20 @@
 go 1.26
 
 use (
+	./06_ai
+	./07_security
 	./09_telemetry
+	./10_kernel
 	./14_experiments/sentinel_mvp
 	./14_experiments/telemetry_replay
 	./agents
 	./phoenix_os/arbiter
 	./phoenix_os/bus
+	./phoenix_os/guard
+	./phoenix_os/ledger
 	./phoenix_os/monitor
+	./phoenix_os/nexus
 	./phoenix_os/sentinel
 	./phoenix_os/trace
 	./phoenix_os/warden
-	./phoenix_os/ledger
-	./phoenix_os/guard
-	./phoenix_os/nexus
 )

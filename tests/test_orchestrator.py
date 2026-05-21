@@ -1,0 +1,28 @@
+import pytest
+
+from agents.surface.orchestrator.orchestrator import SurfaceOrchestrator, Task, State, NotAllowedError
+
+
+def test_add_and_execute_simple_workflow(tmp_path):
+    orch = SurfaceOrchestrator()
+    wf = orch.create_workflow('w1')
+    t = Task(id='t1', title='T1', task_type='documentation')
+    orch.add_task(wf.id, t)
+
+    states = []
+
+    def on_change(wf_id, task_id, new_state):
+        states.append(new_state)
+
+    orch.on_state_change = on_change
+    orch.execute_workflow(wf.id)
+    assert t.state == State.MERGE
+    assert State.VALIDATE in states
+
+
+def test_forbidden_task_type():
+    orch = SurfaceOrchestrator()
+    wf = orch.create_workflow('w2')
+    t = Task(id='t2', title='T2', task_type='forensics')
+    with pytest.raises(NotAllowedError):
+        orch.add_task(wf.id, t)

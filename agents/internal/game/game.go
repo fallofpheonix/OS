@@ -10,6 +10,7 @@ import (
 type GameAgent interface {
 	UpdateBeliefs(state types.SecurityState, evidence string)
 	SolveBestStrategy(state types.SecurityState, graph *types.IncidentGraph) (types.Strategy, error)
+	GetBeliefs() (float64, float64)
 }
 
 type Agent struct {

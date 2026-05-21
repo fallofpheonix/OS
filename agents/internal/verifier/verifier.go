@@ -15,7 +15,7 @@ type Violation struct {
 	Rule     string
 }
 
-// VerifyImports scans all Go files under rootPath and checks them against SentinelOS architectural boundaries.
+// VerifyImports scans all Go files under rootPath and checks them against PhoenixOS architectural boundaries.
 func VerifyImports(rootPath string) ([]Violation, error) {
 	var violations []Violation
 
