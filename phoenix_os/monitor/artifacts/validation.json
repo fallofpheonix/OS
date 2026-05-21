@@ -1,16 +1,1 @@
-{
-  "module": "entropy_engine",
-  "version": "1.0.0",
-  "status": "PASS",
-  "checks": {
-    "build": true,
-    "tests": true,
-    "benchmark": {
-      "passed": true,
-      "latency_ns": 2125,
-      "budget_ns": 5000
-    },
-    "replay": true,
-    "schema_compliance": true
-  }
-}
+{"status": "PASS", "checks": 7, "failures": 0}
