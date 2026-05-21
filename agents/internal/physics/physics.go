@@ -19,11 +19,13 @@ type Agent struct {
 	lastEntropy  float64
 	lastSDI      float64
 	threatTemp   float64
+	tempFilter   *KalmanFilter
 }
 
 func NewPhysicsAgent() *Agent {
 	return &Agent{
 		threatTemp: 0.1, // baseline normal temp
+		tempFilter: NewKalmanFilter(0.1, 1.0, 1.0, 0.1),
 	}
 }
 
@@ -87,11 +89,11 @@ func (a *Agent) GetSecurityState(graph *types.IncidentGraph, now time.Time) (typ
 	if targetTemp > 10.0 {
 		targetTemp = 10.0
 	}
-	// Simple thermal inertia (smoothing)
-	a.threatTemp = a.threatTemp*0.7 + targetTemp*0.3
+	
+	// Apply Kalman filter to smooth and predict threat temperature
+	a.threatTemp = a.tempFilter.Update(targetTemp)
 
 	// Retrieve Shannon entropy from monitor package
-	// We'll compute it from mock bytes for this state check or use a default
 	testData := make([]byte, 256)
 	if maxThreat >= 7.0 {
 		// High disorder data
