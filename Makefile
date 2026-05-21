@@ -1,11 +1,11 @@
 BUILD_DIR := build
 IMAGE_DIR := images
 
-BOOT_SRC := src/boot/boot.asm
+BOOT_SRC := 10_kernel/boot/boot.asm
 BOOT_BIN := $(BUILD_DIR)/boot.bin
 BOOT_IMG := $(IMAGE_DIR)/os.img
 
-KERNEL_SRC := src/kernel/kernel.c
+KERNEL_SRC := 10_kernel/prototypes/kernel.c
 KERNEL_OBJ := $(BUILD_DIR)/kernel.o
 
 NASM ?= nasm

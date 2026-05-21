@@ -1,6 +1,8 @@
-# SentinelOS / MyOS / MyCustomLinux
+# Pheonix OS (formerly SentinelOS)
 
-Security-focused operating system project built from scratch or as a custom Linux derived from Arch/Kali.
+Pheonix is a security-focused operating system project (formerly SentinelOS) built from scratch or as a custom Linux derived from Arch/Kali.
+
+Project symbols (SVGs): `assets/pheonix/logo_simple.svg`, `assets/pheonix/logo_fire.svg`, `assets/pheonix/logo_shield.svg`
 
 This repository contains the minimal documentation, source layout, and build planning files for:
 

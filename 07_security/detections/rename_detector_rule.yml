@@ -1,0 +1,16 @@
+# Rename/Entropy detector rule skeleton
+# Source: RFC 0002 — Rename / Entropy Detector
+
+name: high_entropy_rename_storm
+description: Detects rapid file rename/write patterns combined with high-entropy writes (ransomware indicator)
+severity: critical
+metrics:
+  - rename_rate_per_minute: threshold: 100
+  - avg_write_entropy: threshold: 7.5
+
+conditions:
+  - when: rename_rate_per_minute > 100 AND avg_write_entropy > 7.5
+actions:
+  - alert: notify_security_team
+  - contain: snapshot_and_quarantine
+  - collect: memory_snapshot, file_snapshot
