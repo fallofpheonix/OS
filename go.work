@@ -4,4 +4,7 @@ use (
 	./09_telemetry
 	./14_experiments/sentinel_mvp
 	./14_experiments/telemetry_replay
+	./agents
+	./phoenix_os
+	./phoenix_os/bus
 )

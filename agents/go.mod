@@ -1,0 +1,3 @@
+module phoenix/agents
+
+go 1.25.0
