@@ -132,3 +132,4 @@ Critical path:
 | Phase 6: Security Foundations | `01_research/stage_04_security/phase_06_security_foundations.md` | `01_research/stage_04_security/build_gate.md` | `07_security/`, `02_docs/threat_models/` |
 | Phase 7: Reverse Engineering and Malware Analysis | `01_research/stage_05_reverse_engineering/phase_07_reverse_engineering_malware.md` | `01_research/stage_05_reverse_engineering/build_gate.md` | `05_tools/reverse/`, `07_security/yara/`, `08_forensics/reports/` |
 | Phase 8: AI/ML Fundamentals | `01_research/stage_11_ai_ml/phase_08_ai_ml_fundamentals.md` | `01_research/stage_11_ai_ml/build_gate.md` | `06_ai/`, `04_datasets/` |
+| Phase 9: Security AI | `01_research/stage_12_security_ai/phase_09_security_ai.md` | `01_research/stage_12_security_ai/build_gate.md` | `06_ai/agents/`, `06_ai/rag/`, `07_security/detections/`, `07_security/soar/` |
