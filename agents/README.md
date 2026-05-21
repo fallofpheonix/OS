@@ -38,4 +38,4 @@ The `agents` module implements the core autonomous security response loop for Ph
 - [x] Architectural Boundary Verification (no illegal imports)
 - [x] Integration Pipeline Validation (Ransomware simulation)
 - [ ] Performance within budget (Continuous Benchmarking)
-- [ ] Replay deterministic output (Continuous Validation)
+- [x] Replay deterministic output (Continuous Validation)
