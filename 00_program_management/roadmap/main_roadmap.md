@@ -1,59 +1,101 @@
-# Phoenix Master Architecture & Roadmap (5-7 Year Plan)
+# PhoenixOS: Master Execution Roadmap
 
-## Core Principle
-`Physics + Mathematics + Security + Operating Systems = Phoenix`
+## Project Definition
+**PhoenixOS** is a **Deterministic Cybernetic Security Runtime** running on Linux. It focuses on mathematically reproducible replay, bounded control, and telemetry-first validation.
 
-## Master System Stack (GTOS Model)
-- **L7:** Autonomous Security Layer (Multi-Agent Swarm)
-- **L6:** Phoenix Sentinel Engine (Thermodynamics & Disorder)
-- **L5:** Game Theory & Control Dynamics (Nash, Stackelberg, VCG)
-- **L4:** Graph Intelligence (Incident DAGs)
-- **L3:** Mathematical Telemetry (Entropy, Signals)
-- **L2:** Kernel Telemetry Runtime (eBPF)
-- **L1:** Hardware / Hypervisor
+## Core Axioms
+1. **Determinism is sacred.**
+2. **Replay is authoritative.**
+3. **AI is advisory.**
+4. **Control must remain bounded.**
+5. **Telemetry correctness > AI sophistication.**
+6. **Never scale instability.**
 
-## Strict Execution Order (Do Not Deviate)
-1. **Math Foundations:** (Information Theory, Entropy, KL Divergence) -> *Currently Executing*
-2. **Telemetry:** (eBPF, Math Filters, State Engine)
-3. **Graphs:** (DAGs, Shortest Path, Community Detection)
-4. **Control:** (PID, Adaptive Response)
-5. **Physics:** (Disorder, Thermodynamics, Dynamics)
-6. **Game Theory (GTOS):** (Nash, VCG, Stackelberg, Shapley, ESS)
-7. **Kernel:** (Physics Hooks, Adaptive Scheduler)
-8. **Autonomous OS:** (AI, Multi-agent execution)
+---
 
-## Phase A: Mathematical Core (Months 1-6)
-- **A1:** Information Theory (Phoenix Monitor, KL Detector)
-- **A2:** Graph Mathematics (Incident DAGs)
-- **A3:** Optimization Theory (Minimizing containment cost)
+## Phase A: Core Product (Stages 0–4)
+*Focus: Deterministic single-node cybernetic security runtime.*
 
-## Phase B: Physics Layer (Months 6-12)
-- **B1:** Statistical Physics (Security Disorder Index - SDI)
-- **B2:** Dynamical Systems (Trajectory drift)
-- **B3:** Signal Processing (FFT, Wavelets for chaos detection)
+### Stage 0: Foundation Stabilization
+* **Goal:** Architectural coherence.
+* **Deliverables:** RFC system, repository structure, FSM model, `DETERMINISM.md`.
+* **Exit Criteria:** No major architectural contradictions remain.
 
-## Phase C: Game Theory Layer (GTOS Implementation) (Months 12-20)
-- **G1:** Resource Allocation Games (Nash Scheduling)
-- **G2:** Mechanism Design (VCG Resource Allocation)
-- **G3:** Zero-Sum Security Games (Minimax Defense)
-- **G4:** Stackelberg Defense (Adaptive Policies)
-- **G5:** Cooperative Games (Shapley Value Accounting)
-- **G6:** Evolutionary Security (Stable Detection)
-- **G7:** Auction-based QoS (Vickrey Routing)
-- **G8:** Multi-Agent Swarm Integration
+### Stage 1: Deterministic Replay Runtime (ACTIVE)
+* **Goal:** Mathematically reproducible single-node replay.
+* **Systems:** Replay engine, Event bus, Ledger, FSM, TCS, Drift engine.
+* **Features:** Logical time, Canonical serialization, Stable hashing, Bounded queues.
+* **Exit Criteria:** Replay hashes are byte-for-byte identical across runs.
 
-## Kernel Roadmap (Year 1-4)
-- **Year 1:** Resource Games, VCG Allocator, Fairness Metrics.
-- **Year 2:** Security Games, Stackelberg Defense, Bayesian Inference.
-- **Year 3:** Shapley Cache, Auction QoS, ESS Defense.
-- **Year 4:** Game Scheduler, Adaptive Kernel, Autonomous Policies.
+### Stage 2: Real Telemetry Runtime
+* **Goal:** Replace simulated data with real Linux eBPF/XDP telemetry.
+* **Build:** Phoenix Guard, Kernel adapters, Telemetry collectors.
+* **Exit Criteria:** Stable single-node telemetry replay.
 
-## Phase D: Control Layer (Months 20-25)
-- **D1:** PID Containment (Throttle -> Isolate -> Snapshot)
+### Stage 3: Immutable Runtime Image
+* **Goal:** Boot Phoenix as a minimal immutable environment.
+* **Build:** LinuxKit appliance, Minimal kernel, Immutable initrd, PID1 Warden.
+* **Exit Criteria:** Phoenix runtime boots as a standalone immutable appliance.
 
-## Phase E: Kernel Integration (Months 25-37)
-- **E1:** Physics/Game-aware Scheduler
-- **E2:** Energy/Entropy tracking memory allocation
+### Stage 4: Constrained Actuation
+* **Goal:** Safe, bounded autonomous response.
+* **Systems:** Warden FSM, Actuation budgets, Cooldowns, Rate limits.
+* **Allowed Actions:** Log, Throttle, Socket block, Process isolate.
+* **Exit Criteria:** No state oscillation under adversarial stress.
 
-## Phase F: Autonomous Phoenix (Months 37+)
-- Full LLM/Graph reasoning runtime.
+---
+
+## Phase B: Advanced Platform (Stages 5–8)
+*Focus: Distributed, forensic-grade enterprise observability.*
+
+### Stage 5: Evidence & Replay Infrastructure
+* **Goal:** Forensic-grade replay DAGs and cross-session provenance.
+* **Features:** Causal linking, Event provenance, Hash chains.
+* **Exit Criteria:** Replay becomes the authoritative system truth.
+
+### Stage 6: Graph Runtime
+* **Goal:** Transform telemetry into temporal causality structures.
+* **Systems:** Process DAG, Node graph, Attack chains.
+* **Exit Criteria:** Stable attack graph reconstruction.
+
+### Stage 7: Distributed Telemetry
+* **Goal:** Multi-node observability using vector clocks.
+* **Features:** Event replication, Global replay, Distributed evidence.
+* **Exit Criteria:** Cross-node deterministic replay succeeds.
+
+### Stage 8: Cloud Runtime
+* **Goal:** Cluster orchestration and immutable deployment fleet.
+* **Build:** Scheduler, Policy distribution, Image rollout.
+* **Exit Criteria:** Phoenix nodes are manageable as a fleet.
+
+---
+
+## Phase C: Cybernetic Research (Stages 9–12)
+*Focus: Advanced reasoning, state estimation, and automated strategic defense.*
+
+### Stage 9: Advisory AI Layer
+* **Goal:** Explainable AI correlation and ranking (Advisory only).
+* **Allowed Tasks:** Summaries, Policy suggestions, Replay explanation.
+* **Exit Criteria:** AI outputs are strictly bounded and explainable.
+
+### Stage 10: Physics + Control Theory
+* **Goal:** Formal system-state estimation.
+* **Concepts:** Entropy, Variance (Welford's), Kalman filters, Signal processing.
+* **Exit Criteria:** Physics layer measurably improves detection.
+
+### Stage 11: Game Theory Runtime
+* **Goal:** Strategic bounded defense planning.
+* **Build:** Resource allocation games, Stackelberg defense, Decoy placement.
+* **Exit Criteria:** Algorithmic defense decisions outperform heuristics.
+
+### Stage 12: Cybernetic Runtime
+* **Goal:** Full closed-loop bounded defense system.
+* **Properties:** Observable, Bounded, Reversible, Deterministic.
+* **Exit Criteria:** Stable and autonomous under adversarial stress.
+
+---
+
+## Phase D: Optional Evolution (Stage 13)
+### Stage 13: Research OS
+* **Focus:** Custom schedulers, hardware isolation (SGX/SEV), microkernel experiments.
+* **Status:** Pure OS research, not required for core project success.

@@ -1,40 +1,36 @@
-# PhoenixOS (Autonomous CyberAI Operating System)
+# PhoenixOS
 
 ![Phoenix Logo](assets/Phoenix/logo_simple.svg)
 
-PhoenixOS is a security-focused operating system project built from scratch and as a custom Linux derivative. It implements a unified **Mathematical-Physical-Game Architecture** to achieve autonomous system integrity and self-healing defense.
+**PhoenixOS** is a **Deterministic Cybernetic Security Runtime** running on Linux. It implements a unified **Mathematical-Physical-Game Architecture** to achieve autonomous system integrity and self-healing defense through mathematically reproducible replay and bounded control.
 
-## Core Vision: The Phoenix Matrix
-Unlike traditional operating systems that rely on passive signatures, PhoenixOS treats system security as a thermodynamic state. It uses real-time telemetry to compute a **Security Disorder Index (SDI)** and employs game-theoretic controllers to autonomously "quench" threats before they reach a cascading failure point.
+## Core Axioms
+1. **Determinism is sacred.**
+2. **Replay is authoritative.**
+3. **AI is advisory.**
+4. **Control must remain bounded.**
+5. **Telemetry correctness > AI sophistication.**
+6. **Never scale instability.**
 
-## System Services (The 7-Layer Stack)
-- **L7: Swarm coordination** (**Phoenix Nexus**) - Distributed consensus and MARL.
-- **L6: System Physics** (**Phoenix Sentinel**) - Thermodynamic SDI monitoring.
-- **L5.5: Strategic Policy** (**Phoenix Arbiter**) - Stackelberg Security Games.
-- **L5: Actuation & Control** (**Phoenix Warden**) - PID/FSM process feedback loops.
-- **L4: Graph Intelligence** (**Phoenix Trace**) - Causal process lineage DAGs.
-- **L3: Telemetry Math** (**Phoenix Monitor**) - Shannon entropy and Kalman filters.
-- **L2: Kernel Runtime** (**Phoenix Kernel**) - eBPF probes and ring buffers.
-- **L1: Platform Integrity** (**Phoenix Guard**) - Kernel-level Fast Path enforcement.
+## The Phoenix Matrix (7-Layer Stack)
+- **L7: Swarm Coordination (Phoenix Nexus):** Distributed consensus and replication.
+- **L6: System Physics (Phoenix Sentinel):** Thermodynamic SDI monitoring.
+- **L5.5: Strategic Policy (Phoenix Arbiter):** Game-theoretic planning (Stackelberg).
+- **L5: Actuation & Control (Phoenix Warden):** Bounded FSM/PID controllers.
+- **L4: Graph Intelligence (Phoenix Trace):** Causal process lineage DAGs.
+- **L3: Telemetry Math (Phoenix Monitor):** Signal processing and drift detection.
+- **L2: Kernel Runtime (Phoenix Kernel):** eBPF/XDP telemetry ingestion.
+- **L1: Platform Integrity (Phoenix Guard):** <100ms Fast-Path enforcement.
 
 ## P0 Foundations (Verified Evidence)
-- **Phoenix Ledger:** Every autonomous action is backed by a verifiable, content-addressable evidence chain (SHA-256).
-- **Fast Path Enforcement:** Critical threats (e.g., ransomware encryption) are blocked in **<100ms** by bypassing strategic layers.
+- **Phoenix Ledger:** Every action is backed by a verifiable Merkle-DAG evidence chain.
+- **Deterministic Replay:** Mathematically identical execution traces across boot sessions.
 
-## Implementation Status
-- **Phoenix Bus (L3):** 10M+ events/sec throughput (**STABLE**)
-- **Phoenix Monitor (L3):** Shannon/KL entropy analysis (**STABLE**)
-- **Phoenix Trace (L4):** Lineage DAG construction (**STABLE**)
-- **Phoenix Sentinel (L6):** SDI thermodynamic calculation (**STABLE**)
-- **Phoenix Ledger (Evidence):** Cryptographic hash-chained audit trail (**COMPLETED**)
-- **Phoenix Guard (L1):** eBPF Fast Path detection and blocking (**COMPLETED**)
-- **Phoenix Nexus (L7):** Gossip-based swarm synchronization (**IN PROGRESS**)
-
-## Document Index
+## Project Resources
+- [**Master Execution Roadmap**](00_program_management/roadmap/main_roadmap.md) - The 12-stage path to a mature runtime.
+- [**Algorithm & Model Map**](ALGORITHM_MAP.md) - Mathematical primitives by stage.
+- [**GEMINI.md**](GEMINI.md) - Core instructions and engineering axioms.
 - [PHOENIX_TASKS.md](PHOENIX_TASKS.md) - Active task list and progress.
-- [PHOENIX_PROBLEMS.md](PHOENIX_PROBLEMS.md) - Gap analysis and architectural blockers.
-- [PHOENIX_SOLUTIONS.md](PHOENIX_SOLUTIONS.md) - Mathematical and systemic bridges.
-- [MASTER_DEPENDENCY_GRAPH.md](MASTER_DEPENDENCY_GRAPH.md) - Global architecture DAG.
 
 ## Quick Start (Simulation)
 ```sh
