@@ -1,5 +1,6 @@
 """Simple CLI for prototype guard runtime."""
 import argparse
+import os
 from guard_runtime.daemon import GuardDaemon
 import json
 import socket
