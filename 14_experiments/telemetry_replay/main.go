@@ -3,16 +3,18 @@ package main
 import (
 	"bufio"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
 	"math/rand"
 	"net"
 	"os"
+	"path/filepath"
 	"sync"
 	"syscall"
 	"time"
 
-	"sentinel/telemetry/bus/normalizer"
+	"phoenix/telemetry/bus/normalizer"
 )
 
 // --- RFC-006 Process Graph Implementation ---
@@ -270,7 +272,7 @@ func runServer(socketPath string, graph *ProcessGraph, norm normalizer.Normalize
 				graph.Update(evt)
 
 				localProcessed++
-				if localProcessed+localDropped >= totalEvents {
+				if totalEvents > 0 && localProcessed+localDropped >= totalEvents {
 					break
 				}
 			}
@@ -293,145 +295,143 @@ func getCPUTime() (time.Duration, error) {
 }
 
 func main() {
+	inputFile := flag.String("file", "", "Input JSONL file for telemetry events")
+	outputDir := flag.String("out", ".", "Directory to save summary.json and perf.json")
+	rate := flag.Int("rate", 0, "Target events per second (0 for unthrottled)")
+	flag.Parse()
+
 	socketPath := "./sentinel_sim.sock"
 
 	fmt.Println("==================================================")
 	fmt.Println("   Phoenix Telemetry Simulation Benchmark       ")
 	fmt.Println("==================================================")
 
-	// Mode 1: Peak Throughput & Integrity Check (Unthrottled, 100k events)
-	{
-		totalEvents := 100000
-		fmt.Printf("--- Mode 1: Peak Throughput & Integrity (Unthrottled %d events) ---\n", totalEvents)
-		
-		graph := NewProcessGraph()
-		norm := normalizer.NewEventNormalizer()
-		generator := NewMockGenerator("macos-dev-host")
+	var payloads [][]byte
+	var totalEvents int
 
-		mockPayloads := generator.GenerateEventSequence("seq-1", totalEvents)
-
-		processedChan := make(chan int, 1)
-		droppedChan := make(chan int, 1)
-
-		var wg sync.WaitGroup
-		wg.Add(1)
-		go runServer(socketPath, graph, norm, &wg, totalEvents, processedChan, droppedChan)
-
-		time.Sleep(100 * time.Millisecond)
-
-		conn, err := net.Dial("unix", socketPath)
+	if *inputFile != "" {
+		fmt.Printf("Loading events from %s...\n", *inputFile)
+		file, err := os.Open(*inputFile)
 		if err != nil {
-			fmt.Printf("Client failed to dial UDS: %v\n", err)
-			return
+			fmt.Printf("Failed to open input file: %v\n", err)
+			os.Exit(1)
 		}
-
-		startWallTime := time.Now()
-		startCPUTime, _ := getCPUTime()
-
-		writer := bufio.NewWriterSize(conn, 65536)
-		for _, payload := range mockPayloads {
-			_, _ = writer.Write(payload)
+		defer file.Close()
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+			line := scanner.Bytes()
+			if len(line) > 0 {
+				payload := make([]byte, len(line)+1)
+				copy(payload, line)
+				payload[len(line)] = '\n'
+				payloads = append(payloads, payload)
+			}
 		}
-		_ = writer.Flush()
-		_ = conn.Close()
-
-		processed := <-processedChan
-		dropped := <-droppedChan
-		
-		endWallTime := time.Now()
-		endCPUTime, _ := getCPUTime()
-
-		elapsedWall := endWallTime.Sub(startWallTime)
-		elapsedCPU := endCPUTime - startCPUTime
-		dropRate := (float64(dropped) / float64(totalEvents)) * 100.0
-		throughput := float64(processed) / elapsedWall.Seconds()
-
-		fmt.Printf("  Wall Time:     %v\n", elapsedWall)
-		fmt.Printf("  CPU Time:      %v\n", elapsedCPU)
-		fmt.Printf("  Throughput:    %.2f events/sec\n", throughput)
-		fmt.Printf("  Dropped:       %d (%.2f%% drop rate)\n", dropped, dropRate)
-		if dropRate < 2.0 {
-			fmt.Println("  [PASS] Event drop rate within budget (< 2.0%)")
-		} else {
-			fmt.Printf("  [FAIL] Event drop rate exceeded budget (%.2f%%)\n", dropRate)
-		}
-		fmt.Println()
+		totalEvents = len(payloads)
+		fmt.Printf("Loaded %d events.\n", totalEvents)
+	} else {
+		totalEvents = 100000
+		generator := NewMockGenerator("macos-dev-host")
+		payloads = generator.GenerateEventSequence("seq-1", totalEvents)
 	}
 
-	// Mode 2: Resource Overhead Verification (Throttled 1,000 events/sec target)
-	// We run 3 reproducible iterations as requested.
-	{
-		totalEvents := 1000
-		fmt.Printf("--- Mode 2: CPU Budget Verification (Throttled target 1,000 events/sec) ---\n")
+	graph := NewProcessGraph()
+	norm := normalizer.NewEventNormalizer()
 
-		for run := 1; run <= 3; run++ {
-			fmt.Printf("  Run %d of 3:\n", run)
-			graph := NewProcessGraph()
-			norm := normalizer.NewEventNormalizer()
-			generator := NewMockGenerator("macos-dev-host")
+	processedChan := make(chan int, 1)
+	droppedChan := make(chan int, 1)
 
-			mockPayloads := generator.GenerateEventSequence("seq-2", totalEvents)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go runServer(socketPath, graph, norm, &wg, totalEvents, processedChan, droppedChan)
 
-			processedChan := make(chan int, 1)
-			droppedChan := make(chan int, 1)
+	time.Sleep(100 * time.Millisecond)
 
-			var wg sync.WaitGroup
-			wg.Add(1)
-			go runServer(socketPath, graph, norm, &wg, totalEvents, processedChan, droppedChan)
+	conn, err := net.Dial("unix", socketPath)
+	if err != nil {
+		fmt.Printf("Client failed to dial UDS: %v\n", err)
+		os.Exit(1)
+	}
 
-			time.Sleep(100 * time.Millisecond)
+	startWallTime := time.Now()
+	startCPUTime, _ := getCPUTime()
 
-			conn, err := net.Dial("unix", socketPath)
-			if err != nil {
-				fmt.Printf("Client failed to dial UDS: %v\n", err)
-				return
-			}
-
-			startWallTime := time.Now()
-			startCPUTime, _ := getCPUTime()
-
-			writer := bufio.NewWriterSize(conn, 65536)
-			
-			// We stream 10 batches of 100 events, sleeping 100ms between each, total 1.0 second duration
-			batchSize := 100
-			for i := 0; i < 10; i++ {
-				for j := 0; j < batchSize; j++ {
-					idx := i*batchSize + j
-					_, _ = writer.Write(mockPayloads[idx])
-				}
+	writer := bufio.NewWriterSize(conn, 65536)
+	if *rate > 0 {
+		batchSize := *rate / 10
+		if batchSize == 0 {
+			batchSize = 1
+		}
+		for i, payload := range payloads {
+			_, _ = writer.Write(payload)
+			if (i+1)%batchSize == 0 {
 				_ = writer.Flush()
 				time.Sleep(100 * time.Millisecond)
 			}
-			_ = conn.Close()
-
-			processed := <-processedChan
-			dropped := <-droppedChan
-
-			endWallTime := time.Now()
-			endCPUTime, _ := getCPUTime()
-
-			elapsedWall := endWallTime.Sub(startWallTime)
-			elapsedCPU := endCPUTime - startCPUTime
-			cpuPercent := (float64(elapsedCPU) / float64(elapsedWall)) * 100.0
-			dropRate := (float64(dropped) / float64(totalEvents)) * 100.0
-
-			fmt.Printf("    Wall Time:   %v\n", elapsedWall)
-			fmt.Printf("    CPU Time:    %v\n", elapsedCPU)
-			fmt.Printf("    Avg CPU %%:   %.2f%%\n", cpuPercent)
-			fmt.Printf("    Processed:   %d\n", processed)
-			fmt.Printf("    Dropped:     %d (%.2f%% drop rate)\n", dropped, dropRate)
-
-			if cpuPercent <= 5.0 {
-				fmt.Println("    [PASS] CPU overhead within budget (< 5.0%)")
-			} else {
-				fmt.Printf("    [FAIL] CPU overhead exceeded budget (%.2f%% > 5.0%%)\n", cpuPercent)
-			}
-			if dropRate <= 2.0 {
-				fmt.Println("    [PASS] Event drop rate within budget (< 2.0%)")
-			} else {
-				fmt.Printf("    [FAIL] Event drop rate exceeded budget (%.2f%%)\n", dropRate)
-			}
-			fmt.Println()
+		}
+	} else {
+		for _, payload := range payloads {
+			_, _ = writer.Write(payload)
 		}
 	}
+	_ = writer.Flush()
+	_ = conn.Close()
+
+	processed := <-processedChan
+	dropped := <-droppedChan
+
+	endWallTime := time.Now()
+	endCPUTime, _ := getCPUTime()
+
+	elapsedWall := endWallTime.Sub(startWallTime)
+	elapsedCPU := endCPUTime - startCPUTime
+	dropRate := (float64(dropped) / float64(totalEvents)) * 100.0
+	throughput := float64(processed) / elapsedWall.Seconds()
+	cpuPercent := (float64(elapsedCPU) / float64(elapsedWall)) * 100.0
+
+	fmt.Printf("  Wall Time:     %v\n", elapsedWall)
+	fmt.Printf("  CPU Time:      %v\n", elapsedCPU)
+	fmt.Printf("  Avg CPU %%:     %.2f%%\n", cpuPercent)
+	fmt.Printf("  Throughput:    %.2f events/sec\n", throughput)
+	fmt.Printf("  Dropped:       %d (%.2f%% drop rate)\n", dropped, dropRate)
+
+	summary := map[string]interface{}{
+		"total_events": totalEvents,
+		"processed":    processed,
+		"dropped":      dropped,
+		"drop_rate":    dropRate,
+		"status":       "PASS",
+	}
+	if dropRate >= 2.0 {
+		summary["status"] = "FAIL"
+		fmt.Printf("  [FAIL] Event drop rate exceeded budget (%.2f%%)\n", dropRate)
+	} else {
+		fmt.Println("  [PASS] Event drop rate within budget (< 2.0%)")
+	}
+
+	perf := map[string]interface{}{
+		"wall_time_ms":   elapsedWall.Milliseconds(),
+		"cpu_time_ms":    elapsedCPU.Milliseconds(),
+		"cpu_percent":    cpuPercent,
+		"throughput_eps": throughput,
+		"status":         "PASS",
+	}
+	if cpuPercent > 5.0 {
+		perf["status"] = "FAIL"
+		fmt.Printf("  [FAIL] CPU overhead exceeded budget (%.2f%% > 5.0%%)\n", cpuPercent)
+	} else {
+		fmt.Println("  [PASS] CPU overhead within budget (< 5.0%)")
+	}
+
+	// Save artifacts
+	os.MkdirAll(*outputDir, 0755)
+	summaryData, _ := json.MarshalIndent(summary, "", "  ")
+	_ = os.WriteFile(filepath.Join(*outputDir, "summary.json"), summaryData, 0644)
+	perfData, _ := json.MarshalIndent(perf, "", "  ")
+	_ = os.WriteFile(filepath.Join(*outputDir, "perf.json"), perfData, 0644)
+
+	if summary["status"] == "FAIL" || perf["status"] == "FAIL" {
+		os.Exit(1)
+	}
 }
+

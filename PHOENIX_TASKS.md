@@ -19,7 +19,7 @@
   - Verified state-action mapping and SDI evaluation.
 
 ## Phase 1: State & Intelligence (Status: IN PROGRESS)
-- [ ] **Task 6: Importance Scoring ($S_I$) (L5.5 Arbiter)**
+- [X] **Task 6: Importance Scoring ($S_I$) (L5.5 Arbiter)**
   - Integrate Centrality, Criticality, and Entropy into a single process valuation score.
 - [ ] **Task 7: Kalman-Based Drift Detection (L3 Monitor)**
   - Refine anomaly thresholding using predictive state estimation.
