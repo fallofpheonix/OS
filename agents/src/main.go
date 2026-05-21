@@ -115,10 +115,11 @@ func runReplay(path string) {
 	controlAgent := control.NewControlAgent(1.5, 0.2, 0.1, 2.0)
 
 	type ReplayOutput struct {
-		EventID    string               `json:"event_id"`
-		State      types.SecurityState  `json:"state"`
-		Strategy   types.Strategy       `json:"strategy"`
-		PIDMetrics types.PIDMetrics     `json:"pid_metrics"`
+		EventID       string               `json:"event_id"`
+		State         types.SecurityState  `json:"state"`
+		Strategy      types.Strategy       `json:"strategy"`
+		PIDMetrics    types.PIDMetrics     `json:"pid_metrics"`
+		ActionHistory []string             `json:"action_history"`
 	}
 
 	var results []ReplayOutput
@@ -137,10 +138,11 @@ func runReplay(path string) {
 		controlAgent.EnforceStrategy(strategy, state.ThreatTemperature, ev.Timestamp)
 
 		results = append(results, ReplayOutput{
-			EventID:    ev.EventID,
-			State:      state,
-			Strategy:   strategy,
-			PIDMetrics: controlAgent.GetPIDMetrics(),
+			EventID:       ev.EventID,
+			State:         state,
+			Strategy:      strategy,
+			PIDMetrics:    controlAgent.GetPIDMetrics(),
+			ActionHistory: controlAgent.GetActionHistory(),
 		})
 	}
 

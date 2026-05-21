@@ -49,7 +49,14 @@ func (f *KalmanFilter) Filter(measurement float64) float64 {
 	return f.X
 }
 
+func CalculateImportanceScore(rank, criticality, entropy, spread, depth float64) float64 {
+	// Experts recommend weighting criticality and entropy contribution highest
+	// Criticality (0.6) is the primary driver to prevent mimicry
+	return 0.1*rank + 0.6*criticality + 0.1*entropy + 0.1*spread + 0.1*depth
+}
+
 func main() {
 	// Boot check
 	CalculateEntropy([]byte("PHOENIX"))
+	CalculateImportanceScore(0.5, 1.0, 7.8, 0.2, 5.0)
 }

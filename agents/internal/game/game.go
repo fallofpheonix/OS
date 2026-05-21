@@ -66,17 +66,17 @@ func (a *Agent) SolveBestStrategy(state types.SecurityState, graph *types.Incide
 	defer a.mu.Unlock()
 
 	// Decide target containment level based on threat temperature and Bayesian posterior
-	level := 0
+	level := types.LevelObserve
 	strategyType := "Nash"
 
 	if a.priorRan > 0.80 {
-		level = 5 // Maximum containment: Kill + Isolate
+		level = types.LevelKill // Maximum containment: Kill + Isolate
 		strategyType = "Stackelberg"
 	} else if a.priorRan > 0.50 || state.ThreatTemperature > 5.0 {
-		level = 3 // Moderate containment: Freeze + Limit
+		level = types.LevelFreeze // Moderate containment: Freeze + Limit
 		strategyType = "Stackelberg"
 	} else if a.priorRan > 0.20 || state.SDI > 0.8 {
-		level = 1 // Light containment: Observe + Limit
+		level = types.LevelLimit // Light containment: Observe + Limit
 		strategyType = "Nash"
 	}
 

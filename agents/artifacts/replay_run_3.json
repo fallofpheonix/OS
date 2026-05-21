@@ -5,7 +5,7 @@
       "timestamp": "2026-05-21T17:00:00Z",
       "entropy": 0,
       "kl_divergence": 0,
-      "threat_temperature": 0.55,
+      "threat_temperature": 0.562,
       "sdi": 0,
       "is_anomaly": false
     },
@@ -17,11 +17,12 @@
     },
     "pid_metrics": {
       "setpoint": 2,
-      "measured": 0.55,
-      "output": -147.17529000000002,
-      "last_error": -1.45,
-      "integral": -0.00145
-    }
+      "measured": 0.562,
+      "output": -145.9572876,
+      "last_error": -1.438,
+      "integral": -0.001438
+    },
+    "action_history": []
   },
   {
     "event_id": "evt-002",
@@ -29,7 +30,7 @@
       "timestamp": "2026-05-21T17:00:05Z",
       "entropy": 0,
       "kl_divergence": 0,
-      "threat_temperature": 0.865,
+      "threat_temperature": 0.8854000000000001,
       "sdi": 0,
       "is_anomaly": false
     },
@@ -41,10 +42,11 @@
     },
     "pid_metrics": {
       "setpoint": 2,
-      "measured": 0.865,
-      "output": -2.83149,
-      "last_error": -1.135,
-      "integral": -5.67645
-    }
+      "measured": 0.8854000000000001,
+      "output": -2.7803195999999994,
+      "last_error": -1.1145999999999998,
+      "integral": -5.574437999999999
+    },
+    "action_history": []
   }
 ]

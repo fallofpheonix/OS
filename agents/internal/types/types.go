@@ -81,7 +81,20 @@ type ProcessNode struct {
 	ExePath     string    `json:"exe_path"`
 	Centrality  float64   `json:"centrality"`
 	ThreatScore float64   `json:"threat_score"`
+	Importance  float64   `json:"importance"` // Multi-factor Importance Score
+	Criticality float64   `json:"criticality"` // System criticality
+	Spread      float64   `json:"spread"`      // Fan-out factor
+	Depth       float64   `json:"depth"`       // Distance from root
 	LastSeen    time.Time `json:"last_seen"`
+}
+
+// Policy represents a strategic decision from the Arbiter (L5.5)
+type Policy struct {
+	PolicyID        string    `json:"policy_id"`
+	Decision        string    `json:"decision"`
+	Confidence      float64   `json:"confidence"`
+	ImportanceScore float64   `json:"importance_score"`
+	Timestamp       time.Time `json:"timestamp"`
 }
 
 // SecurityState represents physical threat states (L6)

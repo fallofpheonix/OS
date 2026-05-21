@@ -1,4 +1,4 @@
-package main
+package ledger
 
 import (
 	"crypto/sha256"
@@ -90,7 +90,7 @@ func (l *Ledger) Print() {
 	fmt.Println("----------------------")
 }
 
-func main() {
+func Demo() {
 	fmt.Println("Phoenix Ledger starting...")
 	l := NewLedger()
 

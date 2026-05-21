@@ -13,11 +13,11 @@ phoenix/agents/internal/game/game.go:22:		NewGameAgent			100.0%
 phoenix/agents/internal/game/game.go:30:		UpdateBeliefs			66.7%
 phoenix/agents/internal/game/game.go:64:		SolveBestStrategy		77.8%
 phoenix/agents/internal/game/game.go:99:		GetBeliefs			100.0%
-phoenix/agents/internal/graph/graph.go:25:		NewGraphAgent			100.0%
-phoenix/agents/internal/graph/graph.go:34:		UpdateGraph			63.6%
-phoenix/agents/internal/graph/graph.go:105:		recalculateCentrality		100.0%
-phoenix/agents/internal/graph/graph.go:122:		GetIncidentGraph		0.0%
-phoenix/agents/internal/graph/graph.go:132:		GetAttackDAG			100.0%
+phoenix/agents/internal/graph/graph.go:24:		NewGraphAgent			100.0%
+phoenix/agents/internal/graph/graph.go:33:		UpdateGraph			66.7%
+phoenix/agents/internal/graph/graph.go:118:		recalculateMetrics		88.9%
+phoenix/agents/internal/graph/graph.go:154:		GetIncidentGraph		0.0%
+phoenix/agents/internal/graph/graph.go:164:		GetAttackDAG			100.0%
 phoenix/agents/internal/kernel/kernel.go:21:		NewKernelAgent			100.0%
 phoenix/agents/internal/kernel/kernel.go:28:		IsLocked			100.0%
 phoenix/agents/internal/kernel/kernel.go:35:		Unlock				100.0%
@@ -36,4 +36,4 @@ phoenix/agents/internal/telemetry/telemetry.go:90:	GenerateMockEvent		76.9%
 phoenix/agents/internal/verifier/verifier.go:19:	VerifyImports			82.5%
 phoenix/agents/src/main.go:23:				main				0.0%
 phoenix/agents/src/main.go:99:				runReplay			0.0%
-total:							(statements)			61.8%
+total:							(statements)			62.4%
