@@ -51,3 +51,9 @@ This document tracks critical gaps between PhoenixOS theory and implementation, 
 **Problem:** Proving "Why" an autonomous action was taken.
 **Expert Assessment:** **Content-Addressable Evidence Ledger**.
 **Implementation:** Phoenix Ledger (P0) implemented with SHA-256 hash chaining of `(trace_hash, sdi, policy, action, result, time, confidence, replay, experiment)` tuples.
+
+## 8. Discovered Infrastructure Issues
+**Status:** **[NEW]**
+- **Issue:** `build_phoenix.sh` lacks execution permissions.
+- **Issue:** Test suite fails collection (`ModuleNotFoundError`) due to environment configuration / `PYTHONPATH` issues.
+- **Action Required:** Fix script permissions in repository and resolve module resolution path for the test suite.
