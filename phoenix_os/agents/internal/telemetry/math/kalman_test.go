@@ -1,4 +1,4 @@
-package math
+package kalman
 
 import "testing"
 

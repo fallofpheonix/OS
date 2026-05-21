@@ -1,28 +1,32 @@
-package math
+package kalman
 
 // KalmanFilter implements a basic one-dimensional Kalman filter for state estimation.
 type KalmanFilter struct {
-	Q float64 // process noise covariance
-	R float64 // measurement noise covariance
-	P float64 // estimation error covariance
-	K float64 // kalman gain
-	X float64 // value
+        q float64 // process noise covariance
+        r float64 // measurement noise covariance
+        p float64 // estimation error covariance
+        k float64 // kalman gain
+        x float64 // value
 }
 
 // NewKalmanFilter creates a filter instance.
 func NewKalmanFilter(q, r, p, initialValue float64) *KalmanFilter {
-	return &KalmanFilter{Q: q, R: r, P: p, X: initialValue}
+        return &KalmanFilter{q: q, r: r, p: p, x: initialValue}
 }
 
 // Update incorporates a new measurement into the filter state.
 func (kf *KalmanFilter) Update(measurement float64) float64 {
-	// prediction
-	kf.P = kf.P + kf.Q
+        // prediction
+        kf.p = kf.p + kf.q
 
-	// measurement update
-	kf.K = kf.P / (kf.P + kf.R)
-	kf.X = kf.X + kf.K*(measurement-kf.X)
-	kf.P = (1 - kf.K) * kf.P
+        // measurement update
+        denominator := kf.p + kf.r
+        if denominator == 0 {
+                return kf.x
+        }
+        kf.k = kf.p / denominator
+        kf.x = kf.x + kf.k*(measurement-kf.x)
+        kf.p = (1 - kf.k) * kf.p
 
-	return kf.X
+        return kf.x
 }
