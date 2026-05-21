@@ -1,14 +1,14 @@
-# Stage 21: Information Theory in SentinelOS
+# Stage 21: Information Theory in Pheonix
 
 ## 1. Core Objective
-To leverage information theory as a formal, low-overhead detection and optimization layer. By measuring the uncertainty, information content, and statistical drift of system resources and event streams, SentinelOS can detect malicious activity (such as ransomware encryption or stealthy persistence) that evades traditional threshold-based systems, while optimizing telemetry pipelines via entropy-based adaptive sampling.
+To leverage information theory as a formal, low-overhead detection and optimization layer. By measuring the uncertainty, information content, and statistical drift of system resources and event streams, Pheonix can detect malicious activity (such as ransomware encryption or stealthy persistence) that evades traditional threshold-based systems, while optimizing telemetry pipelines via entropy-based adaptive sampling.
 
 ---
 
 ## 2. Mathematical Formulations & Subsystem Mapping
 
 ### 2.1. Shannon Entropy ($H$) for High-Entropy Write Detection
-Ransomware attacks perform massive encryption of user files, which manifests as high-entropy data writes to the filesystem. SentinelOS calculates the Shannon entropy of write buffers to distinguish plain text/structured data from encrypted or compressed payloads.
+Ransomware attacks perform massive encryption of user files, which manifests as high-entropy data writes to the filesystem. Pheonix calculates the Shannon entropy of write buffers to distinguish plain text/structured data from encrypted or compressed payloads.
 
 #### Formula:
 $$H(X) = -\sum_{i=0}^{255} P(x_i) \log_2 P(x_i)$$
@@ -28,7 +28,7 @@ Where:
 ---
 
 ### 2.2. Kullback-Leibler (KL) Divergence ($D_{KL}$) for System Drift Analysis
-Intruders attempting lateral movement or establishing persistence alter the system call signature distribution of compromised services. SentinelOS calculates the relative entropy (KL Divergence) between the active system call profile and the baseline profile.
+Intruders attempting lateral movement or establishing persistence alter the system call signature distribution of compromised services. Pheonix calculates the relative entropy (KL Divergence) between the active system call profile and the baseline profile.
 
 #### Formula:
 $$D_{KL}(P \parallel Q) = \sum_{k \in \mathcal{S}} P(s_k) \log_2 \frac{P(s_k)}{Q(s_k)}$$
@@ -40,13 +40,13 @@ Where:
 *   $D_{KL}(P \parallel Q)$ is the information loss (in bits) when approximating the true distribution $P$ with baseline $Q$.
 
 #### Subsystem Mapping:
-*   **Engine Component:** SentinelOS `AI Correlation Engine` (`06_ai/`).
-*   **Actionable Threshold:** If $D_{KL}(P \parallel Q) > 0.5 \text{ bits}$ for a system service daemon (e.g., `sshd` or `httpd`), SentinelOS triggers an alert for anomalous behavior drift, catching slow-build stealth attacks that keep execution rates below traditional volume thresholds.
+*   **Engine Component:** Pheonix `AI Correlation Engine` (`06_ai/`).
+*   **Actionable Threshold:** If $D_{KL}(P \parallel Q) > 0.5 \text{ bits}$ for a system service daemon (e.g., `sshd` or `httpd`), Pheonix triggers an alert for anomalous behavior drift, catching slow-build stealth attacks that keep execution rates below traditional volume thresholds.
 
 ---
 
 ### 2.3. Mutual Information ($I$) for Process Interaction Correlation
-Attackers often use local inter-process communication (IPC) or stealthy piping to bridge phishing attachments to credential harvesting tools. SentinelOS measures Mutual Information between processes to uncover hidden channels.
+Attackers often use local inter-process communication (IPC) or stealthy piping to bridge phishing attachments to credential harvesting tools. Pheonix measures Mutual Information between processes to uncover hidden channels.
 
 #### Formula:
 $$I(X; Y) = \sum_{y \in \mathcal{Y}} \sum_{x \in \mathcal{X}} P(x, y) \log_2 \left( \frac{P(x, y)}{P(x) P(y)} \right)$$

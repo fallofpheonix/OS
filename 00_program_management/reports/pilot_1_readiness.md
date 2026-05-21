@@ -1,7 +1,7 @@
 # Pilot 1 Readiness Report: Mathematical Primitives Validation
 
 ## Executive Summary
-Validation of Information Theory and Graph Systems primitives is complete. The SentinelOS telemetry pipeline is now capable of high-fidelity ransomware detection and incident reconstruction using deterministic mathematical models.
+Validation of Information Theory and Graph Systems primitives is complete. The Pheonix telemetry pipeline is now capable of high-fidelity ransomware detection and incident reconstruction using deterministic mathematical models.
 
 ## 1. Information Theory (Entropy Engine)
 - **Status:** Validated

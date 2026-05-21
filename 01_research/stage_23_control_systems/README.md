@@ -1,7 +1,7 @@
-# Stage 23: Control Systems in SentinelOS
+# Stage 23: Control Systems in Pheonix
 
 ## 1. Core Objective
-To treat security containment and telemetry rate control as a formal, closed-loop feedback control system. By modeling system behaviors using state-space variables and adjusting parameters via Proportional-Integral-Derivative (PID) and adaptive controllers, SentinelOS stabilizes telemetry pipelines during event surges and enforces soft, multi-tier cgroups throttling on anomalous processes to damp attack velocity before hard termination.
+To treat security containment and telemetry rate control as a formal, closed-loop feedback control system. By modeling system behaviors using state-space variables and adjusting parameters via Proportional-Integral-Derivative (PID) and adaptive controllers, Pheonix stabilizes telemetry pipelines during event surges and enforces soft, multi-tier cgroups throttling on anomalous processes to damp attack velocity before hard termination.
 
 ---
 
@@ -41,14 +41,14 @@ $$u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt}$$
 Where the control output $u(t)$ adapts the Bernoulli event filter sampling probability $p(t) = \max(0.001, p_{nominal} - u(t))$.
 
 #### cgroups Dynamic Quota Throttling:
-Rather than immediately terminating a business-critical database or service daemon, SentinelOS dampens its capability via continuous CPU quota adjustment:
+Rather than immediately terminating a business-critical database or service daemon, Pheonix dampens its capability via continuous CPU quota adjustment:
 $$Quota(t) = Quota_{base} \cdot \left(1 - \min\left(1, K_p e_{susp}(t) + K_i \int_{0}^t e_{susp}(\tau) \, d\tau\right)\right)$$
 Where $e_{susp}(t) = \text{Threat Level}(t) - \Theta_{allow}$. As the estimated threat level increases, CPU cycles are progressively starved to buy time for deeper AI analysis or forensic snapshotting.
 
 ---
 
 ### 2.3. Containment Levels
-SentinelOS defines five formal containment enforcement levels (L1–L5):
+Pheonix defines five formal containment enforcement levels (L1–L5):
 
 *   **L1: Alert & Telemetry Escalation:** Passive notification. Increases telemetry sampling rate $p \to 1.0$ for the target process.
 *   **L2: Rate Limiting & Throttling:** Enforces CPU cgroups throttling and network bandwidth shaping.

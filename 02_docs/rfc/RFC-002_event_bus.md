@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC defines the Unified Event Bus architecture for routing normalized telemetry events in SentinelOS. It details the ingestion, normalization, filtering, and subscription routing systems, allowing the local SOC dashboard, detection engine, and forensics recorder to receive real-time, order-preserved logs.
+This RFC defines the Unified Event Bus architecture for routing normalized telemetry events in Pheonix. It details the ingestion, normalization, filtering, and subscription routing systems, allowing the local SOC dashboard, detection engine, and forensics recorder to receive real-time, order-preserved logs.
 
 ## 2. Architecture & Data Flow
 ```mermaid

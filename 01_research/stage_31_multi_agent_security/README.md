@@ -1,7 +1,7 @@
-# Stage 31: Multi-Agent Security in SentinelOS
+# Stage 31: Multi-Agent Security in Pheonix
 
 ## 1. Core Objective
-To formulate cooperative, multi-agent defense architectures for host clusters and containers. By modeling individual security agents (telemetry, graph, physics, containment) as players in a cooperative game, SentinelOS optimizes joint resource consumption (Shapley value) and achieves decentralized consensus regarding active threats.
+To formulate cooperative, multi-agent defense architectures for host clusters and containers. By modeling individual security agents (telemetry, graph, physics, containment) as players in a cooperative game, Pheonix optimizes joint resource consumption (Shapley value) and achieves decentralized consensus regarding active threats.
 
 ---
 

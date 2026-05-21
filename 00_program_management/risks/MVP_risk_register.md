@@ -1,6 +1,6 @@
-# MVP Risk Register: SentinelOS
+# MVP Risk Register: Pheonix
 
-This document identifies and tracks the architectural, performance, and operational risks associated with building the SentinelOS MVP.
+This document identifies and tracks the architectural, performance, and operational risks associated with building the Pheonix MVP.
 
 | ID | Risk Description | Category | Probability | Impact | Mitigation Strategy |
 |---|---|---|---|---|---|

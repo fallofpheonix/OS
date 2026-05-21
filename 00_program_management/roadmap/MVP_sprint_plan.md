@@ -1,6 +1,6 @@
-# MVP Sprint Plan: SentinelOS
+# MVP Sprint Plan: Pheonix
 
-This sprint plan details the phased engineering roadmap for delivering the SentinelOS MVP.
+This sprint plan details the phased engineering roadmap for delivering the Pheonix MVP.
 
 ## Sprint 1: Architecture, Design & Governance (Milestone: Design Sign-off)
 *   **Duration:** 1 week

@@ -1,4 +1,4 @@
-OS Evolution Map — SentinelOS
+OS Evolution Map — Pheonix
 ================================
 
 Seed convergence path (phases):
@@ -21,7 +21,7 @@ Phase 3 (Year 2-3): Control & Security
 - Kernel impact: privileged enforcement hooks (delayed until validated)
 
 Phase 4+: Hybrid Runtime → Custom OS
-# SentinelOS Convergence Map
+# Pheonix Convergence Map
 
 ### 1. Phase A: Math Primitives & Telemetry (Year 1, M1-M6)
 *   **Architecture Layer:** L2, L3, L4

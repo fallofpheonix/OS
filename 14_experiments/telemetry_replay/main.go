@@ -296,7 +296,7 @@ func main() {
 	socketPath := "./sentinel_sim.sock"
 
 	fmt.Println("==================================================")
-	fmt.Println("   SentinelOS Telemetry Simulation Benchmark       ")
+	fmt.Println("   Pheonix Telemetry Simulation Benchmark       ")
 	fmt.Println("==================================================")
 
 	// Mode 1: Peak Throughput & Integrity Check (Unthrottled, 100k events)

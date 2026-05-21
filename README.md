@@ -1,8 +1,8 @@
-# Pheonix OS (formerly SentinelOS)
+# Pheonix OS (formerly Pheonix)
 
 ![Pheonix Logo](assets/pheonix/logo_simple.svg)
 
-Pheonix is a security-focused operating system project (formerly SentinelOS) built from scratch or as a custom Linux derived from Arch/Kali.
+Pheonix is a security-focused operating system project (formerly Pheonix) built from scratch or as a custom Linux derived from Arch/Kali.
 
 Project symbols (SVGs): `assets/pheonix/logo_simple.svg`, `assets/pheonix/logo_fire.svg`, `assets/pheonix/logo_shield.svg` — raster fallbacks: `assets/pheonix/raster/*.png`
 
@@ -168,7 +168,7 @@ Read [docs/01-lfs-build.md](docs/01-lfs-build.md).
 | [docs/11-packaging.md](docs/11-packaging.md) | Arch, Kali/Debian, and scratch packaging |
 | [docs/12-testing.md](docs/12-testing.md) | Build, boot, runtime, and release tests |
 | [docs/13-roadmap.md](docs/13-roadmap.md) | Phased delivery plan |
-| [docs/14-cybersecurity-vision.md](docs/14-cybersecurity-vision.md) | SentinelOS cybersecurity vision |
+| [docs/14-cybersecurity-vision.md](docs/14-cybersecurity-vision.md) | Pheonix cybersecurity vision |
 | [docs/15-ai-ml-architecture.md](docs/15-ai-ml-architecture.md) | AI/ML defense architecture |
 | [docs/16-malware-detection.md](docs/16-malware-detection.md) | Static, dynamic, and AI malware detection |
 | [docs/17-threat-intelligence.md](docs/17-threat-intelligence.md) | IOC, CVE, ATT&CK, YARA, Sigma design |
