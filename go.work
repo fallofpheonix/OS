@@ -26,6 +26,7 @@ use (
 	./phoenix_os/monitor
 	./phoenix_os/nexus
 	./phoenix_os/sentinel
+	./phoenix_os/telemetry/serialization
 	./phoenix_os/trace
 	./phoenix_os/warden
 )
