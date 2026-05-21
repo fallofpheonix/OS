@@ -5,31 +5,35 @@ import (
 	"time"
 )
 
-func TestStability(t *testing.T) {
-	sc := NewStabilityController(100*time.Millisecond, 1.0)
+func TestStabilityController(t *testing.T) {
+	cooldown := 100 * time.Millisecond
+	c := NewStabilityController(cooldown)
+	nodeID := "node1"
 
-	// First action should pass
-	if !sc.CanAct(0.5) {
-		t.Error("Expected action to be allowed")
+	// Should be able to act initially
+	if !c.CanAct(nodeID) {
+		t.Error("Expected CanAct to be true initially")
 	}
-	sc.RecordAction(0.5)
 
-	// Immediate second action should fail due to cooldown
-	if sc.CanAct(0.1) {
-		t.Error("Expected action to be throttled due to cooldown")
+	// Register action, should now be in cooldown
+	c.RegisterAction(nodeID)
+	if c.CanAct(nodeID) {
+		t.Error("Expected CanAct to be false during cooldown")
 	}
 
 	// Wait for cooldown
-	time.Sleep(150 * time.Millisecond)
-
-	// Should pass if under containment limit
-	if !sc.CanAct(0.4) {
-		t.Error("Expected action to be allowed after cooldown")
+	time.Sleep(cooldown + 10*time.Millisecond)
+	if !c.CanAct(nodeID) {
+		t.Error("Expected CanAct to be true after cooldown")
 	}
-	sc.RecordAction(0.4)
 
-	// Should fail if exceeding limit
-	if sc.CanAct(0.2) {
-		t.Error("Expected action to be throttled due to containment limit")
+	// Test Debt
+	for i := 0; i < 6; i++ {
+		c.RegisterAction(nodeID)
+		time.Sleep(cooldown + 10*time.Millisecond) // Bypass cooldown to test debt
+	}
+	
+	if c.CanAct(nodeID) {
+		t.Error("Expected CanAct to be false due to high debt")
 	}
 }

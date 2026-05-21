@@ -5,45 +5,50 @@ import (
 	"time"
 )
 
-// StabilityController enforces action limits and cooling periods for MARL agents.
 type StabilityController struct {
-	mu            sync.RWMutex
-	ActionDebt    float64
-	LastAction    time.Time
-	Cooldown      time.Duration
-	MaxContainment float64
+	mu           sync.Mutex
+	actionDebt   map[string]int
+	cooldowns    map[string]time.Time
+	cooldownDur  time.Duration
 }
 
-// NewStabilityController initializes a controller with defined limits.
-func NewStabilityController(cooldown time.Duration, maxContainment float64) *StabilityController {
+func NewStabilityController(cooldown time.Duration) *StabilityController {
 	return &StabilityController{
-		Cooldown:       cooldown,
-		MaxContainment: maxContainment,
+		actionDebt:  make(map[string]int),
+		cooldowns:   make(map[string]time.Time),
+		cooldownDur: cooldown,
 	}
 }
 
-// CanAct checks if an agent is allowed to perform a containment action.
-func (sc *StabilityController) CanAct(cost float64) bool {
-	sc.mu.Lock()
-	defer sc.mu.Unlock()
+// CanAct returns true if the node is not in cooldown and has no excessive debt
+func (c *StabilityController) CanAct(nodeID string) bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
-	// Check Cooldown
-	if time.Since(sc.LastAction) < sc.Cooldown {
-		return false
+	if lastAction, ok := c.cooldowns[nodeID]; ok {
+		if time.Since(lastAction) < c.cooldownDur {
+			return false
+		}
 	}
 
-	// Check Containment Rate (Action Debt)
-	if sc.ActionDebt+cost > sc.MaxContainment {
+	if debt, ok := c.actionDebt[nodeID]; ok && debt > 5 {
 		return false
 	}
 
 	return true
 }
 
-// RecordAction updates the stability state after a successful action.
-func (sc *StabilityController) RecordAction(cost float64) {
-	sc.mu.Lock()
-	defer sc.mu.Unlock()
-	sc.ActionDebt += cost
-	sc.LastAction = time.Now()
+func (c *StabilityController) RegisterAction(nodeID string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.cooldowns[nodeID] = time.Now()
+	c.actionDebt[nodeID]++
+}
+
+func (c *StabilityController) ReduceDebt(nodeID string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.actionDebt[nodeID] > 0 {
+		c.actionDebt[nodeID]--
+	}
 }
