@@ -1,0 +1,11 @@
+# Topics
+
+| Topic | Dependencies | Prerequisites | Difficulty | Effort | Research depth | Implementation status | Cross references | Blocking items |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Kernel modules | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| LSM hooks | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| Custom probes | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| Driver extensions | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| Security hooks | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| Telemetry ABI | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
+| Kernel/user event bridge | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Stage_09_eBPF_and_Telemetry, Stage_15_Security_Distribution | Very High | 100h / 10w | Research-grade | PLANNED | docs/08-drivers.md, docs/20-security-modules.md, drivers/.gitkeep | Stage gate incomplete |
