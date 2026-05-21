@@ -5,6 +5,10 @@ use (
 	./14_experiments/sentinel_mvp
 	./14_experiments/telemetry_replay
 	./agents
-	./phoenix_os
+	./phoenix_os/arbiter
 	./phoenix_os/bus
+	./phoenix_os/monitor
+	./phoenix_os/sentinel
+	./phoenix_os/trace
+	./phoenix_os/warden
 )
