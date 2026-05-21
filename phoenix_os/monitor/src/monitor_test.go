@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"math"
+	"testing"
+)
 
 func TestEntropy(t *testing.T) {
 	data := make([]byte, 256)
@@ -18,5 +21,19 @@ func TestKalman(t *testing.T) {
 	v := f.Filter(10.0)
 	if v == 0 || v == 10.0 {
 		t.Errorf("Filter did not smooth signal: %f", v)
+	}
+}
+
+func TestImportanceScore(t *testing.T) {
+	score := CalculateImportanceScore(1.0, 1.0, 1.0, 1.0, 1.0)
+	if math.Abs(score-1.0) > 1e-9 {
+		t.Errorf("Expected score 1.0 for normalized inputs, got %f", score)
+	}
+
+	criticalScore := CalculateImportanceScore(0.1, 1.0, 0.1, 0.1, 0.1)
+	lowImportanceScore := CalculateImportanceScore(1.0, 0.1, 1.0, 1.0, 1.0)
+	
+	if criticalScore <= lowImportanceScore {
+		t.Errorf("Criticality should outweigh other factors: %f vs %f", criticalScore, lowImportanceScore)
 	}
 }

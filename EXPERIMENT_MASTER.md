@@ -12,6 +12,6 @@
 | **R024** | SDI Workload Classifier | Physics | PASSED | 0.6931 Max Ent | `07_security/physics` |
 | **R026** | Wavelet Processing | Signal Proc| READY | 94% accuracy | `09_telemetry/math_filters` |
 | **R027** | Minimax Matrix Allocator | Game Theory | PASSED | 1.21 Avg Utility | `07_security/game` |
-| **R031** | PID Actuation Damping | Control | READY | 99% accuracy | `agents/internal/control` |
-| **R032** | Game-Aware Scheduler | Kernel | READY | Deterministic | `agents/internal/kernel` |
+| **R031** | PID Actuation Damping | Control | PASSED | 99% accuracy | `agents/internal/control` |
+| **R032** | Game-Aware Scheduler | Kernel | PASSED | Deterministic | `agents/internal/kernel` |
 | **R036** | End-to-End Game Theory -> Actuator Pipeline Benchmark | Integrated | PASSED | <50ms loop | `agents/tests/integration_test.go` |

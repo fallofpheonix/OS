@@ -54,10 +54,10 @@ func (a *Agent) GetSecurityState(graph *types.IncidentGraph, now time.Time) (typ
 	// Gather node threat scores as states
 	var states []int8
 	var maxThreat float64
-	var avgCentrality float64
+	var avgImportance float64
 
 	if len(graph.Nodes) > 0 {
-		var totalCentrality float64
+		var totalImportance float64
 		for _, node := range graph.Nodes {
 			// Convert threat scores 0..10 to states -1 (benign), 0 (unknown), 1 (malicious)
 			if node.ThreatScore >= 7.0 {
@@ -71,9 +71,9 @@ func (a *Agent) GetSecurityState(graph *types.IncidentGraph, now time.Time) (typ
 			if node.ThreatScore > maxThreat {
 				maxThreat = node.ThreatScore
 			}
-			totalCentrality += node.Centrality
+			totalImportance += node.Importance
 		}
-		avgCentrality = totalCentrality / float64(len(graph.Nodes))
+		avgImportance = totalImportance / float64(len(graph.Nodes))
 	} else {
 		states = append(states, -1)
 	}
@@ -82,8 +82,8 @@ func (a *Agent) GetSecurityState(graph *types.IncidentGraph, now time.Time) (typ
 	sdi := a.CalculateSDI(states)
 	a.lastSDI = sdi
 
-	// Threat Temperature theta_T increases with high threat scores and high centrality
-	targetTemp := 0.1 + (maxThreat * 0.5) + (avgCentrality * 2.0)
+	// Threat Temperature theta_T increases with high threat scores and high node importance
+	targetTemp := 0.1 + (maxThreat * 0.5) + (avgImportance * 2.0)
 	if targetTemp > 10.0 {
 		targetTemp = 10.0
 	}

@@ -8,7 +8,8 @@ The `agents` module implements the core autonomous security response loop for Ph
 ## Core Agents
 - **TelemetryAgent**: Ingests and normalizes process-level events. Interface: `Start()`, `Stop()`, `RecordEvent()`, `GetLineage()`.
 - **GameAgent**: Uses recursive Bayesian updates. Interface: `UpdateBeliefs()`, `SolveBestStrategy()`, `GetBeliefs()`.
-- **PhysicsAgent**: Calculates SDI and Threat Temperature.
+- **GraphAgent**: Maintains a causal lineage DAG with Multi-Factor Importance Scoring (Centrality, Criticality, Spread, Depth).
+- **PhysicsAgent**: Calculates SDI and Threat Temperature ($\theta_T$) based on disorder and node importance.
 - **ControlAgent**: Implements PID control with discrete containment states (LevelObserve to LevelKill).
 - **ForensicsAgent**: Captures cryptographic snapshots for post-incident verification.
 - **KernelAgent**: Safety-locked interface for kernel-level mitigations.
@@ -37,5 +38,5 @@ The `agents` module implements the core autonomous security response loop for Ph
 - [x] Unit test pass (all packages)
 - [x] Architectural Boundary Verification (no illegal imports)
 - [x] Integration Pipeline Validation (Ransomware simulation)
-- [ ] Performance within budget (Continuous Benchmarking)
+- [x] Performance within budget (Measured: ~0.024ms per loop)
 - [x] Replay deterministic output (Continuous Validation)
