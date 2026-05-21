@@ -1,4 +1,4 @@
-package entropy_engine
+package monitor
 
 import (
 	"math"
