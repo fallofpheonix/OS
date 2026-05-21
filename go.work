@@ -8,8 +8,10 @@ use (
 	./14_experiments/sentinel_mvp
 	./14_experiments/telemetry_replay
 	./agents
+	./custom/control_plane
 	./phoenix_os/arbiter
 	./phoenix_os/bus
+	./phoenix_os/common
 	./phoenix_os/guard
 	./phoenix_os/ledger
 	./phoenix_os/monitor

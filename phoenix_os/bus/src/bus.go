@@ -34,7 +34,12 @@ func (b *Bus) Subscribe(topic string) chan Message {
 
 func (b *Bus) Publish(topic string, data interface{}) {
 	b.mu.RLock()
-	defer b.mu.RUnlock()
+	subs, ok := b.subscribers[topic]
+	b.mu.RUnlock()
+
+	if !ok {
+		return
+	}
 
 	msg := Message{
 		Topic: topic,
@@ -42,13 +47,11 @@ func (b *Bus) Publish(topic string, data interface{}) {
 		Data:  data,
 	}
 
-	if subs, ok := b.subscribers[topic]; ok {
-		for _, ch := range subs {
-			select {
-			case ch <- msg:
-			default:
-				// Buffer full, drop event to prevent blocking system-critical collectors
-			}
+	for _, ch := range subs {
+		select {
+		case ch <- msg:
+		default:
+			// Buffer full, drop event to prevent blocking system-critical collectors
 		}
 	}
 }

@@ -3,7 +3,6 @@ package graph
 import (
 	"fmt"
 	"sync"
-	"time"
 
 	"phoenix/agents/internal/types"
 )
@@ -44,11 +43,19 @@ func (a *Agent) UpdateGraph(ev types.TelemetryEvent) error {
 			PID:      ev.PID,
 			Comm:     ev.Comm,
 			ExePath:  ev.ExePath,
-			LastSeen: time.Now(),
+			LastSeen: ev.Timestamp,
 		}
+		
+		// Set basic criticality based on comm
+		if ev.Comm == "init" || ev.Comm == "systemd" || ev.Comm == "nginx" {
+			n.Criticality = 0.9
+		} else {
+			n.Criticality = 0.2
+		}
+		
 		a.nodes[nodeID] = n
 	} else {
-		n.LastSeen = time.Now()
+		n.LastSeen = ev.Timestamp
 	}
 
 	// Calculate threat score based on classification or rules
@@ -63,13 +70,19 @@ func (a *Agent) UpdateGraph(ev types.TelemetryEvent) error {
 	// Add edge from parent to child
 	if ev.PPID > 0 {
 		parentID := fmt.Sprintf("%d", ev.PPID)
-		if _, parentExists := a.nodes[parentID]; !parentExists {
-			a.nodes[parentID] = &types.ProcessNode{
-				PID:      ev.PPID,
-				Comm:     "unknown",
-				LastSeen: time.Now(),
+		parent, parentExists := a.nodes[parentID]
+		if !parentExists {
+			parent = &types.ProcessNode{
+				PID:         ev.PPID,
+				Comm:        "unknown",
+				LastSeen:    ev.Timestamp,
+				Criticality: 0.5,
 			}
+			a.nodes[parentID] = parent
 		}
+		
+		// Set depth
+		n.Depth = parent.Depth + 1
 		
 		// Add edge if not already exists
 		alreadyExists := false
@@ -84,8 +97,8 @@ func (a *Agent) UpdateGraph(ev types.TelemetryEvent) error {
 		}
 	}
 
-	// Update centrality metrics (degree centrality as a simple proxy)
-	a.recalculateCentrality()
+	// Update importance metrics
+	a.recalculateMetrics()
 
 	// If node threat score is high, promote to incident graph
 	if n.ThreatScore >= 4.0 {
@@ -102,7 +115,7 @@ func (a *Agent) UpdateGraph(ev types.TelemetryEvent) error {
 	return nil
 }
 
-func (a *Agent) recalculateCentrality() {
+func (a *Agent) recalculateMetrics() {
 	inDegree := make(map[string]int)
 	outDegree := make(map[string]int)
 
@@ -114,8 +127,27 @@ func (a *Agent) recalculateCentrality() {
 	}
 
 	for id, node := range a.nodes {
+		// Centrality
 		total := float64(inDegree[id] + outDegree[id])
 		node.Centrality = total / float64(len(a.nodes))
+		
+		// Spread (out-degree fan-out)
+		node.Spread = float64(outDegree[id]) / 10.0 // normalized
+		if node.Spread > 1.0 {
+			node.Spread = 1.0
+		}
+		
+		// Multi-factor Importance Score
+		// Importance = Centrality * 0.4 + Criticality * 0.3 + Spread * 0.2 + (1/Depth) * 0.1
+		depthFactor := 1.0
+		if node.Depth > 0 {
+			depthFactor = 1.0 / node.Depth
+		}
+		
+		node.Importance = (node.Centrality * 0.4) + (node.Criticality * 0.3) + (node.Spread * 0.2) + (depthFactor * 0.1)
+		if node.Importance > 1.0 {
+			node.Importance = 1.0
+		}
 	}
 }
 

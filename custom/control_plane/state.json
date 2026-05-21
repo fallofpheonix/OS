@@ -1,0 +1,7 @@
+{
+  "task-1": {
+    "id": "task-1",
+    "title": "Setup CI",
+    "state": "RFC"
+  }
+}

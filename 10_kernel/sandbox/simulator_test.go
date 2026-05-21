@@ -28,4 +28,19 @@ func TestKernelSimulator(t *testing.T) {
 	if err == nil {
 		t.Error("Expected stack depth error, got nil")
 	}
+
+	// Test global energy budget
+	err = ks.RequestEnergy(500.0)
+	if err != nil {
+		t.Errorf("Failed to request 500 energy: %v", err)
+	}
+	
+	err = ks.RequestEnergy(600.0)
+	if err == nil {
+		t.Error("Expected energy budget to be exceeded")
+	}
+	
+	if ks.ConsumedEnergy != 500.0 {
+		t.Errorf("Expected 500 consumed energy, got %v", ks.ConsumedEnergy)
+	}
 }

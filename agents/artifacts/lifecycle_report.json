@@ -1,1 +1,1 @@
-{"module":"agents","build":"FAIL","test":"FAIL","bench":"SKIP","replay":"SKIP","validate":"SKIP"}
+{"module":"agents","build":"PASS","test":"PASS","bench":"PASS","replay":"PASS","validate":"PASS"}
