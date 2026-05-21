@@ -1,10 +1,10 @@
-# RFC-005: Containment Engine Primitives
+# RFC-005: Phoenix Warden Primitives
 
 ## Status
 Approved
 
 ## 1. Purpose
-This RFC specifies the Containment Engine Primitives for Pheonix. These primitives allow the system to quickly isolate compromised processes and network connections. The engine provides low-latency isolation techniques to minimize threat propagation while preserving forensic data for triage.
+This RFC specifies the Phoenix Warden Primitives for Phoenix. These primitives allow the system to quickly isolate compromised processes and network connections. The engine provides low-latency isolation techniques to minimize threat propagation while preserving forensic data for triage.
 
 ## 2. Containment Sequence Flow
 ```mermaid
@@ -24,7 +24,7 @@ stateDiagram-v2
 
 ## 3. Primitives & Interfaces
 
-### 3.1 Containment Engine Interface
+### 3.1 Phoenix Warden Interface
 ```go
 type ContainmentEngine interface {
     SuspendProcess(pid uint32) error
@@ -45,8 +45,8 @@ type ContainmentEngine interface {
 ---
 
 ## 4. Security Policies & Whitelists
-To prevent self-denial of service, the Containment Engine enforces **immutable whitelists**:
-*   **Daemon Whitelist:** Under no circumstances will the agent suspend or terminate PID `1` (systemd/launchd), PID `0` (idle), or the Pheonix agent itself.
+To prevent self-denial of service, the Phoenix Warden enforces **immutable whitelists**:
+*   **Daemon Whitelist:** Under no circumstances will the agent suspend or terminate PID `1` (systemd/launchd), PID `0` (idle), or the Phoenix agent itself.
 *   **Network Whitelist:** Loopback interface `127.0.0.1`, DNS resolution ports, and active SSH socket ports (Port 22/tcp) are excluded from blocking.
 
 ---
@@ -68,4 +68,4 @@ To prevent self-denial of service, the Containment Engine enforces **immutable w
 
 ## 7. Test Strategy
 *   **Suspension Test:** Spawn a test process that logs to a file. Trigger `SuspendProcess`, verify the logs stop, check state `T` in `ps`, then trigger `ResumeProcess`, and verify logs resume.
-*   **Whitelist Verification:** Attempt to block IP `127.0.0.1` and verify the Containment Engine returns an explicit `ErrWhitelisted` error.
+*   **Whitelist Verification:** Attempt to block IP `127.0.0.1` and verify the Phoenix Warden returns an explicit `ErrWhitelisted` error.

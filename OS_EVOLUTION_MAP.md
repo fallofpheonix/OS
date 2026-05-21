@@ -1,4 +1,4 @@
-OS Evolution Map — Pheonix
+OS Evolution Map — Phoenix
 ================================
 
 Seed convergence path (phases):
@@ -10,22 +10,22 @@ Phase 1 (Year 0-1): Foundations
 - Acceptance gate: Telemetry schema validated, replay harness working
 
 Phase 2 (Year 1-2): Event & Graph
-- Deliverables: Event bus, graph engine, process graphs
+- Deliverables: Phoenix Bus, graph engine, Phoenix Traces
 - RFCs: RFC-006_process_graph, RFC-007_event_normalizer
 - Kernel impact: stabilized eBPF probes
 - Acceptance gate: Graph reconstruction fidelity >= 95% on benchmarks
 
 Phase 3 (Year 2-3): Control & Security
-- Deliverables: containment engine, control loops, AI correlator (proof-of-concept)
+- Deliverables: Phoenix Warden, control loops, AI correlator (proof-of-concept)
 - RFCs: RFC-005_containment_engine, RFC-004_ai_correlator
 - Kernel impact: privileged enforcement hooks (delayed until validated)
 
 Phase 4+: Hybrid Runtime → Custom OS
-# Pheonix Convergence Map
+# Phoenix Convergence Map
 
 ### 1. Phase A: Math Primitives & Telemetry (Year 1, M1-M6)
 *   **Architecture Layer:** L2, L3, L4
-*   **Deliverables:** eBPF Capture, Entropy Engine, Event Bus, Process Graphs.
+*   **Deliverables:** eBPF Capture, Phoenix Monitor, Phoenix Bus, Phoenix Traces.
 *   **Gate:** R001, R002, R021 validated.
 *   **Risk:** eBPF overhead crashes kernel.
 
@@ -37,7 +37,7 @@ Phase 4+: Hybrid Runtime → Custom OS
 
 ### 3. Phase D: Dynamic Control (Year 2, M20-M25)
 *   **Architecture Layer:** L5
-*   **Deliverables:** PID Cgroups throttler, Containment Engine.
+*   **Deliverables:** PID Cgroups throttler, Phoenix Warden.
 *   **Gate:** R023, R031 validated.
 *   **Risk:** Control overshoot causes benign process starvation.
 

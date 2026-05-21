@@ -9,7 +9,7 @@ Attackers may hide activity by overwhelming telemetry or exploiting sampling gap
 Assets:
 - Host kernel telemetry
 - eBPF capture shim
-- Event bus ingestion pipeline
+- Phoenix Bus ingestion pipeline
 
 Attack path:
 - Stealthy malware generates many syscalls or I/O to try to evade sampling/loss.
@@ -53,4 +53,4 @@ Pilot mapping:
 Hospital ransomware (telemetry reliability for pre-encryption detection)
 
 Next integration target:
-Normalized event bus schema and sampling policy module
+Normalized Phoenix Bus schema and sampling policy module

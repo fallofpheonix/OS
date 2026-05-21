@@ -1,11 +1,11 @@
-# Pheonix Master Architecture & Roadmap (5-7 Year Plan)
+# Phoenix Master Architecture & Roadmap (5-7 Year Plan)
 
 ## Core Principle
-`Physics + Mathematics + Security + Operating Systems = Pheonix`
+`Physics + Mathematics + Security + Operating Systems = Phoenix`
 
 ## Master System Stack (GTOS Model)
 - **L7:** Autonomous Security Layer (Multi-Agent Swarm)
-- **L6:** Incident Physics Engine (Thermodynamics & Disorder)
+- **L6:** Phoenix Sentinel Engine (Thermodynamics & Disorder)
 - **L5:** Game Theory & Control Dynamics (Nash, Stackelberg, VCG)
 - **L4:** Graph Intelligence (Incident DAGs)
 - **L3:** Mathematical Telemetry (Entropy, Signals)
@@ -23,7 +23,7 @@
 8. **Autonomous OS:** (AI, Multi-agent execution)
 
 ## Phase A: Mathematical Core (Months 1-6)
-- **A1:** Information Theory (Entropy Engine, KL Detector)
+- **A1:** Information Theory (Phoenix Monitor, KL Detector)
 - **A2:** Graph Mathematics (Incident DAGs)
 - **A3:** Optimization Theory (Minimizing containment cost)
 
@@ -55,5 +55,5 @@
 - **E1:** Physics/Game-aware Scheduler
 - **E2:** Energy/Entropy tracking memory allocation
 
-## Phase F: Autonomous Pheonix (Months 37+)
+## Phase F: Autonomous Phoenix (Months 37+)
 - Full LLM/Graph reasoning runtime.

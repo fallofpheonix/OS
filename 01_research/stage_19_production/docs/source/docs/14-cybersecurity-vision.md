@@ -2,7 +2,7 @@
 
 ## Project
 
-Pheonix.
+Phoenix.
 
 ## Type
 

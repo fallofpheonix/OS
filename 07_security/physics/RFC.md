@@ -1,4 +1,4 @@
-# RFC: Incident Physics (L6)
+# RFC: Phoenix Sentinel (L6)
 
 ## 1. Specification
 The Physics engine processes the state vector of $N$ containers or processes. Each node has a state $\sigma \in \{+1, -1\}$.

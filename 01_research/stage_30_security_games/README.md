@@ -1,7 +1,7 @@
-# Stage 30: Security Games in Pheonix
+# Stage 30: Security Games in Phoenix
 
 ## 1. Core Objective
-To formulate and analyze strategic, sequential security interactions using Stackelberg Security Games (SSG). By designating Pheonix as the leader committing to randomized monitoring and containment policies, and attackers as rational followers who observe and adapt, Pheonix optimizes defensive allocations against intelligent adversaries.
+To formulate and analyze strategic, sequential security interactions using Stackelberg Security Games (SSG). By designating Phoenix as the leader committing to randomized monitoring and containment policies, and attackers as rational followers who observe and adapt, Phoenix optimizes defensive allocations against intelligent adversaries.
 
 ---
 
@@ -9,7 +9,7 @@ To formulate and analyze strategic, sequential security interactions using Stack
 
 ### 2.1. Basic Structure
 A Stackelberg Security Game on host operations is defined by:
-*   **Leader (Pheonix):** Commits to a randomized strategy profile (mixed strategy) $\mathbf{x} \in \Delta(\mathcal{C})$ representing the coverage probabilities of various telemetry and enforcement resources.
+*   **Leader (Phoenix):** Commits to a randomized strategy profile (mixed strategy) $\mathbf{x} \in \Delta(\mathcal{C})$ representing the coverage probabilities of various telemetry and enforcement resources.
 *   **Follower (Attacker):** Observes the leader's commit probability distribution (e.g. by measuring latency or tracking honeypot states) and selects a utility-maximizing action $a \in \mathcal{A}$.
 
 ### 2.2. Mathematical Model

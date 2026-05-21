@@ -1,0 +1,4 @@
+Starting PhoenixOS Internal Agents...
+Forensics Agent initialized (Storage: ./artifacts/forensics)
+Agents initialized and running.
+Kernel Agent Status: Locked=true

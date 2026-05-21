@@ -1,7 +1,7 @@
-# Stage 27: Optimization & Geometry in Pheonix
+# Stage 27: Optimization & Geometry in Phoenix
 
 ## 1. Core Objective
-To leverage high-dimensional geometry, topological data analysis (TDA), and mathematical optimization algorithms to analyze system behavior manifolds and make resource containment decisions. By mapping system metrics to Riemannian manifolds and formulating response policies as multi-objective convex optimization problems, Pheonix optimizes security containment while preserving strict host performance constraints.
+To leverage high-dimensional geometry, topological data analysis (TDA), and mathematical optimization algorithms to analyze system behavior manifolds and make resource containment decisions. By mapping system metrics to Riemannian manifolds and formulating response policies as multi-objective convex optimization problems, Phoenix optimizes security containment while preserving strict host performance constraints.
 
 ---
 
@@ -18,14 +18,14 @@ And trace the birth and death of topological voids (connected components $H_0$, 
 #### Geodesic Manifold Deviations:
 Normal system behavior lies on a low-dimensional Riemannian manifold $\mathcal{M} \subset \mathbb{R}^d$. Geodesic distance $d_{\mathcal{M}}$ is computed:
 $$d_{\mathcal{M}}(\mathbf{x}, \mathbf{y}) = \inf_{\gamma} \int_{a}^{b} \sqrt{g_{\gamma(t)}(\dot{\gamma}(t), \dot{\gamma}(t))} \, dt$$
-Where $g$ is the metric tensor. If $d_{\mathcal{M}}(\mathbf{x}(t), \text{baseline}) > \Theta_{geom}$, Pheonix flags a high-dimensional state anomaly.
+Where $g$ is the metric tensor. If $d_{\mathcal{M}}(\mathbf{x}(t), \text{baseline}) > \Theta_{geom}$, Phoenix flags a high-dimensional state anomaly.
 
 ---
 
 ### 2.2. Optimization Formulations
 
 #### Multi-Objective Convex Optimization for Containment:
-When containing an attack, Pheonix must minimize threat propagation while minimizing the disruption to normal user/service execution.
+When containing an attack, Phoenix must minimize threat propagation while minimizing the disruption to normal user/service execution.
 $$\min_{\mathbf{u}} \quad f_{threat}(\mathbf{u}) + \alpha \cdot f_{overhead}(\mathbf{u})$$
 $$\text{subject to} \quad \mathbf{A}\mathbf{u} \le \mathbf{b}, \quad 0 \le u_i \le 1$$
 Where:

@@ -52,7 +52,7 @@ System response:
 
 ```text
 telemetry kernel
--> unified event bus
+-> unified Phoenix Bus
 -> AI correlation
 -> single incident graph
 ```

@@ -6,7 +6,7 @@ Approved
 ## 1. Purpose
 This RFC defines the design and data structures for building a real-time parent-child process lineage graph from telemetry events. Process lineage tracking is critical to identifying malicious behaviors such as execution of unauthorized child processes by system daemons (e.g., a web server spawning `sh`).
 
-## 2. Process Graph Data Structures
+## 2. Phoenix Trace Data Structures
 
 ### 2.1 Process Node
 Each process is represented as a node in the graph.
@@ -29,7 +29,7 @@ type ProcessNode struct {
 }
 ```
 
-### 2.2 Process Graph Store
+### 2.2 Phoenix Trace Store
 The graph store maintains active processes in memory for fast lookup.
 
 ```go
@@ -43,7 +43,7 @@ type ProcessGraph struct {
 
 ## 3. Event Processing Logic
 
-The process graph builds its state incrementally by consuming normalized telemetry events.
+The Phoenix Trace builds its state incrementally by consuming normalized telemetry events.
 
 ```mermaid
 stateDiagram-v2
@@ -85,7 +85,7 @@ Linux recycles PIDs after they reach `/proc/sys/kernel/pid_max`.
 
 ### 4.2 Orphaning and Daemonization
 When a parent process exits before its children, the kernel reparents the children to PID 1 (or the nearest subreaper).
-*   **Mitigation:** The process graph builder does **not** update the `PPID` or `OriginalPPID` to `1` upon parent termination. The `OriginalPPID` remains static to preserve the security context of the original parent-child relationships.
+*   **Mitigation:** The Phoenix Trace builder does **not** update the `PPID` or `OriginalPPID` to `1` upon parent termination. The `OriginalPPID` remains static to preserve the security context of the original parent-child relationships.
 
 ---
 

@@ -4,7 +4,7 @@
 The Phoenix Monitor provides L3 telemetry analysis. It consumes raw events from the Phoenix Bus and produces anomaly signals.
 
 ## 2. Specification
-- **Entropy Engine:** Shannon Entropy + KL Divergence.
+- **Phoenix Monitor:** Shannon Entropy + KL Divergence.
 - **Signal Filters:** Discrete-time Kalman filters for noise reduction.
 
 ## 3. Interface

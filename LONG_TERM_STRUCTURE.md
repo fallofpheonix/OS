@@ -1,4 +1,4 @@
-# CyberAI-OS Long-Term Structure
+# PhoenixOS Long-Term Structure
 
 ## Rule
 

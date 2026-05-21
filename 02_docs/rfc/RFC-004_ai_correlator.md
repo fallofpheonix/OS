@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the AI Correlator and Incident Graph Engine for Pheonix. This module maintains an in-memory graph of process lineages, filesystem activities, and network connections. It uses deterministic rules to trigger alerts and connects to an offline local AI inference engine to provide security analysis.
+This RFC specifies the AI Correlator and Incident Graph Engine for Phoenix. This module maintains an in-memory graph of process lineages, filesystem activities, and network connections. It uses deterministic rules to trigger alerts and connects to an offline local AI inference engine to provide security analysis.
 
 ## 2. Architecture & Data Structures
 
@@ -22,7 +22,7 @@ We represent system behavior as a Directed Acyclic Graph (DAG) containing:
 ### 2.2 Ingestion & Correlation Sequence
 ```mermaid
 sequenceDiagram
-    participant EB as Event Bus
+    participant EB as Phoenix Bus
     participant IG as Incident Graph
     participant CE as Correlation Engine
     participant FE as Forensics Engine

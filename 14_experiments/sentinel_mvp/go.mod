@@ -1,3 +1,3 @@
-module sentinel_mvp
+module phoenix_mvp
 
 go 1.26

@@ -8,7 +8,7 @@
 
 - [ ] Auditd comparison: prerequisite stage gates satisfied; lab or document artifact exists; risk logged.
 
-- [ ] Process graph: prerequisite stage gates satisfied; lab or document artifact exists; risk logged.
+- [ ] Phoenix Trace: prerequisite stage gates satisfied; lab or document artifact exists; risk logged.
 
 - [ ] Falco/Tracee model: prerequisite stage gates satisfied; lab or document artifact exists; risk logged.
 

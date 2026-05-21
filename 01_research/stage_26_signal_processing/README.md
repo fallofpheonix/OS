@@ -1,7 +1,7 @@
-# Stage 26: Signal Processing & Stochastic Filters in Pheonix
+# Stage 26: Signal Processing & Stochastic Filters in Phoenix
 
 ## 1. Core Objective
-To apply signal processing, stochastic filters, and probability theory to telemetry data streams. By treating system event frequencies as wave signals and syscall lineages as stochastic Markov processes, Pheonix filters telemetry noise via Kalman filtering and Fourier/Wavelet analysis, while identifying anomalous execution paths and fusing multi-sensor alert probabilities using Bayesian inference.
+To apply signal processing, stochastic filters, and probability theory to telemetry data streams. By treating system event frequencies as wave signals and syscall lineages as stochastic Markov processes, Phoenix filters telemetry noise via Kalman filtering and Fourier/Wavelet analysis, while identifying anomalous execution paths and fusing multi-sensor alert probabilities using Bayesian inference.
 
 ---
 
@@ -10,17 +10,17 @@ To apply signal processing, stochastic filters, and probability theory to teleme
 ### 2.1. Telemetry Signal Filtering (FFT, Wavelets, Kalman)
 
 #### Fast Fourier Transform (FFT) for Periodic Profiling:
-To detect malicious beacons or persistent pollers (e.g. C2 communications), Pheonix transforms time-series connection intervals into the frequency domain:
+To detect malicious beacons or persistent pollers (e.g. C2 communications), Phoenix transforms time-series connection intervals into the frequency domain:
 $$X(f) = \int_{-\infty}^{\infty} x(t) e^{-i 2 \pi f t} \, dt$$
 Spikes in $|X(f)|$ indicate highly periodic activity characteristic of automated scripts.
 
 #### Wavelet Transform for Transient Event Detection:
-To detect sudden, short-duration transients (e.g., buffer overflow spikes or rapid short execution bursts) without losing temporal resolution, Pheonix applies a Continuous Wavelet Transform:
+To detect sudden, short-duration transients (e.g., buffer overflow spikes or rapid short execution bursts) without losing temporal resolution, Phoenix applies a Continuous Wavelet Transform:
 $$C(a, b) = \int_{-\infty}^{\infty} x(t) \psi^* \left( \frac{t - b}{a} \right) \, dt$$
 Where $a$ is scale, $b$ is position, and $\psi(t)$ is the mother wavelet.
 
 #### Kalman Filtering for Noise Reduction:
-Telemetry metrics (CPU, disk read rates) are corrupted by background OS scheduling noise. Pheonix models metric states using a discrete Kalman filter:
+Telemetry metrics (CPU, disk read rates) are corrupted by background OS scheduling noise. Phoenix models metric states using a discrete Kalman filter:
 $$\mathbf{x}_k = \mathbf{F}_k \mathbf{x}_{k-1} + \mathbf{B}_k \mathbf{u}_k + \mathbf{w}_k$$
 $$\mathbf{z}_k = \mathbf{H}_k \mathbf{x}_k + \mathbf{v}_k$$
 Where $\mathbf{w}_k$ and $\mathbf{v}_k$ are process and measurement noise. The filter minimizes mean square error to compute the clean estimate $\mathbf{x}_k$.
@@ -34,11 +34,11 @@ Syscall streams are modeled as first-order Markov chains. Let $(X_t)$ be a seque
 $$P_{ij} = P(X_{t+1} = s_j \mid X_t = s_i)$$
 The sequence likelihood $L$ of observed syscalls $(x_1, \dots, x_k)$ is:
 $$\ln L = \sum_{t=2}^k \ln P(x_t \mid x_{t-1})$$
-Pheonix flags an anomaly if the average log-likelihood drops below the threshold:
+Phoenix flags an anomaly if the average log-likelihood drops below the threshold:
 $$\frac{1}{k-1} \ln L < \Theta_{stoch}$$
 
 #### Bayesian Sensor Fusion:
-Pheonix fuses alerts from multiple subsystems to calculate the unified probability of compromise:
+Phoenix fuses alerts from multiple subsystems to calculate the unified probability of compromise:
 $$P(\text{Compromise} \mid E_{ent} \cap E_{graph}) = \frac{P(E_{graph} \mid \text{Compromise}) \cdot P(\text{Compromise} \mid E_{ent})}{P(E_{graph} \mid E_{ent})}$$
 
 ---

@@ -2,7 +2,7 @@
 
 - Classification: IMPLEMENTATION
 - Progression: Observe -> Extend
-- Scope: eBPF, probes, audit, runtime event schema, process graph
+- Scope: eBPF, probes, audit, runtime event schema, Phoenix Trace
 - Prerequisites: Stage_01_System_Internals, Stage_02_Linux_and_Distro, Stage_04_Security_Fundamentals, Stage_08_Observability
 - Next stage: Stage_10_SOC_Stack
 
@@ -21,7 +21,7 @@
 | kprobes/uprobes/tracepoints | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 | Syscall telemetry | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 | Auditd comparison | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
-| Process graph | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Phoenix Trace | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 | Falco/Tracee model | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 | Perf overhead | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 | BPF verifier safety | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |

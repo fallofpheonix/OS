@@ -115,7 +115,7 @@ Document:
 
 ## AI/Cybersecurity Modules
 
-For Pheonix-style systems:
+For Phoenix-style systems:
 
 | Module | Status | Notes |
 |---|---|---|

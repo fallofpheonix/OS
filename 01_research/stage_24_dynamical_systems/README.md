@@ -1,7 +1,7 @@
-# Stage 24: Dynamical Systems in Pheonix
+# Stage 24: Dynamical Systems in Phoenix
 
 ## 1. Core Objective
-To model the operating system host as a continuous-time, evolving dynamical system. By defining multi-dimensional host state trajectories, predicting resource trends, and modeling attack propagation (e.g., ransomware spread) using epidemiological differential equations, Pheonix detects malicious divergences from normal execution trajectories and guarantees stable queueing behaviors under extreme loads.
+To model the operating system host as a continuous-time, evolving dynamical system. By defining multi-dimensional host state trajectories, predicting resource trends, and modeling attack propagation (e.g., ransomware spread) using epidemiological differential equations, Phoenix detects malicious divergences from normal execution trajectories and guarantees stable queueing behaviors under extreme loads.
 
 ---
 
@@ -24,7 +24,7 @@ The evolution of the host state is governed by a set of differential equations:
 $$\frac{d\mathbf{x}}{dt} = \mathbf{f}(\mathbf{x}(t), \mathbf{u}(t)) + \mathbf{w}(t)$$
 
 Where $\mathbf{u}(t)$ is the vector of control inputs and $\mathbf{w}(t)$ represents environmental noise.
-*   **Anomalous Divergence:** Pheonix maps the *expected trajectory* $\hat{\mathbf{x}}(t)$ based on historically learned vector flows. If the Euclidean distance between the *observed trajectory* $\mathbf{x}(t)$ and the expected trajectory exceeds a threshold, the system flags a trajectory anomaly:
+*   **Anomalous Divergence:** Phoenix maps the *expected trajectory* $\hat{\mathbf{x}}(t)$ based on historically learned vector flows. If the Euclidean distance between the *observed trajectory* $\mathbf{x}(t)$ and the expected trajectory exceeds a threshold, the system flags a trajectory anomaly:
     $$\|\mathbf{x}(t) - \hat{\mathbf{x}}(t)\| > \Theta_{dynamics}$$
 
 ---

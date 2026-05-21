@@ -1,31 +1,53 @@
-# PhoenixOS: Gap Analysis & Vague Areas
+# PhoenixOS: Gap Analysis & Expert Assessment
 
-As we move toward a unified "Phoenix Matrix," several critical gaps between theory and implementation have emerged.
+This document tracks critical gaps between PhoenixOS theory and implementation, aligned with expert architectural assessments.
 
 ## 1. The Transfer Function Gap (L6 -> L5)
-**Problem:** We have a **Security Disorder Index (SDI)** from L6 and a **PID Controller** in L5.
-**Vague Area:** What is the mathematical "Transfer Function" that maps an SDI value (e.g., 0.85) to a PID setpoint or gain ($K_p$)? If this is linear, it may be too slow; if exponential, it may cause system-wide oscillation (stability issues).
+**Status:** **[REFINED]**
+**Original Problem:** Direct SDI-to-Gain mapping risk. High SDI could lead to massive $K_p$, causing system-wide oscillation and "containment storms."
+**Expert Assessment:** Move from non-linear gain to a **Finite-State Controller**.
+**States:**
+- `SAFE`: Observation only.
+- `WATCH`: Increase telemetry sampling rates.
+- `SUSPICIOUS`: Trigger process throttling (PID).
+- `CRITICAL`: Atomic isolation (STOP signal).
+- `COMPROMISED`: Forensic snapshot + termination.
 
-## 2. Decision Latency & Enforcement Lag
-**Problem:** Detection happens in userspace (Monitor/Sentinel), but enforcement is triggered via the Warden back down to the Kernel.
-**Vague Area:** In the time it takes for the **Phoenix Bus** to route an anomaly to the **Arbiter** and then to the **Warden**, the ransomware may have already encrypted the master key. We need an "Emergency Path" that bypasses the strategic layer for high-confidence threats.
+## 2. Enforcement Lag
+**Status:** **[SOLVED in P0]**
+**Problem:** Path from detection (userspace) to enforcement (kernel) creates an exploit window.
+**Expert Assessment:** Implement a **Kernel Guard (Fast Path)**.
+**Implementation:** Phoenix Guard (<100ms) bypasses strategic layers for high-confidence heuristics (Entropy bursts, crypto-write signatures).
 
-## 3. The "Strategic Greedy" Process (L5.5)
-**Problem:** The **Arbiter** uses Game Theory to allocate monitoring resources.
-**Vague Area:** A sophisticated attacker could mimic a "Low Value" process to avoid being selected for monitoring by the Stackelberg solver. Our payoff matrix currently assumes static process valuations. We need dynamic valuation based on **Phoenix Trace** (Process Lineage).
+## 3. Strategic Mimicry
+**Status:** **[REFINED]**
+**Problem:** Attackers mimicking low-priority processes to avoid game-theoretic monitoring.
+**Expert Assessment:** PageRank is insufficient. Need an **Importance Score** ($S_I$).
+**Formula:** $S_I = \text{Centrality} + \text{File Criticality} + \text{Entropy Contribution} + \text{Network Spread} + \text{Lineage Depth}$.
 
 ## 4. Byzantine Swarm Poisoning (L7)
-**Problem:** **Phoenix Nexus** uses gossip to share SDI.
-**Vague Area:** If one node is compromised, it can broadcast a "Max SDI" (False Positive) to the entire swarm, triggering a self-inflicted Denial of Service (DoS). The consensus mechanism is currently too naive to handle "Lying Nodes."
+**Status:** **[IN PROGRESS]**
+**Problem:** Single node compromise can trigger a cluster-wide self-DoS.
+**Expert Assessment:** Merkle proofs (PoA) alone are not enough. Need **Weighted Quorum** based on **Node Reputation**.
+**Flow:** `Node Claim` -> `Evidence Verification` -> `Peer Quorum` -> `Acceptance`.
 
 ## 5. Memory Exhaustion in Lineage (L4)
-**Problem:** **Phoenix Trace** builds a DAG of every process.
-**Vague Area:** In a production server, PIDs are recycled, and thousands of short-lived processes (cron, shell scripts) are created. Our "pruning" logic is basic. We need a "Causal Forgetting Factor" that preserves important nodes (init, db) but aggressively purges low-centrality nodes without losing forensic integrity.
+**Status:** **[P0 BLOCKER]**
+**Problem:** DAG explosion from thousands of short-lived processes.
+**Expert Assessment:** Implement **3-Tier Storage**.
+- **HOT:** Active graph nodes.
+- **WARM:** Compressed lineage for recently exited processes.
+- **COLD:** Skeleton chain (Forensic integrity).
+- **Retention:** `init`, `db`, `auth`, `kernel` nodes are immutable and never pruned.
 
 ## 6. Stability of the MARL Swarm (L7)
-**Problem:** Multi-Agent Reinforcement Learning (MARL) governs the swarm.
-**Vague Area:** There is a risk of "Oscillatory Containment." Node A thinks Node B is infected and throttles it; Node B sees the performance drop as an anomaly on Node A and throttles Node A back. The feedback loops could enter a death spiral.
+**Status:** **[P3 PRIORITY]**
+**Problem:** Oscillatory containment (Nodes mutual-throttling).
+**Expert Assessment:** Implement **Action Debt** and **Cooldown Timers**.
+**Rule:** A node throttled cannot be re-throttled or trigger a counter-throttle within the cooldown window.
 
 ## 7. Evidence Layer vs. AI Autonomy
-**Problem:** We want AI-driven defense.
-**Vague Area:** How do we prove "Why" the AI took an action? We lack an **Evidence Ledger** that binds a **Phoenix Trace** subgraph to a specific **Sentinel** SDI transition.
+**Status:** **[SOLVED in P0]**
+**Problem:** Proving "Why" an autonomous action was taken.
+**Expert Assessment:** **Content-Addressable Evidence Ledger**.
+**Implementation:** Phoenix Ledger (P0) implemented with SHA-256 hash chaining of `(trace_hash, sdi, policy, action, result, time, confidence, replay, experiment)` tuples.

@@ -1,4 +1,4 @@
-module sentinel/telemetry_replay
+module phoenix/telemetry_replay
 
 go 1.26
 

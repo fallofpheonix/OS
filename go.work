@@ -11,4 +11,7 @@ use (
 	./phoenix_os/sentinel
 	./phoenix_os/trace
 	./phoenix_os/warden
+	./phoenix_os/ledger
+	./phoenix_os/guard
+	./phoenix_os/nexus
 )

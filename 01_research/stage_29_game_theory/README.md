@@ -1,7 +1,7 @@
 # Stage 29: Game Theory (The GTOS Model)
 
 ## Core Objective
-Evolve Pheonix into a Game-Theoretic Operating System where every resource decision and security response is a strategic game.
+Evolve Phoenix into a Game-Theoretic Operating System where every resource decision and security response is a strategic game.
 
 ## GTOS Pillars (Phase G1-G8)
 
@@ -33,5 +33,5 @@ Evolve Pheonix into a Game-Theoretic Operating System where every resource decis
 - **Goal:** Truthful bidding for bandwidth/bursts.
 - **Module:** `10_kernel/game_network/auction/`
 
-### G8: Multi-Agent Pheonix
+### G8: Multi-Agent Phoenix
 - **Goal:** Cooperative defense swarm (Telemetry, Graph, Physics, Game, Control agents).

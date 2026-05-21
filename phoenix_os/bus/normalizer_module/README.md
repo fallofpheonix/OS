@@ -1,6 +1,6 @@
 # Event Normalizer Module
 
-Purpose: Provide a safe, userspace event normalizer for Pheonix telemetry. This module implements schema validation, light enrichment, and a replayable normalization pipeline for simulated telemetry events.
+Purpose: Provide a safe, userspace event normalizer for Phoenix telemetry. This module implements schema validation, light enrichment, and a replayable normalization pipeline for simulated telemetry events.
 
 Structure created:
 - `RFC.md` — design and validation gates

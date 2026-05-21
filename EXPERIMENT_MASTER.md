@@ -4,7 +4,7 @@
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **R001** | eBPF File Capture Performance | Telemetry | READY | 1% CPU overhead | `09_telemetry/ebpf` |
 | **R002** | Entropy Math Calculation | Telemetry | READY | <5us per block | `09_telemetry/entropy_engine`|
-| **R003** | Process DAG Latency | Graph | BLOCKED | Requires Event Bus | `09_telemetry/process_graphs` |
+| **R003** | Process DAG Latency | Graph | BLOCKED | Requires Phoenix Bus | `09_telemetry/process_graphs` |
 | **R004** | SMB Protocol Emulator | Tools | READY | Emulates ransomware | `05_tools/malware` |
 | **R021** | Shannon Entropy Validation | Telemetry | READY | 99% accuracy | `09_telemetry/entropy_engine`|
 | **R022** | Lineage Graph Extraction | Graph | BLOCKED | Requires R003 | `09_telemetry/process_graphs`|

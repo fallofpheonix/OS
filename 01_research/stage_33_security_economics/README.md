@@ -1,7 +1,7 @@
-# Stage 33: Security Economics in Pheonix
+# Stage 33: Security Economics in Phoenix
 
 ## 1. Core Objective
-To apply Mechanism Design and Security Economics—specifically Vickrey-Clarke-Groves (VCG) auctions—to schedule and allocate host and network resources among competing processes, containers, or tenants. By aligning individual strategic incentives with global system efficiency, Pheonix prevents resource-starvation attacks, mitigates denial-of-service attempts, and ensures truthful resource requirement reporting.
+To apply Mechanism Design and Security Economics—specifically Vickrey-Clarke-Groves (VCG) auctions—to schedule and allocate host and network resources among competing processes, containers, or tenants. By aligning individual strategic incentives with global system efficiency, Phoenix prevents resource-starvation attacks, mitigates denial-of-service attempts, and ensures truthful resource requirement reporting.
 
 ---
 
@@ -14,7 +14,7 @@ Let:
 *   $v_i(x) \in \mathbb{R}$: Private valuation of agent $i$ for allocation $x \in \mathcal{X}$, reflecting the agent's actual operational utility or priority.
 *   $\hat{v}_i(x)$: Valuation reported (bid) by agent $i$ to the scheduler. An agent may misreport ($\hat{v}_i \neq v_i$) to hoard resources.
 
-The Pheonix economic scheduler executes a two-step mechanism:
+The Phoenix economic scheduler executes a two-step mechanism:
 
 #### Step 1: Efficient Allocation Rule
 Compute the socially optimal allocation $x^*$ that maximizes the sum of reported valuations:

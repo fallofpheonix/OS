@@ -19,5 +19,5 @@ Layer 2 agents manage the internal health and strategic coordination of PhoenixO
 ### 3. Self-Healer (`agents/internal/healer/`)
 - **Purpose:** Automated recovery and system restoration.
 - **Owns:** Rollback triggers, container/service restarts.
-- **Inputs:** Incident physics alerts (L6).
+- **Inputs:** Phoenix Sentinel alerts (L6).
 - **Outputs:** Recovery actions.

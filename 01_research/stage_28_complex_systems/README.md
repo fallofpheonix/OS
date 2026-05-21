@@ -1,7 +1,7 @@
-# Stage 28: Complex Systems in Pheonix
+# Stage 28: Complex Systems in Phoenix
 
 ## 1. Core Objective
-To analyze the operating system and multi-host networks as complex, self-organizing systems. By modeling security agent interactions as cellular automata and utilizing emergent behavior swarm algorithms, Pheonix enables decentralized host defense, coordinated multi-host self-healing, and resilience against zero-day cascade compromises.
+To analyze the operating system and multi-host networks as complex, self-organizing systems. By modeling security agent interactions as cellular automata and utilizing emergent behavior swarm algorithms, Phoenix enables decentralized host defense, coordinated multi-host self-healing, and resilience against zero-day cascade compromises.
 
 ---
 
@@ -20,10 +20,10 @@ Where:
 ---
 
 ### 2.2. Emergent Swarm Intelligence
-Coordinating threat intelligence across hundreds of Pheonix instances uses Swarm Optimization models (like Particle Swarm Optimization or Ant Colony Optimization).
+Coordinating threat intelligence across hundreds of Phoenix instances uses Swarm Optimization models (like Particle Swarm Optimization or Ant Colony Optimization).
 
 #### Particle Swarm Optimization (PSO) for Threat Vector Search:
-Multiple Pheonix nodes cooperate to locate the optimal threshold settings for a new, zero-day threat vector in the parameter space.
+Multiple Phoenix nodes cooperate to locate the optimal threshold settings for a new, zero-day threat vector in the parameter space.
 $$\mathbf{v}_i(t+1) = w \mathbf{v}_i(t) + c_1 r_1 (\mathbf{p}_i(t) - \mathbf{x}_i(t)) + c_2 r_2 (\mathbf{g}(t) - \mathbf{x}_i(t))$$
 $$\mathbf{x}_i(t+1) = \mathbf{x}_i(t) + \mathbf{v}_i(t+1)$$
 Where:

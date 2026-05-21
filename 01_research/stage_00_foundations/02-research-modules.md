@@ -255,7 +255,7 @@ Feed ML systems with high-fidelity kernel telemetry.
 - uprobes.
 - tracepoints.
 - Syscall streams.
-- Process graphs.
+- Phoenix Traces.
 - File-access events.
 
 ### Concrete Artifacts
@@ -264,7 +264,7 @@ Feed ML systems with high-fidelity kernel telemetry.
 - Process-tree graph exporter.
 - Syscall stream schema.
 - File-access event stream.
-- Kernel-to-userspace event bus.
+- Kernel-to-userspace Phoenix Bus.
 
 ### Output Documents
 

@@ -1,6 +1,6 @@
-# MVP Sprint Plan: Pheonix
+# MVP Sprint Plan: Phoenix
 
-This sprint plan details the phased engineering roadmap for delivering the Pheonix MVP.
+This sprint plan details the phased engineering roadmap for delivering the Phoenix MVP.
 
 ## Sprint 1: Architecture, Design & Governance (Milestone: Design Sign-off)
 *   **Duration:** 1 week
@@ -8,7 +8,7 @@ This sprint plan details the phased engineering roadmap for delivering the Pheon
 *   **Tasks:**
     1.  Detail Telemetry Schema RFC-001 (Process, Syscall, Filesystem, Network, Container, Memory).
     2.  Define telemetry_events.json JSON schema.
-    3.  Detail Unified Event Bus RFC-002 (Normalizer, Broker, Publisher/Subscriber APIs).
+    3.  Detail Unified Phoenix Bus RFC-002 (Normalizer, Broker, Publisher/Subscriber APIs).
     4.  Detail Forensic Snapshot RFC-003 (Triggers, Memory/Disk/Process capture state machine).
     5.  Detail AI Correlator & Incident Graph RFC-004 (Graph schema, anomaly rules, offline LLM interface).
     6.  Detail Containment Primitives RFC-005 (Network & Process block mechanisms).
@@ -16,12 +16,12 @@ This sprint plan details the phased engineering roadmap for delivering the Pheon
 
 ## Sprint 2: Foundational Data Pipeline (Milestone: Event Flow Validation)
 *   **Duration:** 1 week
-*   **Objectives:** Implement the Telemetry Agent and Unified Event Bus with local simulation capabilities.
+*   **Objectives:** Implement the Telemetry Agent and Unified Phoenix Bus with local simulation capabilities.
 *   **Tasks:**
     1.  Initialize Go modular workspace under `14_experiments/`.
     2.  Implement Telemetry Agent with local macOS Simulation Mode (sending random/patterned JSON events).
     3.  Build eBPF probe scaffold (Linux structure, loaded stub for prod mode).
-    4.  Implement Event Bus Broker: TCP/Unix domain socket listener, JSON event normalizer, and pub-sub router.
+    4.  Implement Phoenix Bus Broker: TCP/Unix domain socket listener, JSON event normalizer, and pub-sub router.
     5.  Validate pipeline performance (target: >50k events/sec under local simulation).
 
 ## Sprint 3: Intelligence, Incident Capture & SOC UI (Milestone: E2E MVP Release)

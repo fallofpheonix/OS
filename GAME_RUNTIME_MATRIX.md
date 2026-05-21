@@ -2,7 +2,7 @@
 
 ### 1. Strong Stackelberg Equilibrium (SSE)
 *   **Formula:** $\max U_D(t^*, x_{t^*})$ subject to attacker best response.
-*   **Meaning:** Pheonix (Leader) commits to a monitoring distribution over targets. Attacker (Follower) selects a target.
+*   **Meaning:** Phoenix (Leader) commits to a monitoring distribution over targets. Attacker (Follower) selects a target.
 *   **Telemetry Source:** eBPF sampling allocations, critical file paths.
 *   **Target Module:** `07_security/game`
 *   **Acceptance Criteria:** Solver execution time <= 1 ms.

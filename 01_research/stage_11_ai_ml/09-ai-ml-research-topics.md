@@ -203,7 +203,7 @@ Research directions:
 
 Cybersecurity relevance:
 
-- Local inference in Pheonix.
+- Local inference in Phoenix.
 - Portable model deployment.
 - Fast malware/telemetry scoring.
 

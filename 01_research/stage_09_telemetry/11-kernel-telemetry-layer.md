@@ -18,7 +18,7 @@ Goal:
 kernel events
   -> structured telemetry
   -> user-space stream processor
-  -> process graph / policy engine / ML model
+  -> Phoenix Trace / policy engine / ML model
   -> alert, enrich, or respond
 ```
 
@@ -156,7 +156,7 @@ Measure:
 - Field completeness.
 - Rule flexibility.
 
-## 4. Process Graphs And Behavior Modeling
+## 4. Phoenix Traces And Behavior Modeling
 
 ### Graph Model
 
@@ -201,7 +201,7 @@ Edges:
 
 ### Project
 
-Build a streaming process graph:
+Build a streaming Phoenix Trace:
 
 ```text
 eBPF events
@@ -356,7 +356,7 @@ fallback_mode: sample
 | Area | Project |
 |---|---|
 | eBPF syscall tracing | Low-latency syscall tracer with ring-buffer export |
-| Process graphs | Real-time process graph with anomaly detection |
+| Phoenix Traces | Real-time Phoenix Trace with anomaly detection |
 | Falco-style policy engine | Rules engine consuming custom BPF events |
 | Audit optimization | eBPF-backed audit layer compared with auditd |
 | perf anomaly detection | perf-guided detection of resource abuse |
@@ -408,7 +408,7 @@ kernel_telemetry/
 | 3 | kprobes vs tracepoints | overhead comparison |
 | 4 | syscall event schema | structured event stream |
 | 5 | ring buffer export | user-space collector |
-| 6 | process graph | graph builder and sample rules |
+| 6 | Phoenix Trace | graph builder and sample rules |
 | 7 | Falco/Tracee study | rule and event model comparison |
 | 8 | perf sampling | CPU/page-fault anomaly report |
 | 9 | telemetry budget | adaptive sampling prototype |
@@ -421,7 +421,7 @@ Goal:
 ```text
 eBPF sensors
   -> event stream
-  -> process graph
+  -> Phoenix Trace
   -> policy engine
   -> risk score
   -> SIEM output
@@ -432,7 +432,7 @@ Deliverables:
 - BPF programs.
 - User-space collector.
 - Event schema.
-- Process graph.
+- Phoenix Trace.
 - Rule set.
 - Benchmark report.
 - Overhead budget.
@@ -443,12 +443,12 @@ Deliverables:
 | Kernel Telemetry Output | Cyber AI OS Use |
 |---|---|
 | Syscall stream | Host behavior model |
-| Process graph | Threat prediction |
+| Phoenix Trace | Threat prediction |
 | File/network events | EDR/XDR layer |
 | perf samples | Resource-abuse detection |
 | Telemetry budget | Production-safe observability |
 | Falco/Tracee-style rules | Runtime policy engine |
-| eBPF event collector | AI event bus |
+| eBPF event collector | AI Phoenix Bus |
 
 ## Constraint
 

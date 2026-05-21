@@ -1,25 +1,23 @@
-# PhoenixOS: Task List
+# PhoenixOS: Task List & Technical Strategy
 
-## Phase 1: Core Communications & Monitoring
-1.  **[Phoenix Bus]** System-wide message router. **[COMPLETED]**
-2.  **[Phoenix Monitor]** Real-time entropy and signal analysis. **[COMPLETED]**
-3.  **[Phoenix Trace]** Process causality and lineage mapping. **[COMPLETED]**
+## Priority 0 (P0): Critical Foundation
+1. **[Phoenix Ledger]** Evidence Ledger: Implement cryptographic tuple `(trace_hash, sdi, policy, action, result, time, confidence, replay, experiment)`.
+2. **[Phoenix Guard]** Fast Path Enforcement: Bypassing strategic layers for <100ms mitigation of heuristics (entropy bursts, crypto writes).
+3. **[Phoenix Trace]** 3-Tier DAG Storage: Implement HOT (active), WARM (compressed), COLD (skeleton) storage to prevent memory explosion.
 
-## Phase 2: Integrity & Decisions
-4.  **[Phoenix Sentinel]** Thermodynamic system integrity. **[COMPLETED]**
-5.  **[Phoenix Arbiter]** Game-theoretic strategic policy engine. **[COMPLETED]**
+## Priority 1 (P1): Core Intelligence
+4. **[Phoenix Sentinel]** Finite-State Controller: Replace continuous SDI-to-PID gain with discrete state progression (SAFE -> WATCH -> SUSPICIOUS -> CRITICAL -> COMPROMISED).
+5. **[Phoenix Monitor]** Process Importance Score: Replace simple PageRank with multi-factor scoring (Centrality + Criticality + Entropy + Spread + Depth).
+6. **[Phoenix Guard]** Guard Runtime: Userspace daemon connecting fast-detector logic directly to the Kernel Actuator.
 
-## Phase 3: Control & Actuation
-6.  **[Phoenix Warden]** Closed-loop resource control. **[COMPLETED]**
-7.  **[Phoenix Kernel]** In-kernel security hooks. **[COMPLETED]**
+## Priority 2 (P2): Swarm Reliability
+7. **[Phoenix Arbiter]** Byzantine Swarm Protection: Implement Proof-of-Authority + Node Reputation Score + Weighted Quorum consensus.
+8. **[Phoenix Arbiter]** Suspicion Counter: Track lying nodes and deduct reputation.
 
-## Phase 4: Swarm & Coordination
-8.  **[Phoenix Nexus]** Distributed state and swarm consensus (L7). **[IN PROGRESS]**
-9.  **[Phoenix Swarm]** Multi-Agent Reinforcement Learning (MARL) daemon.
+## Priority 3 (P3): Advanced Control
+9.  **[Phoenix Arbiter]** MARL Stability: Implement Action Debt, Cooldown Timers, and Maximum Containment Rates before Lyapunov analysis.
+10. **[Phoenix Kernel]** Global Energy Budget: System-wide control of action limits.
 
 ---
-## Task 8: Phoenix Nexus (Swarm Consensus)
-- **Purpose:** Synchronize threat state across multiple PhoenixOS nodes.
-- **Subsystem:** Distributed Systems / Consensus.
-- **Algorithm:** Raft / Paxos or Gossip-based eventual consistency.
-- **Budget:** < 100ms convergence.
+## Phase 1: Core Communications & Monitoring (Legacy Plan)
+*Tasks 1-3 moved to updated priorities above or completed in workflow repo.*

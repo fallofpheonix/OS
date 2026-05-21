@@ -1,6 +1,6 @@
-# Process Graph (L4)
+# Phoenix Trace (L4)
 
-Causal lineage DAG for Pheonix telemetry.
+Causal lineage DAG for Phoenix telemetry.
 
 ## Purpose
 Convert raw timeline events into directed process-resource graphs.
