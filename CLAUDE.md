@@ -2,12 +2,12 @@
 
 ### Issue tracker
 
-GitHub issue tracker. See `docs/agents/issue-tracker.md`.
+GitHub Issues via `gh` CLI. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
-Default triage label vocabulary. See `docs/agents/triage-labels.md`.
+Canonical labels (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
-Multi-context layout. See `docs/agents/domain.md`.
+Single-context (root `GEMINI.md` + `docs/adr/`). See `docs/agents/domain.md`.

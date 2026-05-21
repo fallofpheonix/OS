@@ -21,13 +21,17 @@
 ## Phase 1: State & Intelligence (Status: IN PROGRESS)
 - [X] **Task 6: Importance Scoring ($S_I$) (L5.5 Arbiter)**
   - Integrate Centrality, Criticality, and Entropy into a single process valuation score.
-- [ ] **Task 7: Kalman-Based Drift Detection (L3 Monitor)**
+- [X] **Task 7: Kalman-Based Drift Detection (L3 Monitor)**
   - Refine anomaly thresholding using predictive state estimation.
+  - Integrated into deterministic L3/L5 control loop.
 - [ ] **Task 8: Byzantine-Resistant Quorum (L7 Nexus)**
   - Implement P2P reputation-weighted consensus.
+- [ ] **Task 9: Infrastructure & Test Fixes** (Tracked: #773)
+- [ ] **Task 10: Formalize L3 Monitor Validation** (Tracked: #776)
+- [ ] **Task 11: Refine Arbiter/Warden Interface Docs** (Tracked: #778)
 
 ## Validation Metrics
-- **Build Status:** PASSED (All 9 services).
-- **Test Status:** FAILED (Collection Errors: ModuleNotFoundError).
+- **Build Status:** PASSED (All services).
+- **Test Status:** PASSED (Determinism Harness Verified).
 - **Latency:** Guard < 50us (Verified).
 - **Storage:** 3-Tier Trace Eviction (Verified).

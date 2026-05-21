@@ -1,14 +1,5 @@
-# Issue Tracker: GitHub
+# Issue Tracker
 
-This project uses GitHub Issues for tracking work.
+This project uses **GitHub Issues** to track development, bugs, and improvements.
 
-## Configuration
-
-- **Type:** GitHub
-- **Tool:** `gh` CLI
-
-## Workflow
-
-- Use `gh issue list` to view issues.
-- Use `gh issue create` to create new issues.
-- Use `gh issue view <id>` to see details.
+All agent tasks (`to-issues`, `triage`, etc.) should interact with the GitHub issue tracker via the `gh` CLI tool.
