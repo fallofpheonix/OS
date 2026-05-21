@@ -9,7 +9,7 @@ import (
 
 type GameAgent interface {
 	UpdateBeliefs(state types.SecurityState, evidence string)
-	SolveBestStrategy(state types.SecurityState, graph *types.IncidentGraph) (types.Strategy, error)
+	SolveBestStrategy(state types.SecurityState, graph *types.IncidentGraph, now time.Time) (types.Strategy, error)
 	GetBeliefs() (float64, float64)
 }
 
@@ -61,7 +61,7 @@ func (a *Agent) UpdateBeliefs(state types.SecurityState, evidence string) {
 }
 
 // SolveBestStrategy calculates Stackelberg follower response or Nash equilibrium
-func (a *Agent) SolveBestStrategy(state types.SecurityState, graph *types.IncidentGraph) (types.Strategy, error) {
+func (a *Agent) SolveBestStrategy(state types.SecurityState, graph *types.IncidentGraph, now time.Time) (types.Strategy, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
@@ -92,7 +92,7 @@ func (a *Agent) SolveBestStrategy(state types.SecurityState, graph *types.Incide
 		ContainmentLevel: level,
 		TargetPIDs:       targets,
 		StrategyType:     strategyType,
-		Timestamp:        time.Now(),
+		Timestamp:        now,
 	}, nil
 }
 

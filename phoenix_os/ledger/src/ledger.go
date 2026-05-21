@@ -1,4 +1,4 @@
-package ledger
+package main
 
 import (
 	"crypto/sha256"
@@ -37,6 +37,7 @@ func NewLedger() *Ledger {
 }
 
 func (l *Ledger) calculateHash(e Evidence) string {
+	// We must clear hashes before re-calculating to ensure consistency
 	temp := e
 	temp.EntryHash = ""
 	data, _ := json.Marshal(temp)
@@ -64,9 +65,11 @@ func (l *Ledger) Verify() bool {
 
 	expectedPrev := "GENESIS"
 	for _, e := range l.Entries {
+		// 1. Check Linkage
 		if e.PrevHash != expectedPrev {
 			return false
 		}
+		// 2. Check Data Integrity
 		if e.EntryHash != l.calculateHash(e) {
 			return false
 		}
@@ -85,4 +88,37 @@ func (l *Ledger) Print() {
 			e.Timestamp, e.TraceHash, e.SDI, e.Action, e.EntryHash[:8])
 	}
 	fmt.Println("----------------------")
+}
+
+func main() {
+	fmt.Println("Phoenix Ledger starting...")
+	l := NewLedger()
+
+	// Commit evidence
+	l.Commit(Evidence{
+		TraceHash:    "0xABC123",
+		SDI:          0.85,
+		PolicyID:     "POL-001",
+		Action:       "THROTTLE",
+		Result:       "SUCCESS",
+		ModelVersion: "v1.2.3",
+		Confidence:   0.98,
+		ReplayID:     "RUN-42",
+		ExperimentID: "EXP-ALPHA",
+	})
+
+	l.Commit(Evidence{
+		TraceHash:    "0xDEF456",
+		SDI:          0.92,
+		PolicyID:     "POL-001",
+		Action:       "ISOLATE",
+		Result:       "SUCCESS",
+		ModelVersion: "v1.2.3",
+		Confidence:   0.99,
+		ReplayID:     "RUN-42",
+		ExperimentID: "EXP-ALPHA",
+	})
+
+	l.Print()
+	fmt.Printf("Ledger Verification: %v\n", l.Verify())
 }

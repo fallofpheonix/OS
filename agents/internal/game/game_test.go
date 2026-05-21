@@ -3,6 +3,7 @@ package game
 import (
 	"phoenix/agents/internal/types"
 	"testing"
+	"time"
 )
 
 func TestGameAgent(t *testing.T) {
@@ -35,7 +36,8 @@ func TestGameAgent(t *testing.T) {
 		ThreatScore: 9.0,
 	}
 
-	strategy, err := agent.SolveBestStrategy(state, graph)
+	now := time.Now()
+	strategy, err := agent.SolveBestStrategy(state, graph, now)
 	if err != nil {
 		t.Fatalf("failed to solve strategy: %v", err)
 	}

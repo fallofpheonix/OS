@@ -3,6 +3,7 @@ package physics
 import (
 	"phoenix/agents/internal/types"
 	"testing"
+	"time"
 )
 
 func TestPhysicsAgent(t *testing.T) {
@@ -28,7 +29,8 @@ func TestPhysicsAgent(t *testing.T) {
 		Centrality:  0.5,
 	}
 
-	state, err := agent.GetSecurityState(graph)
+	now := time.Now()
+	state, err := agent.GetSecurityState(graph, now)
 	if err != nil {
 		t.Fatalf("failed to get security state: %v", err)
 	}

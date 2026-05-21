@@ -3,6 +3,7 @@ package control
 import (
 	"phoenix/agents/internal/types"
 	"testing"
+	"time"
 )
 
 func TestControlAgent(t *testing.T) {
@@ -16,8 +17,9 @@ func TestControlAgent(t *testing.T) {
 		TargetPIDs:       []uint32{123},
 	}
 
+	now := time.Now()
 	// First update
-	err := agent.EnforceStrategy(strategy, 5.0) // 5.0 is above 2.0 setpoint
+	err := agent.EnforceStrategy(strategy, 5.0, now) // 5.0 is above 2.0 setpoint
 	if err != nil {
 		t.Fatalf("failed to enforce strategy: %v", err)
 	}

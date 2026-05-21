@@ -29,11 +29,10 @@ type Agent struct {
 
 func NewControlAgent(kp, ki, kd, setpoint float64) *Agent {
 	return &Agent{
-		kp:             kp,
-		ki:             ki,
-		kd:             kd,
-		setpoint:       setpoint,
-		lastUpdateTime: time.Now(),
+		kp:       kp,
+		ki:       ki,
+		kd:       kd,
+		setpoint: setpoint,
 		metrics: types.PIDMetrics{
 			Setpoint: setpoint,
 		},
@@ -47,6 +46,9 @@ func (a *Agent) EnforceStrategy(s types.Strategy, currentThreatTemp float64, now
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
+	if a.lastUpdateTime.IsZero() {
+		a.lastUpdateTime = now
+	}
 	dt := now.Sub(a.lastUpdateTime).Seconds()
 	if dt <= 0 {
 		dt = 0.001 // prevent division by zero or negative time step
