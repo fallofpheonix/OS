@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -99,35 +100,42 @@ func TestEndToEndPipeline(t *testing.T) {
 
 	// 4. Simulate Ransomware Attack / Anomaly & Escalation
 	malwarePID := uint32(9999)
-	malwareEvent := types.TelemetryEvent{
-		Timestamp: time.Now(),
-		EventID:   "evt-666",
-		Category:  "network",
-		EventType: "network.connect",
-		PID:       malwarePID,
-		PPID:      2001, // Child of nginx!
-		Comm:      "malware",
-		ExePath:   "/tmp/malware",
-		Network: &types.NetworkPayload{
-			SAddr:    "127.0.0.1",
-			DAddr:    "8.8.8.8",
-			SPort:    55555,
-			DPort:    4444, // Reverse shell port
-			Protocol: "TCP",
-		},
-	}
-	telemetryAgent.RecordEvent(malwareEvent)
+	var anomalyState types.SecurityState
+	var activeDAG *types.IncidentGraph
 
-	err = graphAgent.UpdateGraph(malwareEvent)
-	if err != nil {
-		t.Fatalf("Failed to update graph with malware event: %v", err)
-	}
+	// We simulate a series of malicious filesystem events to escalate threat beliefs and temperature
+	for i := 0; i < 5; i++ {
+		malwareEvent := types.TelemetryEvent{
+			Timestamp: time.Now(),
+			EventID:   fmt.Sprintf("evt-666-%d", i),
+			Category:  "network",
+			EventType: "network.connect",
+			PID:       malwarePID,
+			PPID:      2001, // Child of nginx!
+			Comm:      "malware",
+			ExePath:   "/tmp/malware",
+			Network: &types.NetworkPayload{
+				SAddr:    "127.0.0.1",
+				DAddr:    "8.8.8.8",
+				SPort:    55555,
+				DPort:    4444, // Reverse shell port
+				Protocol: "TCP",
+			},
+		}
+		telemetryAgent.RecordEvent(malwareEvent)
 
-	// Perform calculations on threat DAG containing malware
-	activeDAG := graphAgent.GetAttackDAG()
-	anomalyState, err := physicsAgent.GetSecurityState(activeDAG)
-	if err != nil {
-		t.Fatalf("Failed to get security state: %v", err)
+		err = graphAgent.UpdateGraph(malwareEvent)
+		if err != nil {
+			t.Fatalf("Failed to update graph with malware event: %v", err)
+		}
+
+		activeDAG = graphAgent.GetAttackDAG()
+		anomalyState, err = physicsAgent.GetSecurityState(activeDAG)
+		if err != nil {
+			t.Fatalf("Failed to get security state: %v", err)
+		}
+
+		gameAgent.UpdateBeliefs(anomalyState, "high_entropy_write") // ransomware signature
 	}
 
 	// Check if threat temperature and disorder index reflect the anomaly
@@ -139,7 +147,6 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	// Run Bayesian Game solver
-	gameAgent.UpdateBeliefs(anomalyState, "high_entropy_write") // ransomware signature
 	threatStrategy, err := gameAgent.SolveBestStrategy(anomalyState, activeDAG)
 	if err != nil {
 		t.Fatalf("Failed to solve game strategy: %v", err)
