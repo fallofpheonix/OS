@@ -9,6 +9,7 @@ use (
 	./14_experiments/telemetry_replay
 	./agents
 	./custom/control_plane
+	./phoenix_os/agents/internal/swarm
 	./phoenix_os/arbiter
 	./phoenix_os/bus
 	./phoenix_os/common
