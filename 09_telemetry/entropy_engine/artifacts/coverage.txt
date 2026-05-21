@@ -1,0 +1,3 @@
+sentinel/telemetry/entropy_engine/src/main.go:17:	Calculate	78.9%
+sentinel/telemetry/entropy_engine/src/main.go:58:	main		0.0%
+total:							(statements)	41.7%

@@ -129,6 +129,17 @@ Critical path:
 | Phase 0: Computer Science Foundations | `01_research/stage_00_foundations/notes/phase_00_computer_science_foundations.md` | `01_research/stage_00_foundations/checkpoints/phase_00_build_gate.md` | `14_experiments/poc/stage_00_foundations/` |
 | Phase 1: Computer Architecture | `01_research/stage_00_foundations/architecture/phase_01_computer_architecture.md` | `01_research/stage_00_foundations/checkpoints/phase_01_build_gate.md` | `14_experiments/poc/stage_00_foundations/phase_01_architecture/` |
 | Phase 2: Low-Level Programming | `01_research/stage_00_foundations/development/phase_02_low_level_programming.md` | `01_research/stage_00_foundations/checkpoints/phase_02_build_gate.md` | `14_experiments/poc/stage_00_foundations/phase_02_low_level_programming/` |
+| Phase 3: Operating Systems | `01_research/stage_01_system_internals/kernel/phase_03_operating_systems.md` | `01_research/stage_01_system_internals/checkpoints/phase_03_build_gate.md` | `14_experiments/poc/stage_01_system_internals/phase_03_operating_systems/` |
+| Phase 4: Linux Internals | `01_research/stage_02_linux_and_distros/linux_internals/phase_04_linux_internals.md` | `01_research/stage_02_linux_and_distros/checkpoints/phase_04_build_gate.md` | `14_experiments/poc/stage_02_linux_and_distros/phase_04_linux_internals/` |
+| Phase 5: Networking | `01_research/stage_03_networking/phase_05_networking.md` | `01_research/stage_03_networking/checkpoints/phase_05_build_gate.md` | `14_experiments/poc/stage_03_networking/phase_05_networking/` |
+
+## Active Architecture Documents
+
+| Document | Path | Stage |
+|---|---|---|
+| Custom Cyber AI OS Operational Guide | `02_docs/architecture/custom_cyber_ai_os_operational_guide.md` | Stage 19 Production Platform |
+| End-To-End Runtime Architecture | `02_docs/architecture/end_to_end_runtime_architecture.md` | Stage 19 Production Platform |
+| Real-World Use Cases | `02_docs/architecture/real_world_use_cases.md` | Stage 19 Production Platform |
 | Phase 6: Security Foundations | `01_research/stage_04_security/phase_06_security_foundations.md` | `01_research/stage_04_security/build_gate.md` | `07_security/`, `02_docs/threat_models/` |
 | Phase 7: Reverse Engineering and Malware Analysis | `01_research/stage_05_reverse_engineering/phase_07_reverse_engineering_malware.md` | `01_research/stage_05_reverse_engineering/build_gate.md` | `05_tools/reverse/`, `07_security/yara/`, `08_forensics/reports/` |
 | Phase 8: AI/ML Fundamentals | `01_research/stage_11_ai_ml/phase_08_ai_ml_fundamentals.md` | `01_research/stage_11_ai_ml/build_gate.md` | `06_ai/`, `04_datasets/` |

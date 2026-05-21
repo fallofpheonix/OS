@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelOS | Mathematical & Physics Reference Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #06070a;
+            --bg-surface: rgba(13, 16, 24, 0.75);
+            --bg-sidebar: #0b0d13;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            --primary: hsl(245, 85%, 65%);
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --success: hsl(142, 70%, 45%);
+            --success-glow: rgba(16, 185, 129, 0.15);
+            --warning: hsl(38, 92%, 50%);
+            --warning-glow: rgba(245, 158, 11, 0.15);
+            --danger: hsl(346, 80%, 55%);
+            --danger-glow: rgba(244, 63, 94, 0.15);
+            --info: hsl(199, 89%, 48%);
+
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dark: #4b5563;
+            
+            --sidebar-width: 320px;
+            --transition-speed: 0.25s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.003) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.003) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all var(--transition-speed) ease;
+            text-align: left;
+            background: transparent;
+            color: var(--text-muted);
+            width: 100%;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+        }
+
+        .menu-item.active {
+            background: var(--primary-glow);
+            border-color: rgba(99, 102, 241, 0.25);
+            color: var(--text-main);
+        }
+
+        .menu-item-icon {
+            margin-right: 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .menu-item-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-item-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .menu-item-sub {
+            font-size: 11px;
+            color: var(--text-dark);
+            margin-top: 2px;
+        }
+
+        .menu-item.active .menu-item-sub {
+            color: hsl(245, 85%, 80%);
+        }
+
+        .sidebar-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 11px;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* Main Content Container */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header-bar {
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            background: rgba(6, 7, 10, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .stage-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* Simulation Canvas Area */
+        .workspace-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .discipline-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .discipline-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .discipline-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.5;
+            max-width: 900px;
+        }
+
+        /* Glassmorphic Panel Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px) saturate(180%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .math-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-color);
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            color: #d1d5db;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .math-box::before {
+            content: "FORMAL MODEL";
+            position: absolute;
+            top: 4px;
+            right: 8px;
+            font-size: 9px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Forms & Inputs */
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .control-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .control-value {
+            color: var(--primary);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .input-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            transition: background 0.15s ease;
+        }
+
+        .input-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary);
+            transition: transform 0.1s ease;
+        }
+
+        .input-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .input-slider.success::-webkit-slider-thumb {
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .input-slider.danger::-webkit-slider-thumb {
+            background: var(--danger);
+            box-shadow: 0 0 10px var(--danger);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+        }
+
+        .select-input {
+            background: #11131e;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* Displays & Visuals */
+        .visualizer-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 100%;
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Alerts */
+        .sec-alert {
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .sec-alert.info {
+            background: rgba(99, 102, 241, 0.08);
+            border-color: rgba(99, 102, 241, 0.2);
+            color: #c7d2fe;
+        }
+
+        .sec-alert.danger {
+            background: var(--danger-glow);
+            border-color: rgba(244, 63, 94, 0.2);
+            color: #fecdd3;
+            animation: pulse-border 2s infinite alternate;
+        }
+
+        .sec-alert.success {
+            background: var(--success-glow);
+            border-color: rgba(16, 185, 129, 0.2);
+            color: #a7f3d0;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(244, 63, 94, 0.2); }
+            100% { border-color: rgba(244, 63, 94, 0.5); }
+        }
+
+        /* Subsystem mapping list */
+        .mapping-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mapping-item {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mapping-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .mapping-value {
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--info);
+        }
+
+        /* Terminal box */
+        .terminal-box {
+            background: #090a0f;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            height: 140px;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: #a7f3d0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .terminal-line {
+            line-height: 1.4;
+        }
+
+        .terminal-line.err {
+            color: var(--danger);
+        }
+
+        .terminal-line.warn {
+            color: var(--warning);
+        }
+
+        /* Grid specific to Ising Model */
+        .ising-grid {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            gap: 2px;
+            width: 240px;
+            height: 240px;
+        }
+
+        .ising-spin {
+            border-radius: 2px;
+            transition: background-color 0.15s ease;
+        }
+
+        /* Math layout symbols */
+        .math-symbol {
+            font-style: italic;
+            font-family: serif;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        /* Highlight elements */
+        .metric-highlight {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-area">
+                <div class="logo-icon">S</div>
+                <div class="logo-text">SentinelOS</div>
+            </div>
+            <div class="sidebar-subtitle">Mathematical & Physics Core</div>
+        </div>
+
+        <nav class="sidebar-menu">
+            <button class="menu-item active" onclick="switchTab('tab-information-theory')">
+                <span class="menu-item-icon">📊</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Information Theory</span>
+                    <span class="menu-item-sub">Stage 21 • Entropy Hooking</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-graph-systems')">
+                <span class="menu-item-icon">🕸️</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Graph Systems</span>
+                    <span class="menu-item-sub">Stage 22 • Process DAG Cent.</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-control-theory')">
+                <span class="menu-item-icon">🎛️</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Control Theory</span>
+                    <span class="menu-item-sub">Stage 23 • PID Telemetry Control</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-queueing-theory')">
+                <span class="menu-item-icon">⏳</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Queueing Theory</span>
+                    <span class="menu-item-sub">Stage 24 • Buffer Little's Law</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-epidemic-modeling')">
+                <span class="menu-item-icon">☣️</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Epidemic Modeling</span>
+                    <span class="menu-item-sub">Stage 24 • Ransomware SIR</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-security-physics')">
+                <span class="menu-item-icon">⚛️</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Security Physics</span>
+                    <span class="menu-item-sub">Stage 25 • State Ising Grid</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-probability-stochastic')">
+                <span class="menu-item-icon">🎲</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Probability/Stochastic</span>
+                    <span class="menu-item-sub">Stage 26 • Markov Syscall Chain</span>
+                </div>
+            </button>
+            <button class="menu-item" onclick="switchTab('tab-geometry-topology')">
+                <span class="menu-item-icon">📐</span>
+                <div class="menu-item-info">
+                    <span class="menu-item-title">Geometry & Topology</span>
+                    <span class="menu-item-sub">Stage 27 • TDA Manifold</span>
+                </div>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            SentinelOS Reference Platform v1.0.0
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Bar -->
+        <header class="header-bar">
+            <span class="stage-badge" id="current-stage-badge">Stage 21: Active</span>
+            <div style="font-size: 13px; color: var(--text-muted)">
+                Status: <span style="color: var(--success); font-weight: 600;">Mathematical Specification Validated</span>
+            </div>
+        </header>
+
+        <!-- Dynamic Workspace Panel -->
+        <section class="workspace-area">
+            
+            <!-- 1. INFORMATION THEORY -->
+            <div id="tab-information-theory" class="tab-pane">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Information Theory</h1>
+                    <p class="discipline-desc">Measuring uncertainty and entropy of filesystem I/O stream buffers. SentinelOS calculates Shannon entropy to intercept ransomware encryption early and applies Kullback-Leibler divergence to profile slow system behavior drift.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <!-- Controls Left -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Telemetry Configuration</span>
+                        </div>
+                        <div class="math-box">
+H(X) = - Σ [ P(x_i) * log₂ P(x_i) ]
+D_KL(P || Q) = Σ [ P(s_k) * log₂ ( P(s_k) / Q(s_k) ) ]
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Bernoulli Sampling Rate (p)</span>
+                                    <span class="control-value" id="entropy-p-val">5%</span>
+                                </label>
+                                <input type="range" min="1" max="100" value="5" class="input-slider" id="entropy-p-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">I/O Payload Mode</label>
+                                <select class="select-input" id="entropy-data-mode">
+                                    <option value="text">Plain Text ASCII (Low Entropy)</option>
+                                    <option value="xml">Structured XML Logs (Medium Entropy)</option>
+                                    <option value="compressed">Compressed Archive (High Entropy)</option>
+                                    <option value="ransomware">Active Ransomware Encryption (Uniform Entropy)</option>
+                                </select>
+                            </div>
+                            <div class="control-row" style="margin-top: 10px;">
+                                <button class="btn" id="btn-calculate-entropy">Trigger vfs_write Hook</button>
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">eBPF Sensor Hook</span>
+                                <span class="mapping-value">kprobe/vfs_write</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">07_security/ransomware_detector</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Right -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Shannon Entropy Analyzer</span>
+                        </div>
+                        <div style="display: flex; gap: 40px; justify-content: space-around; align-items: center;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">SHANNON ENTROPY</div>
+                                <div class="metric-highlight" id="entropy-score-disp">3.84 bits</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">CPU OVERHEAD</div>
+                                <div class="metric-highlight" id="entropy-cpu-disp" style="color: var(--success)">0.22%</div>
+                            </div>
+                        </div>
+                        <div class="visualizer-card">
+                            <canvas id="canvas-entropy-chart"></canvas>
+                        </div>
+                        <div class="sec-alert success" id="entropy-alert-box">
+                            <span>Status: System I/O entropy lies within normal limits (benign).</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. GRAPH SYSTEMS -->
+            <div id="tab-graph-systems" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Graph Systems</h1>
+                    <p class="discipline-desc">Structuring process lifecycles and interactions as a dynamic DAG. By running Betweenness Centrality directly on system events, SentinelOS isolates lateral movement and cuts the optimal bridging process to stop compromises.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Incident Lineage DAG</span>
+                        </div>
+                        <div class="math-box">
+C_B(v) = Σ [ σ_st(v) / σ_st ] (s ≠ v ≠ t)
+Blast Radius (Br) = |N⁺(u)|
+                        </div>
+                        <div class="control-group">
+                            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">
+                                In the diagram, a compromised process (red) attempts to execute ransomware. The harvester script acts as a high-betweenness broker bridging the entry point and containment sectors.
+                            </p>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn" id="btn-calc-centrality">Calculate Centrality</button>
+                                <button class="btn btn-outline" id="btn-reset-graph">Reset Graph</button>
+                            </div>
+                            <button class="btn btn-danger" id="btn-isolate-bridge" style="display: none;">Isolate & Terminate Bridge Node</button>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Correlation Node</span>
+                                <span class="mapping-value">Process Tree Normalizer</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">09_telemetry/bus/graph</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Process Lineage Visualizer</span>
+                        </div>
+                        <div class="visualizer-card" style="height: 380px;">
+                            <canvas id="canvas-graph-viz"></canvas>
+                        </div>
+                        <div class="sec-alert info" id="graph-status-alert">
+                            <span>Status: Hover over nodes to analyze process attributes.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. CONTROL THEORY -->
+            <div id="tab-control-theory" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Control Theory</h1>
+                    <p class="discipline-desc">Using closed-loop feedback controllers to manage OS limits. SentinelOS uses PID loops to dynamically adjust telemetry sampling parameters to prevent packet drops and enforce containment via cgroups CPU quotas.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">PID Parameters Tuning</span>
+                        </div>
+                        <div class="math-box">
+u(t) = K_p * e(t) + K_i * ∫ e(τ) dτ + K_d * [de(t)/dt]
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Telemetry Workload Spike (Arrival rate)</span>
+                                    <span class="control-value" id="pid-load-val">1,000 ev/s</span>
+                                </label>
+                                <input type="range" min="500" max="18000" value="1000" class="input-slider" id="pid-load-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Proportional Gain (Kp)</span>
+                                    <span class="control-value" id="pid-kp-val">0.50</span>
+                                </label>
+                                <input type="range" min="0" max="200" value="50" class="input-slider" id="pid-kp-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Integral Gain (Ki)</span>
+                                    <span class="control-value" id="pid-ki-val">0.05</span>
+                                </label>
+                                <input type="range" min="0" max="100" value="5" class="input-slider" id="pid-ki-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Derivative Gain (Kd)</span>
+                                    <span class="control-value" id="pid-kd-val">0.10</span>
+                                </label>
+                                <input type="range" min="0" max="100" value="10" class="input-slider" id="pid-kd-slider">
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Feedback Source</span>
+                                <span class="mapping-value">Ring Buffer Occupancy</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">09_telemetry/bus/throttler</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Buffer Occupancy Chart (Setpoint: 70%)</span>
+                        </div>
+                        <div style="display: flex; gap: 40px; justify-content: space-around;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">BUFFER STATE</div>
+                                <div class="metric-highlight" id="pid-buffer-disp">70.0%</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">SAMPLING RATE (p)</div>
+                                <div class="metric-highlight" id="pid-sampling-disp">5.0%</div>
+                            </div>
+                        </div>
+                        <div class="visualizer-card">
+                            <canvas id="canvas-pid-chart"></canvas>
+                        </div>
+                        <div class="sec-alert success" id="pid-alert-box">
+                            <span>Status: Telemetry buffer queue is stable.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. QUEUEING THEORY -->
+            <div id="tab-queueing-theory" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Queueing Theory</h1>
+                    <p class="discipline-desc">Using Little's Law to dynamically scale ring buffer slot capacities. A mathematically sized buffer ensures zero event drops under attack loads without wasting system memory footprint.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Buffer Capacity Optimization</span>
+                        </div>
+                        <div class="math-box">
+L = λ * W
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Event Arrival Rate (λ)</span>
+                                    <span class="control-value" id="queue-lambda-val">2,000 ev/s</span>
+                                </label>
+                                <input type="range" min="1000" max="15000" value="2000" class="input-slider" id="queue-lambda-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Processing Latency (W)</span>
+                                    <span class="control-value" id="queue-w-val">50 ms</span>
+                                </label>
+                                <input type="range" min="10" max="300" value="50" class="input-slider" id="queue-w-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Allocated Buffer Slots</span>
+                                    <span class="control-value" id="queue-slots-val">500 slots</span>
+                                </label>
+                                <input type="range" min="100" max="2000" value="500" class="input-slider" id="queue-slots-slider">
+                            </div>
+                            <div class="control-row">
+                                <button class="btn btn-outline" id="btn-littles-auto">Auto-Scale via Little's Law</button>
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Telemetry Pipeline</span>
+                                <span class="mapping-value">eBPF Ring Buffer</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">09_telemetry/collectors/</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Queue Overflow Simulator</span>
+                        </div>
+                        <div style="display: flex; gap: 40px; justify-content: space-around;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">LITTLE'S LAW REQUIRED</div>
+                                <div class="metric-highlight" id="queue-req-disp">100 slots</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">EVENT LOSS RATE</div>
+                                <div class="metric-highlight" id="queue-loss-disp" style="color: var(--success);">0.00%</div>
+                            </div>
+                        </div>
+                        <div class="visualizer-card">
+                            <canvas id="canvas-queue-viz"></canvas>
+                        </div>
+                        <div class="sec-alert success" id="queue-alert-box">
+                            <span>Status: Event buffer capacity is sufficient.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. EPIDEMIC MODELING (SIR) -->
+            <div id="tab-epidemic-modeling" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Epidemic Modeling (SIR)</h1>
+                    <p class="discipline-desc">Modeling local infection spread of automated threats. The reproduction number R₀ determines if a ransomware infection is growing or dying out, establishing hard timing constraints for EDR containment.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">SIR Model Coefficients</span>
+                        </div>
+                        <div class="math-box">
+dS/dt = -β * S * I / N
+dI/dt = β * S * I / N - γ * I
+dR/dt = γ * I
+R₀ = β / γ
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Encryption Rate (β)</span>
+                                    <span class="control-value" id="sir-beta-val">100 files/s</span>
+                                </label>
+                                <input type="range" min="10" max="250" value="100" class="input-slider danger" id="sir-beta-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Containment Speed (γ)</span>
+                                    <span class="control-value" id="sir-gamma-val">50 proc/s</span>
+                                </label>
+                                <input type="range" min="10" max="250" value="50" class="input-slider success" id="sir-gamma-slider">
+                            </div>
+                            <div class="control-row" style="margin-top: 10px;">
+                                <button class="btn" id="btn-run-sir">Run Spread Simulation</button>
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Pilot Scenario</span>
+                                <span class="mapping-value">Hospital Ward Incident</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">07_security/containment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Simulation Progress</span>
+                        </div>
+                        <div style="display: flex; gap: 40px; justify-content: space-around; align-items: center;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">REPRODUCTION RATIO (R₀)</div>
+                                <div class="metric-highlight" id="sir-r0-disp" style="color: var(--danger);">2.00</div>
+                            </div>
+                            <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">DISK STATE</div>
+                                <div class="ising-grid" id="sir-grid" style="grid-template-columns: repeat(10, 1fr); width: 80px; height: 80px; margin-top: 4px;"></div>
+                            </div>
+                        </div>
+                        <div class="visualizer-card">
+                            <canvas id="canvas-sir-chart"></canvas>
+                        </div>
+                        <div class="sec-alert danger" id="sir-alert-box">
+                            <span>Warning: R₀ > 1. Ransomware is expanding rapidly.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SECURITY PHYSICS -->
+            <div id="tab-security-physics" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Security Physics</h1>
+                    <p class="discipline-desc">Applying statistical mechanics to host states. The security lattice demonstrates how local component compromises undergo phase transitions into host-wide collapse, mitigated by structural barriers.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">System Thermodynamics</span>
+                        </div>
+                        <div class="math-box">
+H(σ) = -J Σ σ_i * σ_j - H_sec Σ σ_i
+P(s) = e^(-E(s)/θ_T) / Z
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Threat Temperature (θ_T)</span>
+                                    <span class="control-value" id="phys-temp-val">25</span>
+                                </label>
+                                <input type="range" min="1" max="100" value="25" class="input-slider" id="phys-temp-slider">
+                            </div>
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Stabilizing Security Field (H_sec)</span>
+                                    <span class="control-value" id="phys-h-val">5</span>
+                                </label>
+                                <input type="range" min="0" max="50" value="5" class="input-slider" id="phys-h-slider">
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">LSM Policy State</span>
+                                <span class="mapping-value">AppArmor / Landlock</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">07_security/threat_regulator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Component Spin Lattice (Blue: Secure, Red: Compromised)</span>
+                        </div>
+                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-around;">
+                            <div class="ising-grid" id="phys-grid"></div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px;">NET Magnetization (M)</div>
+                                <div class="metric-highlight" id="phys-m-disp">0.98</div>
+                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 12px; line-height: 1.3;" id="phys-magnetization-desc">
+                                    System is in a stable, secure ferromagnetic phase.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sec-alert success" id="phys-alert-box">
+                            <span>Status: System structure is aligned and secure.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. PROBABILITY & STOCHASTIC -->
+            <div id="tab-probability-stochastic" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Probability & Stochastic Processes</h1>
+                    <p class="discipline-desc">Profiling processes as discrete-time Markov chains over system call sequences. Rare transition steps (e.g. read to ptrace) crash sequence log-likelihoods, triggering a zero-day alert.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Markov Syscall Profile</span>
+                        </div>
+                        <div class="math-box">
+P_ij = P(X_t+1 = s_j | X_t = s_i)
+ln L = Σ ln P(x_t | x_t-1)
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">Select Executable Context</label>
+                                <select class="select-input" id="stoch-profile-mode">
+                                    <option value="normal">Normal Daemon Loop (High Likelihood)</option>
+                                    <option value="exploit">ROP Shellcode Exploitation (Low Likelihood)</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn" id="btn-stoch-run">Run Syscall Engine</button>
+                                <button class="btn btn-outline" id="btn-stoch-stop">Pause</button>
+                            </div>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Sensor Telemetry</span>
+                                <span class="mapping-value">raw_syscalls tracepoints</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">06_ai/anomaly_engine</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Syscall Sequence Log-Likelihood</span>
+                        </div>
+                        <div style="display: flex; gap: 40px; justify-content: space-around;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">SEQUENCE PROBABILITY</div>
+                                <div class="metric-highlight" id="stoch-prob-disp">98.5%</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">ACTIVE SYSCALL</div>
+                                <div class="metric-highlight" id="stoch-syscall-disp" style="color: var(--info);">sys_read</div>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-header" style="font-size: 12px; font-weight: 600; color: var(--text-muted);">LIVE SYSCALL LOGS:</div>
+                        <div class="terminal-box" id="stoch-terminal">
+                            <div class="terminal-line">[INFO] Monitoring thread initialized for daemon.</div>
+                        </div>
+                        
+                        <div class="sec-alert success" id="stoch-alert-box">
+                            <span>Status: Syscall transition probability matches baseline signature.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. GEOMETRY & TOPOLOGY -->
+            <div id="tab-geometry-topology" class="tab-pane" style="display: none;">
+                <div class="discipline-header">
+                    <h1 class="discipline-title">Geometry & Topology</h1>
+                    <p class="discipline-desc">Mapping high-dimensional telemetry metrics onto Riemannian manifolds. Topological Data Analysis (TDA) tracks simplicial complexes to detect structural loops and drift anomalies.</p>
+                </div>
+                
+                <div class="dashboard-grid" style="margin-top: 24px;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">High-Dimensional Vector Space</span>
+                        </div>
+                        <div class="math-box">
+VR_ε(X) = { σ ⊂ X | ∀x_i,x_j ∈ σ, ||x_i - x_j|| ≤ ε }
+d_M(x, y) = inf ∫ √g(γ_dot, γ_dot) dt
+                        </div>
+                        <div class="control-group">
+                            <div class="control-row">
+                                <label class="control-label">
+                                    <span>Riemannian Manifold Drift</span>
+                                    <span class="control-value" id="geom-drift-val">0.00</span>
+                                </label>
+                                <input type="range" min="0" max="100" value="0" class="input-slider" id="geom-drift-slider">
+                            </div>
+                            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">
+                                As system parameters drift, the telemetry coordinates leave the normal, ring-like operational manifold, creating an outlying topological signature (visualized on the barcode chart).
+                            </p>
+                        </div>
+                        <div class="mapping-list">
+                            <div class="mapping-item">
+                                <span class="mapping-label">Analysis Target</span>
+                                <span class="mapping-value">Simplicial Point Cloud</span>
+                            </div>
+                            <div class="mapping-item">
+                                <span class="mapping-label">SentinelOS Subsystem</span>
+                                <span class="mapping-value">06_ai/tda_correlator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Manifold Outlier Detection & Homology Barcode</span>
+                        </div>
+                        <div class="visualizer-card" style="height: 280px;">
+                            <canvas id="canvas-geom-manifold"></canvas>
+                        </div>
+                        <div class="sec-alert success" id="geom-alert-box">
+                            <span>Status: System state is within normal Riemannian coordinates.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- UI/Simulation Controller Script -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+
+            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Set current stage badge
+            const badge = document.getElementById('current-stage-badge');
+            if (tabId === 'tab-information-theory') badge.textContent = "Stage 21: Information Theory";
+            else if (tabId === 'tab-graph-systems') badge.textContent = "Stage 22: Graph Systems";
+            else if (tabId === 'tab-control-theory') badge.textContent = "Stage 23: Control Theory";
+            else if (tabId === 'tab-queueing-theory') badge.textContent = "Stage 24: Queueing Theory";
+            else if (tabId === 'tab-epidemic-modeling') badge.textContent = "Stage 24: SIR Model";
+            else if (tabId === 'tab-security-physics') badge.textContent = "Stage 25: Security Physics";
+            else if (tabId === 'tab-probability-stochastic') badge.textContent = "Stage 26: Probability Models";
+            else if (tabId === 'tab-geometry-topology') badge.textContent = "Stage 27: Geometry/Topology";
+
+            // Trigger redraw or initialization for active tab
+            initActiveTab(tabId);
+        }
+
+        // Initialize state variables for all simulators
+        let activeIntervals = {};
+        
+        // ------------------ 1. INFORMATION THEORY SIMULATOR ------------------
+        const mockByteData = {
+            text: {
+                entropy: 3.84,
+                desc: "System I/O entropy lies within normal limits (benign).",
+                class: "success",
+                generate: () => {
+                    const freqs = new Array(256).fill(0);
+                    // English alphabet peak distribution
+                    for (let i = 0; i < 256; i++) {
+                        if (i >= 97 && i <= 122) freqs[i] = Math.exp(-0.1 * (i - 105) * (i - 105)) * 100 + Math.random() * 5;
+                        else if (i === 32) freqs[i] = 130;
+                        else freqs[i] = Math.random() * 5;
+                    }
+                    return freqs;
+                }
+            },
+            xml: {
+                entropy: 4.98,
+                desc: "System I/O entropy lies within normal limits (benign structured logs).",
+                class: "success",
+                generate: () => {
+                    const freqs = new Array(256).fill(0);
+                    // Structured ASCII distribution
+                    for (let i = 0; i < 256; i++) {
+                        if (i >= 48 && i <= 57) freqs[i] = 40 + Math.random() * 10;
+                        else if (i >= 65 && i <= 90) freqs[i] = 30 + Math.random() * 8;
+                        else if (i === 60 || i === 62 || i === 47) freqs[i] = 80; // '<', '>', '/'
+                        else if (i === 32) freqs[i] = 90;
+                        else freqs[i] = Math.random() * 5;
+                    }
+                    return freqs;
+                }
+            },
+            compressed: {
+                entropy: 7.42,
+                desc: "Warning: High-entropy buffer write detected. Compressed archive format confirmed.",
+                class: "info",
+                generate: () => {
+                    const freqs = new Array(256).fill(0);
+                    for (let i = 0; i < 256; i++) freqs[i] = 70 + Math.random() * 30;
+                    return freqs;
+                }
+            },
+            ransomware: {
+                entropy: 7.98,
+                desc: "CRITICAL: Uniform High-Entropy Write Pipeline (H >= 7.2) Detected! Ransomware signature active.",
+                class: "danger",
+                generate: () => {
+                    const freqs = new Array(256).fill(0);
+                    for (let i = 0; i < 256; i++) freqs[i] = 95 + Math.random() * 5;
+                    return freqs;
+                }
+            }
+        };
+
+        function runInformationTheory() {
+            const mode = document.getElementById('entropy-data-mode').value;
+            const pVal = parseInt(document.getElementById('entropy-p-slider').value);
+            document.getElementById('entropy-p-val').textContent = pVal + "%";
+            
+            const data = mockByteData[mode];
+            document.getElementById('entropy-score-disp').textContent = data.entropy.toFixed(2) + " bits";
+            
+            // CPU overhead calculation based on sampling Bernoulli p
+            const cpu = (0.3 + (pVal / 100) * 4.2).toFixed(2);
+            const cpuDisp = document.getElementById('entropy-cpu-disp');
+            cpuDisp.textContent = cpu + "%";
+            if (parseFloat(cpu) > 2.0) {
+                cpuDisp.style.color = "var(--danger)";
+            } else if (parseFloat(cpu) > 1.0) {
+                cpuDisp.style.color = "var(--warning)";
+            } else {
+                cpuDisp.style.color = "var(--success)";
+            }
+
+            // Set alert class
+            const alertBox = document.getElementById('entropy-alert-box');
+            alertBox.className = "sec-alert " + data.class;
+            alertBox.querySelector('span').textContent = data.desc;
+
+            // Draw Byte Histogram
+            const canvas = document.getElementById('canvas-entropy-chart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const freqs = data.generate();
+            const maxVal = Math.max(...freqs);
+            const barWidth = (canvas.width - 40) / 256;
+            
+            ctx.fillStyle = mode === 'ransomware' ? 'hsl(346, 80%, 55%)' : 'hsl(245, 85%, 65%)';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = ctx.fillStyle;
+
+            for (let i = 0; i < 256; i++) {
+                const h = (freqs[i] / maxVal) * (canvas.height - 80);
+                const x = 20 + i * barWidth;
+                const y = canvas.height - 40 - h;
+                ctx.fillRect(x, y, barWidth - 0.5, h);
+            }
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = 'var(--text-muted)';
+            ctx.font = '10px sans-serif';
+            ctx.fillText("0x00", 20, canvas.height - 20);
+            ctx.fillText("0x7F", canvas.width / 2 - 10, canvas.height - 20);
+            ctx.fillText("0xFF", canvas.width - 40, canvas.height - 20);
+        }
+
+        // ------------------ 2. GRAPH SYSTEMS SIMULATOR ------------------
+        let graphState = {
+            nodes: [
+                { id: 1, name: 'systemd', pid: 1, type: 'init', x: 60, y: 190, r: 16, centrality: 0.11, color: '#4b5563' },
+                { id: 2, name: 'nginx', pid: 541, type: 'daemon', x: 180, y: 90, r: 16, centrality: 0.22, color: 'var(--success)' },
+                { id: 3, name: 'php-fpm', pid: 542, type: 'worker', x: 300, y: 90, r: 16, centrality: 0.08, color: 'var(--success)' },
+                { id: 4, name: 'sshd', pid: 601, type: 'daemon', x: 180, y: 290, r: 16, centrality: 0.35, color: 'var(--success)' },
+                { id: 5, name: 'bash', pid: 602, type: 'shell', x: 300, y: 290, r: 16, centrality: 0.44, color: 'var(--success)' },
+                { id: 6, name: 'curl', pid: 603, type: 'tool', x: 420, y: 350, r: 16, centrality: 0.12, color: 'var(--success)' },
+                { id: 7, name: 'python3 (harvester)', pid: 604, type: 'bridge', x: 440, y: 220, r: 16, centrality: 0.86, color: 'var(--warning)' },
+                { id: 8, name: 'crypt_worker', pid: 605, type: 'exploit', x: 580, y: 150, r: 16, centrality: 0.05, color: 'var(--danger)' },
+                { id: 9, name: 'user_files', pid: 0, type: 'file', x: 680, y: 240, r: 12, centrality: 0.01, color: 'var(--text-muted)' }
+            ],
+            edges: [
+                { from: 1, to: 2, label: 'spawn' },
+                { from: 2, to: 3, label: 'ipc' },
+                { from: 1, to: 4, label: 'spawn' },
+                { from: 4, to: 5, label: 'fork' },
+                { from: 5, to: 6, label: 'exec' },
+                { from: 5, to: 7, label: 'exec' },
+                { from: 7, to: 8, label: 'spawn' },
+                { from: 8, to: 9, label: 'write' }
+            ],
+            calcActive: false,
+            isolated: false,
+            hoveredNode: null
+        };
+
+        function drawGraph() {
+            const canvas = document.getElementById('canvas-graph-viz');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Edges
+            graphState.edges.forEach(edge => {
+                const fromNode = graphState.nodes.find(n => n.id === edge.from);
+                const toNode = graphState.nodes.find(n => n.id === edge.to);
+                if (!fromNode || !toNode) return;
+
+                ctx.beginPath();
+                ctx.moveTo(fromNode.x, fromNode.y);
+                ctx.lineTo(toNode.x, toNode.y);
+                ctx.lineWidth = 2;
+                
+                // Styling edge based on state
+                if (graphState.isolated && (edge.from === 7 || edge.to === 7)) {
+                    ctx.strokeStyle = 'rgba(244, 63, 94, 0.15)';
+                    ctx.setLineDash([4, 4]);
+                } else if (edge.to === 8 || edge.from === 8) {
+                    ctx.strokeStyle = 'rgba(244, 63, 94, 0.6)';
+                    ctx.setLineDash([]);
+                } else {
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                    ctx.setLineDash([]);
+                }
+                ctx.stroke();
+
+                // Draw edge labels if not isolated
+                if (!(graphState.isolated && (edge.from === 7 || edge.to === 7))) {
+                    ctx.fillStyle = 'var(--text-muted)';
+                    ctx.font = '10px monospace';
+                    ctx.fillText(edge.label, (fromNode.x + toNode.x) / 2, (fromNode.y + toNode.y) / 2 - 5);
+                }
+            });
+            ctx.setLineDash([]);
+
+            // Draw Nodes
+            graphState.nodes.forEach(node => {
+                ctx.beginPath();
+                
+                // If isolated, turn containment zone off
+                let col = node.color;
+                if (graphState.isolated && (node.id === 7 || node.id === 8)) {
+                    col = '#4b5563'; // Gray out contained nodes
+                }
+
+                ctx.arc(node.x, node.y, node.r + (graphState.calcActive ? node.centrality * 12 : 0), 0, Math.PI * 2);
+                ctx.fillStyle = col;
+                ctx.shadowBlur = graphState.calcActive ? node.centrality * 20 : 0;
+                ctx.shadowColor = col;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Text
+                ctx.fillStyle = '#fff';
+                ctx.font = '11px sans-serif';
+                ctx.fillText(node.name, node.x - node.r * 1.5, node.y - node.r - 5);
+
+                // Centrality Score label
+                if (graphState.calcActive) {
+                    ctx.fillStyle = 'var(--info)';
+                    ctx.font = '10px monospace';
+                    ctx.fillText(`Cb=${node.centrality}`, node.x - 20, node.y + node.r + 14);
+                }
+            });
+
+            // Hover tooltip
+            if (graphState.hoveredNode) {
+                const node = graphState.hoveredNode;
+                ctx.fillStyle = 'rgba(11, 13, 19, 0.9)';
+                ctx.strokeStyle = 'var(--border-color)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.roundRect(node.x + 20, node.y - 40, 180, 80, 8);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.fillText(node.name, node.x + 30, node.y - 20);
+
+                ctx.fillStyle = 'var(--text-muted)';
+                ctx.font = '10px monospace';
+                ctx.fillText(`PID: ${node.pid}`, node.x + 30, node.y - 5);
+                ctx.fillText(`Type: ${node.type}`, node.x + 30, node.y + 10);
+                ctx.fillText(`Betweenness: ${node.centrality}`, node.x + 30, node.y + 25);
+            }
+        }
+
+        // Add mouse move listener for DAG canvas
+        document.getElementById('canvas-graph-viz').addEventListener('mousemove', e => {
+            const canvas = document.getElementById('canvas-graph-viz');
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            let found = null;
+            graphState.nodes.forEach(node => {
+                const dx = mouseX - node.x;
+                const dy = mouseY - node.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < node.r + 10) found = node;
+            });
+
+            graphState.hoveredNode = found;
+            drawGraph();
+        });
+
+        document.getElementById('btn-calc-centrality').onclick = () => {
+            graphState.calcActive = true;
+            drawGraph();
+            document.getElementById('graph-status-alert').className = "sec-alert danger";
+            document.getElementById('graph-status-alert').querySelector('span').textContent = 
+                "Calculated highest node betweenness centrality: python3 (Cb=0.86). High broker value detected.";
+            document.getElementById('btn-isolate-bridge').style.display = 'inline-flex';
+        };
+
+        document.getElementById('btn-reset-graph').onclick = () => {
+            graphState.calcActive = false;
+            graphState.isolated = false;
+            document.getElementById('graph-status-alert').className = "sec-alert info";
+            document.getElementById('graph-status-alert').querySelector('span').textContent = 
+                "Status: Hover over nodes to analyze process attributes.";
+            document.getElementById('btn-isolate-bridge').style.display = 'none';
+            drawGraph();
+        };
+
+        document.getElementById('btn-isolate-bridge').onclick = () => {
+            graphState.isolated = true;
+            drawGraph();
+            document.getElementById('graph-status-alert').className = "sec-alert success";
+            document.getElementById('graph-status-alert').querySelector('span').textContent = 
+                "Containment Complete: Bridge process isolated. Threat execution path severed while nginx runs uninterrupted.";
+        };
+
+
+        // ------------------ 3. CONTROL THEORY SIMULATOR ------------------
+        let pidState = {
+            history: Array(60).fill(70),
+            pHistory: Array(60).fill(5),
+            bufferVal: 70,
+            load: 1000,
+            Kp: 0.5,
+            Ki: 0.05,
+            Kd: 0.1,
+            integral: 0,
+            lastError: 0,
+            samplingRate: 0.05
+        };
+
+        function runControlTheory() {
+            clearInterval(activeIntervals.control);
+            
+            activeIntervals.control = setInterval(() => {
+                const loadSlider = document.getElementById('pid-load-slider');
+                pidState.load = parseInt(loadSlider.value);
+                document.getElementById('pid-load-val').textContent = pidState.load.toLocaleString() + " ev/s";
+
+                pidState.Kp = parseFloat(document.getElementById('pid-kp-slider').value) / 100;
+                document.getElementById('pid-kp-val').textContent = pidState.Kp.toFixed(2);
+
+                pidState.Ki = parseFloat(document.getElementById('pid-ki-slider').value) / 100;
+                document.getElementById('pid-ki-val').textContent = pidState.Ki.toFixed(2);
+
+                pidState.Kd = parseFloat(document.getElementById('pid-kd-slider').value) / 100;
+                document.getElementById('pid-kd-val').textContent = pidState.Kd.toFixed(2);
+
+                // Simulation iteration
+                const targetSetpoint = 70.0;
+                
+                // Workload adds telemetry queue load relative to load rate * sampling rate
+                const arrival = pidState.load * pidState.samplingRate;
+                const processingCap = 600; // daemon capacity
+                
+                // Occupancy change
+                const flowDiff = (arrival - processingCap) * 0.04;
+                pidState.bufferVal += flowDiff + (Math.random() - 0.5) * 2;
+                pidState.bufferVal = Math.max(0, Math.min(100, pidState.bufferVal));
+
+                // PID Loop Execution
+                const error = pidState.bufferVal - targetSetpoint;
+                pidState.integral += error * 0.1;
+                pidState.integral = Math.max(-100, Math.min(100, pidState.integral)); // anti-windup
+                const derivative = (error - pidState.lastError) / 0.1;
+                pidState.lastError = error;
+
+                const u = (pidState.Kp * error) + (pidState.Ki * pidState.integral) + (pidState.Kd * derivative);
+                
+                // Adaptive sampling adjustment
+                pidState.samplingRate = 0.05 - (u / 1000);
+                pidState.samplingRate = Math.max(0.001, Math.min(1.0, pidState.samplingRate));
+
+                // History shift
+                pidState.history.push(pidState.bufferVal);
+                pidState.history.shift();
+
+                pidState.pHistory.push(pidState.samplingRate * 100);
+                pidState.pHistory.shift();
+
+                // Update UI Display
+                document.getElementById('pid-buffer-disp').textContent = pidState.bufferVal.toFixed(1) + "%";
+                document.getElementById('pid-sampling-disp').textContent = (pidState.samplingRate * 100).toFixed(1) + "%";
+
+                const alertBox = document.getElementById('pid-alert-box');
+                if (pidState.bufferVal > 95) {
+                    alertBox.className = "sec-alert danger";
+                    alertBox.querySelector('span').textContent = "CRITICAL: Telemetry buffer saturation! eBPF telemetry dropping events.";
+                } else if (pidState.bufferVal > 85) {
+                    alertBox.className = "sec-alert danger";
+                    alertBox.querySelector('span').textContent = "Warning: Telemetry buffer queue exceeding safety margin. Throttling active.";
+                } else {
+                    alertBox.className = "sec-alert success";
+                    alertBox.querySelector('span').textContent = "Status: Telemetry buffer queue stable under closed-loop control.";
+                }
+
+                // Render Chart
+                const canvas = document.getElementById('canvas-pid-chart');
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Setpoint line
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.setLineDash([6, 6]);
+                ctx.beginPath();
+                const setpointY = canvas.height - 40 - (targetSetpoint / 100) * (canvas.height - 80);
+                ctx.moveTo(40, setpointY);
+                ctx.lineTo(canvas.width - 20, setpointY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.fillStyle = 'var(--text-muted)';
+                ctx.font = '10px monospace';
+                ctx.fillText("Setpoint (70%)", 45, setpointY - 6);
+
+                // Draw buffer occupancy history curve
+                ctx.strokeStyle = 'var(--primary)';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                const dx = (canvas.width - 60) / 60;
+                for (let i = 0; i < 60; i++) {
+                    const x = 40 + i * dx;
+                    const y = canvas.height - 40 - (pidState.history[i] / 100) * (canvas.height - 80);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                // Draw sampling rate history curve (dashed green)
+                ctx.strokeStyle = 'var(--success)';
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                for (let i = 0; i < 60; i++) {
+                    const x = 40 + i * dx;
+                    const y = canvas.height - 40 - (pidState.pHistory[i] / 100) * (canvas.height - 80);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Axes
+                ctx.strokeStyle = 'var(--border-color)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(40, 20);
+                ctx.lineTo(40, canvas.height - 40);
+                ctx.lineTo(canvas.width - 20, canvas.height - 40);
+                ctx.stroke();
+
+                ctx.fillStyle = 'var(--text-muted)';
+                ctx.fillText("100%", 10, 25);
+                ctx.fillText("0%", 20, canvas.height - 35);
+            }, 100);
+        }
+
+        // ------------------ 4. QUEUEING THEORY SIMULATOR ------------------
+        let queueState = {
+            events: [],
+            lambda: 2000,
+            W: 0.05,
+            slots: 500,
+            droppedCount: 0,
+            processedCount: 0
+        };
+
+        function runQueueingTheory() {
+            clearInterval(activeIntervals.queue);
+            
+            // Generate visual queue
+            activeIntervals.queue = setInterval(() => {
+                queueState.lambda = parseInt(document.getElementById('queue-lambda-slider').value);
+                document.getElementById('queue-lambda-val').textContent = queueState.lambda.toLocaleString() + " ev/s";
+
+                const latencyMs = parseInt(document.getElementById('queue-w-slider').value);
+                queueState.W = latencyMs / 1000;
+                document.getElementById('queue-w-val').textContent = latencyMs + " ms";
+
+                queueState.slots = parseInt(document.getElementById('queue-slots-slider').value);
+                document.getElementById('queue-slots-val').textContent = queueState.slots + " slots";
+
+                // Calculations
+                const requiredL = Math.ceil(queueState.lambda * queueState.W);
+                document.getElementById('queue-req-disp').textContent = requiredL + " slots";
+
+                // Loss rate estimation
+                let loss = 0;
+                if (requiredL > queueState.slots) {
+                    loss = ((requiredL - queueState.slots) / requiredL) * 100;
+                }
+                const lossDisp = document.getElementById('queue-loss-disp');
+                lossDisp.textContent = loss.toFixed(2) + "%";
+                if (loss > 0) {
+                    lossDisp.style.color = "var(--danger)";
+                    document.getElementById('queue-alert-box').className = "sec-alert danger";
+                    document.getElementById('queue-alert-box').querySelector('span').textContent = 
+                        "Alert: Buffer undersized. Little's Law demands larger queue capacity to prevent loss.";
+                } else {
+                    lossDisp.style.color = "var(--success)";
+                    document.getElementById('queue-alert-box').className = "sec-alert success";
+                    document.getElementById('queue-alert-box').querySelector('span').textContent = 
+                        "Status: Sizing meets Little's Law criteria. Loss rate is 0.00%.";
+                }
+
+                // Visual simulation update
+                const canvas = document.getElementById('canvas-queue-viz');
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Add incoming events
+                const spawnCount = Math.floor(queueState.lambda / 100);
+                for (let i = 0; i < spawnCount; i++) {
+                    if (Math.random() < 0.3) {
+                        if (queueState.events.length < queueState.slots) {
+                            queueState.events.push({ x: 40, y: Math.random() * (canvas.height - 80) + 40, speed: Math.random() * 4 + 2, state: 'queued' });
+                            queueState.processedCount++;
+                        } else {
+                            // Overflow drop
+                            queueState.events.push({ x: 40, y: Math.random() * (canvas.height - 80) + 40, speed: 3, state: 'dropped' });
+                            queueState.droppedCount++;
+                        }
+                    }
+                }
+
+                // Draw buffer container
+                ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                ctx.strokeRect(100, 30, canvas.width - 200, canvas.height - 60);
+                ctx.fillStyle = 'rgba(255,255,255,0.02)';
+                ctx.fillRect(100, 30, canvas.width - 200, canvas.height - 60);
+
+                // Draw buffer capacity fill bar
+                const fillPercent = Math.min(1.0, queueState.events.length / queueState.slots);
+                ctx.fillStyle = fillPercent > 0.85 ? 'var(--danger-glow)' : 'var(--primary-glow)';
+                ctx.fillRect(100, 30, (canvas.width - 200) * fillPercent, canvas.height - 60);
+
+                // Update & Draw Event dots
+                queueState.events.forEach((ev, idx) => {
+                    if (ev.state === 'queued') {
+                        ev.x += ev.speed;
+                        if (ev.x > canvas.width - 120) {
+                            // Processed
+                            ev.state = 'processed';
+                        }
+                        ctx.fillStyle = 'var(--primary)';
+                    } else if (ev.state === 'dropped') {
+                        ev.y += 4; // fall down
+                        ctx.fillStyle = 'var(--danger)';
+                    } else {
+                        ev.x += ev.speed;
+                        ctx.fillStyle = 'var(--success)';
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(ev.x, ev.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // Clear out of bounds events
+                queueState.events = queueState.events.filter(ev => ev.x < canvas.width && ev.y < canvas.height);
+            }, 50);
+        }
+
+        document.getElementById('btn-littles-auto').onclick = () => {
+            const requiredL = Math.ceil(queueState.lambda * queueState.W);
+            // Size to next power of 2 for memory alignment
+            const nextPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(requiredL)));
+            document.getElementById('queue-slots-slider').value = nextPowerOfTwo;
+        };
+
+        // ------------------ 5. EPIDEMIC MODELING (SIR) ------------------
+        let sirState = {
+            beta: 100,
+            gamma: 50,
+            S: 99,
+            I: 1,
+            R: 0,
+            historyS: [],
+            historyI: [],
+            historyR: [],
+            simRunning: false,
+            grid: Array(100).fill('S') // S, I, R
+        };
+
+        function runSirSimulation() {
+            sirState.beta = parseFloat(document.getElementById('sir-beta-slider').value);
+            document.getElementById('sir-beta-val').textContent = sirState.beta + " files/s";
+
+            sirState.gamma = parseFloat(document.getElementById('sir-gamma-slider').value);
+            document.getElementById('sir-gamma-val').textContent = sirState.gamma + " proc/s";
+
+            const r0 = sirState.beta / sirState.gamma;
+            document.getElementById('sir-r0-disp').textContent = r0.toFixed(2);
+            const r0Disp = document.getElementById('sir-r0-disp');
+
+            const alertBox = document.getElementById('sir-alert-box');
+            if (r0 > 1) {
+                r0Disp.style.color = "var(--danger)";
+                alertBox.className = "sec-alert danger";
+                alertBox.querySelector('span').textContent = `Warning: R₀ = ${r0.toFixed(2)} > 1. Outbreak spreads exponentially. Increase containment rate γ.`;
+            } else {
+                r0Disp.style.color = "var(--success)";
+                alertBox.className = "sec-alert success";
+                alertBox.querySelector('span').textContent = `Status: R₀ = ${r0.toFixed(2)} < 1. Quarantine engine successfully limits ransomware spread.`;
+            }
+
+            if (!sirState.simRunning) return;
+
+            // Differential equations step
+            const N = 100;
+            const ds = -(sirState.beta / 1000) * sirState.S * sirState.I / N;
+            const di = ((sirState.beta / 1000) * sirState.S * sirState.I / N) - ((sirState.gamma / 1000) * sirState.I);
+            const dr = (sirState.gamma / 1000) * sirState.I;
+
+            sirState.S += ds;
+            sirState.I += di;
+            sirState.R += dr;
+
+            // clamp values
+            sirState.S = Math.max(0, sirState.S);
+            sirState.I = Math.max(0, sirState.I);
+            sirState.R = Math.max(0, sirState.R);
+
+            // Update grid representation
+            let sCount = Math.round(sirState.S);
+            let iCount = Math.round(sirState.I);
+            let rCount = N - sCount - iCount;
+
+            for (let i = 0; i < N; i++) {
+                if (i < sCount) sirState.grid[i] = 'S';
+                else if (i < sCount + iCount) sirState.grid[i] = 'I';
+                else sirState.grid[i] = 'R';
+            }
+            drawSirGrid();
+
+            sirState.historyS.push(sirState.S);
+            sirState.historyI.push(sirState.I);
+            sirState.historyR.push(sirState.R);
+
+            if (sirState.historyS.length > 100) {
+                sirState.historyS.shift();
+                sirState.historyI.shift();
+                sirState.historyR.shift();
+            }
+
+            // Draw curves
+            const canvas = document.getElementById('canvas-sir-chart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const dx = canvas.width / 100;
+
+            // S curve (Green)
+            ctx.strokeStyle = 'var(--success)';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            sirState.historyS.forEach((val, idx) => {
+                const x = idx * dx;
+                const y = canvas.height - (val / N) * (canvas.height - 40);
+                if (idx === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // I curve (Red)
+            ctx.strokeStyle = 'var(--danger)';
+            ctx.beginPath();
+            sirState.historyI.forEach((val, idx) => {
+                const x = idx * dx;
+                const y = canvas.height - (val / N) * (canvas.height - 40);
+                if (idx === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // R curve (Blue)
+            ctx.strokeStyle = 'var(--info)';
+            ctx.beginPath();
+            sirState.historyR.forEach((val, idx) => {
+                const x = idx * dx;
+                const y = canvas.height - (val / N) * (canvas.height - 40);
+                if (idx === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+        }
+
+        function drawSirGrid() {
+            const gridEl = document.getElementById('sir-grid');
+            gridEl.innerHTML = '';
+            sirState.grid.forEach(cell => {
+                const d = document.createElement('div');
+                d.className = 'ising-spin';
+                if (cell === 'S') d.style.backgroundColor = 'var(--success)';
+                else if (cell === 'I') d.style.backgroundColor = 'var(--danger)';
+                else d.style.backgroundColor = 'var(--info)';
+                gridEl.appendChild(d);
+            });
+        }
+
+        document.getElementById('btn-run-sir').onclick = () => {
+            sirState.simRunning = true;
+            sirState.S = 99;
+            sirState.I = 1;
+            sirState.R = 0;
+            sirState.historyS = [];
+            sirState.historyI = [];
+            sirState.historyR = [];
+            clearInterval(activeIntervals.sir);
+            activeIntervals.sir = setInterval(runSirSimulation, 60);
+        };
+
+
+        // ------------------ 6. SECURITY PHYSICS SIMULATOR ------------------
+        let physState = {
+            temp: 25,
+            H: 5,
+            grid: Array(225).fill(1) // 15x15 lattice
+        };
+
+        function runSecurityPhysics() {
+            clearInterval(activeIntervals.physics);
+
+            activeIntervals.physics = setInterval(() => {
+                physState.temp = parseInt(document.getElementById('phys-temp-slider').value);
+                document.getElementById('phys-temp-val').textContent = physState.temp;
+
+                physState.H = parseInt(document.getElementById('phys-h-slider').value);
+                document.getElementById('phys-h-val').textContent = physState.H;
+
+                // Metropolis-Hastings sweeps
+                const J = 1.0;
+                const T = physState.temp / 10;
+                const H_field = physState.H / 100;
+
+                for (let step = 0; step < 300; step++) {
+                    const idx = Math.floor(Math.random() * 225);
+                    const spin = physState.grid[idx];
+
+                    // Sum nearest neighbors (periodic boundary conditions)
+                    const x = idx % 15;
+                    const y = Math.floor(idx / 15);
+                    const left = physState.grid[y * 15 + ((x - 1 + 15) % 15)];
+                    const right = physState.grid[y * 15 + ((x + 1) % 15)];
+                    const up = physState.grid[((y - 1 + 15) % 15) * 15 + x];
+                    const down = physState.grid[((y + 1) % 15) * 15 + x];
+
+                    const E_curr = -J * spin * (left + right + up + down) - H_field * spin;
+                    const E_flip = -J * (-spin) * (left + right + up + down) - H_field * (-spin);
+
+                    const deltaE = E_flip - E_curr;
+
+                    if (deltaE <= 0 || Math.random() < Math.exp(-deltaE / T)) {
+                        physState.grid[idx] = -spin;
+                    }
+                }
+
+                // Calculate Net Magnetization (M)
+                const sum = physState.grid.reduce((acc, val) => acc + val, 0);
+                const M = sum / 225;
+                document.getElementById('phys-m-disp').textContent = M.toFixed(2);
+
+                // Update Grid elements
+                const gridEl = document.getElementById('phys-grid');
+                gridEl.innerHTML = '';
+                physState.grid.forEach(spin => {
+                    const cell = document.createElement('div');
+                    cell.className = 'ising-spin';
+                    cell.style.backgroundColor = spin === 1 ? 'var(--info)' : 'var(--danger)';
+                    gridEl.appendChild(cell);
+                });
+
+                // Status Alert
+                const alertBox = document.getElementById('phys-alert-box');
+                const desc = document.getElementById('phys-magnetization-desc');
+                if (M < 0.2) {
+                    alertBox.className = "sec-alert danger";
+                    alertBox.querySelector('span').textContent = "CRITICAL: Phase transition triggered. Net system entropy collapsed.";
+                    desc.textContent = "Disordered phase (paramagnetic). The host exhibits cascaded structural failures.";
+                } else if (M < 0.7) {
+                    alertBox.className = "sec-alert danger";
+                    alertBox.querySelector('span').textContent = "Warning: Fluctuations rising near critical temperature threshold.";
+                    desc.textContent = "Lattice exhibiting local threat domains. System coherence degrading.";
+                } else {
+                    alertBox.className = "sec-alert success";
+                    alertBox.querySelector('span').textContent = "Status: Host state remains stable (ferromagnetic order).";
+                    desc.textContent = "Ordered phase. Active protection field H_sec prevents cascade propagation.";
+                }
+
+            }, 80);
+        }
+
+        // ------------------ 7. PROBABILITY & STOCHASTIC SIMULATOR ------------------
+        let stochState = {
+            running: false,
+            syscalls: ['sys_openat', 'sys_read', 'sys_write', 'sys_execve'],
+            transitionMatrix: {
+                normal: [
+                    [0.1, 0.8, 0.05, 0.05], // openat -> read(0.8), write, exec
+                    [0.05, 0.1, 0.8, 0.05], // read -> write(0.8)
+                    [0.7, 0.1, 0.1, 0.1],  // write -> openat(0.7)
+                    [0.01, 0.01, 0.01, 0.97] // exec -> exec
+                ],
+                exploit: [
+                    [0.1, 0.1, 0.1, 0.7],  // anomalous jump to execve
+                    [0.05, 0.05, 0.1, 0.8], // read -> execve
+                    [0.05, 0.05, 0.1, 0.8],
+                    [0.1, 0.1, 0.1, 0.7]
+                ]
+            },
+            currIndex: 0,
+            prob: 0.985
+        };
+
+        function runProbabilitySimulation() {
+            if (!stochState.running) return;
+
+            const mode = document.getElementById('stoch-profile-mode').value;
+            const matrix = stochState.transitionMatrix[mode === 'normal' ? 'normal' : 'exploit'];
+
+            // Probabilistic next step
+            const row = matrix[stochState.currIndex];
+            const rand = Math.random();
+            let sum = 0;
+            let nextIndex = 0;
+            for (let i = 0; i < 4; i++) {
+                sum += row[i];
+                if (rand <= sum) {
+                    nextIndex = i;
+                    break;
+                }
+            }
+
+            // Probability update
+            if (mode === 'normal') {
+                stochState.prob = 0.95 + Math.random() * 0.04;
+            } else {
+                // Exploit jump probability decays
+                stochState.prob = Math.max(0.001, stochState.prob - 0.25);
+            }
+
+            document.getElementById('stoch-prob-disp').textContent = (stochState.prob * 100).toFixed(1) + "%";
+            
+            const syscall = stochState.syscalls[nextIndex];
+            document.getElementById('stoch-syscall-disp').textContent = syscall;
+            
+            const term = document.getElementById('stoch-terminal');
+            const l = document.createElement('div');
+            l.className = 'terminal-line';
+            
+            if (mode === 'normal') {
+                l.textContent = `[INFO] PID 851 executed ${syscall} successfully (p=${row[nextIndex].toFixed(2)}).`;
+                document.getElementById('stoch-alert-box').className = "sec-alert success";
+                document.getElementById('stoch-alert-box').querySelector('span').textContent = 
+                    "Status: Syscall transition probability matches baseline signature.";
+            } else {
+                l.className = 'terminal-line err';
+                l.textContent = `[ALERT] PID 851 anomalous jump: ${stochState.syscalls[stochState.currIndex]} -> ${syscall} (p=0.0001).`;
+                document.getElementById('stoch-alert-box').className = "sec-alert danger";
+                document.getElementById('stoch-alert-box').querySelector('span').textContent = 
+                    "CRITICAL: Stochastic anomaly detected! Forbidden syscall sequence transition.";
+            }
+            
+            term.appendChild(l);
+            term.scrollTop = term.scrollHeight;
+
+            stochState.currIndex = nextIndex;
+        }
+
+        document.getElementById('btn-stoch-run').onclick = () => {
+            stochState.running = true;
+            stochState.prob = 0.985;
+            document.getElementById('stoch-terminal').innerHTML = '';
+            clearInterval(activeIntervals.probability);
+            activeIntervals.probability = setInterval(runProbabilitySimulation, 300);
+        };
+
+        document.getElementById('btn-stoch-stop').onclick = () => {
+            stochState.running = false;
+            clearInterval(activeIntervals.probability);
+        };
+
+        // ------------------ 8. GEOMETRY & TOPOLOGY SIMULATOR ------------------
+        let geomState = {
+            drift: 0,
+            angle: 0
+        };
+
+        function runGeometrySimulation() {
+            clearInterval(activeIntervals.geometry);
+
+            activeIntervals.geometry = setInterval(() => {
+                const sliderVal = parseInt(document.getElementById('geom-drift-slider').value);
+                geomState.drift = sliderVal / 100;
+                document.getElementById('geom-drift-val').textContent = geomState.drift.toFixed(2);
+
+                const canvas = document.getElementById('canvas-geom-manifold');
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height / 2 - 30;
+                const r = 70;
+
+                // Draw Normal Manifold Ring
+                ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+                ctx.lineWidth = 15;
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Draw reference manifold outline
+                ctx.strokeStyle = 'rgba(99, 102, 241, 0.4)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([2, 2]);
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Draw Point Cloud Cluster
+                ctx.fillStyle = 'rgba(99, 102, 241, 0.6)';
+                for (let a = 0; a < Math.PI * 2; a += 0.1) {
+                    const noise = (Math.random() - 0.5) * 8;
+                    const px = cx + (r + noise) * Math.cos(a);
+                    const py = cy + (r + noise) * Math.sin(a);
+                    ctx.beginPath();
+                    ctx.arc(px, py, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Active telemetry point (rotating + drift)
+                geomState.angle += 0.05;
+                const activeR = r + (geomState.drift * 90);
+                const activeX = cx + activeR * Math.cos(geomState.angle);
+                const activeY = cy + activeR * Math.sin(geomState.angle);
+
+                ctx.fillStyle = geomState.drift > 0.4 ? 'var(--danger)' : 'var(--success)';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = ctx.fillStyle;
+                ctx.beginPath();
+                ctx.arc(activeX, activeY, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Homology barcode diagram at the bottom of the canvas
+                ctx.fillStyle = 'var(--text-dark)';
+                ctx.fillRect(20, canvas.height - 45, canvas.width - 40, 30);
+                ctx.strokeStyle = 'var(--border-color)';
+                ctx.strokeRect(20, canvas.height - 45, canvas.width - 40, 30);
+
+                ctx.fillStyle = 'var(--text-muted)';
+                ctx.font = '9px monospace';
+                ctx.fillText("H₀ persistence", 30, canvas.height - 35);
+                ctx.fillText("H₁ loop drift", 30, canvas.height - 23);
+
+                // Draw barcode lines
+                ctx.fillStyle = 'var(--success)';
+                ctx.fillRect(120, canvas.height - 39, 200, 4);
+
+                if (geomState.drift > 0.45) {
+                    ctx.fillStyle = 'var(--danger)';
+                    ctx.fillRect(160, canvas.height - 27, 150, 4); // Persistent H1 void birth
+                    document.getElementById('geom-alert-box').className = "sec-alert danger";
+                    document.getElementById('geom-alert-box').querySelector('span').textContent = 
+                        "CRITICAL: Topological anomaly detected. Drift vector has departed Riemannian manifold bounds.";
+                } else {
+                    document.getElementById('geom-alert-box').className = "sec-alert success";
+                    document.getElementById('geom-alert-box').querySelector('span').textContent = 
+                        "Status: System state coordinates are stable inside Riemannian boundaries.";
+                }
+
+            }, 60);
+        }
+
+        // Global Orchestrator
+        function initActiveTab(tabId) {
+            // Stop other loops
+            Object.keys(activeIntervals).forEach(k => {
+                if (k !== 'probability') clearInterval(activeIntervals[k]);
+            });
+
+            if (tabId === 'tab-information-theory') {
+                runInformationTheory();
+                // Add event listeners to redraw on sliders
+                document.getElementById('entropy-p-slider').oninput = runInformationTheory;
+                document.getElementById('entropy-data-mode').onchange = runInformationTheory;
+                document.getElementById('btn-calculate-entropy').onclick = runInformationTheory;
+            } else if (tabId === 'tab-graph-systems') {
+                drawGraph();
+            } else if (tabId === 'tab-control-theory') {
+                runControlTheory();
+            } else if (tabId === 'tab-queueing-theory') {
+                runQueueingTheory();
+            } else if (tabId === 'tab-security-physics') {
+                runSecurityPhysics();
+            } else if (tabId === 'tab-geometry-topology') {
+                runGeometrySimulation();
+            }
+        }
+
+        // Default run
+        initActiveTab('tab-information-theory');
+    </script>
+</body>
+</html>

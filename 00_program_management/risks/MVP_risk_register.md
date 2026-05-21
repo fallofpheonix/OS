@@ -1,0 +1,16 @@
+# MVP Risk Register: SentinelOS
+
+This document identifies and tracks the architectural, performance, and operational risks associated with building the SentinelOS MVP.
+
+| ID | Risk Description | Category | Probability | Impact | Mitigation Strategy |
+|---|---|---|---|---|---|
+| **RSK-001** | **Host Incompatibility (eBPF on macOS)**: Inability to execute or debug Linux-native eBPF probes on the developer's macOS host. | Development | Critical (100%) | High | **Dual-Mode Telemetry Agent:** Implement a mock-generation simulation layer that runs natively on macOS, and reserve QEMU VM environments for testing production eBPF kernel hooks. |
+| **RSK-002** | **Telemetry Performance Overhead**: High CPU/memory overhead caused by system call hooking and context switching between user/kernel space. | Performance | Medium | High | **Source Filtering & BPF Filters:** Filter events in-kernel using eBPF maps before sending packets to user space. Implement rate limiters on user-space agent buffers. |
+| **RSK-003** | **Broker Queue Overflow (Alert Storms)**: Event bus broker runs out of memory or drops packets during massive workload spikes. | Reliability | Medium | Medium | **Backpressure & Ring Buffers:** Implement ring buffers with overwrite-oldest policy for non-critical logs and blocked channel backpressure for critical telemetry. |
+| **RSK-004** | **DFIR Heisenberg Effect**: Forensic snapshot collection modifies system state, corrupting volatile forensic evidence. | Security | Low | Medium | **Stateless Acquisition:** Use read-only system files (`/proc`, memory pages) and pre-allocated heap pools for forensic runtimes to minimize disk writes and allocations. |
+| **RSK-005** | **Self-Lockout in Containment**: Automated firewall blocks or process terminates administrative sessions (e.g., SSH, main init daemon). | Security | Low | Critical | **Whitelist Protection Rules:** Hardcode whitelists for system-critical components: PID 1, SSH ports (22), DNS servers, and loopback communication. |
+| **RSK-006** | **Unvalidated AI Predictions**: Heuristics/models trigger false-positive containment actions, disrupting user processes. | Security | Medium | High | **Manual-Confirmation Phase:** The MVP AI correlator will flag alerts as "Advisory" or "Warning" only, prompting user confirmation on the SOC dashboard before executing containment primitives. |
+
+| **RSK-007** | **Dependency Violation**: Building AI detection pipelines before establishing telemetry baseline collectors. | Strategic | Medium | High | **Master Order Verification:** Strictly enforce the staging dependency sequence (Telemetry -> Event Bus -> AI Correlation) as defined in LONG_TERM_STRUCTURE.md. |
+| **RSK-008** | **Lack of Architecture Control (Process)**: Bypassing the RFC phase for quick prototyping, causing technical debt and interfaces mismatch. | Project | High | Medium | **RFC-Gated Code Commit:** Enforce strict gating where no implementation code is merged without an approved RFC in `02_docs/rfc/`. |
+| **RSK-009** | **Telemetry Data Exposure**: Eavesdropping or tampering of event logs on the communication bus. | Security | Low | High | **Signed Forensic Streams:** Implement channel encryption (or local socket access control permissions) and hash verification for forensic snapshots. |
