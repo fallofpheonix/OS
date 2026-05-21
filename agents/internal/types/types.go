@@ -96,11 +96,20 @@ type SecurityState struct {
 
 // Strategy represents strategic game recommendations (L6.5)
 type Strategy struct {
-	ContainmentLevel int       `json:"containment_level"` // 0 to 5
+	ContainmentLevel int       `json:"containment_level"` // Use ContainmentLevel constants
 	TargetPIDs       []uint32  `json:"target_pids"`
 	StrategyType     string    `json:"strategy_type"` // Nash | Stackelberg | Bayesian
 	Timestamp        time.Time `json:"timestamp"`
 }
+
+const (
+	LevelObserve    = 0 // SAFE / WATCH
+	LevelLimit      = 1 // SUSPICIOUS
+	LevelThrottled  = 2 // SUSPICIOUS
+	LevelFreeze     = 3 // CRITICAL
+	LevelIsolate    = 4 // CRITICAL
+	LevelKill       = 5 // COMPROMISED
+)
 
 // PIDMetrics represents control feedback metrics (L5)
 type PIDMetrics struct {

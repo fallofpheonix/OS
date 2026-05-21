@@ -38,6 +38,30 @@ Unlike traditional operating systems that rely on passive signatures, PhoenixOS 
 
 ## Quick Start (Simulation)
 ```sh
-cd phoenix_os/guard
-bash build.sh && ./artifacts/phoenix_guard
+make boot
+# Optional, if qemu-system-i386 is installed:
+make run
 ```
+# Development
+
+Testing and CI
+- Root build validation requires `nasm` and `gcc` on PATH.
+- In this workspace, `make all` now completes after installing `nasm` and using the portable kernel prototype.
+- Run unit tests locally in a virtualenv:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+PYTHONPATH=$(pwd) pytest -q
+```
+
+- The repository includes a GitHub Actions workflow at `.github/workflows/ci.yml` which runs the same tests on push/PR to `main`.
+
+API
+- The orchestrator FastAPI app is `agents/surface/orchestrator/api.py`. Run locally with:
+
+```bash
+PYTHONPATH=$(pwd) uvicorn agents.surface.orchestrator.api:app --reload --port 8000
+```
+

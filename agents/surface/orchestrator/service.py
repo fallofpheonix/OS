@@ -272,16 +272,19 @@ class OrchestratorService:
                 if new_state == State.VALIDATE:
                     wf = self.orch.create_workflow(wf_id)
                     t = wf.tasks.get(task_id)
+                    print(f"[orchestrator] state VALIDATE for {wf_id}/{task_id}; pr_url_exists={bool(t and t.metadata.get('pr_url'))}")
                     if t and not t.metadata.get("pr_url"):
                         try:
                             # if no GITHUB_TOKEN present, do a dry-run to avoid errors
                             import os
                             dry = not bool(os.environ.get("GITHUB_TOKEN"))
+                            print(f"[orchestrator] creating PR (dry={dry}) for {wf_id}/{task_id}")
                             self.create_pr_for_task(wf_id, task_id, dry_run=dry)
-                        except Exception:
-                            pass
-            except Exception:
-                pass
+                            print(f"[orchestrator] PR creation attempted for {wf_id}/{task_id}")
+                        except Exception as e:
+                            print(f"[orchestrator] PR creation failed: {e}")
+            except Exception as e:
+                print(f"[orchestrator] error in PR creation: {e}")
         except Exception:
             pass
 
@@ -374,7 +377,6 @@ class OrchestratorService:
         """
         import subprocess
         import os
-        from . import github_integration
 
         with self.lock:
             wf = self.orch.create_workflow(wf_id)
@@ -404,6 +406,7 @@ class OrchestratorService:
             if dry_run:
                 pr_url = f"dry-run://{repo}/{head}"
             else:
+                from . import github_integration
                 subprocess.check_call(["git", "fetch", "origin"])
                 # create branch based off origin/<base>
                 subprocess.check_call(["git", "checkout", "-b", head, f"origin/{base}"])

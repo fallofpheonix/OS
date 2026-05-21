@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2026-05-21T17:00:00Z",
+    "event_id": "evt-001",
+    "category": "process",
+    "event_type": "process.start",
+    "pid": 1001,
+    "ppid": 1,
+    "comm": "init",
+    "exe_path": "/sbin/init"
+  },
+  {
+    "timestamp": "2026-05-21T17:00:05Z",
+    "event_id": "evt-002",
+    "category": "filesystem",
+    "event_type": "file.write",
+    "pid": 1001,
+    "ppid": 1,
+    "comm": "init",
+    "exe_path": "/sbin/init",
+    "filesystem": {
+      "file_path": "/tmp/test",
+      "bytes_requested": 512
+    }
+  }
+]

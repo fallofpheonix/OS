@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -15,9 +17,18 @@ import (
 	"phoenix/agents/internal/kernel"
 	"phoenix/agents/internal/physics"
 	"phoenix/agents/internal/telemetry"
+	"phoenix/agents/internal/types"
 )
 
 func main() {
+	replayPath := flag.String("replay", "", "Path to telemetry replay file")
+	flag.Parse()
+
+	if *replayPath != "" {
+		runReplay(*replayPath)
+		return
+	}
+
 	fmt.Println("Starting PhoenixOS Internal Agents...")
 
 	// Initialize Agents
@@ -59,9 +70,11 @@ func main() {
 			state, _ := physicsAgent.GetSecurityState(dag)
 			
 			// 4. Update Game Beliefs
+			evidence := ""
 			if ev.Category == "filesystem" && ev.Filesystem != nil && ev.Filesystem.BytesRequested > 100 {
-				gameAgent.UpdateBeliefs(state, "high_entropy_write")
+				evidence = "high_entropy_write"
 			}
+			gameAgent.UpdateBeliefs(state, evidence)
 			
 			// 5. Solve Strategy
 			strategy, _ := gameAgent.SolveBestStrategy(state, dag)
@@ -80,4 +93,56 @@ func main() {
 
 	fmt.Println("Shutting down agents...")
 	telemetryAgent.Stop()
+}
+
+func runReplay(path string) {
+	fmt.Fprintf(os.Stderr, "Running deterministic replay from %s\n", path)
+	data, err := os.ReadFile(path)
+	if err != nil {
+		log.Fatalf("Failed to read replay file: %v", err)
+	}
+
+	var events []types.TelemetryEvent
+	if err := json.Unmarshal(data, &events); err != nil {
+		log.Fatalf("Failed to unmarshal replay events: %v", err)
+	}
+
+	// Initialize Agents
+	graphAgent := graph.NewGraphAgent()
+	physicsAgent := physics.NewPhysicsAgent()
+	gameAgent := game.NewGameAgent()
+	controlAgent := control.NewControlAgent(1.5, 0.2, 0.1, 2.0)
+
+	type ReplayOutput struct {
+		EventID    string               `json:"event_id"`
+		State      types.SecurityState  `json:"state"`
+		Strategy   types.Strategy       `json:"strategy"`
+		PIDMetrics types.PIDMetrics     `json:"pid_metrics"`
+	}
+
+	var results []ReplayOutput
+
+	for _, ev := range events {
+		graphAgent.UpdateGraph(ev)
+		dag := graphAgent.GetAttackDAG()
+		state, _ := physicsAgent.GetSecurityState(dag)
+		
+		evidence := ""
+		if ev.Category == "filesystem" && ev.Filesystem != nil && ev.Filesystem.BytesRequested > 100 {
+			evidence = "high_entropy_write"
+		}
+		gameAgent.UpdateBeliefs(state, evidence)
+		strategy, _ := gameAgent.SolveBestStrategy(state, dag)
+		controlAgent.EnforceStrategy(strategy, state.ThreatTemperature)
+
+		results = append(results, ReplayOutput{
+			EventID:    ev.EventID,
+			State:      state,
+			Strategy:   strategy,
+			PIDMetrics: controlAgent.GetPIDMetrics(),
+		})
+	}
+
+	output, _ := json.MarshalIndent(results, "", "  ")
+	fmt.Println(string(output))
 }

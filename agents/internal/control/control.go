@@ -9,7 +9,7 @@ import (
 )
 
 type ControlAgent interface {
-	EnforceStrategy(s types.Strategy, currentThreatTemp float64) error
+	EnforceStrategy(s types.Strategy, currentThreatTemp float64, now time.Time) error
 	GetPIDMetrics() types.PIDMetrics
 	GetActionHistory() []string
 }
@@ -43,11 +43,10 @@ func NewControlAgent(kp, ki, kd, setpoint float64) *Agent {
 
 // EnforceStrategy runs a PID step using the currentThreatTemp compared against the setpoint,
 // and then executes containment actions for the specified target PIDs in the strategy.
-func (a *Agent) EnforceStrategy(s types.Strategy, currentThreatTemp float64) error {
+func (a *Agent) EnforceStrategy(s types.Strategy, currentThreatTemp float64, now time.Time) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
-	now := time.Now()
 	dt := now.Sub(a.lastUpdateTime).Seconds()
 	if dt <= 0 {
 		dt = 0.001 // prevent division by zero or negative time step
@@ -81,37 +80,32 @@ func (a *Agent) EnforceStrategy(s types.Strategy, currentThreatTemp float64) err
 		Integral:  a.integral,
 	}
 
-	// Action selection pipeline based on Strategy Level (0-5) and PID output
-	// Level 0: Observe
-	// Level 1-2: Limit (throttling)
-	// Level 3: Freeze (suspend)
-	// Level 4: Isolate (sandbox/network block)
-	// Level 5: Kill (SIGKILL)
+	// Action selection pipeline based on Strategy Level (Discrete States)
 	level := s.ContainmentLevel
 
-	// PID output can escalate containment level if output is very high
-	if output > 5.0 && level < 5 {
-		level = 5
-	} else if output > 2.0 && level < 3 {
-		level = 3
+	// PID output can escalate containment level if output is very high (Self-correction)
+	if output > 5.0 && level < types.LevelKill {
+		level = types.LevelKill
+	} else if output > 2.0 && level < types.LevelFreeze {
+		level = types.LevelFreeze
 	}
 
 	actionTime := now.Format(time.RFC3339)
 	for _, pid := range s.TargetPIDs {
 		switch level {
-		case 0:
+		case types.LevelObserve:
 			msg := fmt.Sprintf("[%s] ACTION: OBSERVE PID %d (PID output: %.2f)", actionTime, pid, output)
 			a.actionHistory = append(a.actionHistory, msg)
-		case 1, 2:
+		case types.LevelLimit, types.LevelThrottled:
 			msg := fmt.Sprintf("[%s] ACTION: LIMIT CPU/IO for PID %d by %.1f%% (PID output: %.2f)", actionTime, pid, mathMin(100.0, mathMax(10.0, output*20.0)), output)
 			a.actionHistory = append(a.actionHistory, msg)
-		case 3:
+		case types.LevelFreeze:
 			msg := fmt.Sprintf("[%s] ACTION: FREEZE PID %d (SIGSTOP sent) (PID output: %.2f)", actionTime, pid, output)
 			a.actionHistory = append(a.actionHistory, msg)
-		case 4:
+		case types.LevelIsolate:
 			msg := fmt.Sprintf("[%s] ACTION: ISOLATE PID %d (Network isolated) (PID output: %.2f)", actionTime, pid, output)
 			a.actionHistory = append(a.actionHistory, msg)
-		case 5:
+		case types.LevelKill:
 			msg := fmt.Sprintf("[%s] ACTION: KILL PID %d (SIGKILL sent) (PID output: %.2f)", actionTime, pid, output)
 			a.actionHistory = append(a.actionHistory, msg)
 		}

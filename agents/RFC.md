@@ -1,19 +1,19 @@
 # RFC: agents
 
 ## 1. Problem Statement
-[TODO]
+Describe the role agents play in the system, boundaries, and the specific problem this RFC addresses.
 
 ## 2. Specification
-[TODO]
+Describe agent lifecycle, data flows, messaging formats, and required permissions. Include diagrams or sequence examples where helpful.
 
 ## 3. Interface
-[TODO]
+List agent APIs, message schemas, expected telemetry inputs, and control outputs. Include examples of event payloads.
 
 ## 4. Failure Modes
-[TODO]
+Document expected failure scenarios (network partitions, replay divergence, noisy telemetry), severity, and recovery recommendations.
 
 ## 5. Performance Budget
-[TODO]
+Define acceptable latencies, CPU/memory budgets, and operational constraints per-agent class.
 
 ## 6. Validation Criteria
-[TODO]
+Provide deterministic validation steps: unit tests, integration replay tests, CI job names, and manual verification steps.

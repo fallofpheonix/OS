@@ -61,6 +61,11 @@ This file is the canonical, repository-anchored consolidation of the full audit 
 4. Implement replay harness (R037) and validate Bayesian classifier performance offline before runtime enabling.
 5. Once userspace control validated (R031), draft minimal kernel LSM/Netlink IPC RFC and start tiny in-kernel probes in a gated branch.
 
+-- LOCAL VALIDATION SNAPSHOT (2026-05-21)
+- Tests: `PYTHONPATH=$(pwd) pytest -q` passed in the workspace virtualenv.
+- Build: `make all` completes after installing `nasm` and replacing the x86-only kernel halt with a portable loop.
+- Documentation: root quick-start now points to `make boot` / `make run` instead of the obsolete guard-only command.
+
 -- FILES UPDATED / CREATED BY THIS AUDIT
 - `FINAL_PhoenixOS_AUDIT.md` (this file)
 - Reviewed and aligned: `MASTER_DEPENDENCY_GRAPH.md`, `THEORY_TO_OS_MAP.md`, `MATH_RUNTIME_MATRIX.md`, `PHYSICS_RUNTIME_MATRIX.md`, `GAME_RUNTIME_MATRIX.md`, `EXPERIMENT_MASTER.md`, `RFC_ALIGNMENT_REPORT.md`, `FILE_ACTION_MATRIX.md`, `OS_EVOLUTION_MAP.md`, `RISK_REGISTER_UPDATE.md`, `IMPLEMENTATION_GATES.md`

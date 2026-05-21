@@ -11,7 +11,7 @@ import (
 
 type PhysicsAgent interface {
 	CalculateSDI(states []int8) float64
-	GetSecurityState(graph *types.IncidentGraph) (types.SecurityState, error)
+	GetSecurityState(graph *types.IncidentGraph, now time.Time) (types.SecurityState, error)
 }
 
 type Agent struct {
@@ -47,7 +47,7 @@ func (a *Agent) CalculateSDI(states []int8) float64 {
 	return sdi
 }
 
-func (a *Agent) GetSecurityState(graph *types.IncidentGraph) (types.SecurityState, error) {
+func (a *Agent) GetSecurityState(graph *types.IncidentGraph, now time.Time) (types.SecurityState, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
@@ -110,7 +110,7 @@ func (a *Agent) GetSecurityState(graph *types.IncidentGraph) (types.SecurityStat
 	isAnomaly := sdi > 1.0 || entropy > 7.5 || a.threatTemp > 4.0
 
 	return types.SecurityState{
-		Timestamp:         time.Now(),
+		Timestamp:         now,
 		Entropy:           entropy,
 		KLDivergence:      0.0, // baseline
 		ThreatTemperature: a.threatTemp,

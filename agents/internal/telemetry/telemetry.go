@@ -12,6 +12,7 @@ import (
 type TelemetryAgent interface {
 	Start() error
 	Stop() error
+	RecordEvent(ev types.TelemetryEvent)
 	GetLineage(pid uint32) ([]types.TelemetryEvent, error)
 	GenerateMockEvent() types.TelemetryEvent
 }

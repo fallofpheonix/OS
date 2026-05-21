@@ -33,7 +33,7 @@ for service in "${SERVICES[@]}"; do
         echo "Warning: Could not find binary for $service in artifacts/"
     else
         # Default build if no build.sh exists
-        go build -o "build/bin/phoenix_$binary_name" "./$service/src"/*.go
+        go build -o "build/bin/phoenix_$binary_name" "./$service/src"
     fi
     echo "Done."
 done
