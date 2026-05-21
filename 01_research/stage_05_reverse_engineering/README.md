@@ -1,53 +1,40 @@
-# Stage 05: Reverse Engineering and Malware Analysis
+# Stage_05_Malware_and_RE: Malware and RE
 
-## Purpose
+- Classification: IMPLEMENTATION
+- Progression: Prototype -> Secure
+- Scope: Static/dynamic malware analysis, YARA, sandboxing, reverse engineering
+- Prerequisites: Stage_04_Security_Fundamentals, Stage_03_Networking
+- Next stage: Stage_06_Forensics
 
-Build capability to inspect binaries without source code, analyze malware behavior, write detection signatures, and produce defensible technical reports.
+## Source Files
 
-## Scope
+| Item | Current location | Status | Type |
+| --- | --- | --- | --- |
+| Malware Detection | docs/16-malware-detection.md | PLANNED | Documentation |
+| Malware Research Labs | docs/research/07-malware-research-labs.md | RESEARCH_ONLY | Learning/Research |
+| .gitkeep | security/malware/.gitkeep | IMPLEMENTATION | Coding placeholder |
 
-- Binary formats: ELF, PE, Mach-O.
-- Static analysis: disassembly, decompilation, strings, imports, metadata.
-- Dynamic analysis: debuggers, syscall tracing, behavioral analysis, sandboxing.
-- Packing, obfuscation, and anti-analysis.
-- Memory forensics.
-- x86/x64 instruction and architecture analysis.
-- Malware classification and ATT&CK mapping.
-- YARA and network/signature-based detection.
+## Topics
 
-## Classification
+| Topic | Difficulty | Hours | Weeks | Kind | Risk | Priority | Blocking items |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Static malware triage | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Dynamic malware analysis | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Reverse engineering | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Sandbox design | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| YARA rules | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Malware family taxonomy | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Memory inspection | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Network behavior extraction | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 
-- Type: `SECURITY_RESEARCH`
-- Status: `RESEARCH_ONLY`
-- Difficulty: expert
-- Estimated duration: 8-10 weeks
-- Upstream prerequisites:
-  - Stage 01 System Internals
-  - Stage 04 Security
-- Downstream blockers:
-  - Stage 06 Forensics
-  - Stage 07 Threat Intelligence
-  - Stage 12 Security AI
+## Gate Conditions
 
-## Research Modules
+- All prerequisite stages complete: Stage_04_Security_Fundamentals, Stage_03_Networking
 
-| Module | Path |
-|---|---|
-| Phase 7 Research Plan | `phase_07_reverse_engineering_malware.md` |
-| Phase 7 Build Gate | `build_gate.md` |
+- Source documents reviewed and contradictions logged
 
-## Internal Dependency Order
+- Labs produce reproducible artifacts
 
-```text
-Binary formats
--> Static analysis
--> Debugging and dynamic tracing
--> Packing and obfuscation
--> Memory forensics
--> YARA and detection signatures
--> Malware classification and reporting
-```
+- Risk items have owner and mitigation
 
-## Gate
-
-Do not store live malware samples in this repository. Store only hashes, IOCs, reports, rules, and sanitized metadata.
+- Outputs indexed in root reports

@@ -1,54 +1,41 @@
-# Stage 11: AI/ML Fundamentals
+# Stage_11_AI_ML_Core: AI ML Core
 
-## Purpose
+- Classification: FOUNDATIONAL
+- Progression: Learn -> Prototype
+- Scope: ML fundamentals, feature engineering, datasets, evaluation
+- Prerequisites: Stage_00_Foundations
+- Next stage: Stage_12_Security_AI
 
-Build the mathematical, classical ML, deep learning, embedding, optimization, and deployment foundations needed for security AI systems.
+## Source Files
 
-## Scope
+| Item | Current location | Status | Type |
+| --- | --- | --- | --- |
+| .gitkeep | ai/anomaly_detection/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| .gitkeep | ai/models/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| AI + Cybersecurity Evaluation | docs/ai-cyber/04-evaluation.md | PLANNED | Documentation |
+| AI And Machine Learning Research Topics | docs/research/09-ai-ml-research-topics.md | RESEARCH_ONLY | Learning/Research |
 
-- Linear algebra, probability, statistics, calculus, and optimization.
-- Classical supervised and unsupervised ML.
-- Feature engineering and exploratory data analysis.
-- Deep learning with PyTorch.
-- Embeddings, semantic search, and RAG.
-- Anomaly detection and security log classification.
-- Malware classification using static features.
-- ONNX export, quantization, model serving, and monitoring.
+## Topics
 
-## Classification
+| Topic | Difficulty | Hours | Weeks | Kind | Risk | Priority | Blocking items |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Feature engineering | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Supervised learning | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Unsupervised learning | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Anomaly detection | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Model evaluation | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Dataset provenance | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| ML pipeline | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
+| Drift detection | High | 60 | 6 | Learning | Medium | P1 | Stage gate incomplete |
 
-- Type: `AI_ML_FOUNDATION`
-- Status: `RESEARCH_ONLY`
-- Difficulty: advanced-expert
-- Estimated duration: 10-12 weeks
-- Upstream prerequisites:
-  - Stage 00 Foundations
-  - Stage 04 Security
-  - Stage 09 Telemetry
-- Downstream blockers:
-  - Stage 12 Security AI
-  - Stage 14 Automation
-  - Stage 19 Production
+## Gate Conditions
 
-## Research Modules
+- All prerequisite stages complete: Stage_00_Foundations
 
-| Module | Path |
-|---|---|
-| Phase 8 Research Plan | `phase_08_ai_ml_fundamentals.md` |
-| Phase 8 Build Gate | `build_gate.md` |
+- Source documents reviewed and contradictions logged
 
-## Internal Dependency Order
+- Labs produce reproducible artifacts
 
-```text
-Math foundations
--> Data handling and EDA
--> Classical ML
--> Deep learning
--> Embeddings and retrieval
--> Security ML applications
--> Optimization and deployment
-```
+- Risk items have owner and mitigation
 
-## Gate
-
-Do not promote models into `06_ai/` until data provenance, metrics, failure modes, and deployment constraints are documented.
+- Outputs indexed in root reports

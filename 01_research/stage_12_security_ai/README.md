@@ -1,58 +1,54 @@
-# Stage 12: Security AI
+# Stage_12_Security_AI: Security AI
 
-## Purpose
+- Classification: IMPLEMENTATION
+- Progression: Prototype -> Integrate
+- Scope: AI IDS, malware ML, SOC assistant, security RAG, adversarial ML
+- Prerequisites: Stage_10_SOC_Stack, Stage_11_AI_ML_Core, Stage_05_Malware_and_RE, Stage_06_Forensics
+- Next stage: Stage_13_Containers_and_Cloud
 
-Synthesize security engineering, reverse engineering, telemetry, SOC workflows, and AI/ML into production-grade security AI systems.
+## Source Files
 
-## Scope
+| Item | Current location | Status | Type |
+| --- | --- | --- | --- |
+| .gitkeep | ai/behavior_engine/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| .gitkeep | ai/llm_assistant/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| .gitkeep | ai/log_analysis/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| .gitkeep | ai/malware_classification/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| .gitkeep | ai/threat_prediction/.gitkeep | IMPLEMENTATION | Coding placeholder |
+| AI And ML Layer | docs/15-ai-ml-architecture.md | PLANNED | Documentation |
+| AI Security Assistant | docs/18-ai-assistant.md | PLANNED | Documentation |
+| AI + Cybersecurity Overview | docs/ai-cyber/01-ai-cyber-overview.md | PLANNED | Documentation |
+| AI + Cybersecurity Architecture | docs/ai-cyber/03-architecture.md | PLANNED | Documentation |
+| AI-Empowered IDS/IPS Design | docs/ai-cyber/projects/01-ai-ids-design.md | PLANNED | Documentation |
+| ML-Assisted Malware Detector | docs/ai-cyber/projects/02-ml-malware-detector.md | PLANNED | Documentation |
+| LLM SOC Assistant Design | docs/ai-cyber/projects/03-llm-soc-assistant.md | PLANNED | Documentation |
+| Cybersecurity With AI/ML | docs/cybersecurity/01-cybersecurity-with-aiml-overview.md | PLANNED | Documentation |
+| AI/ML For Threat Detection And Analysis | docs/cybersecurity/03-aiml-threat-detection-analysis.md | PLANNED | Documentation |
+| Advanced Topics And Best Practices | docs/cybersecurity/06-advanced-topics-best-practices.md | PLANNED | Documentation |
+| Security AI Research Topics | docs/research/10-security-ai-research-topics.md | RESEARCH_ONLY | Learning/Research |
+| AI/ML Security Support Layer | docs/specs/ai-ml-security-layer.md | PLANNED | Documentation |
 
-- UEBA and behavioral analytics.
-- ML-based malware detection and clustering.
-- Threat prediction and vulnerability risk scoring.
-- SOC alert enrichment, correlation, and SOAR automation.
-- LLM-powered SOC copilots with RAG.
-- LLM security: prompt injection, jailbreaks, prompt leakage, indirect injection.
-- Data poisoning, model poisoning, model extraction, and model inversion.
-- Adversarial ML attacks and robustness evaluation.
-- AI red teaming and security testing.
+## Topics
 
-## Classification
+| Topic | Difficulty | Hours | Weeks | Kind | Risk | Priority | Blocking items |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| AI IDS | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| ML malware detector | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| UEBA | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Security RAG | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| SOC assistant | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Detection engineering AI | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Adversarial ML | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
+| Explainable security ML | High | 60 | 6 | Coding/Integration | Medium | P1 | Stage gate incomplete |
 
-- Type: `SECURITY_AI_RESEARCH`
-- Status: `RESEARCH_ONLY`
-- Difficulty: expert
-- Estimated duration: 10-12 weeks
-- Upstream prerequisites:
-  - Stage 04 Security
-  - Stage 05 Reverse Engineering
-  - Stage 09 Telemetry
-  - Stage 10 SOC
-  - Stage 11 AI/ML
-- Downstream blockers:
-  - Stage 14 Automation
-  - Stage 15 Security Distribution
-  - Stage 19 Production
+## Gate Conditions
 
-## Research Modules
+- All prerequisite stages complete: Stage_10_SOC_Stack, Stage_11_AI_ML_Core, Stage_05_Malware_and_RE, Stage_06_Forensics
 
-| Module | Path |
-|---|---|
-| Phase 9 Research Plan | `phase_09_security_ai.md` |
-| Phase 9 Build Gate | `build_gate.md` |
+- Source documents reviewed and contradictions logged
 
-## Internal Dependency Order
+- Labs produce reproducible artifacts
 
-```text
-Behavioral analytics
--> Malware ML
--> Threat prediction
--> SOC automation
--> LLM security
--> Adversarial ML
--> AI red teaming
--> Integrated deployment
-```
+- Risk items have owner and mitigation
 
-## Gate
-
-Do not deploy autonomous security response without explicit containment limits, audit logging, rollback paths, and human approval boundaries.
+- Outputs indexed in root reports

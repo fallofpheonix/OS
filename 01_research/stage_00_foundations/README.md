@@ -1,52 +1,51 @@
-# Stage 00: Foundations
+# Stage_00_Foundations: Foundations
 
-## Purpose
+- Classification: FOUNDATIONAL
+- Progression: Learn
+- Scope: Programming, architecture, tools, research scaffolding, project scope
+- Prerequisites: None
+- Next stage: Stage_01_System_Internals
 
-Establish core computer science fundamentals required for system design, systems programming, security engineering, AI/ML engineering, telemetry pipelines, and OS development.
+## Source Files
 
-## Scope
+| Item | Current location | Status | Type |
+| --- | --- | --- | --- |
+| Project Overview | docs/00-overview.md | PLANNED | Documentation |
+| Goals And Scope | docs/01-goals-and-scope.md | PLANNED | Documentation |
+| Build System | docs/03-build-system.md | PLANNED | Documentation |
+| OS Building Guide Overview | docs/guides/01-os-building-guide-overview.md | PLANNED | Documentation |
+| Build Environment And Toolchain Guide | docs/specs/toolchain-guide.md | PLANNED | Documentation |
+| Stage 0: Foundations - Dependency Graph | research/00_foundations/STAGE_0_DEPENDENCY_GRAPH.md | RESEARCH_ONLY | Learning/Research |
+| Stage 0: Foundations - Executive Summary | research/00_foundations/STAGE_0_EXECUTIVE_SUMMARY.md | RESEARCH_ONLY | Learning/Research |
+| Stage 0: Foundations - Repository & Tool Mapping | research/00_foundations/STAGE_0_REPOSITORIES.md | RESEARCH_ONLY | Learning/Research |
+| Stage 0: Foundations - Topic Resource Mapping | research/00_foundations/STAGE_0_TOPIC_RESOURCES.md | RESEARCH_ONLY | Learning/Research |
+| .gitkeep | tools/.gitkeep | IMPLEMENTATION | Coding placeholder |
 
-- Low-level data representation.
-- Memory and pointer semantics.
-- Fundamental data structures.
-- Core algorithms.
-- Complexity analysis.
-- Basic concurrency and state models.
+## Topics
 
-## Classification
+| Topic | Difficulty | Hours | Weeks | Kind | Risk | Priority | Blocking items |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| C systems programming | Low | 20 | 2 | Learning | Low | P0 | None |
+| Assembly basics | Low | 20 | 2 | Learning | Low | P0 | None |
+| Computer architecture | Low | 20 | 2 | Learning | Low | P0 | None |
+| Data structures | Low | 20 | 2 | Learning | Low | P0 | None |
+| Allocators | Low | 20 | 2 | Learning | Low | P0 | None |
+| Bitmaps | Low | 20 | 2 | Learning | Low | P0 | None |
+| Ring buffers | Low | 20 | 2 | Learning | Low | P0 | None |
+| Structured logging | Low | 20 | 2 | Learning | Low | P0 | None |
+| Build toolchain | Low | 20 | 2 | Learning | Low | P0 | None |
+| QEMU/GDB workflow | Low | 20 | 2 | Learning | Low | P0 | None |
+| Research organization | Low | 20 | 2 | Learning | Low | P0 | None |
+| Project scope | Low | 20 | 2 | Learning | Low | P0 | None |
 
-- Type: `FOUNDATIONAL`
-- Status: `RESEARCH_ONLY`
-- Difficulty: foundation level
-- Estimated duration: 4-6 weeks
-- Downstream blockers:
-  - Stage 01 System Internals
-  - Stage 03 Networking
-  - Stage 04 Security
-  - Stage 11 AI/ML Core
+## Gate Conditions
 
-## Research Modules
+- All prerequisite stages complete: none
 
-| Module | Path |
-|---|---|
-| Computer Science Foundations | `notes/phase_00_computer_science_foundations.md` |
-| Computer Architecture | `architecture/phase_01_computer_architecture.md` |
-| Low-Level Programming | `development/phase_02_low_level_programming.md` |
-| Phase 0 Build Gate | `checkpoints/phase_00_build_gate.md` |
-| Phase 1 Build Gate | `checkpoints/phase_01_build_gate.md` |
-| Phase 2 Build Gate | `checkpoints/phase_02_build_gate.md` |
-| Phase 0 Implementation Labs | `labs/phase_00_implementation_labs.md` |
-| Phase 1 Architecture Labs | `labs/phase_01_architecture_labs.md` |
-| Phase 2 Low-Level Programming Labs | `labs/phase_02_low_level_programming_labs.md` |
+- Source documents reviewed and contradictions logged
 
-## Internal Dependency Order
+- Labs produce reproducible artifacts
 
-```text
-Phase 0: Computer Science Foundations
--> Phase 1: Computer Architecture
--> Phase 2: Low-Level Programming
-```
+- Risk items have owner and mitigation
 
-## Gate
-
-Do not start Stage 01 implementation work until Phase 0, Phase 1, and Phase 2 build gates are complete.
+- Outputs indexed in root reports
