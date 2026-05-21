@@ -1,6 +1,65 @@
-# PhoenixOS: Expert-Aligned Solutions
+# PhoenixOS Architectural Solutions
 
-This document defines the refined architectural bridges for the PhoenixOS Matrix.
+## High-Level Architecture (The 7-Layer Stack)
+
+```text
++--------------------------------------------------------------+
+|                     USER / SOC INTERFACE                      |
+| Dashboards | CLI | APIs | Alerts | Policy Studio | Replay UI |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                    AI REASONING LAYER                         |
+| Evidence Engine | Explainability | Risk Models | Agents       |
+| LLM Runtime | Confidence Scoring | Recommendation Engine      |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                  CONTROL + DECISION LAYER                     |
+| State Machine: SAFE -> WATCH -> SUSPICIOUS -> CRITICAL        |
+| PID Controller | Policy Engine | Containment Manager          |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                 GAME THEORY / STRATEGY LAYER                  |
+| Stackelberg Defense | Bayesian Inference                      |
+| ESS Models | Resource Games | Security Economics             |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                   PHYSICS SECURITY LAYER                      |
+| Security Entropy | Disorder Index | Energy State             |
+| SIR Propagation | Kalman Estimation | Dynamics Engine         |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                 GRAPH + CORRELATION LAYER                     |
+| Process DAG | File Graph | Socket Graph | Identity Graph      |
+| PageRank | Betweenness | Lineage Engine | Risk Ranking        |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|               MATHEMATICAL ANALYTICS LAYER                    |
+| Shannon Entropy | KL Divergence | FFT | Queue Theory          |
+| Statistical Models | Detection Metrics                        |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                  TELEMETRY COLLECTION LAYER                   |
+| eBPF Probes | Ring Buffers | Event Bus | Normalization        |
+| Proc Metadata | Syscalls | File Ops | Network Events          |
++---------------------------▲----------------------------------+
+                            |
++--------------------------------------------------------------+
+|                KERNEL + HARDWARE FOUNDATION                   |
+| Linux Kernel | Drivers | CPU | Memory | Storage | Network     |
++--------------------------------------------------------------+
+```
+
+## Core Philosophy
+We replace threshold-based security with mathematically grounded models. A traditional OS triggers alerts based on static limits; SentinelOS triggers actions based on provable deviations (e.g., KL divergence exceeding bit-thresholds) and formally analyzed game-theoretic equilibrium.
+
+---
 
 ## 1. Finite-State Control (L6 -> L5)
 **Solution:** Replace linear/exponential gain with a **State-Aware Controller**.
