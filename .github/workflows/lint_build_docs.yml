@@ -3,6 +3,10 @@ name: Lint, Build, and RFC Validation
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'scripts/**'
+      - '.github/workflows/lint_build_docs.yml'
 
 jobs:
   lint-and-validate:
