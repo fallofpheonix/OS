@@ -1,0 +1,8 @@
+{
+  "thresholds": {
+    "safe": 0.3,
+    "watch": 0.5,
+    "suspicious": 0.7,
+    "critical": 0.9
+  }
+}

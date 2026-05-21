@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 )
 
 type SystemState uint8
@@ -14,16 +16,37 @@ const (
 	StateCompromised SystemState = 4
 )
 
+type Config struct {
+	Thresholds struct {
+		Safe       float64 `json:"safe"`
+		Watch      float64 `json:"watch"`
+		Suspicious float64 `json:"suspicious"`
+		Critical   float64 `json:"critical"`
+	} `json:"thresholds"`
+}
+
 type Warden struct {
 	CurrentState SystemState
 	Throttling   float64 // 0.0 (None) to 1.0 (Full Block)
+	Config       Config
 }
 
-func NewWarden() *Warden {
+func NewWarden(configPath string) (*Warden, error) {
+	configFile, err := os.ReadFile(configPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read config file: %w", err)
+	}
+
+	var config Config
+	if err := json.Unmarshal(configFile, &config); err != nil {
+		return nil, fmt.Errorf("failed to parse config file: %w", err)
+	}
+
 	return &Warden{
 		CurrentState: StateSafe,
 		Throttling:   0.0,
-	}
+		Config:       config,
+	}, nil
 }
 
 // EvaluateSDI maps the System Disorder Index to a discrete state
@@ -31,13 +54,13 @@ func (w *Warden) EvaluateSDI(sdi float64) {
 	oldState := w.CurrentState
 	
 	switch {
-	case sdi < 0.3:
+	case sdi < w.Config.Thresholds.Safe:
 		w.CurrentState = StateSafe
-	case sdi < 0.5:
+	case sdi < w.Config.Thresholds.Watch:
 		w.CurrentState = StateWatch
-	case sdi < 0.7:
+	case sdi < w.Config.Thresholds.Suspicious:
 		w.CurrentState = StateSuspicious
-	case sdi < 0.9:
+	case sdi < w.Config.Thresholds.Critical:
 		w.CurrentState = StateCritical
 	default:
 		w.CurrentState = StateCompromised
@@ -71,7 +94,11 @@ func (w *Warden) ApplyAction() {
 
 func main() {
 	fmt.Println("Phoenix Warden starting with Finite-State Controller...")
-	warden := NewWarden()
+	warden, err := NewWarden("../../config/warden.json")
+	if err != nil {
+		fmt.Printf("Error initializing Warden: %v\n", err)
+		os.Exit(1)
+	}
 
 	// Simulate rising threat
 	warden.EvaluateSDI(0.15) // Safe
