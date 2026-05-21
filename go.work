@@ -1,34 +1,3 @@
-go 1.26
+go 1.26.0
 
-use (
-	./06_ai
-	./07_security
-	./09_telemetry
-	./10_kernel
-	./14_experiments/sentinel_mvp
-	./14_experiments/telemetry_replay
-	./agents
-	./custom/control_plane
-	./phoenix_os/agents/external/benchmark
-	./phoenix_os/agents/external/build
-	./phoenix_os/agents/external/common
-	./phoenix_os/agents/external/intel
-	./phoenix_os/agents/external/research
-	./phoenix_os/agents/internal/common
-	./phoenix_os/agents/internal/game/marl
-	./phoenix_os/agents/internal/healer
-	./phoenix_os/agents/internal/optimizer
-	./phoenix_os/agents/internal/security
-	./phoenix_os/agents/internal/swarm
-	./phoenix_os/agents/internal/swarm/governance
-	./phoenix_os/arbiter
-	./phoenix_os/bus
-	./phoenix_os/common
-	./phoenix_os/guard
-	./phoenix_os/ledger
-	./phoenix_os/monitor
-	./phoenix_os/nexus
-	./phoenix_os/sentinel
-	./phoenix_os/trace
-	./phoenix_os/warden
-)
+use ./phoenix_os
