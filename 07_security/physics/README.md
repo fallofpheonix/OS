@@ -1,6 +1,6 @@
-# Incident Physics (L6)
+# Phoenix Sentinel (L6)
 
-Statistical mechanics engine for Pheonix security state estimation.
+Statistical mechanics engine for Phoenix security state estimation.
 
 ## Purpose
 Model system-wide security as a thermodynamic process to identify cascading failure points.

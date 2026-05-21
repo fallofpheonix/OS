@@ -1,7 +1,7 @@
-# RFC: Phoenix Sentinel
+# RFC: Phoenix Phoenix
 
 ## 1. Description
-Phoenix Sentinel provides L6 physical telemetry. It processes the aggregate state of the system to determine overall "health" or "disorder".
+Phoenix Phoenix provides L6 physical telemetry. It processes the aggregate state of the system to determine overall "health" or "disorder".
 
 ## 2. Specification
 - **Model:** Ising Spin Lattice.

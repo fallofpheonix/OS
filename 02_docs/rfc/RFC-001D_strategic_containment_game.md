@@ -8,7 +8,7 @@ Using Game Theory to move beyond static rules into dynamic, strategic response.
 
 ## Game Model: OS vs. Ransomware
 ### 1. Players
-- **Defender ($D$):** Pheonix Containment Engine.
+- **Defender ($D$):** Phoenix Phoenix Warden.
 - **Attacker ($A$):** Suspected Ransomware process.
 
 ### 2. Actions

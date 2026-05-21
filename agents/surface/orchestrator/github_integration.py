@@ -63,3 +63,18 @@ def create_issues_for_workflow(service, wf_id: str, state_filter: Optional[List[
         issue = create_issue(owner_repo, title, body, labels=labels)
         created.append(issue)
     return created
+
+
+def create_pull_request(owner_repo: str, title: str, head: str, base: str = "main", body: Optional[str] = None) -> Dict:
+    """Create a pull request using the GitHub API. Requires GITHUB_TOKEN in env."""
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        raise RuntimeError("GITHUB_TOKEN not set in environment")
+    url = f"{GITHUB_API}/repos/{owner_repo}/pulls"
+    headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
+    payload = {"title": title, "head": head, "base": base}
+    if body:
+        payload["body"] = body
+    resp = requests.post(url, json=payload, headers=headers, timeout=15)
+    resp.raise_for_status()
+    return resp.json()

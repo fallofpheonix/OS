@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the Event Normalizer component of the Pheonix Unified Event Bus. The Event Normalizer is responsible for validating raw telemetry events against the JSON schema (`02_docs/schemas/telemetry_events.json`), parsing them into strongly-typed Go structures, and enriching them with system metadata (such as usernames and normalized file paths).
+This RFC specifies the Event Normalizer component of the Phoenix Unified Phoenix Bus. The Event Normalizer is responsible for validating raw telemetry events against the JSON schema (`02_docs/schemas/telemetry_events.json`), parsing them into strongly-typed Go structures, and enriching them with system metadata (such as usernames and normalized file paths).
 
 ## 2. Ingestion & Normalizer Interface
 
@@ -17,7 +17,7 @@ import (
 	"time"
 )
 
-// Event represents the normalized telemetry event routed through the event bus
+// Event represents the normalized telemetry event routed through the Phoenix Bus
 type Event struct {
 	Timestamp   time.Time              `json:"timestamp"`
 	EventID     string                 `json:"event_id"`

@@ -1,4 +1,4 @@
-# RFC-001C: Pheonix Entropy Engine
+# RFC-001C: Phoenix Phoenix Monitor
 
 ## Status
 Proposed

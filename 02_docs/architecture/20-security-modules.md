@@ -39,7 +39,7 @@ Kernel
   -> Sandboxing engine
   -> eBPF hooks
   -> Audit system
-  -> AI event bus
+  -> AI Phoenix Bus
 ```
 
 ## Implementation Constraint

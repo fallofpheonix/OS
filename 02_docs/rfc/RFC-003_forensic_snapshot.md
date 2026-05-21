@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the design of the Forensic Snapshot Runtime in Pheonix. When a security threat or anomalous event is detected, the runtime is triggered to gather system state data (process metadata, active connections, open file descriptors, and memory mappings) from the target environment.
+This RFC specifies the design of the Forensic Snapshot Runtime in Phoenix. When a security threat or anomalous event is detected, the runtime is triggered to gather system state data (process metadata, active connections, open file descriptors, and memory mappings) from the target environment.
 
 ## 2. Forensic State Machine
 ```mermaid

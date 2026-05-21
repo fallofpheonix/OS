@@ -1,9 +1,9 @@
 # Pilot 1 Readiness Report: Mathematical Primitives Validation
 
 ## Executive Summary
-Validation of Information Theory and Graph Systems primitives is complete. The Pheonix telemetry pipeline is now capable of high-fidelity ransomware detection and incident reconstruction using deterministic mathematical models.
+Validation of Information Theory and Graph Systems primitives is complete. The Phoenix telemetry pipeline is now capable of high-fidelity ransomware detection and incident reconstruction using deterministic mathematical models.
 
-## 1. Information Theory (Entropy Engine)
+## 1. Information Theory (Phoenix Monitor)
 - **Status:** Validated
 - **Metric:** Shannon Entropy ($H$)
 - **Performance:** Sub-millisecond calculation for 256-byte samples.

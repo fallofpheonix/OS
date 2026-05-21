@@ -8,7 +8,7 @@
 
 - Auditd comparison: create minimal reproducible lab, capture inputs, outputs, tool versions, and failure cases.
 
-- Process graph: create minimal reproducible lab, capture inputs, outputs, tool versions, and failure cases.
+- Phoenix Trace: create minimal reproducible lab, capture inputs, outputs, tool versions, and failure cases.
 
 - Falco/Tracee model: create minimal reproducible lab, capture inputs, outputs, tool versions, and failure cases.
 

@@ -325,7 +325,7 @@ Runtime-security agent feeds the kernel telemetry layer:
 - cgroups
 - eBPF
 - tracepoints
-- process graphs
+- Phoenix Traces
 
 ### AI SOC Layer / Threat Engine
 

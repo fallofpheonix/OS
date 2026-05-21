@@ -4,7 +4,7 @@
 Proposed
 
 ## Context
-Defining the mathematical and algorithmic foundations for detecting ransomware-like behavior (encryption bursts and rename storms) within the Pheonix telemetry pipeline.
+Defining the mathematical and algorithmic foundations for detecting ransomware-like behavior (encryption bursts and rename storms) within the Phoenix telemetry pipeline.
 
 ## 1. Rename Velocity Tracker
 Detects "Rename Storms" typical of ransomware moving or renaming files after encryption.

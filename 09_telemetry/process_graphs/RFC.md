@@ -1,4 +1,4 @@
-# RFC: Process Graph (L4)
+# RFC: Phoenix Trace (L4)
 
 ## 1. Data Model
 Nodes: Process (PID), File (Path), Socket (IP:Port).

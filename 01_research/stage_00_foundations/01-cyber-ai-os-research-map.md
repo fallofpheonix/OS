@@ -401,7 +401,7 @@ perf events
 audit logs
 kernel tracing
 syscall interception
-process graphs
+Phoenix Traces
 event streams
 ```
 
@@ -419,8 +419,8 @@ event streams
 - Kernel event schema.
 - eBPF probe map.
 - Syscall telemetry pipeline.
-- Process graph model.
-- Event bus contract.
+- Phoenix Trace model.
+- Phoenix Bus contract.
 
 ## 10. Containers And Cloud Security
 
@@ -560,7 +560,7 @@ Deliverables:
 Deliverables:
 
 - eBPF event collector.
-- Process graph.
+- Phoenix Trace.
 - Syscall event stream.
 - Runtime detection integration with Falco or Tracee.
 

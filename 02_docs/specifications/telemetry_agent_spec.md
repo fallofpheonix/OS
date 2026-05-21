@@ -1,7 +1,7 @@
 Telemetry Agent Module Spec
 
 Purpose:
-Collect kernel-level telemetry and forward normalized events onto the event bus.
+Collect kernel-level telemetry and forward normalized events onto the Phoenix Bus.
 
 Inputs:
 - eBPF probes: syscall, file ops, network connect
@@ -14,7 +14,7 @@ Outputs:
 Dependencies:
 - Kernel headers
 - libbpf / BCC
-- Event bus (Kafka/Redis/HTTP)
+- Phoenix Bus (Kafka/Redis/HTTP)
 
 Metrics:
 - Events/sec

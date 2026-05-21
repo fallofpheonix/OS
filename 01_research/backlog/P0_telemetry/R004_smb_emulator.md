@@ -37,7 +37,7 @@ Validation gates:
 - Detection achieves configured recall on lab runs
 
 Evidence:
-- PCAPs, host logs, event bus captures, containment actions
+- PCAPs, host logs, Phoenix Bus captures, containment actions
 
 Failure conditions:
 - Non-deterministic propagation, noisy benign-based triggers

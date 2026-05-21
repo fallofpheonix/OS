@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC standardizes the schema for all system-level telemetry captured within the Pheonix (CyberAI-OS) ecosystem. The schema must support ingestion from both raw Linux-native eBPF collectors and simulated host-telemetry sources on non-Linux development machines (macOS).
+This RFC standardizes the schema for all system-level telemetry captured within the Phoenix (PhoenixOS) ecosystem. The schema must support ingestion from both raw Linux-native eBPF collectors and simulated host-telemetry sources on non-Linux development machines (macOS).
 
 ## 2. Dependencies
 *   **Compile-time:** Protobuf v3 / Go JSON parser
@@ -104,13 +104,13 @@ Captured on `sys_enter_mprotect`, `sys_enter_mmap`, `mm_page_alloc`.
 
 ## 4. Interfaces
 The Telemetry schema will be implemented as:
-1.  **JSON Schema:** [02_docs/schemas/telemetry_events.json](file:///Users/fallofpheonix/os/02_docs/schemas/telemetry_events.json) for validating JSON over socket IPC.
-2.  **Go Struct definitions** for the Broker and Event Bus ingestion pipelines.
+1.  **JSON Schema:** [02_docs/schemas/telemetry_events.json](file:///Users/fallofPhoenix/os/02_docs/schemas/telemetry_events.json) for validating JSON over socket IPC.
+2.  **Go Struct definitions** for the Broker and Phoenix Bus ingestion pipelines.
 
 ---
 
 ## 5. Threat Assumptions
-*   **Log Tampering:** Attackers with root privileges might modify raw log files. *Mitigation:* Stream events in real-time to memory-buffered Unix domain sockets connected to the isolated Event Bus broker.
+*   **Log Tampering:** Attackers with root privileges might modify raw log files. *Mitigation:* Stream events in real-time to memory-buffered Unix domain sockets connected to the isolated Phoenix Bus broker.
 *   **Sensor Blinding:** A malicious process may attempt to unload eBPF probes. *Mitigation:* Telemetry agent runs with immutable flags and monitors its own eBPF map status.
 *   **Log Flooding (DoS):** Malware might generate millions of events to crash the correlator. *Mitigation:* Implement in-kernel eBPF rate-limiting maps and user-space ring buffers with oldest-dropped eviction policy.
 

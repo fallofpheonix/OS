@@ -3,7 +3,7 @@
 Status: DRAFT
 
 Purpose
-- Define the normalization pipeline for raw telemetry events into the Pheonix canonical event schema.
+- Define the normalization pipeline for raw telemetry events into the Phoenix canonical event schema.
 
 Scope
 - Userspace only. No eBPF or kernel probes executed by this module. It is a validation and development harness used to prove latency and correctness targets before promotion.

@@ -137,7 +137,7 @@ Example:
 user runs binary
 -> execve syscall
 -> telemetry hook fires
--> process graph updated
+-> Phoenix Trace updated
 -> features extracted
 -> AI scores behavior
 -> risk = 0.91
@@ -265,7 +265,7 @@ file
 Anomaly detection:
 
 ```text
-normal process graph
+normal Phoenix Trace
 -> deviation detected
 -> anomaly model
 -> anomaly score
@@ -375,7 +375,7 @@ application
 Per-container state:
 
 ```text
-process graph
+Phoenix Trace
 memory profile
 network profile
 risk score

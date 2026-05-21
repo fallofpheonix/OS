@@ -1,7 +1,7 @@
-# Stage 25: Statistical Physics in Pheonix
+# Stage 25: Statistical Physics in Phoenix
 
 ## 1. Core Objective
-To model OS state transition behaviors using the laws of statistical mechanics and thermodynamics. By mapping processes to interacting particles, system configurations to thermodynamic states, and host disturbance to disorder, Pheonix defines a Security Disorder Index (SDI) and uses phase transition modeling (Ising model) to detect cooperative, system-wide compromises.
+To model OS state transition behaviors using the laws of statistical mechanics and thermodynamics. By mapping processes to interacting particles, system configurations to thermodynamic states, and host disturbance to disorder, Phoenix defines a Security Disorder Index (SDI) and uses phase transition modeling (Ising model) to detect cooperative, system-wide compromises.
 
 ---
 

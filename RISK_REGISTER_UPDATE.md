@@ -1,4 +1,4 @@
-Risk Register Update — Pheonix
+Risk Register Update — Phoenix
 ================================
 
 Seeded risks detected during repo audit:

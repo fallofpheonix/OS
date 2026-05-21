@@ -1,10 +1,10 @@
-# RFC: Sentinel Integrated Model
+# RFC: Phoenix Integrated Model
 
 ## 1. Integration Logic
 The model acts as the orchestrator for the following modules:
-- `sentinel/telemetry/entropy_engine`
-- `sentinel/telemetry/process_graphs`
-- `sentinel/security/physics`
+- `phoenix/telemetry/entropy_engine`
+- `phoenix/telemetry/process_graphs`
+- `phoenix/security/physics`
 
 ## 2. Interface
 ```go

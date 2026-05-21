@@ -70,7 +70,8 @@ class Workflow:
     id: str
     tasks: Dict[str, Task] = field(default_factory=dict)
     risks: Dict[str, Risk] = field(default_factory=dict)
-    validation_gates: Dict[State, List[Callable[[Workflow], bool]]] = field(
+    # validation_gates now accept (workflow, task) to allow per-task checks
+    validation_gates: Dict[State, List[Callable[[Workflow, Task], bool]]] = field(
         default_factory=dict
     )
 
@@ -88,6 +89,8 @@ class SurfaceOrchestrator:
         self.workflows: Dict[str, Workflow] = {}
         self.handlers: Dict[str, Callable[[Task], Any]] = {}
         self.lock = threading.RLock()
+        # Optional callback invoked when a task state changes: fn(wf_id, task_id, new_state)
+        self.on_state_change: Optional[Callable[[str, str, State], None]] = None
 
     # --- registration / creation ---
     def create_workflow(self, wf_id: str) -> Workflow:
@@ -132,15 +135,15 @@ class SurfaceOrchestrator:
                 wf.risks[risk_id].mitigated = True
 
     # --- validation gates ---
-    def add_validation_gate(self, wf_id: str, state: State, check: Callable[[Workflow], bool]) -> None:
+    def add_validation_gate(self, wf_id: str, state: State, check: Callable[[Workflow, Task], bool]) -> None:
         with self.lock:
             wf = self._get_wf(wf_id)
             wf.validation_gates.setdefault(state, []).append(check)
 
-    def _run_gates(self, wf: Workflow, state: State) -> bool:
+    def _run_gates(self, wf: Workflow, state: State, task: Task) -> bool:
         checks = wf.validation_gates.get(state, [])
         for chk in checks:
-            if not chk(wf):
+            if not chk(wf, task):
                 return False
         return True
 
@@ -167,7 +170,7 @@ class SurfaceOrchestrator:
                 # run gates for this state
                 with self.lock:
                     wf = self._get_wf(wf_id)
-                if not self._run_gates(wf, state):
+                if not self._run_gates(wf, state, task):
                     # gate blocked; stop advancing this task
                     break
                 # route task to handler if one is registered for the task_type
@@ -176,6 +179,13 @@ class SurfaceOrchestrator:
                     # handler must not perform forbidden ops; orchestrator only routes
                     handler(task)
                 task.state = state
+                # notify listener about state change
+                try:
+                    if self.on_state_change:
+                        self.on_state_change(wf.id if hasattr(wf, 'id') else wf_id, task.id, state)
+                except Exception:
+                    # swallow callback errors; orchestrator must continue
+                    pass
 
     def route_task(self, wf_id: str, task_id: str) -> None:
         with self.lock:

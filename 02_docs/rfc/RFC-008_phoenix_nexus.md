@@ -4,7 +4,7 @@
 Approved
 
 ## 1. Purpose
-This RFC specifies the macOS-native Simulation Telemetry Agent. Because production eBPF telemetry is Linux-specific and cannot run directly on macOS development environments, the simulation agent is required to mock system calls, process lineage trees, and file activities. This provides a high-throughput, schema-conformant telemetry baseline to validate the Event Bus normalizers, correlation logic, and local SOC dashboard on the macOS host.
+This RFC specifies the macOS-native Simulation Telemetry Agent. Because production eBPF telemetry is Linux-specific and cannot run directly on macOS development environments, the Phoenix Nexus is required to mock system calls, process lineage trees, and file activities. This provides a high-throughput, schema-conformant telemetry baseline to validate the Phoenix Bus normalizers, correlation logic, and local SOC dashboard on the macOS host.
 
 ## 2. Architecture & Data Flow
 
@@ -12,7 +12,7 @@ This RFC specifies the macOS-native Simulation Telemetry Agent. Because producti
 graph TD
     Sim[Simulation Engine] --> Scenario[Scenario Generator]
     Scenario --> Gen[Event Encoder (JSON)]
-    Gen -- "Unix Domain Socket / TCP" --> Bus[Event Bus Ingestion]
+    Gen -- "Unix Domain Socket / TCP" --> Bus[Phoenix Bus Ingestion]
 ```
 
 ---
@@ -43,6 +43,6 @@ Simulates a multi-stage ransomware attack:
 ---
 
 ## 5. Performance Targets & Validation Gates
-*   **Throughput Target:** Able to emit up to **100,000 events/second** to load-test the Event Bus.
+*   **Throughput Target:** Able to emit up to **100,000 events/second** to load-test the Phoenix Bus.
 *   **Resource Budget:** CPU usage under **3%** on macOS when generating standard baseline noise (100 events/second).
 *   **Event Integrity:** 0% corruption rate on generated payloads.

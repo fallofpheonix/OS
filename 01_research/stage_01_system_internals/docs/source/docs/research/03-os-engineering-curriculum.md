@@ -332,7 +332,7 @@ TBD
 | Drivers and HAL | Security sensor integration |
 | Syscalls | Auditable user/kernel boundary |
 | Filesystems | Forensic artifact collection |
-| Observability | Kernel telemetry and AI event bus |
+| Observability | Kernel telemetry and AI Phoenix Bus |
 
 ## Constraint
 

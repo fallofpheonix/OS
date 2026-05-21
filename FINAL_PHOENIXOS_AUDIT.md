@@ -1,4 +1,4 @@
-# PHEONIX (CYBERAI-OS) — FINAL REPOSITORY AUDIT & ACTIONS
+# Phoenix (PhoenixOS) — FINAL REPOSITORY AUDIT & ACTIONS
 
 Role: Chief Systems Architect + Research Integrator + Dependency Auditor
 Date: 2026-05-21
@@ -29,13 +29,13 @@ This file is the canonical, repository-anchored consolidation of the full audit 
 -- EXPERIMENT REGISTRY (selected)
 - R001: eBPF File Capture — READY (09_telemetry/ebpf)
 - R002: Entropy Math — READY (09_telemetry/entropy_engine)
-- R003/R022: Process DAG extraction — BLOCKED (depends on Event Bus normalizer)
+- R003/R022: Process DAG extraction — BLOCKED (depends on Phoenix Bus normalizer)
 - R023: Containment cost optimization — READY (07_security/control)
 - R031: PID Actuation — BLOCKED (requires R023 validation)
 - New: R035 (Event Normalizer latency), R036 (End-to-end Game→Actuator), R037 (Replay engine)
 
 -- OS CONVERGENCE ROADMAP (phased)
-- Year1: Telemetry primitives, normalizer, process graphs (Gates: R001–R003 pass)
+- Year1: Telemetry primitives, normalizer, Phoenix Traces (Gates: R001–R003 pass)
 - Year2: Physics + Game solvers + Closed-loop control (Gates: R024, R027, R031)
 - Year3: Kernel scheduler patches + Swarm OS (Gates: R032, cluster consensus)
 
@@ -62,7 +62,7 @@ This file is the canonical, repository-anchored consolidation of the full audit 
 5. Once userspace control validated (R031), draft minimal kernel LSM/Netlink IPC RFC and start tiny in-kernel probes in a gated branch.
 
 -- FILES UPDATED / CREATED BY THIS AUDIT
-- `FINAL_SENTINELOS_AUDIT.md` (this file)
+- `FINAL_PhoenixOS_AUDIT.md` (this file)
 - Reviewed and aligned: `MASTER_DEPENDENCY_GRAPH.md`, `THEORY_TO_OS_MAP.md`, `MATH_RUNTIME_MATRIX.md`, `PHYSICS_RUNTIME_MATRIX.md`, `GAME_RUNTIME_MATRIX.md`, `EXPERIMENT_MASTER.md`, `RFC_ALIGNMENT_REPORT.md`, `FILE_ACTION_MATRIX.md`, `OS_EVOLUTION_MAP.md`, `RISK_REGISTER_UPDATE.md`, `IMPLEMENTATION_GATES.md`
 
 -- CONTACT

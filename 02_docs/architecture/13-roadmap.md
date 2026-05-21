@@ -1,11 +1,11 @@
-# Pheonix Architecture Roadmap
+# Phoenix Architecture Roadmap
 
-This document outlines the long-term system architecture evolution of Pheonix, detailing the alignment between OS runtime engineering and the mathematical-physical-game security layers.
+This document outlines the long-term system architecture evolution of Phoenix, detailing the alignment between OS runtime engineering and the mathematical-physical-game security layers.
 
 ---
 
 ## 1. System Evolution Path
-Pheonix progresses through eight discrete integration layers, ensuring that mathematical, physical, game, and economic models are fully defined and validated in userspace before being pushed down into custom kernel behaviors.
+Phoenix progresses through eight discrete integration layers, ensuring that mathematical, physical, game, and economic models are fully defined and validated in userspace before being pushed down into custom kernel behaviors.
 
 ```text
 Linux Security Stack
@@ -20,7 +20,7 @@ Game & Economic Engine (L5.5)
         ↓
 Control OS (L5)
         ↓
-Hybrid Pheonix (Kernel Patches)
+Hybrid Phoenix (Kernel Patches)
         ↓
 Custom Security OS (L7)
 ```
@@ -45,7 +45,7 @@ Custom Security OS (L7)
 
 ### Phase C: Security Games & Strategic Decisions (Months 12–20)
 *   **Active Stages:** Stage 29 (Game Theory), Stage 30 (Security Games), Stage 31 (Multi-Agent Security), Stage 33 (Security Economics).
-*   **OS Baseline:** Userspace Game Engine module (`07_security/game/` and `06_ai/game/`).
+*   **OS Baseline:** Userspace Phoenix Arbiter module (`07_security/game/` and `06_ai/game/`).
 *   **Mathematical Models:** Stackelberg Security Games (SSG), Bayesian updating, VCG resource allocations.
 *   **Security Core:** Strategic decision engine computing randomized eBPF monitoring rates; VCG resource auctions to prevent container starvation.
 *   **Verification:** Bayesian classification latency $\le 0.5$ ms; Stackelberg strategy selection $\le 1.0$ ms.
@@ -64,7 +64,7 @@ Custom Security OS (L7)
 *   **Security Core:** Moving eBPF entropy filters and threat-weighted scheduling parameters directly into the CFS scheduler.
 *   **Verification:** In-kernel tracking overhead $\le 1\%$ CPU; scheduler-induced containment action time $\le 500$ $\mu\text{s}$.
 
-### Phase F: Autonomous Swarm Pheonix (Months 37+)
+### Phase F: Autonomous Swarm Phoenix (Months 37+)
 *   **Active Stages:** Stage 17 (Hybrid OS), Stage 18 (Custom OS), Stage 28 (Complex Systems Swarms).
 *   **OS Baseline:** Bootable custom microkernel or customized security distribution.
 *   **Mathematical Models:** Multi-Agent Reinforcement Learning (MARL), cellular automata.
@@ -79,7 +79,7 @@ Custom Security OS (L7)
 1.  **Math Foundations (Stage 21):** Verify Shannon entropy and KL divergence metrics on mock telemetry write buffers.
 2.  **Graph OS (Stage 22):** Link process execution paths to directed process-lineage DAGs.
 3.  **Physics Engine (Stage 25):** Model system stability as a thermodynamic spin lattice and track the Security Disorder Index (SDI).
-4.  **Game Engine (Stage 30 & 33):** Implement Stackelberg SSGs for scheduler allocation and VCG economic resource auctions.
+4.  **Phoenix Arbiter (Stage 30 & 33):** Implement Stackelberg SSGs for scheduler allocation and VCG economic resource auctions.
 5.  **Control OS (Stage 32):** Deploy PID loop regulators adjusting cgroups based on dynamic game payoffs.
 6.  **Kernel Patching (Stage 16):** Push scheduler weight controls and in-kernel telemetry filters down into the custom Linux kernel scheduler.
 7.  **Autonomous Swarm OS (Stage 28):** Package cluster-wide consensus and MARL daemons into a bootable custom OS image.
