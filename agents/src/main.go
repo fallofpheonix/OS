@@ -59,6 +59,7 @@ func main() {
 	// Loop simulation (mocking the event loop)
 	go func() {
 		for {
+			now := time.Now()
 			// 1. Mock event
 			ev := telemetryAgent.GenerateMockEvent()
 			
@@ -67,7 +68,7 @@ func main() {
 			
 			// 3. Get Security State
 			dag := graphAgent.GetAttackDAG()
-			state, _ := physicsAgent.GetSecurityState(dag)
+			state, _ := physicsAgent.GetSecurityState(dag, now)
 			
 			// 4. Update Game Beliefs
 			evidence := ""
@@ -77,10 +78,10 @@ func main() {
 			gameAgent.UpdateBeliefs(state, evidence)
 			
 			// 5. Solve Strategy
-			strategy, _ := gameAgent.SolveBestStrategy(state, dag)
+			strategy, _ := gameAgent.SolveBestStrategy(state, dag, now)
 			
 			// 6. Enforce Control
-			controlAgent.EnforceStrategy(strategy, state.ThreatTemperature)
+			controlAgent.EnforceStrategy(strategy, state.ThreatTemperature, now)
 
 			time.Sleep(1 * time.Second)
 		}
@@ -125,15 +126,15 @@ func runReplay(path string) {
 	for _, ev := range events {
 		graphAgent.UpdateGraph(ev)
 		dag := graphAgent.GetAttackDAG()
-		state, _ := physicsAgent.GetSecurityState(dag)
+		state, _ := physicsAgent.GetSecurityState(dag, ev.Timestamp)
 		
 		evidence := ""
 		if ev.Category == "filesystem" && ev.Filesystem != nil && ev.Filesystem.BytesRequested > 100 {
 			evidence = "high_entropy_write"
 		}
 		gameAgent.UpdateBeliefs(state, evidence)
-		strategy, _ := gameAgent.SolveBestStrategy(state, dag)
-		controlAgent.EnforceStrategy(strategy, state.ThreatTemperature)
+		strategy, _ := gameAgent.SolveBestStrategy(state, dag, ev.Timestamp)
+		controlAgent.EnforceStrategy(strategy, state.ThreatTemperature, ev.Timestamp)
 
 		results = append(results, ReplayOutput{
 			EventID:    ev.EventID,

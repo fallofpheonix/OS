@@ -2,7 +2,7 @@
   {
     "event_id": "evt-001",
     "state": {
-      "timestamp": "2026-05-21T17:26:29.395946+05:30",
+      "timestamp": "2026-05-21T17:00:00Z",
       "entropy": 0,
       "kl_divergence": 0,
       "threat_temperature": 0.55,
@@ -13,20 +13,20 @@
       "containment_level": 0,
       "target_pids": null,
       "strategy_type": "Nash",
-      "timestamp": "2026-05-21T17:26:29.395946+05:30"
+      "timestamp": "2026-05-21T17:00:00Z"
     },
     "pid_metrics": {
       "setpoint": 2,
       "measured": 0.55,
-      "output": -20233.792136165215,
+      "output": -147.17529000000002,
       "last_error": -1.45,
-      "integral": -0.00001039215
+      "integral": -0.00145
     }
   },
   {
     "event_id": "evt-002",
     "state": {
-      "timestamp": "2026-05-21T17:26:29.395994+05:30",
+      "timestamp": "2026-05-21T17:00:05Z",
       "entropy": 0,
       "kl_divergence": 0,
       "threat_temperature": 0.865,
@@ -37,14 +37,14 @@
       "containment_level": 1,
       "target_pids": null,
       "strategy_type": "Nash",
-      "timestamp": "2026-05-21T17:26:29.395994+05:30"
+      "timestamp": "2026-05-21T17:00:05Z"
     },
     "pid_metrics": {
       "setpoint": 2,
       "measured": 0.865,
-      "output": 662.0422720110087,
+      "output": -2.83149,
       "last_error": -1.135,
-      "integral": -0.00006425698
+      "integral": -5.67645
     }
   }
 ]

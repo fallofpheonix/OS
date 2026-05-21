@@ -54,8 +54,9 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	// 3. Simulate Normal System Activity
+	now := time.Now()
 	normalEvent := types.TelemetryEvent{
-		Timestamp: time.Now(),
+		Timestamp: now,
 		EventID:   "evt-100",
 		Category:  "process",
 		EventType: "process.start",
@@ -72,7 +73,7 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	attackDAG := graphAgent.GetAttackDAG()
-	normalState, err := physicsAgent.GetSecurityState(attackDAG)
+	normalState, err := physicsAgent.GetSecurityState(attackDAG, now)
 	if err != nil {
 		t.Fatalf("Failed to get security state: %v", err)
 	}
@@ -82,12 +83,12 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	gameAgent.UpdateBeliefs(normalState, "normal_filesystem_io")
-	normalStrategy, err := gameAgent.SolveBestStrategy(normalState, attackDAG)
+	normalStrategy, err := gameAgent.SolveBestStrategy(normalState, attackDAG, now)
 	if err != nil {
 		t.Fatalf("Failed to solve strategy: %v", err)
 	}
 
-	err = controlAgent.EnforceStrategy(normalStrategy, normalState.ThreatTemperature)
+	err = controlAgent.EnforceStrategy(normalStrategy, normalState.ThreatTemperature, now)
 	if err != nil {
 		t.Fatalf("Failed to enforce normal strategy: %v", err)
 	}
@@ -105,8 +106,9 @@ func TestEndToEndPipeline(t *testing.T) {
 
 	// We simulate a series of malicious filesystem events to escalate threat beliefs and temperature
 	for i := 0; i < 5; i++ {
+		attackTime := time.Now().Add(time.Duration(i) * time.Second)
 		malwareEvent := types.TelemetryEvent{
-			Timestamp: time.Now(),
+			Timestamp: attackTime,
 			EventID:   fmt.Sprintf("evt-666-%d", i),
 			Category:  "network",
 			EventType: "network.connect",
@@ -130,7 +132,7 @@ func TestEndToEndPipeline(t *testing.T) {
 		}
 
 		activeDAG = graphAgent.GetAttackDAG()
-		anomalyState, err = physicsAgent.GetSecurityState(activeDAG)
+		anomalyState, err = physicsAgent.GetSecurityState(activeDAG, attackTime)
 		if err != nil {
 			t.Fatalf("Failed to get security state: %v", err)
 		}
@@ -147,7 +149,7 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	// Run Bayesian Game solver
-	threatStrategy, err := gameAgent.SolveBestStrategy(anomalyState, activeDAG)
+	threatStrategy, err := gameAgent.SolveBestStrategy(anomalyState, activeDAG, time.Now())
 	if err != nil {
 		t.Fatalf("Failed to solve game strategy: %v", err)
 	}
@@ -157,7 +159,7 @@ func TestEndToEndPipeline(t *testing.T) {
 	}
 
 	// Enforce containment in Control Agent
-	err = controlAgent.EnforceStrategy(threatStrategy, anomalyState.ThreatTemperature)
+	err = controlAgent.EnforceStrategy(threatStrategy, anomalyState.ThreatTemperature, time.Now())
 	if err != nil {
 		t.Fatalf("Failed to enforce threat strategy: %v", err)
 	}
