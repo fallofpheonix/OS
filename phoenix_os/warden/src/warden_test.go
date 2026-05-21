@@ -1,10 +1,32 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestWardenFSM(t *testing.T) {
-	w := NewWarden()
-	
+	// Create a temporary config file for the test
+	configContent := `{
+		"thresholds": {
+			"safe": 0.3,
+			"watch": 0.5,
+			"suspicious": 0.7,
+			"critical": 0.9
+		}
+	}`
+	configFile := "test_warden.json"
+	err := os.WriteFile(configFile, []byte(configContent), 0644)
+	if err != nil {
+		t.Fatalf("Failed to create temp config file: %v", err)
+	}
+	defer os.Remove(configFile)
+
+	w, err := NewWarden(configFile)
+	if err != nil {
+		t.Fatalf("Failed to create Warden with config: %v", err)
+	}
+
 	// Initial State
 	if w.CurrentState != StateSafe {
 		t.Errorf("Expected initial state Safe, got %v", w.CurrentState)

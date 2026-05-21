@@ -17,7 +17,12 @@ type StabilityController struct {
 }
 
 // NewStabilityController initializes a controller with defined limits and decay rate.
+<<<<<<< HEAD
 func NewStabilityController(cooldown time.Duration, maxContainment float64, decayRate float64, now time.Time) *StabilityController {
+=======
+func NewStabilityController(cooldown time.Duration, maxContainment float64, decayRate float64) *StabilityController {
+	now := time.Now()
+>>>>>>> origin/main
 	return &StabilityController{
 		cooldown:       cooldown,
 		maxContainment: maxContainment,
