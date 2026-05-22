@@ -1,7 +1,6 @@
 """FastAPI control API for the Surface Orchestrator service."""
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Any, Dict
 
 from .service import OrchestratorService
 
@@ -48,7 +47,7 @@ def approve_task(wf_id: str, task_id: str, req: ApproveRequest):
 @app.post("/workflows/{wf_id}/execute")
 def execute_workflow(wf_id: str):
     try:
-        t = svc.execute_workflow_async(wf_id)
+        svc.execute_workflow_async(wf_id)
     except KeyError:
         raise HTTPException(status_code=404, detail="workflow not found")
     return {"status": "started"}

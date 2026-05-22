@@ -35,11 +35,26 @@ func (w *SlidingWindow) AddEvent(e TelemetryEvent) {
 	w.mu.Lock()
 	defer w.mu.Unlock()
 
-	// Detect dropped packets via sequence gaps
+	// 1. SECURITY SHIELD: Logical Time Lock
+	// Prevent "Time Warp" attacks by ignoring events from the far future
+	// relative to current system time.
+	if !w.latestTime.IsZero() && e.Timestamp.After(w.latestTime.Add(w.WindowSize)) {
+		// Ignore events more than 1 window-size into the future
+		return
+	}
+
+	// 2. SECURITY SHIELD: Gap Capping
+	// Prevent massive sequence jumps from permanently destroying confidence.
+	// Cap perceived loss at 100 packets per event.
 	if w.lastSeqID > 0 && e.SequenceID > w.lastSeqID+1 {
-		w.droppedPkts += (e.SequenceID - w.lastSeqID - 1)
+		gap := e.SequenceID - w.lastSeqID - 1
+		if gap > 100 {
+			gap = 100
+		}
+		w.droppedPkts += gap
 	}
 	w.lastSeqID = e.SequenceID
+
 	if e.Timestamp.After(w.latestTime) {
 		w.latestTime = e.Timestamp
 	}

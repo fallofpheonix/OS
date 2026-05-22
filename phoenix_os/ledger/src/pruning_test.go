@@ -30,7 +30,7 @@ func TestDeterministicPruning(t *testing.T) {
 	}
 	
 	// 3. Verify that remaining entries are the latest ones (Ticks 5-9)
-	for _, entry := range l.Entries {
+	for _, entry := range l.SortedEntries() {
 		if entry.LogicalTick < 5 {
 			t.Errorf("Stale entry found after pruning: Tick %d", entry.LogicalTick)
 		}

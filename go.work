@@ -1,15 +1,20 @@
 go 1.26.0
 
 use (
+	./05_tools/malware
+	./05_tools/ui
 	./06_ai
 	./07_security
 	./07_security/integrated_model
 	./07_security/physics
+	./08_forensics/analysis
 	./09_telemetry
 	./09_telemetry/entropy_engine_go
 	./09_telemetry/process_graphs
 	./10_kernel
+	./10_kernel/sandbox
 	./agents
 	./custom/control_plane
 	./phoenix_os
+	./phoenix_os/nexus
 )

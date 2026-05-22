@@ -39,3 +39,7 @@ func (kf *KalmanFilter) CheckDrift(measurement float64) float64 {
 	}
 	return math.Abs(innovation) / math.Sqrt(innovationCov)
 }
+
+func (kf *KalmanFilter) SetGain(k float64) {
+	kf.k = k
+}

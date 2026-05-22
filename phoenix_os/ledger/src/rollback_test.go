@@ -39,7 +39,7 @@ func TestSnapshotRollback(t *testing.T) {
 	// Actually, our AddEntry automatically links to current heads.
 	
 	foundDivergence := false
-	for _, entry := range l.Entries {
+	for _, entry := range l.SortedEntries() {
 		if entry.EventID == "E3-divergent" {
 			for _, p := range entry.ParentIDs {
 				if bytes.Equal(p, cp1) {

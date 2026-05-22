@@ -13,7 +13,7 @@ import (
 	"phoenix/common/resource"
 	"phoenix/common/serialization"
 	"phoenix/guard"
-	"phoenix/ledger"
+	"phoenix/ledger/src"
 	"phoenix/monitor"
 	"phoenix/tcs"
 	"phoenix/trace"
@@ -98,11 +98,11 @@ func main() {
 		}
 
 		// Tick Step 5: Strategic Policy Evaluation (L5.5 Arbiter)
-		targetState, authorized := arb.Evaluate(score, tcsScore)
+		targetState, class, authorized := arb.Evaluate(score, tcsScore)
 		
 		// Tick Step 6: Tactical Actuation (L5 Warden)
 		if authorized && !degMon.IsDegraded() {
-			transitioned := w.Actuate(targetState, event.SeqID, event.WallTimeUnix)
+			transitioned := w.Actuate(targetState, class, tcsScore, event.SeqID, event.WallTimeUnix, event.LogicalTick)
 			if transitioned {
 				payload, _ := serialization.CanonicalJSON(map[string]interface{}{
 					"state": string(w.State),

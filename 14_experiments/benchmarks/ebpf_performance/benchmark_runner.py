@@ -1,7 +1,6 @@
 import psutil
 import time
 import subprocess
-import os
 
 def get_process_usage(name):
     for proc in psutil.process_iter(['name', 'cpu_percent', 'memory_info']):

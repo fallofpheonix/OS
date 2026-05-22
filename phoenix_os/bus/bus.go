@@ -81,8 +81,21 @@ func (b *Bus) Publish(topic string, event TelemetryEvent) {
 		select {
 		case ch <- event:
 		default:
-			b.Dropped++
-			fmt.Printf("[BUS EMERGENCY] Queue at 100%%. Dropping seq %d\n", event.SeqID)
+			// RED TEAM MITIGATION: Pre-emption Shield
+			// If queue is 100% full, but event is high-priority, drop the OLDEST
+			// event to make room for the new one.
+			if event.Severity >= 0.8 {
+				select {
+				case <-ch: // Drop oldest
+					ch <- event // Insert new
+					fmt.Printf("[BUS SHIELD] Priority Pre-emption: dropped oldest to make room for seq %d\n", event.SeqID)
+				default:
+					b.Dropped++
+				}
+			} else {
+				b.Dropped++
+				fmt.Printf("[BUS EMERGENCY] Queue at 100%%. Dropping seq %d\n", event.SeqID)
+			}
 		}
 	}
 }

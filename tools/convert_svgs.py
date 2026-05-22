@@ -3,7 +3,6 @@
 
 Tries cairosvg, falls back to creating simple PNG placeholders if unavailable.
 """
-import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
