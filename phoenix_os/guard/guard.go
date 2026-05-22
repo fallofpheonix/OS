@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/fallofpheonix/phoenix_os/bus"
+	"phoenix/bus"
 )
 
 type ReplayMode int
@@ -24,41 +24,42 @@ type GuardAdapter struct {
 	sourceFile  string
 	mode        ReplayMode
 	speedFactor float64
+	Seed        int64
+	rng         *rand.Rand
 }
 
-func NewGuardAdapter(b *bus.Bus, file string, mode ReplayMode, speed float64) *GuardAdapter {
+func NewGuardAdapter(b *bus.Bus, file string, mode ReplayMode, speed float64, seed int64) *GuardAdapter {
 	return &GuardAdapter{
 		Bus:         b,
 		sourceFile:  file,
 		mode:        mode,
 		speedFactor: speed,
+		Seed:        seed,
+		rng:         rand.New(rand.NewSource(seed)),
 	}
 }
 
-// Legacy test_events.jsonl structures
-type oldPayload struct {
-	EntropyScore float64 `json:"entropy_score"`
-}
 type oldEvent struct {
-	Timestamp string     `json:"timestamp"`
-	EventID   string     `json:"event_id"`
-	EventType string     `json:"event_type"`
-	HostID    string     `json:"host_id"`
-	PID       int        `json:"pid"`
-	UID       int        `json:"uid"`
-	GID       int        `json:"gid"`
-	Payload   oldPayload `json:"payload"`
+	Timestamp string `json:"timestamp"`
+	HostID    string `json:"host_id"`
+	PID       int    `json:"pid"`
+	UID       int    `json:"uid"`
+	GID       int    `json:"gid"`
+	EventType string `json:"event_type"`
+	Payload   struct {
+		EntropyScore float64 `json:"entropy_score"`
+	} `json:"payload"`
 }
 
-func (g *GuardAdapter) Start() (int64, error) {
+func (g *GuardAdapter) FetchEvents() ([]bus.TelemetryEvent, error) {
 	file, err := os.Open(g.sourceFile)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	var prevMono int64
+	var events []bus.TelemetryEvent
 	var seqID int64
 
 	for scanner.Scan() {
@@ -92,31 +93,26 @@ func (g *GuardAdapter) Start() (int64, error) {
 			PrevHash:     "mock-prev",
 		}
 
-		// Replay timing
-		if prevMono != 0 {
-			diff := event.MonotonicNs - prevMono
-			if diff > 0 {
-				switch g.mode {
-				case ModeExact:
-					time.Sleep(time.Duration(diff))
-				case ModeAccelerated:
-					time.Sleep(time.Duration(float64(diff) / g.speedFactor))
-				case ModeSaturation:
-					// no sleep
-				case ModeFault:
-					roll := rand.Float64()
-					if roll < 0.05 {
-						continue
-					} else if roll < 0.10 {
-						time.Sleep(time.Duration(diff) * 10)
-					}
-				}
+		if g.mode == ModeFault {
+			roll := g.rng.Float64()
+			if roll < 0.05 {
+				continue
 			}
 		}
-		prevMono = event.MonotonicNs
 
-		g.Bus.Publish("telemetry.raw", event)
+		events = append(events, event)
 	}
 
-	return seqID, scanner.Err()
+	return events, scanner.Err()
+}
+
+func (g *GuardAdapter) Start() (int64, error) {
+	events, err := g.FetchEvents()
+	if err != nil {
+		return 0, err
+	}
+	for _, event := range events {
+		g.Bus.Publish("telemetry.raw", event)
+	}
+	return int64(len(events)), nil
 }

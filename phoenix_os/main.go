@@ -2,176 +2,134 @@ package main
 
 import (
 	"crypto/sha256"
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
-	"sync"
 	"time"
 
-	"github.com/fallofpheonix/phoenix_os/bus"
-	"github.com/fallofpheonix/phoenix_os/guard"
-	"github.com/fallofpheonix/phoenix_os/ledger"
-	"github.com/fallofpheonix/phoenix_os/monitor"
-	"github.com/fallofpheonix/phoenix_os/tcs"
-	"github.com/fallofpheonix/phoenix_os/trace"
-	"github.com/fallofpheonix/phoenix_os/warden"
+	"phoenix/arbiter"
+	"phoenix/bus"
+	"phoenix/common/logical_clock"
+	"phoenix/common/resource"
+	"phoenix/common/serialization"
+	"phoenix/guard"
+	"phoenix/ledger"
+	"phoenix/monitor"
+	"phoenix/tcs"
+	"phoenix/trace"
+	"phoenix/warden"
 )
-
-// LedgerWorker drains the evidence channel asynchronously without blocking the fast-path
-func LedgerWorker(payloadChan <-chan tcs.ActuationPayload, evLedger *ledger.Ledger) {
-	for p := range payloadChan {
-		data, _ := json.Marshal(p)
-		if err := evLedger.AddEntry(p.ActionID, p.CauseID, data); err != nil {
-			log.Printf("[LEDGER ERROR] %v", err)
-		}
-	}
-}
 
 func main() {
 	fmt.Println("==================================================")
-	fmt.Println("✦ PHOENIX CYBERNETIC SECURITY RUNTIME")
+	fmt.Println("✦ PHOENIX CYBERNETIC SECURITY RUNTIME (STAGE 1)")
 	fmt.Println("==================================================")
 
-	// ── 1. Event Bus ──────────────────────────────────────────────
+	// ── 1. Initialize Subsystems (Synchronous Mode) ─────────────
 	b := bus.NewBus()
-	rawCh := b.Subscribe("telemetry.raw")
-	scoredCh := b.Subscribe("telemetry.scored")
-	wardenActionCh := b.Subscribe("warden.action")
-
-	// ── 2. Evidence Ledger (async, channel-based) ─────────────────
-	evLedger := &ledger.Ledger{}
-	payloadChan := make(chan tcs.ActuationPayload, 100000)
 	
-	var ledgerWg sync.WaitGroup
-	ledgerWg.Add(1)
-	go func() {
-		defer ledgerWg.Done()
-		LedgerWorker(payloadChan, evLedger)
-	}()
-
-	// ── 3. TCS Sliding Window (60s window) ────────────────────────
+	// Deterministic Resource Bounding (1GB Limit, 1M Entries)
+	alloc := resource.NewBoundedAllocator(1024*1024*1024, 1000000)
+	evLedger := ledger.NewLedger(alloc)
+	
+	logicalClock := logical_clock.NewClock()
 	telemetryWindow := tcs.NewSlidingWindow(60 * time.Second)
-	fmt.Println("[BOOT] TCS Sliding Window initialized (60s window)")
+	degMon := tcs.NewDegradationMonitor(telemetryWindow, nil)
 
-	// ── 4. Degradation Monitor (circuit breaker) ──────────────────
-	degMon := tcs.NewDegradationMonitor(telemetryWindow, payloadChan)
-	fmt.Println("[BOOT] Degradation Monitor active (threshold: 0.85)")
-
-	// ── 5. Trace Storage (SQLite WAL) ─────────────────────────────
 	dbPath := "/tmp/phoenix_trace.db"
 	_ = os.Remove(dbPath)
-	traceStore, err := trace.NewTraceStorage(dbPath, rawCh)
+	traceStore, err := trace.NewTraceStorage(dbPath, nil)
 	if err != nil {
 		log.Fatalf("[FATAL] Trace storage init failed: %v", err)
 	}
-	traceStore.StartWriter()
-	fmt.Println("[BOOT] Trace WAL storage ready")
+	defer traceStore.Close()
 
-	// ── 6. Monitor (EWMA + Linear Kalman) ─────────────────────────
-	monInCh := b.Subscribe("telemetry.raw")
-	mon := monitor.NewMonitorService(monInCh, b)
-	mon.Start()
-	fmt.Println("[BOOT] Monitor engine started (EWMA + Kalman)")
+	mon := monitor.NewMonitorService(nil, b)
+	arb := arbiter.NewArbiter(b)
+	w := warden.NewWarden(b)
 
-	// ── 7. Warden FSM (authoritative, hysteresis-backed) ─────────
-	wardenInCh := make(chan monitor.DriftScore, 100)
-	
-	var wardenWg sync.WaitGroup
-	wardenWg.Add(1)
-	w := warden.NewWarden(wardenInCh, b)
-	go func() {
-		defer wardenWg.Done()
-		for score := range wardenInCh {
-			w.Evaluate(score)
-		}
-	}()
-	fmt.Println("[BOOT] Warden FSM active (hysteresis: 30s dwell)")
-
-	// ── 8. Guard Replay Adapter ───────────────────────────────────
+	// ── 2. Guard Replay Adapter (Seeded for Determinism) ─────────
 	eventsFile := "/Users/fallofpheonix/os/test_events.jsonl"
-	fmt.Println("[BOOT] Starting Guard Adapter (Saturation Mode)")
-	guardAdapter := guard.NewGuardAdapter(b, eventsFile, guard.ModeSaturation, 1.0)
+	const replaySeed = 42
+	fmt.Printf("[BOOT] Starting Guard Adapter (Seed: %d)\n", replaySeed)
+	guardAdapter := guard.NewGuardAdapter(b, eventsFile, guard.ModeSaturation, 1.0, replaySeed)
 
-	totalEvents, err := guardAdapter.Start()
+	events, err := guardAdapter.FetchEvents()
 	if err != nil {
-		log.Fatalf("[FATAL] Guard failed: %v", err)
+		log.Fatalf("[FATAL] Failed to fetch events: %v", err)
 	}
-	fmt.Printf("[REPLAY] Replayed %d events successfully\n", totalEvents)
+	fmt.Printf("[REPLAY] Loaded %d events for deterministic execution\n", len(events))
 
-	// ── 9. Drain and Process Pipeline ──────────────────────────────
-	// Read and process events from scoredCh until all totalEvents are scored.
-	var wg sync.WaitGroup
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		for ev := range scoredCh {
-			var score monitor.DriftScore
-			if err := json.Unmarshal(ev.Payload, &score); err == nil {
-				wardenInCh <- score
+	// ── 3. Deterministic Main Loop (Logical Tick) ────────────────
+	for _, event := range events {
+		// Logical Tick Increment
+		event.LogicalTick = logicalClock.Tick()
 
-				// Feed scored events into TCS as synthetic telemetry deterministically
-				telemetryWindow.AddEvent(tcs.TelemetryEvent{
-					Timestamp:  time.Unix(score.WallTimeUnix, 0),
-					SequenceID: uint64(score.EventID),
-					JitterNS:   0,
+		// Tick Step 1: Ingest into Trace Storage
+		if err := traceStore.Write(event); err != nil {
+			log.Printf("[TRACE ERROR] %v", err)
+		}
+
+		// Tick Step 2: Process through Monitor (L3)
+		score := mon.Process(event)
+
+		// Tick Step 3: Update TCS (L3 Confidence)
+		telemetryWindow.AddEvent(tcs.TelemetryEvent{
+			Timestamp:  time.Unix(event.WallTimeUnix, 0),
+			SequenceID: uint64(event.SeqID),
+			Payload:    event.Payload,
+			JitterNS:   0,
+		})
+		tcsScore := telemetryWindow.Evaluate()
+		
+		// Tick Step 4: Evaluate Degradation (Circuit Breaker)
+		oldDegraded := degMon.IsDegraded()
+		degMon.Evaluate(tcsScore)
+		if degMon.IsDegraded() != oldDegraded {
+			action := "ENTER_NORMAL_MODE"
+			if degMon.IsDegraded() {
+				action = "ENTER_DEGRADED_MODE"
+			}
+			payload, _ := serialization.CanonicalJSON(map[string]interface{}{
+				"action": action,
+				"score":  tcsScore,
+			})
+			evLedger.AddEntry("STATE-TRANSITION", "TCS-VIOLATION", payload)
+		}
+
+		// Tick Step 5: Strategic Policy Evaluation (L5.5 Arbiter)
+		targetState, authorized := arb.Evaluate(score, tcsScore)
+		
+		// Tick Step 6: Tactical Actuation (L5 Warden)
+		if authorized && !degMon.IsDegraded() {
+			transitioned := w.Actuate(targetState, event.SeqID, event.WallTimeUnix)
+			if transitioned {
+				payload, _ := serialization.CanonicalJSON(map[string]interface{}{
+					"state": string(w.State),
 				})
-
-				// Synchronously evaluate degradation monitor
-				tcsScore := telemetryWindow.Evaluate()
-				degMon.Evaluate(tcsScore)
-
-				if score.EventID == totalEvents {
-					break
-				}
+				evLedger.AddEntry(fmt.Sprintf("WARDEN-ACTION-%d", event.SeqID), "POLICY-ACTUATION", payload)
 			}
-		}
-	}()
-
-	// Wait for scored channel processing loop to finish
-	wg.Wait()
-	close(wardenInCh)
-
-	// Wait for Warden FSM processing to finish
-	wardenWg.Wait()
-
-	// Drain any remaining warden actions and log them to the Ledger
-	for {
-		select {
-		case ev := <-wardenActionCh:
-			payloadChan <- tcs.ActuationPayload{
-				ActionID: fmt.Sprintf("WARDEN-FSM-%d", ev.SeqID),
-				CauseID:  "FSM-TRANSITION",
-				TargetIP: 0,
-				Action:   string(ev.Payload),
-			}
-		default:
-			goto DRAINED
 		}
 	}
-DRAINED:
 
-	// Wait for LedgerWorker to finish draining
-	close(payloadChan)
-	ledgerWg.Wait()
+	// ── 4. Verification ───────────────────────────────────────────
+	fmt.Println("\n[REPLAY] Execution Complete. Verifying Invariants...")
 
-	// Verify Ledger integrity
 	if verr := evLedger.Verify(); verr != nil {
 		fmt.Printf("[LEDGER] INTEGRITY VIOLATION: %v\n", verr)
 	} else {
-		fmt.Printf("[LEDGER] Hash-chain verified (%d entries)\n", len(evLedger.Entries))
+		fmt.Printf("[LEDGER] Merkle-DAG verified (%d nodes)\n", len(evLedger.Entries))
 	}
 
-	// Print final TCS score
 	finalTCS := telemetryWindow.Evaluate()
 	fmt.Printf("[TCS] Final Telemetry Confidence Score: %.4f\n", finalTCS)
 
-	// Compute deterministic output hash for replay reproducibility proof
+	// Authority Hash (Root Hash of the DAG heads)
 	outputHash := sha256.New()
-	for _, entry := range evLedger.Entries {
-		outputHash.Write(entry.Hash[:])
+	for _, head := range evLedger.Heads {
+		outputHash.Write(head)
 	}
-	fmt.Printf("[REPLAY] Deterministic output hash: %x\n", outputHash.Sum(nil))
+	fmt.Printf("[REPLAY] Authoritative Output Hash: %x\n", outputHash.Sum(nil))
 
 	fmt.Println("==================================================")
 	fmt.Println("✦ RUNTIME HALTED")

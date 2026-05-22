@@ -3,9 +3,8 @@ package trace
 import (
 	"database/sql"
 	"fmt"
-	"log"
 
-	"github.com/fallofpheonix/phoenix_os/bus"
+	"phoenix/bus"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -18,19 +17,6 @@ func NewTraceStorage(dbPath string, busCh chan bus.TelemetryEvent) (*TraceStorag
 	db, err := sql.Open("sqlite3", dbPath)
 	if err != nil {
 		return nil, err
-	}
-
-	pragmas := []string{
-		"PRAGMA journal_mode=WAL;",
-		"PRAGMA synchronous=NORMAL;",
-		"PRAGMA temp_store=MEMORY;",
-		"PRAGMA mmap_size=268435456;",
-		"PRAGMA cache_size=-200000;",
-	}
-	for _, p := range pragmas {
-		if _, err := db.Exec(p); err != nil {
-			return nil, fmt.Errorf("failed to set %s: %v", p, err)
-		}
 	}
 
 	schema := `CREATE TABLE IF NOT EXISTS events (
@@ -51,24 +37,22 @@ func NewTraceStorage(dbPath string, busCh chan bus.TelemetryEvent) (*TraceStorag
 	return &TraceStorage{db: db, busCh: busCh}, nil
 }
 
-func (t *TraceStorage) StartWriter() {
-	go func() {
-		stmt, err := t.db.Prepare(`INSERT INTO events (seq_id, monotonic_ns, wall_timestamp, source, pid, event_type, payload, prev_hash, hash)
-		                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-		if err != nil {
-			log.Fatalf("[TRACE] Failed to prepare statement: %v", err)
-		}
-		defer stmt.Close()
+func (t *TraceStorage) Write(event bus.TelemetryEvent) error {
+	stmt, err := t.db.Prepare(`INSERT INTO events (seq_id, monotonic_ns, wall_timestamp, source, pid, event_type, payload, prev_hash, hash)
+	                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
 
-		for event := range t.busCh {
-			_, err := stmt.Exec(
-				event.SeqID, event.MonotonicNs, event.WallTimeUnix,
-				event.Source, event.PID, event.EventType,
-				event.Payload, event.PrevHash, event.Hash,
-			)
-			if err != nil {
-				log.Printf("[TRACE ERROR] Failed to write event %d: %v", event.SeqID, err)
-			}
-		}
-	}()
+	_, err = stmt.Exec(
+		event.SeqID, event.MonotonicNs, event.WallTimeUnix,
+		event.Source, event.PID, event.EventType,
+		event.Payload, event.PrevHash, event.Hash,
+	)
+	return err
+}
+
+func (t *TraceStorage) Close() error {
+	return t.db.Close()
 }
