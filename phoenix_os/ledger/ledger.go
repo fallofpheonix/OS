@@ -77,6 +77,25 @@ func (l *Ledger) computeHash(entry LedgerEntry) []byte {
 	return h.Sum(nil)
 }
 
+// Prune removes old ledger entries older than the specified depth, ensuring determinism.
+func (l *Ledger) Prune(depth uint64) (int, error) {
+	if l.Counter <= depth {
+		return 0, nil
+	}
+	
+	cutoff := l.Counter - depth
+	removed := 0
+	
+	for hash, entry := range l.Entries {
+		if entry.LogicalTick < cutoff {
+			delete(l.Entries, hash)
+			removed++
+		}
+	}
+	
+	return removed, nil
+}
+
 func (l *Ledger) Verify() error {
 	for hashHex, entry := range l.Entries {
 		computed := l.computeHash(entry)
