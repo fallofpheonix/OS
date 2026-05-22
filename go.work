@@ -1,0 +1,15 @@
+go 1.26.0
+
+use (
+	./06_ai
+	./07_security
+	./07_security/integrated_model
+	./07_security/physics
+	./09_telemetry
+	./09_telemetry/entropy_engine_go
+	./09_telemetry/process_graphs
+	./10_kernel
+	./agents
+	./custom/control_plane
+	./phoenix_os
+)
