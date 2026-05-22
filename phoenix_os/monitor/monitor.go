@@ -9,13 +9,14 @@ import (
 )
 
 type DriftScore struct {
-	EventID       int64   `json:"seq_id"`
-	OriginalScore float64 `json:"original_score"`
-	SmoothedScore float64 `json:"smoothed_score"`
-	Baseline      float64 `json:"baseline"`
-	ZScore        float64 `json:"z_score"`
-	DriftScore    float64 `json:"drift_score"`
-	WallTimeUnix  int64   `json:"wall_time_unix"`
+	EventID         int64   `json:"seq_id"`
+	OriginalScore   float64 `json:"original_score"`
+	SmoothedScore   float64 `json:"smoothed_score"`
+	Baseline        float64 `json:"baseline"`
+	ZScore          float64 `json:"z_score"`
+	DriftScore      float64 `json:"drift_score"`
+	ImportanceScore float64 `json:"importance_score"` // SI (Multiplicative Factor)
+	WallTimeUnix    int64   `json:"wall_time_unix"`
 }
 
 type MonitorService struct {
@@ -59,14 +60,27 @@ func (m *MonitorService) Process(event bus.TelemetryEvent) DriftScore {
 		zscore = (smoothed - m.ewma) / stddev
 	}
 
+	// SI Calculation: Combine UID, PID, and EventType criticality
+	si := 1.0
+	if event.UID < 100 { // System users
+		si *= 1.5
+	}
+	if event.PID == 1 || event.PID < 500 { // Core system processes
+		si *= 1.2
+	}
+	if event.EventType == "execve" || event.EventType == "ptrace" {
+		si *= 1.3
+	}
+
 	score := DriftScore{
-		EventID:       event.SeqID,
-		OriginalScore: raw,
-		SmoothedScore: smoothed,
-		Baseline:      m.ewma,
-		ZScore:        zscore,
-		DriftScore:    drift,
-		WallTimeUnix:  event.WallTimeUnix,
+		EventID:         event.SeqID,
+		OriginalScore:   raw,
+		SmoothedScore:   smoothed,
+		Baseline:        m.ewma,
+		ZScore:          zscore,
+		DriftScore:      drift,
+		ImportanceScore: si,
+		WallTimeUnix:    event.WallTimeUnix,
 	}
 
 	payloadBytes, _ := json.Marshal(score)

@@ -8,7 +8,7 @@ import (
 	"phoenix/arbiter"
 	"phoenix/bus"
 	"phoenix/common/resource"
-	"phoenix/ledger"
+	"phoenix/ledger/src"
 	"phoenix/monitor"
 	"phoenix/warden"
 )
@@ -23,6 +23,9 @@ func TestBootReproducibility(t *testing.T) {
 		_ = monitor.NewMonitorService(nil, b)
 		_ = arbiter.NewArbiter(b)
 		_ = warden.NewWarden(b)
+		
+		// Initial state: Add a genesis entry
+		l.AddEntry("GENESIS", "SYSTEM", []byte("boot"))
 		
 		// Hash the initial ledger state
 		h := sha256.New()

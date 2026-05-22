@@ -2,123 +2,139 @@ package ledger
 
 import (
 	"crypto/sha256"
-	"encoding/json"
+	"encoding/binary"
 	"fmt"
-	"sync"
-	"time"
+	"sort"
 )
 
-type Evidence struct {
-	TraceHash    string  `json:"trace_hash"`
-	SDI          float64 `json:"sdi"`
-	PolicyID     string  `json:"policy_id"`
-	Action       string  `json:"action"`
-	Result       string  `json:"result"`
-	Timestamp    int64   `json:"timestamp"`
-	ModelVersion string  `json:"model_version"`
-	Confidence   float64 `json:"confidence"`
-	ReplayID     string  `json:"replay_id"`
-	ExperimentID string  `json:"experiment_id"`
-	PrevHash     string  `json:"prev_hash"`
-	EntryHash    string  `json:"entry_hash"`
+// LedgerEntry is the canonical forensic record in the Evidence Merkle DAG.
+type LedgerEntry struct {
+	EventID     string   `json:"event_id"`
+	CauseID     string   `json:"cause_id"`
+	ParentIDs   [][]byte `json:"parent_ids"`
+	LogicalTick uint64   `json:"logical_tick"`
+	Source      string   `json:"source"`
+	Payload     []byte   `json:"payload"`
+	Hash        []byte   `json:"hash"`
 }
 
+type ResourceAllocator interface {
+	Allocate(bytes uint64) error
+	Deallocate(bytes uint64)
+}
+
+// Ledger is the append-only Evidence Merkle DAG.
 type Ledger struct {
-	mu       sync.RWMutex
-	Entries  []Evidence
-	LastHash string
+	Entries   map[string]LedgerEntry
+	Heads     [][]byte
+	Counter   uint64
+	allocator ResourceAllocator
 }
 
-func NewLedger() *Ledger {
+func NewLedger(alloc ResourceAllocator) *Ledger {
 	return &Ledger{
-		Entries:  make([]Evidence, 0),
-		LastHash: "GENESIS",
+		Entries:   make(map[string]LedgerEntry),
+		Heads:     nil,
+		allocator: alloc,
 	}
 }
 
-func (l *Ledger) calculateHash(e Evidence) string {
-	// We must clear hashes before re-calculating to ensure consistency
-	temp := e
-	temp.EntryHash = ""
-	data, _ := json.Marshal(temp)
+func (l *Ledger) AddEntry(eventID, causeID string, payload []byte) error {
+	entry := LedgerEntry{
+		LogicalTick: l.Counter,
+		EventID:     eventID,
+		CauseID:     causeID,
+		Payload:     payload,
+		ParentIDs:   l.Heads,
+	}
+	l.Counter++
+
+	entry.Hash = l.computeHash(entry)
+	
+	// Deterministic Resource Bounding
+	if l.allocator != nil {
+		if err := l.allocator.Allocate(uint64(len(payload) + 128)); err != nil {
+			return err
+		}
+	}
+
+	l.Entries[fmt.Sprintf("%x", entry.Hash)] = entry
+	l.Heads = [][]byte{entry.Hash}
+	return nil
+}
+
+func (l *Ledger) computeHash(entry LedgerEntry) []byte {
 	h := sha256.New()
-	h.Write(data)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func (l *Ledger) Commit(e Evidence) string {
-	l.mu.Lock()
-	defer l.mu.Unlock()
-
-	e.Timestamp = time.Now().UnixNano()
-	e.PrevHash = l.LastHash
-	e.EntryHash = l.calculateHash(e)
-	
-	l.Entries = append(l.Entries, e)
-	l.LastHash = e.EntryHash
-	return e.EntryHash
-}
-
-func (l *Ledger) Verify() bool {
-	l.mu.RLock()
-	defer l.mu.RUnlock()
-
-	expectedPrev := "GENESIS"
-	for _, e := range l.Entries {
-		// 1. Check Linkage
-		if e.PrevHash != expectedPrev {
-			return false
-		}
-		// 2. Check Data Integrity
-		if e.EntryHash != l.calculateHash(e) {
-			return false
-		}
-		expectedPrev = e.EntryHash
+	binary.Write(h, binary.BigEndian, entry.LogicalTick)
+	h.Write([]byte(entry.EventID))
+	h.Write([]byte(entry.CauseID))
+	for _, p := range entry.ParentIDs {
+		h.Write(p)
 	}
-	return true
+	h.Write(entry.Payload)
+	return h.Sum(nil)
 }
 
-func (l *Ledger) Print() {
-	l.mu.RLock()
-	defer l.mu.RUnlock()
-	
-	fmt.Println("--- PHOENIX LEDGER ---")
-	for _, e := range l.Entries {
-		fmt.Printf("[%d] Trace: %s | SDI: %.2f | Action: %s | Hash: %s...\n", 
-			e.Timestamp, e.TraceHash, e.SDI, e.Action, e.EntryHash[:8])
+func (l *Ledger) Verify() error {
+	for hashHex, entry := range l.Entries {
+		computed := l.computeHash(entry)
+		if fmt.Sprintf("%x", computed) != hashHex {
+			return fmt.Errorf("invalid hash at tick %d", entry.LogicalTick)
+		}
+		for _, p := range entry.ParentIDs {
+			if _, ok := l.Entries[fmt.Sprintf("%x", p)]; !ok {
+				return fmt.Errorf("missing parent hash %x at tick %d", p, entry.LogicalTick)
+			}
+		}
 	}
-	fmt.Println("----------------------")
+	return nil
 }
 
-func Demo() {
-	fmt.Println("Phoenix Ledger starting...")
-	l := NewLedger()
+// Checkpoint returns the current head hash for rollback/branching.
+func (l *Ledger) Checkpoint() ([]byte, error) {
+	if len(l.Heads) == 0 {
+		return nil, fmt.Errorf("ledger has no heads")
+	}
+	// Return the primary head (simplified for MVP)
+	return l.Heads[0], nil
+}
 
-	// Commit evidence
-	l.Commit(Evidence{
-		TraceHash:    "0xABC123",
-		SDI:          0.85,
-		PolicyID:     "POL-001",
-		Action:       "THROTTLE",
-		Result:       "SUCCESS",
-		ModelVersion: "v1.2.3",
-		Confidence:   0.98,
-		ReplayID:     "RUN-42",
-		ExperimentID: "EXP-ALPHA",
+// Prune removes entries older than the specified retention depth.
+func (l *Ledger) Prune(depth uint64) (int, error) {
+	if l.Counter <= depth {
+		return 0, nil
+	}
+
+	cutoff := l.Counter - depth
+	removedCount := 0
+
+	var toDelete []string
+	for hash, entry := range l.Entries {
+		if entry.LogicalTick < cutoff {
+			toDelete = append(toDelete, hash)
+		}
+	}
+
+	for _, hash := range toDelete {
+		entry := l.Entries[hash]
+		if l.allocator != nil {
+			l.allocator.Deallocate(uint64(len(entry.Payload) + 128))
+		}
+		delete(l.Entries, hash)
+		removedCount++
+	}
+
+	return removedCount, nil
+}
+
+// SortedEntries returns entries sorted by LogicalTick (for testing/display)
+func (l *Ledger) SortedEntries() []LedgerEntry {
+	var entries []LedgerEntry
+	for _, e := range l.Entries {
+		entries = append(entries, e)
+	}
+	sort.Slice(entries, func(i, j int) bool {
+		return entries[i].LogicalTick < entries[j].LogicalTick
 	})
-
-	l.Commit(Evidence{
-		TraceHash:    "0xDEF456",
-		SDI:          0.92,
-		PolicyID:     "POL-001",
-		Action:       "ISOLATE",
-		Result:       "SUCCESS",
-		ModelVersion: "v1.2.3",
-		Confidence:   0.99,
-		ReplayID:     "RUN-42",
-		ExperimentID: "EXP-ALPHA",
-	})
-
-	l.Print()
-	fmt.Printf("Ledger Verification: %v\n", l.Verify())
+	return entries
 }

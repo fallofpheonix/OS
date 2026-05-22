@@ -1,3 +1,4 @@
+import sqlite3
 from agents.surface.orchestrator.service import OrchestratorService
 
 svc = OrchestratorService()
@@ -13,7 +14,6 @@ for tid, num in [('doc-1',1), ('build-1',2), ('test-1',3)]:
     except Exception as e:
         print('skip set_task_issue', tid, e)
 # directly update DB to set state to MERGE
-import sqlite3
 conn = sqlite3.connect('agents/surface/orchestrator/state.db')
 cur = conn.cursor()
 cur.execute("UPDATE tasks SET state = 'MERGE' WHERE id in ('doc-1','build-1','test-1')")

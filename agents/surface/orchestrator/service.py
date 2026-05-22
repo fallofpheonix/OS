@@ -216,7 +216,7 @@ class OrchestratorService:
 
         # remove other surface:* labels
         all_surface = ["surface:todo", "surface:triage", "surface:in-progress", "surface:ready", "surface:ready-to-merge", "surface:closed"]
-        to_remove = [l for l in all_surface if l not in desired]
+        to_remove = [label for label in all_surface if label not in desired]
 
         # apply labels via gh CLI
         github_cli.add_labels(repo, int(issue_number), desired)
@@ -224,7 +224,8 @@ class OrchestratorService:
 
 
     def _get_repo_from_git(self) -> Optional[str]:
-        import subprocess, re
+        import subprocess
+        import re
         try:
             out = subprocess.check_output(["git", "remote", "get-url", "origin"]).decode().strip()
             m = re.search(r"github.com[:/](.+?)(?:\.git)?$", out)
@@ -323,7 +324,7 @@ class OrchestratorService:
             self._bg_thread.join(timeout=5)
 
     def create_workflow(self, wf_id: str):
-        wf = self.orch.create_workflow(wf_id)
+        self.orch.create_workflow(wf_id)
         self.persist_workflow(wf_id)
 
     def approve_task(self, wf_id: str, task_id: str, approver: Optional[str] = None) -> None:
@@ -376,7 +377,6 @@ class OrchestratorService:
         Returns the PR URL and stores it in task.metadata['pr_url'].
         """
         import subprocess
-        import os
 
         with self.lock:
             wf = self.orch.create_workflow(wf_id)
@@ -417,7 +417,7 @@ class OrchestratorService:
                 owner_repo = repo
                 pr = github_integration.create_pull_request(owner_repo, title=f"Surface: {t.title}", head=head, base=base, body=body)
                 pr_url = pr.get("html_url")
-        except Exception as e:
+        except Exception:
             # try to cleanup branch locally
             try:
                 subprocess.check_call(["git", "checkout", base])

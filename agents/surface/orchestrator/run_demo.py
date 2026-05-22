@@ -4,7 +4,6 @@ Creates a workflow, registers simple handlers, persists state, and executes.
 """
 from __future__ import annotations
 
-import time
 from agents.surface.orchestrator.service import OrchestratorService
 from agents.surface.orchestrator.orchestrator import Task
 
@@ -15,7 +14,7 @@ def simple_logger_handler(task: Task):
 
 def demo():
     svc = OrchestratorService()
-    wf = svc.create_workflow("demo-pheonix")
+    svc.create_workflow("demo-pheonix")
 
     svc.register_handler("documentation", simple_logger_handler)
     svc.register_handler("build", simple_logger_handler)

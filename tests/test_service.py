@@ -1,8 +1,6 @@
-import os
-import pytest
 
 from agents.surface.orchestrator.service import OrchestratorService
-from agents.surface.orchestrator.orchestrator import Task, State
+from agents.surface.orchestrator.orchestrator import Task
 
 
 def test_persist_and_load(tmp_path):

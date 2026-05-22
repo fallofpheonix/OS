@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Generate a large replay dataset of synthetic telemetry events."""
 import json
-import time
 import random
 from datetime import datetime
 

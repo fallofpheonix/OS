@@ -36,8 +36,8 @@ def remove_labels(repo: str, issue_number: int, labels: List[str]) -> None:
 def create_issue_cli(repo: str, title: str, body: str, labels: Optional[List[str]] = None) -> int:
     args = ["gh", "issue", "create", "--title", title, "--body", body, "--repo", repo, "--json", "number"]
     if labels:
-        for l in labels:
-            args.extend(["--label", l])
+        for label in labels:
+            args.extend(["--label", label])
     out = run_cmd(args)
     try:
         obj = json.loads(out)

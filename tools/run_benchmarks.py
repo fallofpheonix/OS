@@ -2,7 +2,6 @@
 import time
 import json
 import os
-from subprocess import Popen, PIPE
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ENTROPY = os.path.join(ROOT, '14_experiments', 'ebpf_lab', 'file_activity_capture', 'entropy_engine.py')
@@ -40,7 +39,6 @@ def run_r001_sim(event_rate=100000, duration_s=2):
 
 def run_r035_sim(n=100000):
     """Simulate normalizer micro-bench by parsing JSON and normalizing a few fields."""
-    import random
     def normalize(raw_json):
         e = json.loads(raw_json)
         out = {
