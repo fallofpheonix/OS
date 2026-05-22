@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"phoenix/agents/internal/types"
-	"phoenix/monitor" // imports phoenix/monitor (entropy_engine)
+	entropy_engine "phoenix/monitor" // imports phoenix/monitor
 )
 
 type PhysicsAgent interface {

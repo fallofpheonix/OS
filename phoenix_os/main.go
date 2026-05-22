@@ -110,6 +110,12 @@ func main() {
 				evLedger.AddEntry(fmt.Sprintf("WARDEN-ACTION-%d", event.SeqID), "POLICY-ACTUATION", payload)
 			}
 		}
+
+		// Tick Step 7: Automatic Checkpointing (Every 1000 ticks)
+		if event.LogicalTick % 1000 == 0 {
+			checkpoint, _ := evLedger.Checkpoint()
+			log.Printf("[REPLAY] Checkpoint at tick %d: %x", event.LogicalTick, checkpoint)
+		}
 	}
 
 	// ── 4. Verification ───────────────────────────────────────────
