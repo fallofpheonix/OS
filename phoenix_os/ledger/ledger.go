@@ -55,6 +55,16 @@ func (l *Ledger) AddEntry(eventID, causeID string, payload []byte) error {
 	return nil
 }
 
+// Checkpoint returns a deterministic snapshot of the current Ledger head and counter.
+func (l *Ledger) Checkpoint() ([]byte, error) {
+	h := sha256.New()
+	binary.Write(h, binary.BigEndian, l.Counter)
+	for _, head := range l.Heads {
+		h.Write(head)
+	}
+	return h.Sum(nil), nil
+}
+
 func (l *Ledger) computeHash(entry LedgerEntry) []byte {
 	h := sha256.New()
 	binary.Write(h, binary.BigEndian, entry.LogicalTick)
