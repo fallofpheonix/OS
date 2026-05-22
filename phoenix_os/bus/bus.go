@@ -86,3 +86,22 @@ func (b *Bus) Publish(topic string, event TelemetryEvent) {
 		}
 	}
 }
+
+func (b *Bus) QueuePressure(topic string) float64 {
+	b.mu.RLock()
+	subs, ok := b.subscribers[topic]
+	b.mu.RUnlock()
+	
+	if !ok || len(subs) == 0 {
+		return 0.0
+	}
+	
+	var maxPressure float64
+	for _, ch := range subs {
+		pressure := float64(len(ch)) / float64(QueueCapacity)
+		if pressure > maxPressure {
+			maxPressure = pressure
+		}
+	}
+	return maxPressure
+}

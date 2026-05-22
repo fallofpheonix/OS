@@ -20,36 +20,16 @@ const (
 	ClassKernelEmergency ActuationClass = 5
 )
 
-// Payoff represents the calculated benefit of an action vs its cost
-type Payoff struct {
-	Benefit float64
-	Cost    float64
-}
-
 // Arbiter implements L5.5 Strategic Policy using a Game-Theoretic approach
 type Arbiter struct {
-	bus           *bus.Bus
-	tcsThresholds map[ActuationClass]float64
-	budgets       map[ActuationClass]int // Remaning actions allowed in current window
+	bus    *bus.Bus
+	Policy Policy
 }
 
 func NewArbiter(b *bus.Bus) *Arbiter {
 	return &Arbiter{
-		bus: b,
-		tcsThresholds: map[ActuationClass]float64{
-			ClassObserve:         0.0,
-			ClassLog:             0.0,
-			ClassThrottle:        0.60,
-			ClassLocalIsolate:    0.85,
-			ClassClusterIsolate:  0.95,
-			ClassKernelEmergency: 0.99,
-		},
-		budgets: map[ActuationClass]int{
-			ClassThrottle:        100,
-			ClassLocalIsolate:    50,
-			ClassClusterIsolate:  10,
-			ClassKernelEmergency: 1,
-		},
+		bus:    b,
+		Policy: DefaultPolicy(),
 	}
 }
 
@@ -68,7 +48,7 @@ func (a *Arbiter) Evaluate(score monitor.DriftScore, tcsScore float64) (warden.S
 	}
 
 	// 2. Payoff Calculation (Strategic Layer)
-	benefit := score.ZScore * tcsScore // Scale benefit by telemetry confidence
+	benefit := score.ZScore * tcsScore
 	cost := float64(requiredClass) * 1.5
 
 	if benefit < cost && requiredClass > ClassLog {
@@ -77,18 +57,18 @@ func (a *Arbiter) Evaluate(score monitor.DriftScore, tcsScore float64) (warden.S
 	}
 
 	// 3. TCS Gating
-	if tcsScore < a.tcsThresholds[requiredClass] {
-		fmt.Printf("[ARBITER] TCS DENIED: Action class %d requires TCS %.2f (Current: %.2f)\n", requiredClass, a.tcsThresholds[requiredClass], tcsScore)
+	if tcsScore < a.Policy.Thresholds[requiredClass] {
+		fmt.Printf("[ARBITER] TCS DENIED: Action class %d requires TCS %.2f (Current: %.2f)\n", requiredClass, a.Policy.Thresholds[requiredClass], tcsScore)
 		return warden.StateNormal, false
 	}
 
 	// 4. Budget Check
-	if budget, ok := a.budgets[requiredClass]; ok {
+	if budget, ok := a.Policy.Budgets[requiredClass]; ok {
 		if budget <= 0 {
 			fmt.Printf("[ARBITER] BUDGET EXHAUSTED for Class %d\n", requiredClass)
 			return warden.StateNormal, false
 		}
-		a.budgets[requiredClass]--
+		a.Policy.Budgets[requiredClass]--
 	}
 
 	return targetState, true
