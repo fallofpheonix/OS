@@ -1,27 +1,56 @@
-# PhoenixOS Documentation Index
+# PhoenixOS Documentation
 
-Comprehensive documentation for the PhoenixOS Autonomous CyberAI Operating System.
+This directory contains the authoritative documentation for the PhoenixOS project, organized into a 12-layer architecture to ensure complete system traceability.
 
-## Architectural Foundations
-- **[System Architecture](architecture/22-mathematical-physical-game-architecture.md):** The core 7-layer Phoenix Matrix.
-- **[End-to-End Runtime](architecture/end_to_end_runtime_architecture.md):** Data flow from Kernel (L2) to Swarm (L7).
-- **[Roadmap](architecture/13-roadmap.md):** Phased implementation plan.
+## Documentation Structure
 
-## Core RFCs (Service Definitions)
-- **[RFC-001: Telemetry Schema](rfc/RFC-001_telemetry_schema.md)** - Standardized event format.
-- **[RFC-001C: Phoenix Monitor (L3)](rfc/RFC-001C_phoenix_monitor.md)** - Entropy and signal processing.
-- **[RFC-002: Phoenix Bus (L3)](rfc/RFC-002_event_bus.md)** - High-speed event routing.
-- **[RFC-006: Phoenix Trace (L4)](rfc/RFC-006_phoenix_trace.md)** - Causal lineage and 3-tier storage.
-- **[RFC-005: Phoenix Warden (L5)](rfc/RFC-005_phoenix_warden.md)** - Finite-state actuation.
-- **[RFC-001D: Phoenix Arbiter (L5.5)](rfc/RFC-001D_strategic_containment_game.md)** - Strategic game engine.
-- **[RFC-009: Phoenix Sentinel (L6)](rfc/RFC-009_mathematical_physical_architecture.md)** - Thermodynamic SDI physics.
-- **[RFC-008: Phoenix Nexus (L7)](rfc/RFC-008_phoenix_nexus.md)** - Swarm consensus and gossip.
+### [L0: Governance](./00_governance/)
+Project Vision, Roadmap, Master Status, and Decision Logs (ADRs).
 
-## Evidence & Verification
-- **[Evidence Ledger](../phoenix_os/ledger/README.md):** Cryptographic reasoning chain.
-- **[Fast-Path Guard](../phoenix_os/guard/README.md):** Microsecond-latency enforcement.
+### [L1: Architecture](./01_architecture/)
+System Architecture, Component Maps, RFCs, and Technical Specifications.
 
-## Vision & Strategy
-- **[Cybersecurity Vision](architecture/14-cybersecurity-vision.md):** Autonomous defense objectives.
-- **[Gap Analysis](../PHOENIX_PROBLEMS.md):** Expert-assessed technical blockers.
-- **[Architectural Solutions](../PHOENIX_SOLUTIONS.md):** Refined mathematical bridges.
+### [L2: Integration](./02_integration/)
+External Repository Tracking, Merge Policies, and Upstream Synchronization.
+
+### [L3: Agents](./03_agents/)
+AI Agent Registry, Interaction Maps, and Behavior Protocols.
+
+### [L4: Security](./04_security/)
+Threat Models, Attack Surfaces, Security Boundaries, and Incident Response.
+
+### [L5: Kernel](./05_kernel/)
+Boot Sequence, Process/Memory Models, Scheduler, and IPC Design.
+
+### [L6: Research](./06_research/)
+Experimental Logs, Math Models, Game Theory, and Optimization Logs.
+
+### [L7: Validation](./07_validation/)
+Test Plans, Matrices, Benchmarks, and Verification Reports.
+
+### [L8: Deployment](./08_deployment/)
+Build Pipelines, CI/CD, Release Processes, and Installation Guides.
+
+### [L9: Operations](./09_operations/)
+Telemetry Schemas, Metrics, Observability, and Event Stream Definitions.
+
+### [L10: Runtime AI](./10_runtime_ai/)
+Knowledge Graphs, Model Lifecycle, Learning Policies, and Adaptation Rules.
+
+### [L11: Emergency](./11_emergency/)
+Disaster Recovery, Safe Modes, and Manual Override Protocols.
+
+---
+
+## Shared Resources
+- **[Decisions](./decisions/):** Repository of Architectural Decision Records (ADRs).
+- **[Reports](./reports/):** System health and validation reports.
+- **[Diagrams](./diagrams/):** Visual architectural maps.
+- **[Experiments](./experiments/):** Raw experimental data and logs.
+- **[Archives](./archives/):** Deprecated or historical documentation.
+
+## Documentation Policy
+1. **Traceability:** No code change without a corresponding document update.
+2. **Provenance:** Maintain clear dependency and external repo tracking.
+3. **Auditability:** Every subsystem must maintain state and assumptions.
+4. **Immutability:** Immutable audit trails for all agent-driven modifications.

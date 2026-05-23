@@ -39,5 +39,22 @@ This file contains foundational mandates for the PhoenixOS project.
 - [X] **TCS Telemetry Window:** Bounded sliding window with dynamic min/max sequence evaluations, out-of-order stability, and control-event filtering.
 - [X] **Logical Clock Standardization:** Monotonic logical tick counter standardized, removing obsolete duplicate clock files.
 
-## 5. Active Phase: Stage 2 (Real Telemetry Runtime)
+## 5. Documentation Architecture (12-Layer Mandate)
+PhoenixOS adheres to a 12-layer documentation structure in `02_docs/` to ensure traceability and auditability.
+- **L0: Governance** (`00_governance/`): Vision, Roadmap, Status, Decisions.
+- **L1: Architecture** (`01_architecture/`): System maps, Component specs, RFCs.
+- **L2: Integration** (`02_integration/`): External repo tracking and merge policies.
+- **L3: Agents** (`03_agents/`): AI Agent registries and behavior protocols.
+- **L4: Security** (`04_security/`): Threat models and security boundaries.
+- **L5: Kernel** (`05_kernel/`): Boot, Process, and Memory models.
+- **L6: Research** (`06_research/`): Math models, Experiments, Game Theory.
+- **L7: Validation** (`07_validation/`): Test plans, Benchmarks, Verification.
+- **L8: Deployment** (`08_deployment/`): Build pipelines, CI/CD, Release process.
+- **L9: Operations** (`09_operations/`): Telemetry, Logging schemas, Metrics.
+- **L10: Runtime AI** (`10_runtime_ai/`): Knowledge graphs, Model lifecycles.
+- **L11: Emergency** (`11_emergency/`): Disaster recovery and Safe modes.
+
+**Mandatory Rule:** No agent edits code without updating the related documentation. Every PR must update architecture, dependency, threat, and test impact documents.
+
+## 6. Active Phase: Stage 2 (Real Telemetry Runtime)
 **Current Goal:** Transition to eBPF/XDP real telemetry collection and minimal OS appliance booting (Phase II).
