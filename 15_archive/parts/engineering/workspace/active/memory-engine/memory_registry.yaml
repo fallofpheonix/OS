@@ -1,0 +1,16 @@
+registry:
+  episodic:
+    transition_store: memory.episodic.storage.TransitionStore
+    episode_indexer: memory.episodic.indexing.EpisodeIndexer
+  semantic:
+    knowledge_graph: memory.semantic.graph.KnowledgeGraph
+    ontology_manager: memory.semantic.ontology.OntologyManager
+  retrieval:
+    vector_search: memory.retrieval.engines.VectorSearch
+    relational_query: memory.retrieval.engines.RelationalQuery
+  compression:
+    autoencoder: memory.compression.models.VAE
+    pca_reducer: memory.compression.algorithms.PCAReducer
+  forgetting:
+    ttl_pruner: memory.forgetting.policies.TTLPruner
+    importance_filter: memory.forgetting.policies.ImportanceFilter

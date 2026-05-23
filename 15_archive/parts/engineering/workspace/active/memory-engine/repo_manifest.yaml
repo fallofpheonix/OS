@@ -1,0 +1,19 @@
+repo: memory-engine
+layer: P5
+type: scientific_stack
+status: INITIALIZING
+version: 0.1.0
+owner: fallofpheonix
+visibility: private
+execution_mode: REMOTE_FIRST
+cache_policy: CACHE_TEMP
+priority: P5
+github: https://github.com/fallofpheonix/memory-engine.git
+local_path: workspace/active/memory-engine
+dependencies:
+  - infrastructure
+  - runtime
+  - physics (P1)
+  - mathematics (P2)
+  - simulation (P3)
+  - reinforcement-learning (P4)

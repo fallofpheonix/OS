@@ -1,0 +1,25 @@
+runtimes:
+  - runtime: core
+    current: workspace/active/astraeus-core/.venv
+    future: runtime/core
+    risk: medium (python version drift)
+    rollback: mv runtime/core workspace/active/astraeus-core/.venv
+    priority: P0
+  - runtime: research
+    current: environments/ai-system/venv
+    future: runtime/research
+    risk: low
+    rollback: mv runtime/research environments/ai-system/venv
+    priority: P1
+  - runtime: shared
+    current: .venv
+    future: runtime/shared
+    risk: low
+    rollback: mv runtime/shared .venv
+    priority: P2
+  - runtime: archive
+    current: archive/*
+    future: runtime/archive
+    risk: low (metadata only)
+    rollback: N/A
+    priority: P3

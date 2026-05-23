@@ -1,0 +1,20 @@
+core:
+  runtime: "runtime/core"
+  backup: "workspace/active/astraeus-core/uv.lock"
+  restore: "uv lock --frozen"
+  risk: "MEDIUM"
+  freeze_state: "LOCKED"
+
+research:
+  runtime: "runtime/research"
+  backup: "environments/ai-system/requirements.txt"
+  restore: "pip install -r requirements.txt"
+  risk: "LOW"
+  freeze_state: "FROZEN"
+
+shared:
+  runtime: "runtime/shared"
+  backup: ".venv/lib/python3.14/site-packages"
+  restore: "reconstruct from site-packages"
+  risk: "LOW"
+  freeze_state: "LIVE"

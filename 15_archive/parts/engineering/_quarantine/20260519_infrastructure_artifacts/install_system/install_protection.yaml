@@ -1,0 +1,31 @@
+immutable_repos:
+  - fallofpheonix
+  - brain
+  - forge-agent
+  - control-plane
+  - infrastructure
+  - astraeus-core
+  - ecosystem_os
+  - runtime
+
+protection_rules:
+  no_delete:
+    target: immutable_repos
+    action: REJECT
+    severity: CRITICAL
+  no_force_push:
+    target: immutable_repos
+    action: BLOCK
+    severity: CRITICAL
+  purge_protection:
+    target: immutable_repos
+    action: EXEMPT
+    description: "These repositories must never be purged even if inactive."
+
+install_constraints:
+  editable_required:
+    target: [agents, aegis-auth, TrustLab, OS]
+    description: "Must be installed in editable mode for active development."
+  cache_only:
+    target: [physics, mathematics, simulation]
+    description: "Prefer cache restoration for scientific stack during research phase."

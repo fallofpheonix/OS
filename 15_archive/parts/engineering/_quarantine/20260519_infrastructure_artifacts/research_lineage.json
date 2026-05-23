@@ -1,0 +1,46 @@
+{
+  "lineages": [
+    {
+      "repo": "brain",
+      "domain": "cognition",
+      "model": "cognition_model",
+      "theory": "Multi-agent Cognitive Architecture",
+      "experiment": "Knowledge Retrieval Swarms"
+    },
+    {
+      "repo": "forge-agent",
+      "domain": "agents",
+      "model": "agents_model",
+      "theory": "Autonomous Tool Use",
+      "experiment": "Self-Correction Loops"
+    },
+    {
+      "repo": "astraeus-core",
+      "domain": "simulation",
+      "model": "simulation_model",
+      "theory": "Real-time High Fidelity Simulation",
+      "experiment": "Edge Case Safety Analysis"
+    },
+    {
+      "repo": "ParticleStimulator",
+      "domain": "physics",
+      "model": "physics_model",
+      "theory": "Discrete Element Methods",
+      "experiment": "Granular Flow Stability"
+    },
+    {
+      "repo": "AutoEIT-STS",
+      "domain": "physics",
+      "model": "physics_model",
+      "theory": "Inverse Electromagnetic Scattering",
+      "experiment": "Tomographic Reconstruction Precision"
+    },
+    {
+      "repo": "TrustLab",
+      "domain": "agents",
+      "model": "agents_model",
+      "theory": "Human-Agent Alignment",
+      "experiment": "Feedback Loop Reliability"
+    }
+  ]
+}

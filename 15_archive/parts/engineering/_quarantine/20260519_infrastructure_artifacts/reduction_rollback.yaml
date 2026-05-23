@@ -1,0 +1,30 @@
+- repo: LAMP
+  old_path: ./archive/workspace_old/LAMP
+  new_path: archive/github_backed/LAMP
+  restore: mv archive/github_backed/LAMP ./archive/workspace_old/LAMP
+  hash: ''
+  status: MOVED
+- repo: TerraHerb
+  old_path: ./archive/workspace_old/TerraHerb
+  new_path: archive/github_backed/TerraHerb
+  restore: mv archive/github_backed/TerraHerb ./archive/workspace_old/TerraHerb
+  hash: ''
+  status: MOVED
+- repo: SecureForg
+  old_path: ./archive/workspace_old/SecureForg
+  new_path: archive/github_backed/SecureForg
+  restore: mv archive/github_backed/SecureForg ./archive/workspace_old/SecureForg
+  hash: ''
+  status: MOVED
+- repo: cognitron-game
+  old_path: ./archive/workspace_old/cognitron-game
+  new_path: archive/github_backed/cognitron-game
+  restore: mv archive/github_backed/cognitron-game ./archive/workspace_old/cognitron-game
+  hash: ''
+  status: MOVED
+- repo: modules
+  old_path: ./modules
+  new_path: archive/github_backed/modules
+  restore: mv archive/github_backed/modules ./modules
+  hash: ''
+  status: MOVED

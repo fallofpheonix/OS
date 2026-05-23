@@ -2,6 +2,7 @@ package monitor
 
 import (
 	"encoding/json"
+	"fmt"
 	"math"
 
 	"phoenix/bus"
@@ -9,14 +10,18 @@ import (
 )
 
 type DriftScore struct {
-	EventID         int64   `json:"seq_id"`
-	OriginalScore   float64 `json:"original_score"`
-	SmoothedScore   float64 `json:"smoothed_score"`
-	Baseline        float64 `json:"baseline"`
-	ZScore          float64 `json:"z_score"`
-	DriftScore      float64 `json:"drift_score"`
-	ImportanceScore float64 `json:"importance_score"` // SI (Multiplicative Factor)
-	WallTimeUnix    int64   `json:"wall_time_unix"`
+	EventID       int64   `json:"seq_id"`
+	PID           int     `json:"pid"`
+	UID           int     `json:"uid"`
+	EventType     string  `json:"event_type"`
+	OriginalScore float64 `json:"original_score"`
+	SmoothedScore float64 `json:"smoothed_score"`
+	Baseline      float64 `json:"baseline"`
+	ZScore        float64 `json:"z_score"`
+	DriftScore    float64 `json:"drift_score"`
+	Severity      float64 `json:"severity"`  // GS (Raw Severity)
+	Frequency     float64 `json:"frequency"` // FA (Historical Frequency)
+	WallTimeUnix  int64   `json:"wall_time_unix"`
 }
 
 type MonitorService struct {
@@ -26,14 +31,18 @@ type MonitorService struct {
 	ewma    float64
 	alpha   float64
 	varEWMA float64
+	// Frequency tracking: map[context_key]count
+	freqMap map[string]float64
+	totalEv int64
 }
 
 func NewMonitorService(inCh chan bus.TelemetryEvent, outBus *bus.Bus) *MonitorService {
 	return &MonitorService{
-		busCh:  inCh,
-		outBus: outBus,
-		kalman: kalman.NewKalmanFilter(0.01, 0.1, 1.0, 0.0),
-		alpha:  0.05,
+		busCh:   inCh,
+		outBus:  outBus,
+		kalman:  kalman.NewKalmanFilter(0.01, 0.1, 1.0, 0.0),
+		alpha:   0.05,
+		freqMap: make(map[string]float64),
 	}
 }
 
@@ -60,27 +69,25 @@ func (m *MonitorService) Process(event bus.TelemetryEvent) DriftScore {
 		zscore = (smoothed - m.ewma) / stddev
 	}
 
-	// SI Calculation: Combine UID, PID, and EventType criticality
-	si := 1.0
-	if event.UID < 100 { // System users
-		si *= 1.5
-	}
-	if event.PID == 1 || event.PID < 500 { // Core system processes
-		si *= 1.2
-	}
-	if event.EventType == "execve" || event.EventType == "ptrace" {
-		si *= 1.3
-	}
+	// Track Frequency (FA)
+	m.totalEv++
+	ctxKey := fmt.Sprintf("%s:%d", event.EventType, event.UID)
+	m.freqMap[ctxKey]++
+	fa := m.freqMap[ctxKey] / float64(m.totalEv)
 
 	score := DriftScore{
-		EventID:         event.SeqID,
-		OriginalScore:   raw,
-		SmoothedScore:   smoothed,
-		Baseline:        m.ewma,
-		ZScore:          zscore,
-		DriftScore:      drift,
-		ImportanceScore: si,
-		WallTimeUnix:    event.WallTimeUnix,
+		EventID:       event.SeqID,
+		PID:           event.PID,
+		UID:           event.UID,
+		EventType:     event.EventType,
+		OriginalScore: raw,
+		SmoothedScore: smoothed,
+		Baseline:      m.ewma,
+		ZScore:        zscore,
+		DriftScore:    drift,
+		Severity:      raw,
+		Frequency:     fa,
+		WallTimeUnix:  event.WallTimeUnix,
 	}
 
 	payloadBytes, _ := json.Marshal(score)

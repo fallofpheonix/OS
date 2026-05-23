@@ -1,0 +1,25 @@
+graph:
+  nodes:
+    - id: sim_env
+      type: source
+    - id: state_observer
+      type: process
+    - id: policy_network
+      type: controller
+    - id: action_executor
+      type: actor
+    - id: reward_engine
+      type: feedback
+  edges:
+    - from: sim_env
+      to: state_observer
+    - from: state_observer
+      to: policy_network
+    - from: policy_network
+      to: action_executor
+    - from: action_executor
+      to: sim_env
+    - from: sim_env
+      to: reward_engine
+    - from: reward_engine
+      to: policy_network

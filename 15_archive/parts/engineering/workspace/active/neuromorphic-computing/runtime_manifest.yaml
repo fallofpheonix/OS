@@ -1,0 +1,26 @@
+runtime:
+  id: neuromorphic_research
+  layer: P6
+  state: STANDBY
+  interfaces:
+    - input: sensors/spikes
+    - input: memory/patterns
+    - output: RL/policies
+    - output: brain/spiking_state
+  modules:
+    spiking: inactive
+    plasticity: inactive
+    attention: inactive
+    energy_models: inactive
+    temporal_dynamics: inactive
+    event_processing: inactive
+  metrics:
+    spike_rate: 0.0
+    synaptic_weight_drift: 0.0
+    energy_per_event: 0.0
+    attention_focus: 1.0
+  validation:
+    rules:
+      - spiking_causality
+      - energy_efficiency_bounds
+      - temporal_consistency

@@ -29,18 +29,27 @@ type TelemetryEvent struct {
 	Payload      json.RawMessage `json:"payload"`
 	PrevHash     string          `json:"prev_hash"`
 	Hash         string          `json:"hash"`
+
+	// Hardening Fields
+	EventID     string `json:"event_id"`
+	CausalID    string `json:"causal_id"`
+	SequenceNo  int64  `json:"sequence_no"`
+	SourceEpoch int64  `json:"source_epoch"`
 }
 
 type Bus struct {
-	mu          sync.RWMutex
-	subscribers map[string][]chan TelemetryEvent
-	Dropped     int64
-	Sampled     int64
+	mu           sync.RWMutex
+	subscribers  map[string][]chan TelemetryEvent
+	Dropped      int64
+	Sampled      int64
+	OnOverflow   func(topic string, pressure float64, event TelemetryEvent)
+	overflowSeen map[string]bool
 }
 
 func NewBus() *Bus {
 	return &Bus{
-		subscribers: make(map[string][]chan TelemetryEvent),
+		subscribers:  make(map[string][]chan TelemetryEvent),
+		overflowSeen: make(map[string]bool),
 	}
 }
 
@@ -64,18 +73,39 @@ func (b *Bus) Publish(topic string, event TelemetryEvent) {
 	for _, ch := range subs {
 		fillRatio := float64(len(ch)) / float64(QueueCapacity)
 
-		if fillRatio >= CriticalWatermark {
+		// 1. Evidence Reserve / Critical Event Lane
+		// If queue is filled past HighWatermark (85%), block non-critical events.
+		// Reserved exclusively for critical events (Severity >= 0.8).
+		if fillRatio >= HighWatermark {
 			if event.Severity < 0.8 {
 				b.Dropped++
 				continue
 			}
 		}
 
-		if fillRatio >= HighWatermark && fillRatio < CriticalWatermark {
-			if event.Severity < 0.5 && event.SeqID%2 == 0 {
-				b.Sampled++
+		// 2. Critical Watermark & Overflow Snapshot (95%)
+		if fillRatio >= CriticalWatermark {
+			b.mu.Lock()
+			seen := b.overflowSeen[topic]
+			if !seen && b.OnOverflow != nil {
+				b.overflowSeen[topic] = true
+				// Trigger overflow callback synchronously (or async) to log snapshot
+				go b.OnOverflow(topic, fillRatio, event)
+			}
+			b.mu.Unlock()
+
+			// Elevate requirements further in the critical zone
+			if event.Severity < 0.9 {
+				b.Dropped++
 				continue
 			}
+		} else {
+			// Reset overflow trigger when pressure drops back down
+			b.mu.Lock()
+			if b.overflowSeen[topic] {
+				b.overflowSeen[topic] = false
+			}
+			b.mu.Unlock()
 		}
 
 		select {

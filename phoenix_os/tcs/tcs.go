@@ -73,7 +73,24 @@ func (w *SlidingWindow) Evaluate() float64 {
 	}
 
 	// 1. Loss Rate (P_loss)
-	totalExpected := w.events[len(w.events)-1].SequenceID - w.events[0].SequenceID
+	var minSeq, maxSeq uint64
+	first := true
+	for _, e := range w.events {
+		if first {
+			minSeq = e.SequenceID
+			maxSeq = e.SequenceID
+			first = false
+		} else {
+			if e.SequenceID < minSeq {
+				minSeq = e.SequenceID
+			}
+			if e.SequenceID > maxSeq {
+				maxSeq = e.SequenceID
+			}
+		}
+	}
+
+	totalExpected := maxSeq - minSeq
 	var lossRate float64
 	if totalExpected > 0 {
 		lossRate = float64(w.droppedPkts) / float64(totalExpected)

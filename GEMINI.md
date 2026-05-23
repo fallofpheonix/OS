@@ -31,10 +31,13 @@ This file contains foundational mandates for the PhoenixOS project.
 - **State-Aware Control:** Do NOT map SDI directly to PID gains. Use the Finite-State Controller (SAFE/WATCH/SUSPICIOUS/CRITICAL/COMPROMISED).
 - **Lineage Retention:** Use 3-tier storage (HOT/WARM/COLD). Never prune `init`, `auth`, `kernel`, or `systemd` nodes.
 
-## 4. Completed P0 Foundations
-- [X] **Phoenix Ledger:** Verifiable evidence chain.
-- [X] **Phoenix Guard:** Kernel-level Fast Path (<100ms).
+## 4. Completed P0 Foundations & Hardening
+- [X] **Phoenix Ledger:** Verifiable Evidence Chain, Ledger V2 state transition validations, and full thread safety via RWMutex synchronizers.
+- [X] **Phoenix Guard:** Kernel-level Fast Path (<100ms) with Priority Ingestion lanes and overflow snapshots.
 - [X] **Phoenix Trace Storage:** 3-tier lifecycle management.
+- [X] **Phoenix Warden:** Stable state controller with dwell limits, cooldowns, recovery budgets, and SOC API concurrency thread-safety.
+- [X] **TCS Telemetry Window:** Bounded sliding window with dynamic min/max sequence evaluations, out-of-order stability, and control-event filtering.
+- [X] **Logical Clock Standardization:** Monotonic logical tick counter standardized, removing obsolete duplicate clock files.
 
-## 5. Active Phase: Phase 1 (State & Intelligence)
-**Current Goal:** Implement Importance Scoring ($S_I$) in Phoenix Arbiter.
+## 5. Active Phase: Stage 2 (Real Telemetry Runtime)
+**Current Goal:** Transition to eBPF/XDP real telemetry collection and minimal OS appliance booting (Phase II).

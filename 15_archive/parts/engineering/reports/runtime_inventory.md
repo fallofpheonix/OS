@@ -1,0 +1,55 @@
+# Runtime Inventory Report
+
+## Virtual Environments
+- /Users/fallofpheonix/engineering/environments/ai-system/venv
+- /Users/fallofpheonix/engineering/workspace/active/astraeus-core/.venv
+- /Users/fallofpheonix/engineering/workspace/active/astraeus-core/.venv/lib/python3.13/site-packages/mypy/typeshed/stdlib/venv
+- /Users/fallofpheonix/engineering/.venv
+
+## Package Manifests
+- /Users/fallofpheonix/engineering/archive/workspace_old/Noesis/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/Noesis/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/LAMP/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoEIT-STS/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoEIT-STS/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoEIT-STS/submission/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoEIT-STS/submission/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/ParticleStimulator/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/TerraHerb/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/TerraHerb/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/ArtExtract/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/ArtExtract/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/UDIE/udie_backend_py/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/SecureForg/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/audio_transcription/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/audio_transcription/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/agentskill/backend/agentman/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/sira/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/sira/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/sira/submission/source_code/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/sira/submission/source_code/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoTRandHD/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/healingstone/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/healingstone/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/AI4MH/backend/pyproject.toml
+- /Users/fallofpheonix/engineering/archive/workspace_old/AutoMation-Engine/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/AI-PFI/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/AI-PFI/submission/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/ChoreoAI/requirements.txt
+- /Users/fallofpheonix/engineering/archive/workspace_old/ChoreoAI/pyproject.toml
+- /Users/fallofpheonix/engineering/environments/ai-system/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/repo-analyzer/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/astraeus-core/artifacts/artifacts/run_20260515T205747_ee6424ff/main/snapshots/snapshot_794c25ef0cc0/files/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/astraeus-core/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/TrustLab/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/active/TrustLab/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/TrustLab/submission/source_code/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/active/TrustLab/submission/source_code/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/forge-agent/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-score/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-score/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-score/submission/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-score/submission/pyproject.toml
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-transcribe/requirements.txt
+- /Users/fallofpheonix/engineering/workspace/active/autoeit-suite/packages/autoeit-transcribe/pyproject.toml
+- /Users/fallofpheonix/engineering/infrastructure/python/ruff/pyproject.toml

@@ -1,0 +1,32 @@
+[
+  {
+    "source": ".venv",
+    "target": "runtime/shared",
+    "runtime_type": "shared",
+    "python": "3.14.3",
+    "risk": "low",
+    "move_ready": true,
+    "packages_count": 105,
+    "lock_file": null
+  },
+  {
+    "source": "workspace/active/astraeus-core/.venv",
+    "target": "runtime/core",
+    "runtime_type": "core",
+    "python": "3.13.12",
+    "risk": "medium",
+    "move_ready": true,
+    "packages_count": 86,
+    "lock_file": "workspace/active/astraeus-core/uv.lock"
+  },
+  {
+    "source": "environments/ai-system/venv",
+    "target": "runtime/research",
+    "runtime_type": "research",
+    "python": "3.14.3",
+    "risk": "low",
+    "move_ready": true,
+    "packages_count": 143,
+    "lock_file": null
+  }
+]

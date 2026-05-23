@@ -1,0 +1,23 @@
+repo: agent-swarm
+layer: P7
+type: scientific_stack
+status: INITIALIZING
+version: 0.1.0
+owner: fallofpheonix
+visibility: private
+execution_mode: REMOTE_FIRST
+cache_policy: CACHE_TEMP
+priority: P7
+github: https://github.com/fallofpheonix/agent-swarm.git
+local_path: workspace/active/agent-swarm
+dependencies:
+  - infrastructure
+  - runtime
+  - forge-agent
+  - control-plane
+  - physics (P1)
+  - mathematics (P2)
+  - simulation (P3)
+  - reinforcement-learning (P4)
+  - memory-engine (P5)
+  - neuromorphic-computing (P6)

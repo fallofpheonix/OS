@@ -2,6 +2,7 @@ package arbiter
 
 import (
 	"fmt"
+	"math"
 
 	"phoenix/bus"
 	"phoenix/monitor"
@@ -21,9 +22,57 @@ func NewArbiter(b *bus.Bus) *Arbiter {
 	}
 }
 
+// ComputeImportance calculates SI = min(1.0, (CN * GS) * Exp(k * FA))
+func (a *Arbiter) ComputeImportance(score monitor.DriftScore) float64 {
+	// CN: Node Criticality lookup
+	cn, ok := a.Policy.NodeCriticality[score.UID]
+	if !ok {
+		cn = 0.5 // Default criticality
+	}
+
+	// GS: Raw Severity from monitor
+	gs := score.Severity
+
+	// FA: Historical Frequency
+	fa := score.Frequency
+	k := a.Policy.FrequencyK
+
+	// Adaptive Modifier M(FA)
+	var m_fa float64
+	mode := a.Policy.FrequencyMode
+
+	// Determine effective mode for Adaptive mode
+	effectiveMode := mode
+	if mode == AdaptiveThreat {
+		if score.ZScore > 3.0 {
+			effectiveMode = RareThreat
+		} else {
+			effectiveMode = FrequentThreat
+		}
+	}
+
+	switch effectiveMode {
+	case FrequentThreat:
+		m_fa = math.Exp(k * fa)
+	case RareThreat:
+		m_fa = math.Exp(-k * fa)
+	default:
+		m_fa = 1.0
+	}
+
+	si := (cn * gs) * m_fa
+	if si > 1.0 {
+		si = 1.0
+	}
+	return si
+}
+
 // Evaluate decides whether an action is authorized based on Payoff and TCS
 func (a *Arbiter) Evaluate(score monitor.DriftScore, tcsScore float64) (warden.SystemState, warden.ActuationClass, bool) {
-	// 1. Determine Target Action Class based on Drift (Z-Score)
+	// 1. Calculate Importance Score (SI) strategically
+	si := a.ComputeImportance(score)
+
+	// 2. Determine Target Action Class based on Drift (Z-Score)
 	targetState := warden.StateNormal
 	requiredClass := warden.ClassObserve
 
@@ -35,14 +84,14 @@ func (a *Arbiter) Evaluate(score monitor.DriftScore, tcsScore float64) (warden.S
 		requiredClass = warden.ClassLog
 	}
 
-	// 2. Payoff Calculation (Strategic Layer)
+	// 3. Payoff Calculation (Strategic Layer)
 	// benefit = Drift (Z) * Confidence (TCS) * Importance (SI)
-	benefit := score.ZScore * tcsScore * score.ImportanceScore
+	benefit := score.ZScore * tcsScore * si
 	cost := float64(requiredClass) * 1.5
 
 	if benefit < cost && requiredClass > warden.ClassLog {
-		fmt.Printf("[ARBITER] STRATEGIC DENIAL: Benefit %.2f (Z:%.2f, TCS:%.2f, SI:%.2f) < Cost %.2f for Class %d\n", 
-			benefit, score.ZScore, tcsScore, score.ImportanceScore, cost, requiredClass)
+		fmt.Printf("[ARBITER] STRATEGIC DENIAL: Benefit %.2f (Z:%.2f, TCS:%.2f, SI:%.2f) < Cost %.2f for Class %d\n",
+			benefit, score.ZScore, tcsScore, si, cost, requiredClass)
 		return warden.StateNormal, requiredClass, false
 	}
 

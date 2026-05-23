@@ -1,0 +1,25 @@
+runtime:
+  id: RL_infrastructure
+  layer: P4
+  state: STANDBY
+  interfaces:
+    - input: simulation/trajectories
+    - input: sensors/perception
+    - output: agents/actions
+    - output: brain/updates
+  modules:
+    states: inactive
+    rewards: inactive
+    policies: inactive
+    environments: inactive
+    trajectories: inactive
+    evaluation: inactive
+  metrics:
+    average_reward: 0.0
+    policy_entropy: 0.0
+    sample_efficiency: 1.0
+  validation:
+    rules:
+      - reward_boundedness
+      - action_validity
+      - state_consistency

@@ -1,0 +1,10 @@
+layer:
+  id: P6
+  name: Neuromorphic Research
+  registry:
+    - spike_registry.yaml
+  interfaces:
+    next: P7_SWARM
+    previous: P5_MEMORY
+  stability: 1.0
+  status: ACTIVE

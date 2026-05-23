@@ -1,0 +1,9 @@
+equations:
+  electromagnetics:
+    maxwell: "curl(E) = -dB/dt; curl(H) = J + dD/dt"
+    wave_equation: "grad^2(psi) - (1/c^2) d^2(psi)/dt^2 = 0"
+  mechanics:
+    newton_second: "F = ma"
+    lagrangian: "L = T - V"
+  optimization:
+    quadratic_cost: "J = 1/2 x^T Q x + c^T x"

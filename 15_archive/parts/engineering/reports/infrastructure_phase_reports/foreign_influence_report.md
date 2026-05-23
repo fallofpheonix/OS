@@ -1,0 +1,34 @@
+# Foreign Influence & Provenance Report
+
+| Repository | Provenance | Action |
+| --- | --- | --- |
+| research | OWNED | KEEP |
+| ecosystem | OWNED | KEEP |
+| _quarantine | OWNED | KEEP |
+| github_execution | OWNED | KEEP |
+| archive | ARCHIVE | KEEP |
+| openhuman | ARCHIVE | KEEP |
+| codes | ARCHIVE | KEEP |
+| environments | OWNED | KEEP |
+| workspace | OWNED | KEEP |
+| astraeus-core | OWNED | KEEP |
+| brain | OWNED | KEEP |
+| forge-agent | OWNED | KEEP |
+| infrastructure | OWNED | KEEP |
+| control-plane | OWNED | KEEP |
+| runtime | OWNED | KEEP |
+| inactive | OWNED | KEEP |
+| docs | OWNED | KEEP |
+| remove_stage | OWNED | KEEP |
+| github_cache | OWNED | KEEP |
+| sdk | OWNED | KEEP |
+| governance | OWNED | KEEP |
+| ecosystem_os | OWNED | KEEP |
+| forks | FORK | KEEP |
+| remote_runtime | OWNED | KEEP |
+| runtime-lab | OWNED | KEEP |
+| modules | OWNED | KEEP |
+| apps | OWNED | KEEP |
+| services | OWNED | KEEP |
+| reports | OWNED | KEEP |
+| install_system | OWNED | KEEP |

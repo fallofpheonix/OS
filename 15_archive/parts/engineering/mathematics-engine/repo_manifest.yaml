@@ -1,0 +1,16 @@
+repository:
+  name: mathematics-engine
+  github: fallofpheonix/mathematics-engine
+  status: initialized
+  phase: P2
+  modules:
+    - linear
+    - optimization
+    - probability
+    - graphs
+    - ODE
+    - PDE
+    - statistics
+    - info_theory
+    - solvers
+    - interfaces

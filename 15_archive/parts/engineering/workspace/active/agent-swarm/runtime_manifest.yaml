@@ -1,0 +1,27 @@
+runtime:
+  id: agent_swarm
+  layer: P7
+  state: STANDBY
+  interfaces:
+    - input: forge-agent/tasks
+    - input: control-plane/commands
+    - input: memory/shared
+    - output: simulation/swarm_state
+    - output: brain/swarm_cognition
+  modules:
+    coordination: inactive
+    routing: inactive
+    memory_sharing: inactive
+    planning: inactive
+    recovery: inactive
+    consensus: inactive
+  metrics:
+    active_agents: 0
+    coordination_index: 1.0
+    average_latency: 0.0
+    consensus_stability: 1.0
+  validation:
+    rules:
+      - swarm_consensus_verified
+      - task_routing_completeness
+      - failure_recovery_bounds

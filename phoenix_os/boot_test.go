@@ -1,11 +1,10 @@
 package main
 
 import (
-	"crypto/sha256"
-	"fmt"
 	"testing"
 
 	"phoenix/arbiter"
+	"phoenix/boot"
 	"phoenix/bus"
 	"phoenix/common/resource"
 	"phoenix/ledger/src"
@@ -24,14 +23,13 @@ func TestBootReproducibility(t *testing.T) {
 		_ = arbiter.NewArbiter(b)
 		_ = warden.NewWarden(b)
 		
-		// Initial state: Add a genesis entry
-		l.AddEntry("GENESIS", "SYSTEM", []byte("boot"))
-		
-		// Hash the initial ledger state
-		h := sha256.New()
-		cp, _ := l.Checkpoint()
-		h.Write(cp)
-		return fmt.Sprintf("%x", h.Sum(nil))
+		// Capture boot telemetry
+		bootInfo := []boot.SubsystemInfo{
+			boot.NewSubsystemInfo("Bus", "1.0.0", nil),
+			boot.NewSubsystemInfo("Ledger", "2.0.0", nil),
+		}
+		bt, _ := boot.CaptureBootTelemetry(l, bootInfo)
+		return bt.Checksum
 	}
 	
 	hash1 := initSystem()

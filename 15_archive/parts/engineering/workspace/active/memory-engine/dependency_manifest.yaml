@@ -1,0 +1,21 @@
+dependencies:
+  core:
+    - name: faiss-cpu
+      version: ">=1.7"
+    - name: redis
+      version: ">=4.0"
+    - name: sqlite3
+      version: ">=3.35"
+  internal:
+    - name: physics
+      repo: github.com/fallofpheonix/physics
+    - name: mathematics
+      repo: github.com/fallofpheonix/mathematics
+    - name: simulation
+      repo: github.com/fallofpheonix/simulation
+    - name: reinforcement-learning
+      repo: github.com/fallofpheonix/reinforcement-learning
+  scientific:
+    - name: neuromorphic-computing
+      repo: github.com/fallofpheonix/neuromorphic-computing
+      status: PENDING_P6

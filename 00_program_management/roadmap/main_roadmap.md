@@ -21,13 +21,13 @@
 * **Deliverables:** RFC system, repository structure, FSM model, `DETERMINISM.md`.
 * **Exit Criteria:** No major architectural contradictions remain.
 
-### Stage 1: Deterministic Replay Runtime (ACTIVE)
+### Stage 1: Deterministic Replay Runtime (COMPLETED)
 * **Goal:** Mathematically reproducible single-node replay.
 * **Systems:** Replay engine, Event bus, Ledger, FSM, TCS, Drift engine.
 * **Features:** Logical time, Canonical serialization, Stable hashing, Bounded queues.
 * **Exit Criteria:** Replay hashes are byte-for-byte identical across runs.
 
-### Stage 2: Real Telemetry Runtime
+### Stage 2: Real Telemetry Runtime (ACTIVE)
 * **Goal:** Replace simulated data with real Linux eBPF/XDP telemetry.
 * **Build:** Phoenix Guard, Kernel adapters, Telemetry collectors.
 * **Exit Criteria:** Stable single-node telemetry replay.
@@ -37,11 +37,11 @@
 * **Build:** LinuxKit appliance, Minimal kernel, Immutable initrd, PID1 Warden.
 * **Exit Criteria:** Phoenix runtime boots as a standalone immutable appliance.
 
-### Stage 4: Constrained Actuation
-* **Goal:** Safe, bounded autonomous response.
-* **Systems:** Warden FSM, Actuation budgets, Cooldowns, Rate limits.
-* **Allowed Actions:** Log, Throttle, Socket block, Process isolate.
-* **Exit Criteria:** No state oscillation under adversarial stress.
+### Stage 4: Constrained Actuation (COMPLETED / HARDENED)
+* **Goal:** Safe, bounded autonomous response with full concurrency safety and rate limits.
+* **Systems:** Warden FSM, Actuation budgets, Cooldowns, Hysteresis, Mutex synchronizers.
+* **Allowed Actions:** Log, Throttle, Socket block, Process isolate, Operator reset.
+* **Exit Criteria:** No state oscillation under adversarial stress, and thread-safe SOC API interaction.
 
 ---
 
@@ -99,3 +99,9 @@
 ### Stage 13: Research OS
 * **Focus:** Custom schedulers, hardware isolation (SGX/SEV), microkernel experiments.
 * **Status:** Pure OS research, not required for core project success.
+
+---
+
+## Very Long-Term Evolution
+
+For the multi-year master roadmap detailing Stage 14 through Stage 20 (including Proof-of-Anomaly swarm consensus, vector clocks, and CFS scheduler patches), see the detailed [very_long_term_plan.md](file:///Users/fallofpheonix/os/00_program_management/roadmap/very_long_term_plan.md).

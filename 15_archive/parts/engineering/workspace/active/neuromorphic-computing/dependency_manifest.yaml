@@ -1,0 +1,19 @@
+dependencies:
+  core:
+    - name: brian2
+      version: ">=2.5"
+    - name: snntorch
+      version: ">=0.5"
+    - name: lava-nc
+      version: ">=0.3"
+  internal:
+    - name: physics
+      repo: github.com/fallofpheonix/physics
+    - name: mathematics
+      repo: github.com/fallofpheonix/mathematics
+    - name: memory-engine
+      repo: github.com/fallofpheonix/memory-engine
+  scientific:
+    - name: agent-swarm
+      repo: github.com/fallofpheonix/agent-swarm
+      status: PENDING_P7

@@ -1,0 +1,8 @@
+models:
+  consensus_rules:
+    majority_vote:
+      threshold: 0.51
+    weighted_consensus:
+      weights: "reputation_based"
+    eventual_consistency:
+      sync_interval: 100 # ms

@@ -1,0 +1,28 @@
+runtime:
+  status: standby
+  environment: formal-substrate
+  modules:
+    linear:
+      status: empty
+      path: ./linear
+    optimization:
+      status: empty
+      path: ./optimization
+    probability:
+      status: empty
+      path: ./probability
+    graphs:
+      status: empty
+      path: ./graphs
+    ODE:
+      status: empty
+      path: ./ODE
+    PDE:
+      status: empty
+      path: ./PDE
+    statistics:
+      status: empty
+      path: ./statistics
+    info_theory:
+      status: empty
+      path: ./info_theory

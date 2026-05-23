@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"math/rand"
 
-	"sentinel/security/physics"
-	"sentinel/telemetry/entropy_engine"
-	"sentinel/telemetry/process_graphs"
+	"phoenix/security/physics"
+	"phoenix/telemetry/entropy_engine"
+	"phoenix/telemetry/process_graphs"
 )
 
 type TelemetryEvent struct {
@@ -30,7 +30,7 @@ func main() {
 
 	// Initialize components
 	graph := process_graphs.NewGraph()
-	
+
 	// Simulation of events
 	pids := []string{"1001", "1002", "1003"}
 	for _, pid := range pids {
@@ -44,7 +44,7 @@ func main() {
 	rand.Read(ransomwareData) // High entropy
 
 	// 1. L3: Entropy Calculation
-	entRes := entropy_engine.Calculate(ransomwareData, nil)
+	entRes := entropy_engine.CalculateEntropy(ransomwareData, nil)
 	fmt.Printf("Event PID 1003 -> Entropy: %.4f (Anomaly: %v)\n", entRes.Entropy, entRes.IsAnomaly)
 
 	// 2. L4: Graph Analysis

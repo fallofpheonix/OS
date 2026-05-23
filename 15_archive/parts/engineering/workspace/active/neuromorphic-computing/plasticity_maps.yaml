@@ -1,0 +1,9 @@
+maps:
+  stdp_curve:
+    window_plus: 20.0 # ms
+    window_minus: 20.0 # ms
+    a_plus: 0.01
+    a_minus: 0.012
+  homeostasis:
+    target_firing_rate: 10.0 # Hz
+    adaptation_time_constant: 1000.0 # ms

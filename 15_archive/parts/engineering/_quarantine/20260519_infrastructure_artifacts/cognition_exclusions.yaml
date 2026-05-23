@@ -1,0 +1,10 @@
+exclusions:
+  - archive/github_synced/
+  - backups/
+  - graphify-out/
+  - artifacts/
+  - venv/
+  - .venv/
+  - site-packages/
+  - __pycache__/
+  - .pytest_cache/

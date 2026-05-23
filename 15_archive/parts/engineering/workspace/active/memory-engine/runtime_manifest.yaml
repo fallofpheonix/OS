@@ -1,0 +1,27 @@
+runtime:
+  id: memory_system
+  layer: P5
+  state: STANDBY
+  interfaces:
+    - input: RL/trajectories
+    - input: brain/cognition
+    - output: brain/retrievals
+    - output: swarm/shared_knowledge
+  modules:
+    episodic: inactive
+    semantic: inactive
+    working: inactive
+    retrieval: inactive
+    compression: inactive
+    reflection: inactive
+    forgetting: inactive
+  metrics:
+    memory_usage: 0.0
+    retrieval_latency: 0.0
+    compression_rate: 1.0
+    forgetting_rate: 0.0
+  validation:
+    rules:
+      - retrieval_accuracy
+      - integrity_maintenance
+      - compression_loss_bounds

@@ -1,0 +1,15 @@
+# Editable Modules (P0)
+-e ./modules/editable/brain
+-e ./modules/editable/astraeus-core
+-e ./modules/editable/forge-agent
+-e ./modules/editable/fallofpheonix
+
+# Editable Modules (P1)
+-e ./modules/editable/TrustLab
+-e ./modules/editable/control-plane
+-e ./modules/editable/infrastructure
+-e ./modules/editable/aegis-auth
+-e ./modules/editable/agents
+
+# Editable Modules (P2)
+-e ./modules/editable/OS

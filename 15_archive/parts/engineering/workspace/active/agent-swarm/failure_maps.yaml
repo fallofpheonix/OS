@@ -1,0 +1,11 @@
+maps:
+  failure_modes:
+    node_crash:
+      detection: "heartbeat_timeout"
+      recovery: "leader_re_election"
+    network_partition:
+      detection: "quorum_loss"
+      recovery: "partition_healing"
+    byzantine_fault:
+      detection: "consensus_divergence"
+      recovery: "node_quarantine"

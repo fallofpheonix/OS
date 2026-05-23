@@ -1,0 +1,29 @@
+validation:
+  version: 1.0
+  checks:
+    registry:
+      file: math_registry.yaml
+      rules:
+        - domains_complete
+    solver_definitions:
+      file: registry/solver_registry.yaml
+      rules:
+        - base_solvers_planned
+    runtime:
+      file: runtime_manifest.yaml
+      rules:
+        - module_paths_valid
+    research:
+      file: research/math_thresholds.md
+      rules:
+        - states_defined
+    manifests:
+      files:
+        - repo_manifest.yaml
+        - dependency_manifest.yaml
+      rules:
+        - syntax_valid
+    health:
+      file: health.yaml
+      rules:
+        - overall_stable

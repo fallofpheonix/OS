@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repo-analyzer"
+version = "0.1.0"
+description = "Local repository intelligence system for semantic code analysis"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "chromadb>=1.5.9",
+    "sentence-transformers>=5.5.0",
+    "tree-sitter>=0.25.2",
+    "networkx>=3.4.2",
+    "llama-index>=0.14.21",
+    "typer>=0.9.0"
+]
+
+[project.scripts]
+repo-analyzer = "repo_analyzer.cli.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0"
+]

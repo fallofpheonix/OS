@@ -1,0 +1,13 @@
+{
+  "aegis-auth": "KEEP_ACTIVE",
+  "astraeus-core": "KEEP_ACTIVE",
+  "brain": "KEEP_ACTIVE",
+  "control-plane": "KEEP_ACTIVE",
+  "forge-agent": "KEEP_ACTIVE",
+  "infrastructure": "KEEP_ACTIVE",
+  "ledger-core": "KEEP_ACTIVE",
+  "modules": "KEEP_ACTIVE",
+  "AutoMation-Engine": "ARCHIVED_SYNCED",
+  "fallofpheonix": "ARCHIVED_SYNCED",
+  "my-portfolio": "ARCHIVED_SYNCED"
+}

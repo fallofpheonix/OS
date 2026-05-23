@@ -1,0 +1,9 @@
+research:
+  model: Universal Math Research Model
+  focus_areas:
+    - Solver Instability
+    - Ill-conditioned Systems
+    - Convergence Failure
+  manifest:
+    math_thresholds: research/math_thresholds.md
+    validation_metrics: metrics/math_metrics.yaml
