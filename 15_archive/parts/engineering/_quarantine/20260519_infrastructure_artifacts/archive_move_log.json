@@ -1,0 +1,32 @@
+[
+  {
+    "repo": "AutoMation-Engine",
+    "source": "/Users/fallofpheonix/engineering/archive/workspace_old/AutoMation-Engine",
+    "destination": "/Users/fallofpheonix/engineering/archive/github_synced/AutoMation-Engine",
+    "move_time": "2026-05-19T19:28:24.107586",
+    "pre_hash": "8de7c3432dd595c8f55d8948242b6e5d5aa4bddec535b90993991a42a59bc677",
+    "post_hash": "8de7c3432dd595c8f55d8948242b6e5d5aa4bddec535b90993991a42a59bc677",
+    "rollback_path": "/Users/fallofpheonix/engineering/archive/workspace_old/AutoMation-Engine",
+    "status": "SUCCESS"
+  },
+  {
+    "repo": "fallofpheonix",
+    "source": "/Users/fallofpheonix/engineering/workspace/active/fallofpheonix",
+    "destination": "/Users/fallofpheonix/engineering/archive/github_synced/fallofpheonix",
+    "move_time": "2026-05-19T19:28:24.109765",
+    "pre_hash": "2aab3a9133c0123bc7c7ae34a5838f54dc2d5a83b1d32d34f2c6e844374491c4",
+    "post_hash": "2aab3a9133c0123bc7c7ae34a5838f54dc2d5a83b1d32d34f2c6e844374491c4",
+    "rollback_path": "/Users/fallofpheonix/engineering/workspace/active/fallofpheonix",
+    "status": "SUCCESS"
+  },
+  {
+    "repo": "my-portfolio",
+    "source": "/Users/fallofpheonix/engineering/workspace/active/my-portfolio",
+    "destination": "/Users/fallofpheonix/engineering/archive/github_synced/my-portfolio",
+    "move_time": "2026-05-19T19:28:24.118671",
+    "pre_hash": "ac78ec65c586330876598df7eef9a25c3db91810a4fcf709f5b0c47667b8f268",
+    "post_hash": "ac78ec65c586330876598df7eef9a25c3db91810a4fcf709f5b0c47667b8f268",
+    "rollback_path": "/Users/fallofpheonix/engineering/workspace/active/my-portfolio",
+    "status": "SUCCESS"
+  }
+]

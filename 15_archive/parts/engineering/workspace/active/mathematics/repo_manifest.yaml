@@ -1,0 +1,16 @@
+repo: mathematics
+layer: P2
+type: scientific_stack
+status: INITIALIZING
+version: 0.1.0
+owner: fallofpheonix
+visibility: private
+execution_mode: REMOTE_FIRST
+cache_policy: CACHE_TEMP
+priority: P2
+github: https://github.com/fallofpheonix/mathematics.git
+local_path: workspace/active/mathematics
+dependencies:
+  - infrastructure
+  - runtime
+  - physics (P1)

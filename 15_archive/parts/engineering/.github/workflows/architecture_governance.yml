@@ -1,0 +1,29 @@
+name: Architecture Governance
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  invariant-enforcement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          
+      - name: Install Dependencies
+        run: |
+          # Install basic dependencies (pyyaml for invariant engine)
+          python -m pip install --upgrade pip
+          pip install pyyaml pydantic
+          
+      - name: Run Architecture Validation
+        run: |
+          python engineering/infrastructure/scripts/ci_invariant_check.py

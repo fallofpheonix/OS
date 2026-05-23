@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PheonixOS Integrated Model
+Comment=Open the Sentinel integrated model directly from the application menu
+Exec=bash /Users/fallofpheonix/os/scripts/open_integrated_model.sh
+Icon=/Users/fallofpheonix/os/assets/phoenix/raster/logo_simple.png
+Terminal=true
+Categories=Development;Security;Utility;

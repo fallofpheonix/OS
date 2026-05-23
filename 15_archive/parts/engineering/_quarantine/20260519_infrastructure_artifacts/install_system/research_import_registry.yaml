@@ -1,0 +1,42 @@
+- layer: physics
+  repo: physics
+  github: https://github.com/fallofpheonix/physics.git
+  future_attach: true
+  dependencies: [astraeus-core]
+  install_mode: CACHE_TEMP
+- layer: math
+  repo: mathematics
+  github: https://github.com/fallofpheonix/mathematics.git
+  future_attach: true
+  dependencies: [physics]
+  install_mode: CACHE_TEMP
+- layer: simulation
+  repo: simulation
+  github: https://github.com/fallofpheonix/simulation.git
+  future_attach: true
+  dependencies: [physics, mathematics]
+  install_mode: CACHE_TEMP
+- layer: RL
+  repo: reinforcement-learning
+  github: https://github.com/fallofpheonix/reinforcement-learning.git
+  future_attach: true
+  dependencies: [simulation]
+  install_mode: CACHE_TEMP
+- layer: memory
+  repo: memory-engine
+  github: https://github.com/fallofpheonix/memory-engine.git
+  future_attach: true
+  dependencies: [brain]
+  install_mode: CACHE_TEMP
+- layer: neuromorphic
+  repo: neuromorphic-computing
+  github: https://github.com/fallofpheonix/neuromorphic-computing.git
+  future_attach: true
+  dependencies: [brain, physics]
+  install_mode: CACHE_TEMP
+- layer: swarm
+  repo: agent-swarm
+  github: https://github.com/fallofpheonix/agent-swarm.git
+  future_attach: true
+  dependencies: [forge-agent, control-plane]
+  install_mode: CACHE_TEMP

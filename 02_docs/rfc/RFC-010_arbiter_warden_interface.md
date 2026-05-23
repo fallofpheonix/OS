@@ -1,7 +1,7 @@
 # RFC-010: Arbiter-Warden Control Interface
 
-**Status:** Draft (Revised)
-**Review Date:** 2026-05-22
+**Status:** Approved / Implemented
+**Review Date:** 2026-05-23
 **Author:** Documentation Evolution Agent
 **Target Subsystem:** L5/L5.5 Control Loop
 
@@ -28,6 +28,12 @@ All actions must be categorized:
 *   **Telemetry Confidence Score (TCS):** Arbiter actions are gated by a calculated TCS (based on packet loss, drift, queue pressure, etc.). High-risk classes (3+) require TCS > threshold.
 *   **Actuation Budgeting:** Enforce hard limits on CPU, Network, Isolation, and AI inference budgets consumed by security actions to prevent self-DoS.
 *   **Simulation-before-Execution:** High-risk actions (Class 4+) must pass through a shadow simulation to predict impact before real-world execution.
+
+### 2.3 Warden Stabilization Constraints
+To defend the state machine against rapid oscillation and containment storms, the Warden implements a strict multi-tier stabilization framework:
+*   **Actuation Cooldown:** Locks further transitions for 10 logical ticks post-actuation. Critical overrides (Class 3+) bypass this lock.
+*   **State Dwell Limits:** Minimum time of 30 logical ticks that the Warden must stay in an elevated state (e.g. SUSPICIOUS, CONTAINED) before being eligible for automatic de-escalation.
+*   **Recovery Budgeting:** Limits automatic recoveries (de-escalations) to a maximum of 3 per session, after which the Warden will lock in the higher safety state until manual operator reset.
 
 ## 3. Failure Modes, Recovery & Distributed Coordination
 *   **Distributed Consensus:** Cross-node actions (Class 4+) require leader-validated quorum to prevent fragmentation and split-brain scenarios.

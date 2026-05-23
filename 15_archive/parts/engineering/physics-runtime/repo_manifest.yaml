@@ -1,0 +1,17 @@
+repository:
+  name: physics-runtime
+  github: fallofpheonix/physics-runtime
+  status: initialized
+  phase: P1
+  modules:
+    - electromagnetics
+    - particles
+    - biomechanics
+    - signals
+    - control
+    - inverse
+    - simulations
+    - runtime
+    - research
+    - registry
+    - validation

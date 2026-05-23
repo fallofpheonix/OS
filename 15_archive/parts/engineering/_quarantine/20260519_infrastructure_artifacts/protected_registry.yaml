@@ -1,0 +1,54 @@
+truenotes:
+  status: IMMUTABLE
+  path: ./workspace/active/truenotes
+astraeus-core:
+  status: IMMUTABLE
+  path: ./workspace/active/astraeus-core
+ledger-core:
+  status: IMMUTABLE
+  path: ./workspace/active/ledger-core
+fallofpheonix:
+  status: IMMUTABLE
+  path: ./workspace/active/fallofpheonix
+agents:
+  status: IMMUTABLE
+  path: ./workspace/active/agents
+gametrend-intelligence-engine:
+  status: IMMUTABLE
+  path: ./workspace/active/gametrend-intelligence-engine
+TrustLab:
+  status: IMMUTABLE
+  path: ./workspace/active/TrustLab
+idea:
+  status: IMMUTABLE
+  path: ./workspace/active/idea
+codes:
+  status: IMMUTABLE
+  path: ./workspace/active/codes
+OS:
+  status: IMMUTABLE
+  path: ./workspace/active/OS
+forge-agent:
+  status: IMMUTABLE
+  path: ./workspace/active/forge-agent
+autoeit-suite:
+  status: IMMUTABLE
+  path: ./workspace/active/autoeit-suite
+smart-api-limiter:
+  status: IMMUTABLE
+  path: ./workspace/active/smart-api-limiter
+aegis-auth:
+  status: IMMUTABLE
+  path: ./workspace/active/aegis-auth
+brain:
+  status: IMMUTABLE
+  path: ./brain
+openhuman:
+  status: IMMUTABLE
+  path: ./forks/active/openhuman
+infrastructure:
+  status: IMMUTABLE
+  path: ./infrastructure
+control-plane:
+  status: IMMUTABLE
+  path: ./control-plane

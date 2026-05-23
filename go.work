@@ -13,8 +13,7 @@ use (
 	./09_telemetry/process_graphs
 	./10_kernel
 	./10_kernel/sandbox
-	./agents
-	./custom/control_plane
+	./06_ai/research_agents
 	./phoenix_os
 	./phoenix_os/nexus
 )

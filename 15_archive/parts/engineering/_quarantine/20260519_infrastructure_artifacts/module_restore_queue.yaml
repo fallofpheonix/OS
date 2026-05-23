@@ -1,0 +1,103 @@
+module_restore_queue:
+  - repo: brain
+    priority: P0
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: astraeus-core
+    priority: P0
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: forge-agent
+    priority: P0
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: fallofpheonix
+    priority: P0
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: TrustLab
+    priority: P1
+    install: yes
+    editable: yes
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: idea
+    priority: P1
+    install: no
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: control-plane
+    priority: P1
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: aegis-auth
+    priority: P1
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: agents
+    priority: P1
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: infrastructure
+    priority: P1
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: autoeit-suite
+    priority: P2
+    install: no
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: gametrend-intelligence-engine
+    priority: P2
+    install: no
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: ledger-core
+    priority: P2
+    install: yes
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: OS
+    priority: P2
+    install: yes
+    editable: yes
+    clone_on_demand: no
+    keep_local: yes
+  - repo: smart-api-limiter
+    priority: P2
+    install: yes
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: codes
+    priority: P2
+    install: no
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes
+  - repo: my-portfolio
+    priority: P2
+    install: no
+    editable: no
+    clone_on_demand: yes
+    keep_local: yes

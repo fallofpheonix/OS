@@ -1,0 +1,9 @@
+curves:
+  ebbinghaus:
+    formula: "R = exp(-t/S)"
+    parameters:
+      S: 1.0 # Stability
+  importance_weighting:
+    high_priority: 0.95
+    medium_priority: 0.5
+    low_priority: 0.1

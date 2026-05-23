@@ -1,0 +1,25 @@
+runtime:
+  status: standby
+  environment: scientific-substrate
+  modules:
+    electromagnetics:
+      status: empty
+      path: ./electromagnetics
+    particles:
+      status: empty
+      path: ./particles
+    biomechanics:
+      status: empty
+      path: ./biomechanics
+    signals:
+      status: empty
+      path: ./signals
+    control:
+      status: empty
+      path: ./control
+    inverse:
+      status: empty
+      path: ./inverse
+    simulations:
+      status: empty
+      path: ./simulations

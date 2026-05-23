@@ -1,0 +1,18 @@
+simulations:
+  status: preparation
+  types:
+    Monte Carlo:
+      status: pending
+      prep: ready
+    particle simulation:
+      status: pending
+      prep: ready
+    signal simulation:
+      status: pending
+      prep: ready
+    control simulation:
+      status: pending
+      prep: ready
+  integration:
+    mode: NO_IMPLEMENTATION
+    interface: simulations/

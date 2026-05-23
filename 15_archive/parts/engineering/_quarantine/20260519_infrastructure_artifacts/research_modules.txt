@@ -1,0 +1,9 @@
+# Research Modules
+physics
+simulation
+legacy
+idea
+autoeit-suite
+gametrend-intelligence-engine
+codes
+my-portfolio

@@ -1,0 +1,19 @@
+repo: neuromorphic-computing
+layer: P6
+type: scientific_stack
+status: INITIALIZING
+version: 0.1.0
+owner: fallofpheonix
+visibility: private
+execution_mode: REMOTE_FIRST
+cache_policy: CACHE_TEMP
+priority: P6
+github: https://github.com/fallofpheonix/neuromorphic-computing.git
+local_path: workspace/active/neuromorphic-computing
+dependencies:
+  - infrastructure
+  - runtime
+  - physics (P1)
+  - mathematics (P2)
+  - simulation (P3)
+  - memory-engine (P5)

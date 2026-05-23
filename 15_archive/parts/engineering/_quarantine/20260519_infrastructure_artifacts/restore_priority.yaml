@@ -1,0 +1,30 @@
+restoration_priority:
+  P0:
+    description: "Core Cognition and Execution Layer"
+    repos:
+      - brain
+      - astraeus-core
+      - forge-agent
+      - fallofpheonix
+  P1:
+    description: "Product Development and Management Infrastructure"
+    repos:
+      - TrustLab
+      - idea
+      - control-plane
+      - infrastructure
+      - aegis-auth
+      - agents
+  P2:
+    description: "Research, Physics Simulations, and Legacy Systems"
+    repos:
+      - physics-repos
+      - simulation-repos
+      - legacy-research
+      - autoeit-suite
+      - gametrend-intelligence-engine
+      - ledger-core
+      - OS
+      - smart-api-limiter
+      - codes
+      - my-portfolio

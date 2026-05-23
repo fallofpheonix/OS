@@ -1,0 +1,20 @@
+graphs:
+  coordination_topology:
+    nodes:
+      - id: leader_node
+        type: coordinator
+      - id: worker_nodes
+        type: actor
+        count: N
+      - id: shared_memory
+        type: resource
+    edges:
+      - from: leader_node
+        to: worker_nodes
+        relation: commands
+      - from: worker_nodes
+        to: shared_memory
+        relation: reads_writes
+      - from: worker_nodes
+        to: worker_nodes
+        relation: peer_to_peer

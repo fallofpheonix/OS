@@ -1,0 +1,9 @@
+dependencies:
+  external:
+    - eigen (potential)
+    - lapack (potential)
+    - cvxopt (potential)
+  policy:
+    CLONE_ON_DEMAND: true
+    CACHE_TEMP: true
+    INSTALL_ONLY: true

@@ -1,0 +1,25 @@
+checks:
+  remote_exists:
+    command: "git ls-remote {{github_url}}"
+    description: "Validate upstream reachability"
+  branch_valid:
+    command: "git branch -r | grep {{branch}}"
+    description: "Verify target branch exists on remote"
+  cache_valid:
+    command: "test -d {{cache_path}}"
+    description: "Verify local cache directory integrity"
+  restore_valid:
+    command: "test -f {{archive_path}} || test -d {{restore_point}}"
+    description: "Ensure recovery source is available"
+  editable_valid:
+    command: "pip list --editable | grep {{repo}}"
+    description: "Check for correct editable installation state"
+  protection_valid:
+    command: "grep -q {{repo}} github_execution/protection_rules.yaml"
+    description: "Check if repository is under immutability protection"
+
+scenarios:
+  PUSH: [remote_exists, protection_valid]
+  PULL: [remote_exists, cache_valid]
+  RESTORE: [restore_valid]
+  DEVELOPMENT: [editable_valid, branch_valid]

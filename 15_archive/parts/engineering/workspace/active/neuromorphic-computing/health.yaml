@@ -1,0 +1,9 @@
+health:
+  status: OK
+  uptime: 0
+  integrity: 1.0
+  components:
+    spiking_engines: OK
+    plasticity_models: OK
+    event_handlers: OK
+  last_check: "2026-05-19"

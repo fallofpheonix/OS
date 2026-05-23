@@ -1,0 +1,42 @@
+{
+  "AI-PFI": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/AI-PFI",
+    "status": "DIRTY_WORKING_TREE",
+    "details": "M README.md\n M submission/README.md"
+  },
+  "ArtExtract": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/ArtExtract",
+    "status": "DIRTY_WORKING_TREE",
+    "details": "M README.md\n M src/artextract/services/__init__.py"
+  },
+  "AutoMation-Engine": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/AutoMation-Engine",
+    "status": "READY_FOR_LOCAL_REMOVAL",
+    "details": "origin\thttps://github.com/fallofpheonix/AutoMation-Engine.git (fetch)\norigin\thttps://github.com/fallofpheonix/AutoMation-Engine.git (push)"
+  },
+  "AutoTRandHD": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/AutoTRandHD",
+    "status": "DIRTY_WORKING_TREE",
+    "details": "M README.md"
+  },
+  "agentskill": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/agentskill",
+    "status": "DIRTY_WORKING_TREE",
+    "details": "M README.md\n M backend/agentman/src/agentman/agent_builder.py\n M backend/agentman/tests/test_agent_builder.py\n M backend/agentman/tests/test_cli.py\n M docs/architecture.md\n M docs/security.md\n M docs/testing.md"
+  },
+  "audio_transcription": {
+    "path": "/Users/fallofpheonix/engineering/archive/workspace_old/audio_transcription",
+    "status": "DIRTY_WORKING_TREE",
+    "details": "M README.md"
+  },
+  "fallofpheonix": {
+    "path": "/Users/fallofpheonix/engineering/workspace/active/fallofpheonix",
+    "status": "READY_FOR_LOCAL_REMOVAL",
+    "details": "origin\thttps://github.com/fallofpheonix/fallofpheonix.git (fetch)\norigin\thttps://github.com/fallofpheonix/fallofpheonix.git (push)"
+  },
+  "my-portfolio": {
+    "path": "/Users/fallofpheonix/engineering/workspace/active/my-portfolio",
+    "status": "READY_FOR_LOCAL_REMOVAL",
+    "details": "origin\thttps://github.com/fallofpheonix/my-portfolio.git (fetch)\norigin\thttps://github.com/fallofpheonix/my-portfolio.git (push)"
+  }
+}

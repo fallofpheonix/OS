@@ -1,0 +1,5 @@
+python_version: 3.13.12
+package_count: 88
+hash: 8ae81a00bd7b8c3ef2f2ba4882713bb3d4d1a051eeead42d7c0cca20955d39ba
+source_lock: workspace/active/astraeus-core/uv.lock
+runtime_type: core

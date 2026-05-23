@@ -1,0 +1,36 @@
+astraeus-core:
+  branch: migration/rename-to-astraeus
+  git_state: DIRTY
+  head: 4861c3b83499cf59fe465ef80fcf4a45e8f7dca7
+  runtime: ACTIVE
+  sync: SYNCED
+brain:
+  branch: main
+  git_state: DIRTY
+  head: 5134762cb17cda54726135345e6e897e37763d5e
+  runtime: ACTIVE
+  sync: SYNCED
+control-plane:
+  branch: main
+  git_state: DIRTY
+  head: 96ba0b8d99fd2158e4399250b704b826b395ceca
+  runtime: ACTIVE
+  sync: SYNCED
+forge-agent:
+  branch: main
+  git_state: CLEAN
+  head: 1aceb94d0933284ecfb84c13f8ddc5d36e44539a
+  runtime: ACTIVE
+  sync: SYNCED
+infrastructure:
+  branch: main
+  git_state: DIRTY
+  head: d3aad9fb34ce4372dc05fdc8570406d8de15ab50
+  runtime: ACTIVE
+  sync: DIVERGED
+modules:
+  branch: main
+  git_state: DIRTY
+  head: 9a6408eb4b87f477216b308df0c45604d476036f
+  runtime: ACTIVE
+  sync: SYNCED

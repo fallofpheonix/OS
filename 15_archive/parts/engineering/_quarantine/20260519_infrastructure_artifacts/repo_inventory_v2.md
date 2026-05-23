@@ -1,0 +1,34 @@
+# Global Repository Inventory v2
+
+| Repository | Category | Maturity | Ownership | Path |
+| --- | --- | --- | --- | --- |
+| _quarantine | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/_quarantine |
+| apps | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/apps |
+| archive | RESEARCH | ARCHIVE | UNKNOWN | /Users/fallofpheonix/engineering/archive |
+| astraeus-core | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/workspace/active/core/astraeus-core |
+| brain | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/workspace/active/core/brain |
+| codes | RESEARCH | ARCHIVE | UNKNOWN | /Users/fallofpheonix/engineering/archive/deprecated/codes |
+| control-plane | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/workspace/active/core/control-plane |
+| docs | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/docs |
+| ecosystem | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/ecosystem |
+| ecosystem_os | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/ecosystem_os |
+| environments | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/environments |
+| forge-agent | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/workspace/active/core/forge-agent |
+| forks | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/forks |
+| github_cache | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/github_cache |
+| github_execution | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/github_execution |
+| governance | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/governance |
+| inactive | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/inactive |
+| infrastructure | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/workspace/active/core/infrastructure |
+| install_system | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/install_system |
+| modules | CORE | ACTIVE | KEEP_ACTIVE | /Users/fallofpheonix/engineering/modules |
+| openhuman | RESEARCH | ARCHIVE | UNKNOWN | /Users/fallofpheonix/engineering/archive/deprecated/openhuman |
+| remote_runtime | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/remote_runtime |
+| remove_stage | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/remove_stage |
+| reports | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/reports |
+| research | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/research |
+| runtime | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/runtime |
+| runtime-lab | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/runtime-lab |
+| sdk | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/sdk |
+| services | UNKNOWN | PROTOTYPE | UNKNOWN | /Users/fallofpheonix/engineering/services |
+| workspace | PRODUCT | PRODUCT | UNKNOWN | /Users/fallofpheonix/engineering/workspace |

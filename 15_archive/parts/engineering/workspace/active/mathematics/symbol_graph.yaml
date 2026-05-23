@@ -1,0 +1,15 @@
+graph:
+  nodes:
+    - id: physics_variables
+      type: input
+    - id: solver_engine
+      type: process
+    - id: simulation_output
+      type: output
+  edges:
+    - from: physics_variables
+      to: solver_engine
+      relation: feeds
+    - from: solver_engine
+      to: simulation_output
+      relation: generates

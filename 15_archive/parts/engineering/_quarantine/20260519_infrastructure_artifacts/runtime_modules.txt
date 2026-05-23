@@ -1,0 +1,14 @@
+# Runtime Modules (P0)
+brain
+astraeus-core
+forge-agent
+fallofpheonix
+
+# Runtime Modules (P1)
+control-plane
+infrastructure
+aegis-auth
+agents
+
+# Runtime Modules (P2)
+OS

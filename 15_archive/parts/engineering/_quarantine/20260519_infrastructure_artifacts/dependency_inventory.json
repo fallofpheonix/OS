@@ -1,0 +1,2522 @@
+[
+  {
+    "package": "Deprecated",
+    "versions": [
+      "1.3.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "Jinja2",
+    "versions": [
+      "3.1.6"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "MarkupSafe",
+    "versions": [
+      "3.0.3"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "PyPika",
+    "versions": [
+      "0.51.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "PyYAML",
+    "versions": [
+      "6.0.3"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "Pygments",
+    "versions": [
+      "2.20.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "SQLAlchemy",
+    "versions": [
+      "2.0.49"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "aiohappyeyeballs",
+    "versions": [
+      "2.6.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "aiohttp",
+    "versions": [
+      "3.13.5"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "aiosignal",
+    "versions": [
+      "1.4.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "aiosqlite",
+    "versions": [
+      "0.22.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "annotated-doc",
+    "versions": [
+      "0.0.4"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "annotated-types",
+    "versions": [
+      "0.7.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "anyio",
+    "versions": [
+      "4.13.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "ast-serialize",
+    "versions": [
+      "0.3.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "astraeus-core",
+    "versions": [
+      "0.1.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "attrs",
+    "versions": [
+      "26.1.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "banks",
+    "versions": [
+      "2.4.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "bcrypt",
+    "versions": [
+      "5.0.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "build",
+    "versions": [
+      "1.5.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "certifi",
+    "versions": [
+      "2026.4.22"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "charset-normalizer",
+    "versions": [
+      "3.4.7"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "chromadb",
+    "versions": [
+      "1.5.9"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "click",
+    "versions": [
+      "8.3.3"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "colorama",
+    "versions": [
+      "0.4.6"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "dataclasses-json",
+    "versions": [
+      "0.6.7"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "dirtyjson",
+    "versions": [
+      "1.0.8"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "distro",
+    "versions": [
+      "1.9.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "durationpy",
+    "versions": [
+      "0.10"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "fastapi",
+    "versions": [
+      "0.136.1"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "filelock",
+    "versions": [
+      "3.29.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "filetype",
+    "versions": [
+      "1.2.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "flatbuffers",
+    "versions": [
+      "25.12.19"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "frozenlist",
+    "versions": [
+      "1.8.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "fsspec",
+    "versions": [
+      "2026.4.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "googleapis-common-protos",
+    "versions": [
+      "1.75.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "greenlet",
+    "versions": [
+      "3.5.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "griffe",
+    "versions": [
+      "2.0.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "griffecli",
+    "versions": [
+      "2.0.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "griffelib",
+    "versions": [
+      "2.0.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "grpcio",
+    "versions": [
+      "1.80.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "h11",
+    "versions": [
+      "0.16.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "hf-xet",
+    "versions": [
+      "1.5.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "httpcore",
+    "versions": [
+      "1.0.9"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "httptools",
+    "versions": [
+      "0.7.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "httpx",
+    "versions": [
+      "0.28.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "huggingface-hub",
+    "versions": [
+      "1.14.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "huggingface_hub",
+    "versions": [
+      "1.14.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "idna",
+    "versions": [
+      "3.15"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "importlib-metadata",
+    "versions": [
+      "8.7.1"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "importlib-resources",
+    "versions": [
+      "7.1.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "importlib_metadata",
+    "versions": [
+      "8.7.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "importlib_resources",
+    "versions": [
+      "7.1.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "iniconfig",
+    "versions": [
+      "2.3.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "jiter",
+    "versions": [
+      "0.14.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "joblib",
+    "versions": [
+      "1.5.3"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "jsonschema",
+    "versions": [
+      "4.26.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "jsonschema-specifications",
+    "versions": [
+      "2025.9.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "kubernetes",
+    "versions": [
+      "35.0.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "librt",
+    "versions": [
+      "0.11.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "llama-index",
+    "versions": [
+      "0.14.21"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "llama-index-core",
+    "versions": [
+      "0.14.21"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "llama-index-embeddings-openai",
+    "versions": [
+      "0.6.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "llama-index-instrumentation",
+    "versions": [
+      "0.5.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "llama-index-llms-openai",
+    "versions": [
+      "0.7.8"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "llama-index-workflows",
+    "versions": [
+      "2.20.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "markdown-it-py",
+    "versions": [
+      "4.2.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "marshmallow",
+    "versions": [
+      "3.26.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "mdurl",
+    "versions": [
+      "0.1.2"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "mmh3",
+    "versions": [
+      "5.2.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "mpmath",
+    "versions": [
+      "1.3.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "multidict",
+    "versions": [
+      "6.7.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "mypy",
+    "versions": [
+      "2.1.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "mypy-extensions",
+    "versions": [
+      "1.1.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "mypy_extensions",
+    "versions": [
+      "1.1.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "nest-asyncio",
+    "versions": [
+      "1.6.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "networkx",
+    "versions": [
+      "3.6.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "nltk",
+    "versions": [
+      "3.9.4"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "numpy",
+    "versions": [
+      "2.4.4"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "oauthlib",
+    "versions": [
+      "3.3.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "onnxruntime",
+    "versions": [
+      "1.26.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "openai",
+    "versions": [
+      "2.36.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "opentelemetry-api",
+    "versions": [
+      "1.41.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "opentelemetry-exporter-otlp-proto-common",
+    "versions": [
+      "1.41.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "opentelemetry-exporter-otlp-proto-grpc",
+    "versions": [
+      "1.41.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "opentelemetry-proto",
+    "versions": [
+      "1.41.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "opentelemetry-sdk",
+    "versions": [
+      "1.41.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "opentelemetry-semantic-conventions",
+    "versions": [
+      "0.62b1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "orjson",
+    "versions": [
+      "3.11.9"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "overrides",
+    "versions": [
+      "7.7.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "packaging",
+    "versions": [
+      "26.2"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pathspec",
+    "versions": [
+      "1.1.1"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pillow",
+    "versions": [
+      "12.2.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "pip",
+    "versions": [
+      "26.1.1"
+    ],
+    "repos": [
+      "root"
+    ],
+    "runtime": [
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "site-packages"
+  },
+  {
+    "package": "platformdirs",
+    "versions": [
+      "4.9.6"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "pluggy",
+    "versions": [
+      "1.6.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "propcache",
+    "versions": [
+      "0.5.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "protobuf",
+    "versions": [
+      "6.33.6"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pybase64",
+    "versions": [
+      "1.4.3"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pydantic",
+    "versions": [
+      "2.13.4"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pydantic-core",
+    "versions": [
+      "2.46.4"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pydantic-settings",
+    "versions": [
+      "2.14.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pydantic_core",
+    "versions": [
+      "2.46.4"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "pygments",
+    "versions": [
+      "2.20.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pypika",
+    "versions": [
+      "0.51.1"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pyproject-hooks",
+    "versions": [
+      "1.2.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pyproject_hooks",
+    "versions": [
+      "1.2.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "pytest",
+    "versions": [
+      "9.0.3"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pytest-asyncio",
+    "versions": [
+      "1.3.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "python-dateutil",
+    "versions": [
+      "2.9.0.post0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "python-dotenv",
+    "versions": [
+      "1.2.2"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "pyyaml",
+    "versions": [
+      "6.0.3"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "referencing",
+    "versions": [
+      "0.37.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "regex",
+    "versions": [
+      "2026.5.9"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "requests",
+    "versions": [
+      "2.34.0",
+      "2.34.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "requests-oauthlib",
+    "versions": [
+      "2.0.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "rich",
+    "versions": [
+      "15.0.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "rpds-py",
+    "versions": [
+      "0.30.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "ruff",
+    "versions": [
+      "0.15.13"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "safetensors",
+    "versions": [
+      "0.7.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "scikit-learn",
+    "versions": [
+      "1.8.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "scipy",
+    "versions": [
+      "1.17.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "sentence-transformers",
+    "versions": [
+      "5.5.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "setuptools",
+    "versions": [
+      "81.0.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "shellingham",
+    "versions": [
+      "1.5.4"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "six",
+    "versions": [
+      "1.17.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "sniffio",
+    "versions": [
+      "1.3.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "starlette",
+    "versions": [
+      "1.0.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "sympy",
+    "versions": [
+      "1.14.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "tenacity",
+    "versions": [
+      "9.1.4"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "threadpoolctl",
+    "versions": [
+      "3.6.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "tiktoken",
+    "versions": [
+      "0.12.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "tinytag",
+    "versions": [
+      "2.2.1"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "tokenizers",
+    "versions": [
+      "0.22.2",
+      "0.23.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "torch",
+    "versions": [
+      "2.11.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "tqdm",
+    "versions": [
+      "4.67.3"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "transformers",
+    "versions": [
+      "5.8.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "typer",
+    "versions": [
+      "0.25.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "typing-extensions",
+    "versions": [
+      "4.15.0"
+    ],
+    "repos": [
+      "astraeus-core"
+    ],
+    "runtime": [
+      "runtime/core"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "typing-inspect",
+    "versions": [
+      "0.9.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "typing-inspection",
+    "versions": [
+      "0.4.2"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "typing_extensions",
+    "versions": [
+      "4.15.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "urllib3",
+    "versions": [
+      "2.7.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "uvicorn",
+    "versions": [
+      "0.46.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "uvloop",
+    "versions": [
+      "0.22.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "watchfiles",
+    "versions": [
+      "1.1.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "websocket-client",
+    "versions": [
+      "1.9.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "websockets",
+    "versions": [
+      "16.0"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  },
+  {
+    "package": "wheel",
+    "versions": [
+      "0.47.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "wrapt",
+    "versions": [
+      "2.1.2"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "yarl",
+    "versions": [
+      "1.23.0"
+    ],
+    "repos": [
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": false,
+    "source": "requirements.txt"
+  },
+  {
+    "package": "zipp",
+    "versions": [
+      "3.23.1"
+    ],
+    "repos": [
+      "astraeus-core",
+      "ai-system",
+      "root"
+    ],
+    "runtime": [
+      "runtime/core",
+      "runtime/research",
+      "runtime/shared"
+    ],
+    "locked": true,
+    "source": "uv.lock"
+  }
+]

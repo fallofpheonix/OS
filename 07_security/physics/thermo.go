@@ -1,8 +1,13 @@
 package physics
 
 import (
+	"math"
+
 	"phoenix/security/physics/disorder"
 )
+
+// StateVector is a lightweight compatibility alias for the integrated model demo.
+type StateVector []float64
 
 // SystemState represents the thermodynamic state of the system.
 type SystemState struct {
@@ -15,7 +20,7 @@ type SystemState struct {
 // ComputeState calculates the full thermodynamic state from event distributions.
 func ComputeState(counts map[string]float64, threatScore float64) SystemState {
 	sdi := disorder.CalculateSDI(counts)
-	
+
 	// Abstractions:
 	// Energy is the total volume of activity (normalized).
 	var energy float64
@@ -33,4 +38,33 @@ func ComputeState(counts map[string]float64, threatScore float64) SystemState {
 		Energy:      energy,
 		Disorder:    sdi,
 	}
+}
+
+// CalculateSDI computes a simple disorder score from a discrete state vector.
+func CalculateSDI(states StateVector) float64 {
+	if len(states) == 0 {
+		return 0
+	}
+	counts := make(map[float64]float64)
+	for _, state := range states {
+		counts[state]++
+	}
+	var sdi float64
+	total := float64(len(states))
+	for _, count := range counts {
+		p := count / total
+		if p > 0 {
+			sdi -= p * math.Log(p)
+		}
+	}
+	return sdi
+}
+
+// CalculateEnergy returns a tiny deterministic energy estimate used by the demo.
+func CalculateEnergy(states StateVector, j, h float64) float64 {
+	var sum float64
+	for _, state := range states {
+		sum += math.Abs(state)
+	}
+	return (sum * j) + (float64(len(states)) * h)
 }

@@ -1,0 +1,10 @@
+metrics:
+  performance:
+    - episodic_reward
+    - success_rate
+    - steps_to_goal
+  training:
+    - value_loss
+    - policy_loss
+    - entropy
+    - kl_divergence

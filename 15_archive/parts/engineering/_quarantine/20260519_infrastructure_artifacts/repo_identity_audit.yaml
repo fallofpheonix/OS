@@ -1,0 +1,126 @@
+- repo: fallofpheonix
+  current_name: fallofpheonix
+  category: PROFILE
+  meaning: Primary identity and entry point
+  clarity_score: 100
+  rename_needed: false
+  risk: LOW
+- repo: brain
+  current_name: brain
+  category: CORE
+  meaning: Cognitive core of the system
+  clarity_score: 90
+  rename_needed: true
+  risk: MEDIUM
+- repo: forge-agent
+  current_name: forge-agent
+  category: CORE
+  meaning: Primary execution agent
+  clarity_score: 100
+  rename_needed: false
+  risk: LOW
+- repo: control-plane
+  current_name: control-plane
+  category: CORE
+  meaning: System orchestration layer
+  clarity_score: 100
+  rename_needed: false
+  risk: LOW
+- repo: infrastructure
+  current_name: infrastructure
+  category: CORE
+  meaning: Foundation and deployment logic
+  clarity_score: 95
+  rename_needed: false
+  risk: LOW
+- repo: astraeus-core
+  current_name: astraeus-core
+  category: CORE
+  meaning: Framework kernel
+  clarity_score: 100
+  rename_needed: false
+  risk: LOW
+- repo: ecosystem_os
+  current_name: ecosystem_os
+  category: CORE
+  meaning: Ecosystem operating system logic
+  clarity_score: 85
+  rename_needed: true
+  risk: MEDIUM
+- repo: runtime
+  current_name: runtime
+  category: RUNTIME
+  meaning: Core execution runtime
+  clarity_score: 80
+  rename_needed: true
+  risk: MEDIUM
+- repo: physics
+  current_name: physics
+  category: SCIENTIFIC
+  meaning: P1 Physics layer
+  clarity_score: 90
+  rename_needed: true
+  risk: LOW
+- repo: mathematics
+  current_name: mathematics
+  category: SCIENTIFIC
+  meaning: P2 Mathematics layer
+  clarity_score: 90
+  rename_needed: true
+  risk: LOW
+- repo: simulation
+  current_name: simulation
+  category: SCIENTIFIC
+  meaning: P3 Simulation layer
+  clarity_score: 90
+  rename_needed: true
+  risk: LOW
+- repo: reinforcement-learning
+  current_name: reinforcement-learning
+  category: SCIENTIFIC
+  meaning: P4 RL layer
+  clarity_score: 90
+  rename_needed: true
+  risk: LOW
+- repo: memory-engine
+  current_name: memory-engine
+  category: SCIENTIFIC
+  meaning: P5 Memory layer
+  clarity_score: 95
+  rename_needed: true
+  risk: LOW
+- repo: neuromorphic-computing
+  current_name: neuromorphic-computing
+  category: SCIENTIFIC
+  meaning: P6 Neuromorphic layer
+  clarity_score: 90
+  rename_needed: true
+  risk: LOW
+- repo: agent-swarm
+  current_name: agent-swarm
+  category: SCIENTIFIC
+  meaning: P7 Swarm layer
+  clarity_score: 95
+  rename_needed: true
+  risk: LOW
+- repo: autoeit-suite
+  current_name: autoeit-suite
+  category: PRODUCT
+  meaning: Automated EIT analysis suite
+  clarity_score: 85
+  rename_needed: false
+  risk: LOW
+- repo: ledger-core
+  current_name: ledger-core
+  category: CORE
+  meaning: Transactional and accounting core
+  clarity_score: 100
+  rename_needed: false
+  risk: LOW
+- repo: TrustLab
+  current_name: TrustLab
+  category: RESEARCH
+  meaning: Trust and verification research
+  clarity_score: 80
+  rename_needed: true
+  risk: LOW

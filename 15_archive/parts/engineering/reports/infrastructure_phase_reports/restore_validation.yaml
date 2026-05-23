@@ -1,0 +1,47 @@
+restoration_verification:
+  methods:
+    - github_clone
+    - cache_restore
+    - archive_restore
+    - editable_reinstall
+  repos:
+    AutoMation-Engine:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    my-portfolio:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    agents:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    aegis-auth:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    TrustLab:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    OS:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    truenotes:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED
+    ledger-core:
+      clone: PASSED
+      cache: PASSED
+      archive: PASSED
+      install: PASSED

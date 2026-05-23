@@ -1,0 +1,22 @@
+solvers:
+  linear_solver_base:
+    status: planned
+    target: linear
+  sparse_solver:
+    status: planned
+    target: linear
+  ODE_solver:
+    status: planned
+    target: ODE
+  PDE_solver:
+    status: planned
+    target: PDE
+  optimizer_base:
+    status: planned
+    target: optimization
+  distribution_engine:
+    status: planned
+    target: probability
+  graph_engine:
+    status: planned
+    target: graphs

@@ -1,0 +1,71 @@
+registry:
+  - repo: brain
+    domain: cognition
+    runtime: root_uv_env
+    owner: system
+    status: ACTIVE
+    risk: LOW
+    research: true
+    archive: false
+    visibility: PRIVATE
+    criticality: HIGH
+  - repo: astraeus-core
+    domain: simulation
+    runtime: astraeus_core_env
+    owner: system
+    status: ACTIVE
+    risk: MEDIUM
+    research: true
+    archive: false
+    visibility: PRIVATE
+    criticality: HIGH
+  - repo: forge-agent
+    domain: agents
+    runtime: root_uv_env
+    owner: system
+    status: ACTIVE
+    risk: MEDIUM
+    research: true
+    archive: false
+    visibility: PRIVATE
+    criticality: MEDIUM
+  - repo: truenotes
+    domain: application
+    runtime: root_uv_env
+    owner: system
+    status: ACTIVE
+    risk: LOW
+    research: false
+    archive: false
+    visibility: PRIVATE
+    criticality: LOW
+  - repo: ParticleStimulator
+    domain: physics
+    runtime: shadow_runtime
+    owner: system
+    status: ARCHIVED
+    risk: LOW
+    research: true
+    archive: true
+    visibility: PRIVATE
+    criticality: LOW
+  - repo: AutoEIT-STS
+    domain: physics
+    runtime: shadow_runtime
+    owner: system
+    status: ARCHIVED
+    risk: LOW
+    research: true
+    archive: true
+    visibility: PRIVATE
+    criticality: LOW
+  - repo: TrustLab
+    domain: agents
+    runtime: root_uv_env
+    owner: system
+    status: ACTIVE
+    risk: MEDIUM
+    research: true
+    archive: false
+    visibility: PRIVATE
+    criticality: MEDIUM

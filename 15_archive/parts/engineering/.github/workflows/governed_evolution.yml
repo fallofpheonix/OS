@@ -1,0 +1,27 @@
+name: Governed Evolution Pipeline
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Nightly run
+  push:
+    branches: [ main ]
+
+jobs:
+  operational-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          
+      - name: Install Base Requirements
+        run: |
+          python -m pip install --upgrade pip pyyaml pydantic
+          
+      - name: Execute Pipeline
+        run: |
+          ./infrastructure/scripts/operational_governance.sh

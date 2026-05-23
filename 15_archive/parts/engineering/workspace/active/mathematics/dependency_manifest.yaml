@@ -1,0 +1,17 @@
+dependencies:
+  core:
+    - name: numpy
+      version: ">=1.20"
+    - name: scipy
+      version: ">=1.7"
+    - name: sympy
+      version: ">=1.9"
+    - name: networkx
+      version: ">=2.6"
+  internal:
+    - name: physics
+      repo: github.com/fallofpheonix/physics
+  scientific:
+    - name: simulation
+      repo: github.com/fallofpheonix/simulation
+      status: PENDING_P3

@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    "core",
+    "research",
+    "shared",
+    "archive"
+  ],
+  "edges": [
+    {
+      "from": "research",
+      "to": "shared",
+      "type": "dependency reuse",
+      "shared_libraries_count": 129,
+      "coupling": "high"
+    },
+    {
+      "from": "core",
+      "to": "research",
+      "type": "dependency reuse",
+      "shared_libraries_count": 66,
+      "coupling": "high"
+    },
+    {
+      "from": "core",
+      "to": "shared",
+      "type": "dependency reuse",
+      "shared_libraries_count": 66,
+      "coupling": "high"
+    },
+    {
+      "from": "shared",
+      "to": "core",
+      "type": "cross-runtime coupling",
+      "coupling": "high"
+    },
+    {
+      "from": "shared",
+      "to": "research",
+      "type": "cross-runtime coupling",
+      "coupling": "high"
+    }
+  ]
+}

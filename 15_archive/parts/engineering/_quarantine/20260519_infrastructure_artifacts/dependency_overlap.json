@@ -1,0 +1,33 @@
+{
+  "shared_packages": [
+    "chromadb",
+    "fastapi",
+    "pydantic",
+    "requests",
+    "uvicorn",
+    "pyyaml",
+    "anyio",
+    "numpy",
+    "pytest",
+    "ruff"
+  ],
+  "conflicts": [
+    {
+      "package": "chromadb",
+      "versions": ["0.5.5", "1.5.9"],
+      "envs": ["astraeus-core", "ai-system"]
+    },
+    {
+      "package": "pydantic",
+      "versions": ["2.9.2", "2.13.4"],
+      "envs": ["astraeus-core", "ai-system"]
+    }
+  ],
+  "version_drift": {
+    "python": ["3.12", "3.14"]
+  },
+  "merge_candidates": [
+    "astraeus-core",
+    "ai-system (subset)"
+  ]
+}

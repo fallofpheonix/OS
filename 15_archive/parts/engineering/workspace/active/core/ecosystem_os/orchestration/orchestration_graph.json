@@ -1,0 +1,27 @@
+{
+  "orchestration": {
+    "nodes": [
+      { "id": "brain", "type": "cognition", "runtime": "root_uv_env" },
+      { "id": "astraeus-core", "type": "simulation", "runtime": "astraeus_core_env" },
+      { "id": "forge-agent", "type": "agents", "runtime": "root_uv_env" },
+      { "id": "workspace", "type": "execution", "runtime": "multiple" },
+      { "id": "archive", "type": "storage", "runtime": "none" }
+    ],
+    "relations": {
+      "runtime": [
+        { "source": "astraeus-core", "target": "astraeus_core_env" },
+        { "source": "brain", "target": "root_uv_env" }
+      ],
+      "research": [
+        { "source": "brain", "target": "forge-agent" },
+        { "source": "forge-agent", "target": "TrustLab" }
+      ],
+      "ownership": [
+        { "source": "system", "target": "brain" }
+      ],
+      "dependencies": [
+        { "source": "astraeus-core", "target": "brain", "type": "high coupling" }
+      ]
+    }
+  }
+}

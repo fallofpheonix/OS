@@ -1,0 +1,1370 @@
+[
+  {
+    "package": "Deprecated",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "Jinja2",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "MarkupSafe",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "PyPika",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "PyYAML",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "Pygments",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "SQLAlchemy",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "aiohappyeyeballs",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "aiohttp",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "aiosignal",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "aiosqlite",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "annotated-doc",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "annotated-types",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "anyio",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "ast-serialize",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "astraeus-core",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "attrs",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "banks",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "bcrypt",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "build",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "certifi",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "charset-normalizer",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "chromadb",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "click",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "colorama",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "dataclasses-json",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "dirtyjson",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "distro",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "durationpy",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "fastapi",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "filelock",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "filetype",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "flatbuffers",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "frozenlist",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "fsspec",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "googleapis-common-protos",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "greenlet",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "griffe",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "griffecli",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "griffelib",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "grpcio",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "h11",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "hf-xet",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "httpcore",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "httptools",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "httpx",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "huggingface-hub",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "huggingface_hub",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "idna",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "importlib-metadata",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "importlib-resources",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "importlib_metadata",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "importlib_resources",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "iniconfig",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "jiter",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "joblib",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "jsonschema",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "jsonschema-specifications",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "kubernetes",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "librt",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "llama-index",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "llama-index-core",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "llama-index-embeddings-openai",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "llama-index-instrumentation",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "llama-index-llms-openai",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "llama-index-workflows",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "markdown-it-py",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "marshmallow",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "mdurl",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "mmh3",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "mpmath",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "multidict",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "mypy",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "mypy-extensions",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "mypy_extensions",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "nest-asyncio",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "networkx",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "nltk",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "numpy",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "oauthlib",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "onnxruntime",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "openai",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-api",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-exporter-otlp-proto-common",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-exporter-otlp-proto-grpc",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-proto",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-sdk",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "opentelemetry-semantic-conventions",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "orjson",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "overrides",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "packaging",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pathspec",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pillow",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pip",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "platformdirs",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pluggy",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "propcache",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "protobuf",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pybase64",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pydantic",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pydantic-core",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pydantic-settings",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pydantic_core",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pygments",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pypika",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pyproject-hooks",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pyproject_hooks",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pytest",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "pytest-asyncio",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "python-dateutil",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "python-dotenv",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "pyyaml",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "referencing",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "regex",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "requests",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "requests-oauthlib",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "rich",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "rpds-py",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "ruff",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "safetensors",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "scikit-learn",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "scipy",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "sentence-transformers",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "setuptools",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "shellingham",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "six",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "sniffio",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "starlette",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "sympy",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "tenacity",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "threadpoolctl",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "tiktoken",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "tinytag",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "tokenizers",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "torch",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "tqdm",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "transformers",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "typer",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "typing-extensions",
+    "owner_runtime": "runtime/core",
+    "shared": false,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": true
+  },
+  {
+    "package": "typing-inspect",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "typing-inspection",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "typing_extensions",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "urllib3",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "uvicorn",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "uvloop",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "watchfiles",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "websocket-client",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "websockets",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "wheel",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "wrapt",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "yarl",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": false,
+    "locked": false,
+    "research_only": false,
+    "core_only": false
+  },
+  {
+    "package": "zipp",
+    "owner_runtime": "shared",
+    "shared": true,
+    "critical": true,
+    "locked": true,
+    "research_only": false,
+    "core_only": false
+  }
+]

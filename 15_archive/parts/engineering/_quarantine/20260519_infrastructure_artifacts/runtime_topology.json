@@ -1,0 +1,64 @@
+{
+  "runtime": {
+    "root_uv_env": {
+      "path": "/Users/fallofpheonix/engineering/.venv",
+      "type": "uv",
+      "repo": "root",
+      "shared": true,
+      "active": true,
+      "nested": false,
+      "risk": "LOW",
+      "python_version": "3.14",
+      "dependencies": []
+    },
+    "astraeus_core_env": {
+      "path": "/Users/fallofpheonix/engineering/workspace/active/astraeus-core/.venv",
+      "type": "uv",
+      "repo": "astraeus-core",
+      "shared": false,
+      "active": true,
+      "nested": false,
+      "risk": "MEDIUM",
+      "python_version": "3.12",
+      "dependencies": [
+        "chromadb",
+        "fastapi",
+        "pydantic",
+        "requests",
+        "uvicorn",
+        "pyyaml"
+      ]
+    },
+    "ai_system_env": {
+      "path": "/Users/fallofpheonix/engineering/environments/ai-system/venv",
+      "type": "venv",
+      "repo": "environments",
+      "shared": false,
+      "active": true,
+      "nested": false,
+      "risk": "HIGH",
+      "python_version": "unknown",
+      "dependencies": [
+        "llama-index",
+        "openai",
+        "torch",
+        "transformers",
+        "chromadb",
+        "fastapi",
+        "pydantic"
+      ]
+    }
+  },
+  "shadow_runtimes": [
+    {
+      "path": "/Users/fallofpheonix/engineering/archive/workspace_old/Noesis",
+      "type": "manifest_only",
+      "repo": "Noesis"
+    },
+    {
+      "path": "/Users/fallofpheonix/engineering/workspace",
+      "type": "missing_venv",
+      "repo": "workspace"
+    }
+  ]
+}

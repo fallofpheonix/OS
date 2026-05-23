@@ -1,0 +1,10 @@
+layer:
+  id: P7
+  name: Agent Swarm
+  registry:
+    - swarm_registry.yaml
+  interfaces:
+    next: BRAIN_INTEGRATION
+    previous: P6_NEUROMORPHIC
+  stability: 1.0
+  status: ACTIVE

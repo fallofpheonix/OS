@@ -1,0 +1,34 @@
+registry:
+  linear_algebra:
+    vectors: true
+    matrices: true
+    eigen_systems: true
+    sparse_ops: true
+  optimization:
+    gradient_descent: true
+    constrained_optimization: true
+    convex_systems: true
+  probability:
+    distributions: true
+    bayesian_systems: true
+    sampling: true
+  graphs:
+    nodes: true
+    edges: true
+    connectivity: true
+    flow: true
+  ODE:
+    integrators: true
+    state_evolution: true
+    dynamics: true
+  PDE:
+    field_systems: true
+    boundary_problems: true
+  statistics:
+    estimation: true
+    hypothesis_tests: true
+    uncertainty: true
+  info_theory:
+    entropy: true
+    mutual_information: true
+    compression: true

@@ -1,0 +1,85 @@
+# repo-analyzer
+
+A local repository intelligence system for semantic code analysis, module extraction, and architecture discovery.
+
+## Capabilities
+
+### Feature 1: Repo Scanner
+```bash
+analyze ~/engineering/workspace/project-x
+```
+
+Outputs:
+- Languages discovered
+- Dependencies mapped
+- File graph structure
+- Architecture topology
+
+### Feature 2: Semantic Search
+```bash
+analyze --search ~/engineering/workspace "Where is authentication handled?"
+```
+
+Uses embeddings to find relevant code sections.
+
+### Feature 3: Extraction Detector
+Find:
+- Duplicated utilities
+- Reusable modules
+- Dead code
+- Tightly coupled systems
+
+## Architecture
+
+```
+Repository
+   ↓
+Parser (tree-sitter)
+   ↓
+Chunker
+   ↓
+Embeddings (sentence-transformers)
+   ↓
+Vector DB (ChromaDB)
+   ↓
+Semantic Search
+   ↓
+Code Analysis
+   ↓
+Module Extraction Suggestions
+```
+
+## Components
+
+- **ingest/**: Repository scanning and file discovery
+- **parsers/**: Language-specific code parsing with tree-sitter
+- **embeddings/**: Embedding generation via sentence-transformers
+- **vector_store/**: ChromaDB integration and storage
+- **analyzers/**: Code analysis and pattern detection
+- **extraction/**: Module extraction and refactoring suggestions
+- **contracts/**: Data models and type definitions
+- **cli/**: Command-line interface
+
+## Requirements
+
+- Python 3.12+
+- ChromaDB 1.5.9
+- sentence-transformers 5.5.0
+- tree-sitter 0.25.2
+- llama-index 0.14.21
+
+## Setup
+
+```bash
+cd ~/engineering/workspace/repo-analyzer
+source ~/engineering/environments/ai-system/venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Usage
+
+```bash
+python -m repo_analyzer.cli analyze ~/engineering/workspace/project-x
+
+python -m repo_analyzer.cli search --query "Where is authentication?" --repo ~/engineering/workspace
+```

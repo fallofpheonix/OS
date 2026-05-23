@@ -1,0 +1,13 @@
+physics_attachment:
+  linear_algebra:
+    target: physics-runtime/inverse
+    usage: reconstruction, parameter_estimation
+  ODE:
+    target: physics-runtime/particles
+    usage: motion_integration, state_evolution
+  PDE:
+    target: physics-runtime/electromagnetics
+    usage: field_solvers, boundary_problems
+  optimization:
+    target: physics-runtime/control
+    usage: stability_tuning, feedback_optimization

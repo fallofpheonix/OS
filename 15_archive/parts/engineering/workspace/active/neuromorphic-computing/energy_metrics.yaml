@@ -1,0 +1,7 @@
+metrics:
+  power_efficiency:
+    - nj_per_spike
+    - events_per_watt
+  compute_load:
+    - synaptic_ops_per_second
+    - active_neurons_percentage

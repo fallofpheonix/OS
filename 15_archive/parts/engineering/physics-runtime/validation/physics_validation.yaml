@@ -1,0 +1,26 @@
+validation:
+  version: 1.0
+  checks:
+    registry:
+      file: physics_registry.yaml
+      rules:
+        - exists
+        - keys_populated
+    runtime:
+      file: runtime_manifest.yaml
+      rules:
+        - module_paths_valid
+    research:
+      file: research/physics_thresholds.md
+      rules:
+        - sections_complete
+    manifests:
+      files:
+        - repo_manifest.yaml
+        - dependency_manifest.yaml
+      rules:
+        - syntax_valid
+    health:
+      file: health.yaml
+      rules:
+        - overall_stable
