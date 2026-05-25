@@ -1,4 +1,0 @@
-[
-  {"ts": 0, "host": "lab-vm", "proc": "writer", "path": "/tmp/r001_test_95682.1", "event": "write", "bytes": 65536},
-  {"ts": 1, "host": "lab-vm", "proc": "writer", "path": "/tmp/r001_test_95682.2", "event": "write", "bytes": 65536}
-]

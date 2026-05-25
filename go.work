@@ -2,20 +2,15 @@ go 1.26
 
 use (
 	.
-	./external/integrated/phoenix-contracts
-	./external/integrated/phoenix-control
-	./external/integrated/phoenix-logic
-	./external/integrated/phoenix-runtime
-	./phoenix_os/kernel
-	./phoenix_os/kernel/sandbox
-	./phoenix_os/ledger
-	./phoenix_os/nexus_coordination
-	./phoenix_os/security
-	./phoenix_os/security/integrated_model
-	./phoenix_os/security/physics
-	./phoenix_os/telemetry
-	./phoenix_os/telemetry/entropy_engine_go
-	./phoenix_os/telemetry/process_graphs
-	./tools/interface
-	./tools/malware
+	./pheonixmind-core
+	./pheonixmind-memory
+	./pheonixmind-validator
+	./phoenixmind-agents
+	./phoenixmind-datasets
+	./phoenixmind-model-router
+	./phoenixmind-observability
+	./phoenixmind-runtime
+	./phoenixmind-sandbox
+	./phoenixmind-security
+	./phoenixmind-training
 )

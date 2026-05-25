@@ -1,5 +1,0 @@
-python_version: 3.14.3
-package_count: 129
-hash: 12f151d7ac15d8f223042cdcc840be9168814d45e0bc8159a1a4ce9f5c9079d4
-source_lock: environments/ai-system/requirements.txt
-runtime_type: research

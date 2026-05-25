@@ -1,7 +1,0 @@
-health_status:
-  runtime_health: HEALTHY
-  research_health: HEALTHY
-  archive_health: HEALTHY
-  dependency_health: WARNING
-  coordination_health: UNSTABLE
-  overall_state: WARNING

@@ -1,9 +1,0 @@
-status: READY
-archived_source: archive/github_backed/modules
-target_path: modules/
-readiness_checks:
-  source_exists: true
-  target_vacant: true
-  rollback_possible: true
-rollback_path: archive/github_backed/modules
-verification_timestamp: "2026-05-19"

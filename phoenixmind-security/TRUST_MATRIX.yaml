@@ -1,0 +1,23 @@
+core:
+  read:
+    - memory
+    - validator
+  write:
+    - observability
+
+training:
+  read:
+    - datasets
+  write:
+    - checkpoints
+
+sandbox:
+  read:
+    - runtime
+  write:
+    - snapshots
+
+agents:
+  read:
+    - interfaces
+  write: []

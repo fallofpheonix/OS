@@ -1,1 +1,0 @@
-# Cognition Engine Validation

@@ -1,119 +1,0 @@
-Here’s a research-backed map for neuromorphic computing, focused on what actually seems to improve performance, efficiency, and biological plausibility. The strongest themes across the literature are better SNN training, local learning rules, event-driven execution, and hardware that reduces memory movement and synchronization overhead.
-
-What matters most
-The literature keeps converging on three main levers: train spiking models well, keep computation sparse/event-driven, and move memory closer to compute. That is why SNN training methods, local learning rules, and in-memory or near-memory architectures are the highest-value research directions.
-
-SNN training methods
-A major bottleneck is that deep SNNs still lack a single training method that is both accurate and hardware-friendly. Recent work shows that surrogate-gradient training can bring SNN accuracy close to ANNs, while ANN-to-SNN conversion can work well but often needs more spikes and longer simulation windows. Local methods are especially attractive because they reduce communication and fit neuromorphic hardware constraints better.
-
-What the papers suggest
-* Surrogate-gradient SNNs can match ANN accuracy closely, sometimes within about 1–2%, but they still need careful optimization to stay energy efficient. 
-* ANN-to-SNN conversion is useful as a bridge strategy, but it is not always the best for latency or spike count. 
-* Local Tandem Learning improves efficiency by decoupling layer learning and achieved rapid convergence on CIFAR-like tasks, while being hardware friendly. 
-* EchoSpike Predictive Plasticity proposes an online local rule based on predictive and contrastive coding, which is promising for continual adaptation. 
-Best research improvement
-The biggest next step is hybrid training: use global optimization during development, then local online adaptation on-chip. That combines accuracy with biological and hardware realism.
-
-Local learning rules
-Local learning rules matter because they can be implemented directly on hardware without expensive backpropagation through time. This is one of the clearest places where neuromorphic computing differs from transformer-era ML: the goal is not just accuracy, but learning with local signals and low communication cost.
-
-What improves local learning
-* Predictive or contrastive local objectives, rather than only Hebbian updates. 
-* Teacher-student or layerwise schemes that reduce global dependency. 
-* Continuous online updating for closed-loop settings like BMI and robotics. 
-Best research improvement
-A strong direction is to unify STDP-like updates, predictive coding, and online calibration in one rule family. That would make learning more biologically plausible and more deployable on-device.
-
-Energy-efficient cognition
-Energy efficiency is not just about lower wattage; it is about matching computation to the sparsity and timing structure of real-world signals. Neuromorphic systems like TrueNorth and Loihi show that when computation is sparse and event-driven, large power savings become possible. IBM’s NorthPole work also shows that eliminating off-chip memory traffic and co-locating compute with memory can dramatically improve energy, latency, and space efficiency.
-
-What the papers suggest
-* TrueNorth is a 65 mW, non-von-Neumann, highly parallel chip designed for real-time neurosynaptic computation. 
-* Loihi 2 reportedly improves on its predecessor by up to 10x and supports an open neuromorphic framework. 
-* NorthPole reports large gains on vision benchmarks by keeping memory on-chip and co-optimizing the programming model. 
-Best research improvement
-Energy-efficient cognition likely depends on matching algorithmic sparsity to hardware sparsity. In practice, that means fewer dense activations, more conditional computation, and fewer memory round-trips.
-
-Event-driven and asynchronous design
-Event-driven computation is one of the most important architectural ideas in neuromorphic systems because it avoids unnecessary work. Instead of clocking every unit every cycle, the system updates only when spikes occur or when state changes matter. This is what makes asynchronous architectures attractive for sensing, robotics, and always-on edge AI.
-
-What improves event-driven systems
-* Use spike-based input encodings from sensors so the hardware naturally stays sparse.
-* Reduce synchronization barriers so chips can process local events independently.
-* Align the model’s temporal resolution with the task’s actual temporal structure.
-Best research improvement
-A key open problem is designing event-driven training objectives that reward sparse useful spikes rather than dense accuracy alone.
-
-Memristors and in-memory computing
-Memristors are promising because they can behave like synapses and support low-power crossbar-style computation. The main appeal is reducing data movement: if weights live where computation happens, energy use drops sharply. Reviews emphasize that memristors can emulate synaptic plasticity and neuronal dynamics, but reliability and industrialization remain major challenges.
-
-What the papers suggest
-* Memristors can implement synapse-like dynamics and low-power neural operations. 
-* Volatile memristors are being explored for neuron-like behavior such as spiking and firing. 
-* Practical deployment still faces device variability, endurance, and fabrication issues. 
-Best research improvement
-The most useful direction is co-design: choose learning rules and network topologies that tolerate device noise and variability instead of assuming ideal hardware.
-
-Hardware exemplars
-TrueNorth and Loihi are useful because they show two different paths toward neuromorphic systems. TrueNorth emphasizes extreme energy efficiency and scale with a non-von-Neumann design. Loihi emphasizes on-chip learning and programmability, which makes it more flexible for adaptive tasks.
-
-How they differ
-
-System	Main strength	Research implication
-IBM TrueNorth	Very low power, large-scale spiking processor	Good model for ultra-efficient inference and sparse deployment
-Intel Loihi / Loihi 2	On-chip learning and flexible neuromorphic programming	Better for adaptive, online, closed-loop systems
-Best research improvement
-Future systems probably need both: TrueNorth-like efficiency and Loihi-like adaptability, combined with better learning rules and memory locality.
-
-Sparse activation systems
-Sparse activation is central because neuromorphic hardware only wins if it avoids dense, always-on computation. Sparse activity also makes systems easier to map to event-driven chips and closer to biological energy budgets. The challenge is preserving accuracy when only a small fraction of units are active at any time.
-
-Best research improvement
-Sparse gating should be learned, not just imposed. If the model can decide when not to compute, it becomes much more hardware-efficient without losing flexibility.
-
-Best research agenda
-If you want a serious research direction, the best package is:
-* Train SNNs with hybrid global + local learning. 
-* Make the model event-driven and sparse by design. 
-* Deploy it on memory-near-compute or memristive hardware. 
-* Optimize for online adaptation and continual learning. 
-* Benchmark it on latency, joules per inference, spike count, robustness, and on-chip learning stability, not only accuracy. 
-A strong thesis-level idea would be: “How can predictive, local learning rules produce sparse spiking cognition that scales on non-Von-Neumann hardware?” That question sits directly at the intersection of SNN training, energy-efficient cognition, and local hardware learning.
-
-Would you like me to turn this into a paper-by-paper annotated reading list or a research roadmap with experiments and project ideas?
-Neuromorphic computing research has reached a critical "scaling" phase in 2026, transitioning from lab-scale prototypes to production-ready hardware that directly addresses the energy crisis of traditional AI.
-
-⚡ Spiking Neural Networks (SNNs) & Training
-The core challenge of SNNs—their non-differentiable nature—is being solved through two dominant 2025–2026 research tracks:
-* Surrogate Gradient (SG) Evolution: Recent papers have optimized SG methods (like Act-BP and Temp-BP) to close the accuracy gap with ANNs. On CIFAR-10, SNNs trained with these methods now achieve 90%+ accuracy while maintaining 2x the adversarial robustness of traditional networks by leveraging "early exit" decoding to ignore input noise (ResearchGate, 2025).  
-* ANN-to-SNN Conversion: New conversion frameworks have demonstrated the ability to map deep convolutional networks to neuromorphic chips with less than a 1% drop in accuracy, while operating at 25–275 mW—orders of magnitude lower than GPU-based inference (PNAS).
-
-🏗️ Hardware Frontiers: Intel & IBM
-Intel Loihi 2
-Released to research partners with massive performance jumps over its predecessor:
-* Throughput: Up to 10x faster processing than Loihi 1.  
-* Programmability: Each neuromorphic core now features a programmable pipeline, allowing for a richer variety of neuron models beyond simple Leaky Integrate-and-Fire (LIF).  
-* Messaging: Supports integer-valued "graded" spikes (Sigma-Delta Neural Networks), allowing for high-precision communication with minimal extra energy cost.  
-* Scale: An 8-chip Loihi 2 board can now support models with up to 1 billion parameters (Intel Labs, 2026).  
-IBM & Large-Scale Systems
-* TrueNorth: Continues to set benchmarks for high-density synaptic operations, delivering approximately 46 billion synaptic operations per second per watt (TrueNorth 2025 Review).  
-* SpiNNaker & Neurogrid: Research is focusing on "SNNs at Scale," with SpiNNaker 2 architectures targeting low-latency perception and real-time robotic control by utilizing 36K neurons per core.
-
-🕹️ In-Memory Computing & Memristors
-The "Von Neumann bottleneck" is being dismantled by memristive devices that fuse memory and computation.
-
-* Extreme Performance: A breakthrough paper in Science (March 2026) detailed a memristor using hafnium oxide and graphene that survived 1 billion switching cycles and operated at 700°C (hotter than the surface of Venus).  
-* Energy Efficiency: Memristor-based matrix multiplication (the core of LLMs) is performed physically via Ohm’s Law, eliminating the need to move data between a processor and RAM. This results in inference that is orders of magnitude faster than a GPU.  
-* Materials: New NbOx/ZrO2 bilayer memristors (2026) have achieved multi-level resistance states with significantly reduced operating voltages, enabling more stable and scalable analog compute (RSC, 2026).  
-
-🔋 The Efficiency Gap (2026 Metrics)
-Metric	Traditional (GPU/ANN)	Neuromorphic (SNN/Loihi)
-Idle Power	High (constant leak)	Near-Zero (event-driven)
-Typical Inference	100W – 300W	25mW – 1W
-Latency	Milliseconds (batched)	Microseconds (asynchronous)
-Scalability	Memory-constrained	Local/Distributed
-Local Learning Rules: Beyond Backprop
-Research into local learning rules is critical because global backpropagation requires storing the entire network's state, which is hardware-expensive.
-* e-prop: An online learning rule that allows SNNs to learn in real-time by approximating gradients locally.  
-* Three-factor learning: Loihi 2 now supports "third-factor" modulatory terms (like a reward signal) to be mapped to specific synapses, enabling more complex reinforcement learning directly on-chip.  
-Given your background in systems architecture, do you see these "event-driven" asynchronous models replacing traditional synchronous pipelines in your own cloud-based projects, or staying confined to edge/IoT devices?

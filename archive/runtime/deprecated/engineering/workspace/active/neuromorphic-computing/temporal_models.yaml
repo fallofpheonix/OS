@@ -1,9 +1,0 @@
-models:
-  synaptic_delay:
-    distribution: "gaussian"
-    mean: 1.5 # ms
-    std: 0.2
-  membrane_dynamics:
-    tau_m: 20.0 # ms
-    v_rest: -70.0 # mV
-    v_thresh: -50.0 # mV

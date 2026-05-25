@@ -1,0 +1,13 @@
+PX-070: COMPLETE
+PX-071: COMPLETE
+PX-072: COMPLETE
+
+PX-073:
+  state: ACTIVE
+  reason: observation_ready
+
+PX-074:
+  state: LOCKED
+
+PX-075:
+  state: LOCKED

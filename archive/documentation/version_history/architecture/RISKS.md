@@ -1,3 +1,0 @@
-- R8: Cross-domain contamination (High: Requires strict isolation)
-- R9: Replay authority bypass (Critical: Requires SHA-256 hash-chain enforcement)
-- R10: Direct telemetry actuation (Critical: Requires Arbiter mediation)

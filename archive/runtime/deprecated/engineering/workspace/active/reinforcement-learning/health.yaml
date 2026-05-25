@@ -1,9 +1,0 @@
-health:
-  status: OK
-  uptime: 0
-  integrity: 1.0
-  components:
-    policy_engine: OK
-    environment_adapters: OK
-    trajectories: OK
-  last_check: "2026-05-19"

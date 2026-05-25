@@ -1,7 +1,0 @@
-module_restoration:
-  - module: modules
-    old_path: archive/github_backed/modules
-    new_path: modules/
-    rollback: mv modules archive/github_backed/modules
-    status: COMPLETED
-timestamp: "2026-05-19"

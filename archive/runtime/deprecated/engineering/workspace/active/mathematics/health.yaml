@@ -1,9 +1,0 @@
-health:
-  status: OK
-  uptime: 0
-  integrity: 1.0
-  components:
-    solvers: OK
-    modules: OK
-    manifests: OK
-  last_check: "2026-05-19"

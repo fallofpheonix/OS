@@ -1,9 +1,0 @@
-health:
-  overall: stable
-  checks:
-    math_registry_integrity: pass
-    solver_registry_readiness: pending
-    physics_attachment_valid: pending
-  metrics:
-    module_count: 8
-    solver_count: 0

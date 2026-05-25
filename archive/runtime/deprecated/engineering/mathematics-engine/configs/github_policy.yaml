@@ -1,9 +1,0 @@
-github_policy:
-  repository: fallofpheonix/mathematics-engine
-  access_mode: CLONE_ON_DEMAND
-  storage_policy: CACHE_TEMP
-  deployment_mode: INSTALL_ONLY
-  sync_frequency: hourly
-  protection_rules:
-    - strict_typing_check
-    - solver_versioning
