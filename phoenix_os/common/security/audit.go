@@ -3,7 +3,7 @@ package security
 import (
 	"crypto/sha256"
 	"fmt"
-	"phoenix/ledger/src"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/truth_ledger/src"
 )
 
 // CryptoAuditor logs cryptographic operations to the ledger for forensic replay.
@@ -20,10 +20,10 @@ func NewCryptoAuditor(l *ledger.Ledger) *CryptoAuditor {
 func (a *CryptoAuditor) AuditHash(data []byte, context string) string {
 	hash := sha256.Sum256(data)
 	hashStr := fmt.Sprintf("%x", hash)
-	
+
 	// Record to ledger
 	a.ledger.AddEntry("CRYPTO-OP", "SHA256", []byte(fmt.Sprintf("ctx:%s,hash:%s", context, hashStr)))
-	
+
 	return hashStr
 }
 

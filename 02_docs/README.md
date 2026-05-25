@@ -1,56 +1,41 @@
-# PhoenixOS Documentation
+# PhoenixOS Documentation Index
 
-This directory contains the authoritative documentation for the PhoenixOS project, organized into a 12-layer architecture to ensure complete system traceability.
+Welcome to the PhoenixOS canonical documentation. The system is divided into functional governance tiers.
 
-## Documentation Structure
+## 00 Identity & Strategy
+- [System Identity](identity/system_identity.md) - Vision, Axioms, and Core Definition.
+- [Execution Roadmap](identity/roadmap.md) - Strategic stages (A-D) and Phased milestones.
+- [Phase Lock](identity/phase_lock.md) - Current active blockers and status board.
 
-### [L0: Governance](./00_governance/)
-Project Vision, Roadmap, Master Status, and Decision Logs (ADRs).
+## 01 Architecture & Models
+- [State Model](architecture/state_model.md) - Warden FSM and Isolation transitions.
+- [Replay Specification](architecture/replay_spec.md) - Determinism and Replay semantics.
+- [Truth Model](architecture/truth_model.md) - Immutable Ledger and Evidence chains.
+- [Decision Model](architecture/decision_model.md) - Strategy and Game Theory (Stackelberg).
 
-### [L1: Architecture](./01_architecture/)
-System Architecture, Component Maps, RFCs, and Technical Specifications.
+## 02 Validation & Reports
+- [Validation Rules](validation/validation_rules.md) - Testing standards and CI/CD gates.
+- [Runtime Reality Audit](validation/runtime_reality_audit.md) - Empirical readiness of all modules.
+- [Kernel Determinism](validation/kernel_runtime_report.md) - Real-world kernel validation results.
+- [Replay Identity](validation/replay_identity_report.md) - 1000-run consistency proof.
+- [Truth Immutability](validation/truth_immutability_report.md) - Evidence non-repudiation proof.
 
-### [L2: Integration](./02_integration/)
-External Repository Tracking, Merge Policies, and Upstream Synchronization.
+## 03 Security & Trust
+- [Threat Model](security/threat_model.md) - Attack surface and vector analysis.
+- [Boundaries](security/boundaries.md) - Strict isolation zones and illegal dependency paths.
+- [RedTeam Report](validation/redteam_runtime_report.md) - Adversarial runtime validation.
 
-### [L3: Agents](./03_agents/)
-AI Agent Registry, Interaction Maps, and Behavior Protocols.
+## 04 External Governance
+- [External Policy](external_governance/external_policy.md) - Intake standards for third-party code.
+- [Repository Matrix](external_governance/external_repo_matrix.md) - Classification of all integrated repos.
+- [Archive Import](external_governance/archive_import.md) - Forensic rules for restoring archived code.
 
-### [L4: Security](./04_security/)
-Threat Models, Attack Surfaces, Security Boundaries, and Incident Response.
+## 05 Research & Theory
+- [Research Policy](research_governance/research_policy.md) - Experimental integration standards.
+- [Quantum Policy](research_governance/quantum_policy.md) - Specific rules for quantum OS modules.
 
-### [L5: Kernel](./05_kernel/)
-Boot Sequence, Process/Memory Models, Scheduler, and IPC Design.
-
-### [L6: Research](./06_research/)
-Experimental Logs, Math Models, Game Theory, and Optimization Logs.
-
-### [L7: Validation](./07_validation/)
-Test Plans, Matrices, Benchmarks, and Verification Reports.
-
-### [L8: Deployment](./08_deployment/)
-Build Pipelines, CI/CD, Release Processes, and Installation Guides.
-
-### [L9: Operations](./09_operations/)
-Telemetry Schemas, Metrics, Observability, and Event Stream Definitions.
-
-### [L10: Runtime AI](./10_runtime_ai/)
-Knowledge Graphs, Model Lifecycle, Learning Policies, and Adaptation Rules.
-
-### [L11: Emergency](./11_emergency/)
-Disaster Recovery, Safe Modes, and Manual Override Protocols.
+## 06 Operations
+- [Risk Matrix](operations/risk_matrix.md) - Strategic risk register and mitigation.
 
 ---
-
-## Shared Resources
-- **[Decisions](./decisions/):** Repository of Architectural Decision Records (ADRs).
-- **[Reports](./reports/):** System health and validation reports.
-- **[Diagrams](./diagrams/):** Visual architectural maps.
-- **[Experiments](./experiments/):** Raw experimental data and logs.
-- **[Archives](./archives/):** Deprecated or historical documentation.
-
-## Documentation Policy
-1. **Traceability:** No code change without a corresponding document update.
-2. **Provenance:** Maintain clear dependency and external repo tracking.
-3. **Auditability:** Every subsystem must maintain state and assumptions.
-4. **Immutability:** Immutable audit trails for all agent-driven modifications.
+*Note: All historical and duplicate documents are stored in `archive/documentation/version_history/`.*

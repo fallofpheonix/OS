@@ -89,8 +89,8 @@ func (b *Bus) Publish(topic string, event TelemetryEvent) {
 			seen := b.overflowSeen[topic]
 			if !seen && b.OnOverflow != nil {
 				b.overflowSeen[topic] = true
-				// Trigger overflow callback synchronously (or async) to log snapshot
-				go b.OnOverflow(topic, fillRatio, event)
+				// Trigger overflow callback synchronously to ensure deterministic ledger ordering
+				b.OnOverflow(topic, fillRatio, event)
 			}
 			b.mu.Unlock()
 
@@ -134,11 +134,11 @@ func (b *Bus) QueuePressure(topic string) float64 {
 	b.mu.RLock()
 	subs, ok := b.subscribers[topic]
 	b.mu.RUnlock()
-	
+
 	if !ok || len(subs) == 0 {
 		return 0.0
 	}
-	
+
 	var maxPressure float64
 	for _, ch := range subs {
 		pressure := float64(len(ch)) / float64(QueueCapacity)

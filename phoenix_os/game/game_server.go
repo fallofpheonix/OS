@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"phoenix/ledger/src"
-	"phoenix/warden"
+	"github.com/fallofpheonix/phoenix-control/warden"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/truth_ledger/src"
 )
 
 type GameServer struct {
@@ -44,7 +44,12 @@ func (gs *GameServer) Start(addr string) {
 
 	log.Printf("[GAME SERVER] Listening on %s\n", addr)
 	go func() {
-		if err := http.ListenAndServe(addr, mux); err != nil {
+		server := &http.Server{
+			Addr:              addr,
+			Handler:           mux,
+			ReadHeaderTimeout: 3 * time.Second,
+		}
+		if err := server.ListenAndServe(); err != nil {
 			log.Printf("[GAME SERVER ERROR] %v\n", err)
 		}
 	}()
@@ -117,11 +122,11 @@ func (gs *GameServer) handleGraph(w http.ResponseWriter, r *http.Request) {
 
 	// Process DAG structures
 	type Node struct {
-		ID       string `json:"id"`
-		Label    string `json:"label"`
-		Title    string `json:"title"`
-		Group    string `json:"group"`
-		Entropy  float64 `json:"entropy"`
+		ID      string  `json:"id"`
+		Label   string  `json:"label"`
+		Title   string  `json:"title"`
+		Group   string  `json:"group"`
+		Entropy float64 `json:"entropy"`
 	}
 
 	type Edge struct {
@@ -160,10 +165,10 @@ func (gs *GameServer) handleGraph(w http.ResponseWriter, r *http.Request) {
 			}
 
 			nodeMap[ev.PID] = Node{
-				ID:    strconv.Itoa(ev.PID),
-				Label: fmt.Sprintf("%s (PID: %d)", ev.Comm, ev.PID),
-				Title: fmt.Sprintf("EXE: %s\nEntropy: %.2f\nEvent: %s", ev.ExePath, entropy, ev.EventType),
-				Group: group,
+				ID:      strconv.Itoa(ev.PID),
+				Label:   fmt.Sprintf("%s (PID: %d)", ev.Comm, ev.PID),
+				Title:   fmt.Sprintf("EXE: %s\nEntropy: %.2f\nEvent: %s", ev.ExePath, entropy, ev.EventType),
+				Group:   group,
 				Entropy: entropy,
 			}
 
@@ -172,14 +177,14 @@ func (gs *GameServer) handleGraph(w http.ResponseWriter, r *http.Request) {
 				// Ensure parent node exists (defaults if not seen yet)
 				if _, exists := nodeMap[ev.PPID]; !exists {
 					nodeMap[ev.PPID] = Node{
-						ID:    strconv.Itoa(ev.PPID),
-						Label: fmt.Sprintf("PID: %d", ev.PPID),
-						Title: "Parent Process (Implicit)",
-						Group: "normal",
+						ID:      strconv.Itoa(ev.PPID),
+						Label:   fmt.Sprintf("PID: %d", ev.PPID),
+						Title:   "Parent Process (Implicit)",
+						Group:   "normal",
 						Entropy: 3.2,
 					}
 				}
-				
+
 				// Avoid adding duplicate edges
 				edgeExists := false
 				fromStr := strconv.Itoa(ev.PPID)

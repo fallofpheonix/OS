@@ -37,7 +37,7 @@ func (q *QuotaManager) AcquireWorker() error {
 	if q.workerLimit > 0 && active >= q.workerLimit {
 		return fmt.Errorf("worker quota exceeded: %d >= %d", active, q.workerLimit)
 	}
-	
+
 	if atomic.CompareAndSwapUint32(&q.workerActive, active, active+1) {
 		return nil
 	}

@@ -7,19 +7,22 @@ import (
 	"os"
 	"time"
 
-	"phoenix/ai"
-	"phoenix/arbiter"
-	"phoenix/boot"
-	"phoenix/bus"
-	"phoenix/common/logical_clock"
-	"phoenix/common/resource"
-	"phoenix/guard"
-	"phoenix/ledger/src"
-	"phoenix/game"
-	"phoenix/monitor"
-	"phoenix/tcs"
-	"phoenix/trace"
-	"phoenix/warden"
+	"github.com/fallofpheonix/phoenix-control/arbiter"
+	"github.com/fallofpheonix/phoenix-control/warden"
+	"github.com/fallofpheonix/phoenix-logic/monitor"
+	"github.com/fallofpheonix/phoenix-logic/tcs"
+	"github.com/fallofpheonix/phoenix-logic/trace"
+	"github.com/fallofpheonix/phoenix-runtime/guard"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/ai"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/boot"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/bus"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/common/logical_clock"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/common/resource"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/containment/rollback"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/game"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/truth_ledger/src"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/recovery"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/telemetry/process_graphs"
 )
 
 func main() {
@@ -29,11 +32,11 @@ func main() {
 
 	// ── 1. Initialize Subsystems (Synchronous Mode) ─────────────
 	b := bus.NewBus()
-	
+
 	// Deterministic Resource Bounding (1GB Limit, 1M Entries)
 	alloc := resource.NewBoundedAllocator(1024*1024*1024, 1000000)
 	evLedger := ledger.NewLedger(alloc)
-	
+
 	logicalClock := logical_clock.NewClock()
 	telemetryWindow := tcs.NewSlidingWindow(60 * time.Second)
 	degMon := tcs.NewDegradationMonitor(telemetryWindow, nil)
@@ -46,11 +49,17 @@ func main() {
 	}
 	defer traceStore.Close()
 
+	// F1: Causal Graph & Recovery
+	graph := process_graphs.NewGraph()
+	orch := &rollback.Orchestrator{} // Simplified for F1
+	recoveryLoop := recovery.NewRecoveryLoop(b, orch)
+	recoveryLoop.Start()
+
 	// Register the Bus Overflow callback to log snapshots
 	b.OnOverflow = func(topic string, pressure float64, event bus.TelemetryEvent) {
 		log.Printf("[BUS OVERFLOW] Triggered snapshot on %s. Pressure: %.2f", topic, pressure)
 		snapshotPayload := []byte(fmt.Sprintf(`{"topic":"%s","pressure":%f,"trigger_event_id":"%s"}`, topic, pressure, event.EventID))
-		
+
 		overflowEvent := bus.TelemetryEvent{
 			SeqID:        -event.SeqID, // negative sequence ID to designate overflow anomaly
 			MonotonicNs:  event.MonotonicNs,
@@ -72,10 +81,12 @@ func main() {
 	aiOrch := ai.NewAIOrchestrator()
 	aiOrch.RegisterFeature(&ai.LedgerFeature{Ledger: evLedger})
 	aiOrch.RegisterFeature(&ai.TraceFeature{Store: traceStore})
+	aiOrch.RegisterFeature(&ai.GraphFeature{Graph: graph})
 	aiOrch.RegisterFeature(&ai.MonitorFeature{Service: mon})
 	aiOrch.RegisterFeature(&ai.TCSFeature{Window: telemetryWindow, DegMon: degMon})
 	aiOrch.RegisterFeature(&ai.ArbiterFeature{Arb: arb})
 	aiOrch.RegisterFeature(&ai.WardenFeature{Warden: w})
+	aiOrch.RegisterFeature(&ai.RealityFeature{AuditPath: "02_docs/02_validation/RUNTIME_REALITY_AUDIT.MD"})
 
 	// ── 1.5 Capture Boot Telemetry (Genesis) ────────────────────
 	bootInfo := []boot.SubsystemInfo{
@@ -90,7 +101,7 @@ func main() {
 		log.Printf("[BOOT] Telemetry capture failed: %v", err)
 	} else {
 		fmt.Printf("[BOOT] Genesis Checksum: %s\n", bt.Checksum)
-		
+
 		// ── 1.6 Verify Boot Integrity (Optional) ──────────────────
 		expectedChecksum := os.Getenv("PHOENIX_BOOT_EXPECTED")
 		if expectedChecksum != "" {
@@ -102,8 +113,8 @@ func main() {
 	}
 
 	// ── 2. Guard Replay Adapter (Seeded for Determinism) ─────────
-	eventsFile := "/Users/fallofpheonix/os/04_datasets/logs/test_events.jsonl"
-	
+	eventsFile := "research/accepted/datasets/logs/test_events.jsonl"
+
 	// Initialize and start the Game Server for SOC Simulation
 	scoreState := game.NewScoreState()
 	gameServer := game.NewGameServer(scoreState, w, evLedger, eventsFile)
@@ -118,7 +129,7 @@ func main() {
 		log.Fatalf("[FATAL] Failed to fetch events: %v", err)
 	}
 	fmt.Printf("[REPLAY] Loaded %d events for deterministic execution\n", len(events))
-	
+
 	seqHash := guardAdapter.GetSequenceHash(events)
 	fmt.Printf("[REPLAY] Sequence Proof Hash: %s\n", seqHash)
 	evLedger.AddEntry("REPLAY-SEQUENCE-PROOF", "GUARD", []byte(seqHash))
@@ -132,7 +143,7 @@ func main() {
 		aiOrch.OrchestrateTick(event, event.LogicalTick)
 
 		// Tick Step 7: Automatic Checkpointing (Every 1000 ticks)
-		if event.LogicalTick % 1000 == 0 {
+		if event.LogicalTick%1000 == 0 {
 			checkpoint, _ := evLedger.Checkpoint()
 			log.Printf("[REPLAY] Checkpoint at tick %d: %x", event.LogicalTick, checkpoint)
 		}
@@ -140,6 +151,9 @@ func main() {
 
 	// ── 4. Verification ───────────────────────────────────────────
 	fmt.Println("\n[REPLAY] Execution Complete. Verifying Invariants...")
+
+	// Wait for background AI advisors to finish processing
+	aiOrch.Wg.Wait()
 
 	if verr := evLedger.Verify(); verr != nil {
 		fmt.Printf("[LEDGER] INTEGRITY VIOLATION: %v\n", verr)

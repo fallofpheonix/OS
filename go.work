@@ -1,19 +1,21 @@
-go 1.26.0
+go 1.26
 
 use (
-	./05_tools/malware
-	./05_tools/ui
-	./06_ai
-	./07_security
-	./07_security/integrated_model
-	./07_security/physics
-	./08_forensics/analysis
-	./09_telemetry
-	./09_telemetry/entropy_engine_go
-	./09_telemetry/process_graphs
-	./10_kernel
-	./10_kernel/sandbox
-	./06_ai/research_agents
-	./phoenix_os
-	./phoenix_os/nexus
+	.
+	./external/integrated/phoenix-contracts
+	./external/integrated/phoenix-control
+	./external/integrated/phoenix-logic
+	./external/integrated/phoenix-runtime
+	./phoenix_os/kernel
+	./phoenix_os/kernel/sandbox
+	./phoenix_os/ledger
+	./phoenix_os/nexus_coordination
+	./phoenix_os/security
+	./phoenix_os/security/integrated_model
+	./phoenix_os/security/physics
+	./phoenix_os/telemetry
+	./phoenix_os/telemetry/entropy_engine_go
+	./phoenix_os/telemetry/process_graphs
+	./tools/interface
+	./tools/malware
 )

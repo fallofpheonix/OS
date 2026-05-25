@@ -41,7 +41,7 @@ func ReplaySafeHash(v interface{}) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	// Implementation would typically use crypto/sha256
 	return fmt.Sprintf("%x", canonical), nil // Placeholder for brevity in MVP
 }

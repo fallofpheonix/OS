@@ -4,7 +4,7 @@ This file contains foundational mandates for the PhoenixOS project.
 
 ## 1. Project Identity
 **Project Name:** PhoenixOS
-**Definition:** Deterministic Cybernetic Security Runtime (running on Linux).
+**Definition:** Security-Control Operating Substrate. A deterministic security runtime and telemetry platform for autonomous system protection.
 **Core Philosophy:** Security as a thermodynamic state. Autonomous "quenching" of disorder via the Phoenix Matrix.
 
 ## 2. Six Immutable Axioms
@@ -30,31 +30,54 @@ This file contains foundational mandates for the PhoenixOS project.
 - **Evidence-First Actuation:** Every action MUST be recorded in the Phoenix Ledger with a SHA-256 hash-chain.
 - **State-Aware Control:** Do NOT map SDI directly to PID gains. Use the Finite-State Controller (SAFE/WATCH/SUSPICIOUS/CRITICAL/COMPROMISED).
 - **Lineage Retention:** Use 3-tier storage (HOT/WARM/COLD). Never prune `init`, `auth`, `kernel`, or `systemd` nodes.
+- **Archive Integrity:** No code restored from `15_archive/` without a entry in `02_docs/02_integration/ARCHIVE_IMPORT.md`.
 
-## 4. Completed P0 Foundations & Hardening
-- [X] **Phoenix Ledger:** Verifiable Evidence Chain, Ledger V2 state transition validations, and full thread safety via RWMutex synchronizers.
-- [X] **Phoenix Guard:** Kernel-level Fast Path (<100ms) with Priority Ingestion lanes and overflow snapshots.
+## 4. Maturity & Roadmap (Stages A-D)
+Current Maturity: **Runtime Security Research Platform**.
+
+### Stage A: Hardening (CURRENT FOCUS)
+- [X] **Race Detection:** Implement and run Go race detector across all core services (VERIFIED).
+- [ ] **Fuzz Testing:** Targeted fuzzing of Ledger ingestion and Warden FSM triggers.
+- [ ] **Chaos Engineering:** Inject telemetry jitter and out-of-order events to verify TCS window stability.
+- [ ] **Replay Stress:** Verify 100% hash-matching across 1000+ varying execution traces.
+
+### Stage B: Formal Invariants
+- [ ] **Event Bus Guarantees:** Transactional event delivery and ordering proofs.
+- [ ] **Ledger Invariants:** Formal validation of hash-chain integrity and evidence non-repudiation.
+- [ ] **FSM Proof:** TLA+ model of the Warden FSM to prevent oscillation loops.
+
+### Stage C: OS Primitives (Future)
+- [ ] **Syscall Monitor:** Move from generic eBPF probes to a structured syscall boundary.
+- [ ] **Sandbox Runtime:** Isolate actuation effects within restricted containers.
+- [ ] **Process Graph Engine:** Real-time causal lineage DAG construction.
+
+### Stage D: Distributed Coordination (L6/L7)
+- [ ] **PoA Consensus:** Distributed trust and reputation.
+- [ ] **Replicated Ledger:** Multi-node evidence synchronization.
+
+## 5. Completed P0 Foundations & Hardening
+- [X] **Phoenix Ledger:** Verifiable Evidence Chain, Ledger V2 state transition validations.
+- [X] **Phoenix Guard:** Kernel-level Fast Path (<100ms) with Priority Ingestion lanes.
 - [X] **Phoenix Trace Storage:** 3-tier lifecycle management.
-- [X] **Phoenix Warden:** Stable state controller with dwell limits, cooldowns, recovery budgets, and SOC API concurrency thread-safety.
-- [X] **TCS Telemetry Window:** Bounded sliding window with dynamic min/max sequence evaluations, out-of-order stability, and control-event filtering.
-- [X] **Logical Clock Standardization:** Monotonic logical tick counter standardized, removing obsolete duplicate clock files.
+- [X] **Phoenix Warden:** Stable state controller with dwell limits and cooldowns.
+- [X] **Phoenix Arbiter:** Cost-aware decision engine with Evidence Weighting and Counterfactual Analysis (Track C).
+- [X] **TCS Telemetry Window:** Bounded sliding window with dynamic evaluation.
+- [X] **Logical Clock Standardization:** Monotonic logical tick counter standardized.
 
-## 5. Documentation Architecture (12-Layer Mandate)
+## 6. Documentation Architecture (12-Layer Mandate)
 PhoenixOS adheres to a 12-layer documentation structure in `02_docs/` to ensure traceability and auditability.
 - **L0: Governance** (`00_governance/`): Vision, Roadmap, Status, Decisions.
 - **L1: Architecture** (`01_architecture/`): System maps, Component specs, RFCs.
-- **L2: Integration** (`02_integration/`): External repo tracking and merge policies.
+- **L2: Integration** (`02_integration/`): External repo tracking and ARCHIVE_IMPORT.md.
 - **L3: Agents** (`03_agents/`): AI Agent registries and behavior protocols.
-- **L4: Security** (`04_security/`): Threat models and security boundaries.
-- **L5: Kernel** (`05_kernel/`): Boot, Process, and Memory models.
-- **L6: Research** (`06_research/`): Math models, Experiments, Game Theory.
-- **L7: Validation** (`07_validation/`): Test plans, Benchmarks, Verification.
-- **L8: Deployment** (`08_deployment/`): Build pipelines, CI/CD, Release process.
-- **L9: Operations** (`09_operations/`): Telemetry, Logging schemas, Metrics.
-- **L10: Runtime AI** (`10_runtime_ai/`): Knowledge graphs, Model lifecycles.
+...
 - **L11: Emergency** (`11_emergency/`): Disaster recovery and Safe modes.
 
 **Mandatory Rule:** No agent edits code without updating the related documentation. Every PR must update architecture, dependency, threat, and test impact documents.
 
-## 6. Active Phase: Stage 2 (Real Telemetry Runtime)
-**Current Goal:** Transition to eBPF/XDP real telemetry collection and minimal OS appliance booting (Phase II).
+## 7. Active Phase: Phase F1 (Runtime Development)
+**Current Goal:** Implement the causal replay and evidence chain in the live runtime.
+**Status:** F0 CLOSED, F1 OPEN.
+**Verified Invariants:** Determinism, Replay, Truth (Merkle-DAG), Race Safety.
+
+

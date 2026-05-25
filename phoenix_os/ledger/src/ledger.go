@@ -10,18 +10,20 @@ import (
 
 // LedgerEntry is the canonical forensic record in the Evidence Merkle DAG.
 type LedgerEntry struct {
-	EventID        string   `json:"event_id"`
-	CauseID        string   `json:"cause_id"`
-	ParentIDs      [][]byte `json:"parent_ids"`
-	LogicalTick    uint64   `json:"logical_tick"`
-	Source         string   `json:"source"`
-	Payload        []byte   `json:"payload"`
-	Hash           []byte   `json:"hash"`
-	// Ledger V2 Fields
-	StateBefore    string   `json:"state_before"`
-	StateAfter     string   `json:"state_after"`
-	PolicyVersion  string   `json:"policy_version"`
-	ValidationHash []byte   `json:"validation_hash"`
+	EventID     string   `json:"event_id"`
+	CauseID     string   `json:"cause_id"`
+	ParentIDs   [][]byte `json:"parent_ids"`
+	LogicalTick uint64   `json:"logical_tick"`
+	Source      string   `json:"source"`
+	Payload     []byte   `json:"payload"`
+	TraceHash   string   `json:"trace_hash"` // SHA256 of the process DAG subgraph
+	Hash        []byte   `json:"hash"`
+
+	// Ledger V2 Fields (Strategic Context)
+	StateBefore    string `json:"state_before"`
+	StateAfter     string `json:"state_after"`
+	PolicyVersion  string `json:"policy_version"`
+	ValidationHash []byte `json:"validation_hash"`
 }
 
 type ResourceAllocator interface {
@@ -46,13 +48,13 @@ func NewLedger(alloc ResourceAllocator) *Ledger {
 	}
 }
 
-func (l *Ledger) AddEntryV2(eventID, causeID string, payload []byte, stateBefore, stateAfter, policyVersion string) error {
+func (l *Ledger) AddEntryV2(eventID, causeID string, payload []byte, traceHash, stateBefore, stateAfter, policyVersion string) error {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 
-	// Deterministic Resource Bounding (check before modifying state)
+	// Deterministic Resource Bounding
 	if l.allocator != nil {
-		if err := l.allocator.Allocate(uint64(len(payload) + 256)); err != nil {
+		if err := l.allocator.Allocate(uint64(len(payload) + 512)); err != nil {
 			return err
 		}
 	}
@@ -62,6 +64,7 @@ func (l *Ledger) AddEntryV2(eventID, causeID string, payload []byte, stateBefore
 		EventID:       eventID,
 		CauseID:       causeID,
 		Payload:       payload,
+		TraceHash:     traceHash,
 		ParentIDs:     l.Heads,
 		StateBefore:   stateBefore,
 		StateAfter:    stateAfter,
@@ -78,7 +81,7 @@ func (l *Ledger) AddEntryV2(eventID, causeID string, payload []byte, stateBefore
 }
 
 func (l *Ledger) AddEntry(eventID, causeID string, payload []byte) error {
-	return l.AddEntryV2(eventID, causeID, payload, "", "", "")
+	return l.AddEntryV2(eventID, causeID, payload, "", "", "", "")
 }
 
 func (l *Ledger) computeHash(entry LedgerEntry) []byte {
@@ -90,6 +93,7 @@ func (l *Ledger) computeHash(entry LedgerEntry) []byte {
 		h.Write(p)
 	}
 	h.Write(entry.Payload)
+	h.Write([]byte(entry.TraceHash))
 	// V2 Fields
 	h.Write([]byte(entry.StateBefore))
 	h.Write([]byte(entry.StateAfter))

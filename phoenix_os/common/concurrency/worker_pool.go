@@ -1,11 +1,11 @@
 package concurrency
 
 import (
-	"phoenix/common/resource"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/common/resource"
 	"sync"
 )
 
-// DeterministicWorkerPool ensures that concurrent tasks are processed 
+// DeterministicWorkerPool ensures that concurrent tasks are processed
 // in a manner that can be deterministically replayed.
 // This implements [CON-008].
 type DeterministicWorkerPool struct {

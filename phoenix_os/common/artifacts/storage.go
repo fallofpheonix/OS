@@ -17,7 +17,7 @@ type RunData struct {
 
 func SaveRun(baseDir string, runID string, data RunData) error {
 	runDir := filepath.Join(baseDir, runID)
-	if err := os.MkdirAll(runDir, 0755); err != nil {
+	if err := os.MkdirAll(runDir, 0750); err != nil {
 		return err
 	}
 
@@ -38,7 +38,7 @@ func SaveRun(baseDir string, runID string, data RunData) error {
 		if err := os.WriteFile(path, jsonData, 0644); err != nil {
 			return err
 		}
-		
+
 		h := sha256.Sum256(jsonData)
 		hashes += fmt.Sprintf("%x  %s\n", h, name)
 	}

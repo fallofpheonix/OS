@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"phoenix/ledger/src"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/truth_ledger/src"
 )
 
 // SubsystemInfo holds metadata about a subsystem's initial state.

@@ -1,0 +1,78 @@
+# PhoenixOS Cleanup - Migration and Merge Log
+
+- Created `02_docs/00_governance/F0_MASTER.md` using content from `02_docs/00_governance/F0_FOUNDATION_BOARD.md`
+- Merged summary from `02_docs/04_governance/FOUNDATION_BOARD.md` into `02_docs/00_governance/F0_MASTER.md` (archived source)
+- Found duplicate file with matching hash. Keeping `02_docs/00_governance/DETERMINISM_REPORT.md`, removing duplicate `02_docs/08_validation/DETERMINISM_REPORT.md`
+- Moved `02_docs/ARBITER_SPEC.md` to `02_docs/02_runtime/ARBITER_SPEC.md`
+- Moved `02_docs/BUILD_SPEC.md` to `02_docs/00_governance/BUILD_SPEC.md`
+- Moved `02_docs/CHAOS_GUIDE.md` to `02_docs/03_validation/CHAOS_GUIDE.md`
+- Moved `02_docs/CONTRACT_MATRIX.md` to `02_docs/00_governance/CONTRACT_MATRIX.md`
+- Moved `02_docs/CONTRACT_RULES.md` to `02_docs/00_governance/CONTRACT_RULES.md`
+- Moved `02_docs/DEBUG_GUIDE.md` to `02_docs/00_governance/DEBUG_GUIDE.md`
+- Moved `02_docs/DECISION_MODEL.md` to `02_docs/02_runtime/DECISION_MODEL.md`
+- Moved `02_docs/EVIDENCE_SPEC.md` to `02_docs/02_runtime/EVIDENCE_SPEC.md`
+- Moved `02_docs/IMPORT_RULES.md` to `02_docs/00_governance/IMPORT_RULES.md`
+- Moved `02_docs/LAB_GUIDE.md` to `02_docs/03_validation/LAB_GUIDE.md`
+- Moved `02_docs/LEDGER_SPEC.md` to `02_docs/02_runtime/LEDGER_SPEC.md`
+- Moved `02_docs/NON_GOALS.md` to `02_docs/00_governance/NON_GOALS.md`
+- Moved `02_docs/PERFORMANCE_TARGETS.md` to `02_docs/03_validation/PERFORMANCE_TARGETS.md`
+- Moved `02_docs/PHASE_LOCK.md` to `02_docs/00_governance/PHASE_LOCK.md`
+- Moved `02_docs/README.md` to `02_docs/00_governance/README.md`
+- Moved `02_docs/REPLAY_SPEC.md` to `02_docs/01_architecture/REPLAY_SPEC.md`
+- Moved `02_docs/STATE_MODEL.md` to `02_docs/01_architecture/STATE_MODEL.md`
+- Moved `02_docs/SYSTEM_IDENTITY.md` to `02_docs/00_governance/SYSTEM_IDENTITY.md`
+- Moved `02_docs/TEST_MATRIX.md` to `02_docs/03_validation/TEST_MATRIX.md`
+- Moved `02_docs/TRUTH_MODEL.md` to `02_docs/01_architecture/TRUTH_MODEL.md`
+- Moved `02_docs/VALIDATION_RULES.md` to `02_docs/03_validation/VALIDATION_RULES.md`
+- Moved `02_docs/WARDEN_SPEC.md` to `02_docs/02_runtime/WARDEN_SPEC.md`
+- Moved `04_governance/D1_EXIT.md` to `00_governance/D1_EXIT.md`
+- Moved `04_governance/IMPORT_FREEZE.md` to `00_governance/IMPORT_FREEZE.md`
+- Moved `04_governance/IMPORT_VIOLATIONS.md` to `00_governance/IMPORT_VIOLATIONS.md`
+- Moved `04_governance/RISK_REGISTER.md` to `00_governance/RISK_REGISTER.md`
+- Moved `04_governance/RECOVERY_LOG.md` to `02_runtime/RECOVERY_LOG.md`
+- Moved `04_governance/STATUS_BOARD.md` to `00_governance/STATUS_BOARD.md`
+- Moved `04_governance/REGRESSION_LOG.md` to `03_validation/REGRESSION_LOG.md`
+- Moved `04_governance/RECOVERY_MATRIX.md` to `02_runtime/RECOVERY_MATRIX.md`
+- Moved `04_governance/PHASE_MATRIX.md` to `00_governance/PHASE_MATRIX.md`
+- Moved `04_governance/TECH_DEBT.md` to `00_governance/TECH_DEBT.md`
+- Moved `04_governance/MIGRATION_LOG.md` to `00_governance/MIGRATION_LOG.md`
+- Moved `04_governance/COMPATIBILITY_MATRIX.md` to `00_governance/COMPATIBILITY_MATRIX.md`
+- Moved `04_governance/RELEASE_CRITERIA.md` to `00_governance/RELEASE_CRITERIA.md`
+- Moved `07_validation/TEST_PLAN.md` to `03_validation/TEST_PLAN.md`
+- Moved `09_operations/EVENT_SCHEMA.md` to `01_architecture/EVENT_SCHEMA.md`
+- Moved `09_operations/schemas/telemetry_events.json` to `04_operations/schemas/telemetry_events.json`
+## Stage 2 Migrations
+
+- Moved `07_operations/VALIDATION_MATRIX.md` to `03_validation/VALIDATION_MATRIX.md`
+- Moved `07_operations/TOPOLOGY.md` to `01_architecture/TOPOLOGY.md`
+- Moved `07_operations/REPLAY.md` to `01_architecture/REPLAY_ARCHITECTURE.md`
+- Moved `07_operations/INCIDENTS.md` to `04_operations/INCIDENTS.md`
+- Moved `07_operations/FUZZ.md` to `03_validation/FUZZ.md`
+- Moved `07_operations/RECOVERY.md` to `02_runtime/RECOVERY.md`
+- Moved `07_operations/BUILD.md` to `04_operations/BUILD.md`
+- Moved `07_operations/STARTUP.md` to `04_operations/STARTUP.md`
+- Moved `07_operations/METRICS.md` to `02_runtime/METRICS.md`
+- Moved `07_operations/HEALTHCHECK.md` to `04_operations/HEALTHCHECK.md`
+- Moved `07_operations/CHAOS.md` to `03_validation/CHAOS.md`
+- Conflict on `00_governance/DEBUG_GUIDE.md`: Archived original source `07_operations/DEBUG.md` to deprecated.
+- Moved `07_operations/RUNBOOKS/restore_divergence.md` to `04_operations/RUNBOOKS/restore_divergence.md`
+- Moved `07_operations/RUNBOOKS/replay_corruption.md` to `04_operations/RUNBOOKS/replay_corruption.md`
+- Moved `07_operations/RUNBOOKS/fork_bomb.md` to `04_operations/RUNBOOKS/fork_bomb.md`
+- Moved `07_operations/RUNBOOKS/rollback_failure.md` to `04_operations/RUNBOOKS/rollback_failure.md`
+- Moved `07_operations/RUNBOOKS/snapshot_failure.md` to `04_operations/RUNBOOKS/snapshot_failure.md`
+- Moved `07_operations/RUNBOOKS/reverse_shell.md` to `04_operations/RUNBOOKS/reverse_shell.md`
+- Moved `07_operations/RUNBOOKS/beacon.md` to `04_operations/RUNBOOKS/beacon.md`
+- Moved `08_deployment/BUILD_PIPELINE.md` to `04_operations/BUILD_PIPELINE.md`
+- Moved `02_integration/ARCHIVE_IMPORT.md` to `00_governance/ARCHIVE_IMPORT.md`
+- Moved `02_integration/EXTERNAL_REPOS.md` to `00_governance/EXTERNAL_REPOS.md`
+- Moved `03_agents/AGENT_REGISTRY.md` to `00_governance/agents/AGENT_REGISTRY.md`
+- Moved `03_agents/domain.md` to `00_governance/agents/domain.md`
+- Moved `03_agents/triage-labels.md` to `00_governance/agents/triage-labels.md`
+- Moved `03_agents/issue-tracker.md` to `00_governance/agents/issue-tracker.md`
+- Moved `04_security/THREAT_MODEL.md` to `05_security/THREAT_MODEL.md`
+- Moved `04_security/warden_policy.md` to `05_security/warden_policy.md`
+- Moved `04_security/SECURITY_BOUNDARIES.md` to `05_security/SECURITY_BOUNDARIES.md`
+- Moved `05_kernel/PHASE_2_REPORT.md` to `01_architecture/PHASE_2_REPORT.md`
+- Moved `05_kernel/PROBE_REGISTRY.md` to `01_architecture/PROBE_REGISTRY.md`
+- Moved `05_kernel/TELEMETRY_PIPELINE.md` to `01_architecture/TELEMETRY_PIPELINE.md`
+- Conflict on `01_architecture/EVENT_SCHEMA.md`: Archived original source `05_kernel/EVENT_SCHEMA.md` to deprecated.

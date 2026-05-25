@@ -8,10 +8,10 @@ import (
 // SnapshotNode represents a point-in-time state of the system.
 // This implements the Snapshot Lineage DAG [SNP-003].
 type SnapshotNode struct {
-	ID        string    `json:"id"`
-	ParentID  string    `json:"parent_id"`
-	Timestamp time.Time `json:"timestamp"`
-	Hash      string    `json:"hash"`
+	ID        string            `json:"id"`
+	ParentID  string            `json:"parent_id"`
+	Timestamp time.Time         `json:"timestamp"`
+	Hash      string            `json:"hash"`
 	Metadata  map[string]string `json:"metadata"`
 }
 

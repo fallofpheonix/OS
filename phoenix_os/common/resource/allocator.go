@@ -30,7 +30,7 @@ func (a *BoundedAllocator) Allocate(size uint64) error {
 
 	newItems := atomic.AddUint64(&a.itemCount, 1)
 	if a.itemLimit > 0 && newItems > a.itemLimit {
-		atomic.AddUint64(&a.itemCount, ^uint64(0)) // Rollback
+		atomic.AddUint64(&a.itemCount, ^uint64(0))       // Rollback
 		atomic.AddUint64(&a.memoryUsed, ^uint64(size-1)) // Rollback
 		return fmt.Errorf("item quota exceeded: %d > %d", newItems, a.itemLimit)
 	}

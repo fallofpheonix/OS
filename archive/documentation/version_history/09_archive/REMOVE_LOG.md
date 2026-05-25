@@ -1,0 +1,64 @@
+# PhoenixOS Cleanup - Remove and Archive Log
+
+- Archived to `archive/merged_docs/02_docs/00_governance/F0_FOUNDATION_BOARD.md` and removed source: `02_docs/00_governance/F0_FOUNDATION_BOARD.md`
+- Archived to `archive/merged_docs/02_docs/04_governance/FOUNDATION_BOARD.md` and removed source: `02_docs/04_governance/FOUNDATION_BOARD.md`
+- Archived to `archive/removed_docs/02_docs/08_validation/DETERMINISM_REPORT.md` and removed source: `02_docs/08_validation/DETERMINISM_REPORT.md`
+- Removed empty directory `02_docs/04_governance`
+- Removed empty directory `02_docs/07_validation`
+- Removed empty directory `02_docs/08_validation`
+- Archived to `archive/deprecated/02_docs/09_operations/schemas/.gitkeep` and removed source: `02_docs/09_operations/schemas/.gitkeep`
+- Removed empty directory `02_docs/09_operations`
+## Stage 2 Cleanup
+
+- Archived to `archive/deprecated/02_docs/07_operations/DEBUG.md` and removed source: `02_docs/07_operations/DEBUG.md`
+- Archived to `archive/deprecated/02_docs/05_kernel/EVENT_SCHEMA.md` and removed source: `02_docs/05_kernel/EVENT_SCHEMA.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/STATE_RECOVERY.md` and removed source: `02_docs/00_foundation/STATE_RECOVERY.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/EVIDENCE_FLOW.md` and removed source: `02_docs/00_foundation/EVIDENCE_FLOW.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/IMPORT_FREEZE.md` and removed source: `02_docs/00_foundation/IMPORT_FREEZE.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/REPLAY_SPEC.md` and removed source: `02_docs/00_foundation/REPLAY_SPEC.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/STATE_MODEL.md` and removed source: `02_docs/00_foundation/STATE_MODEL.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/SYSTEM_IDENTITY.md` and removed source: `02_docs/00_foundation/SYSTEM_IDENTITY.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/FOUNDATION_STATUS.md` and removed source: `02_docs/00_foundation/FOUNDATION_STATUS.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/DETERMINISM_AXIOMS.md` and removed source: `02_docs/00_foundation/DETERMINISM_AXIOMS.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/TRUTH_RECOVERY.md` and removed source: `02_docs/00_foundation/TRUTH_RECOVERY.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/TRUTH_MODEL.md` and removed source: `02_docs/00_foundation/TRUTH_MODEL.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/LAB_GUIDE.md` and removed source: `02_docs/00_foundation/LAB_GUIDE.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/IMPORT_RULES.md` and removed source: `02_docs/00_foundation/IMPORT_RULES.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/CONTRACT_RULES.md` and removed source: `02_docs/00_foundation/CONTRACT_RULES.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/DECISION_MODEL.md` and removed source: `02_docs/00_foundation/DECISION_MODEL.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/RECOVERY_MATRIX.md` and removed source: `02_docs/00_foundation/RECOVERY_MATRIX.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/DECISION_AUTHORIZATION.md` and removed source: `02_docs/00_foundation/DECISION_AUTHORIZATION.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/COMPATIBILITY_MATRIX.md` and removed source: `02_docs/00_foundation/COMPATIBILITY_MATRIX.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/PHASE_LOCK.md` and removed source: `02_docs/00_foundation/PHASE_LOCK.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/COMPATIBILITY.md` and removed source: `02_docs/00_foundation/COMPATIBILITY.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/FOUNDATION_BOARD.md` and removed source: `02_docs/00_foundation/FOUNDATION_BOARD.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/VALIDATION_RULES.md` and removed source: `02_docs/00_foundation/VALIDATION_RULES.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/NON_GOALS.md` and removed source: `02_docs/00_foundation/NON_GOALS.md`
+- Archived to `archive/deprecated/02_docs/00_foundation/MODULE_BOUNDARIES.md` and removed source: `02_docs/00_foundation/MODULE_BOUNDARIES.md`
+- Removed non-target directory `00_foundation` after archiving contents.
+- Archived to `archive/deprecated/02_docs/04_security/.gitkeep` and removed source: `02_docs/04_security/.gitkeep`
+- Removed non-target directory `04_security` after archiving contents.
+- Removed non-target directory `02_integration` after archiving contents.
+- Removed non-target directory `experiments` after archiving contents.
+- Removed non-target directory `diagrams` after archiving contents.
+- Removed non-target directory `05_kernel` after archiving contents.
+- Removed non-target directory `archives` after archiving contents.
+- Archived to `archive/deprecated/02_docs/decisions/ADR-002-swarm-restructuring.md` and removed source: `02_docs/decisions/ADR-002-swarm-restructuring.md`
+- Archived to `archive/deprecated/02_docs/decisions/ADR-001-base-system.md` and removed source: `02_docs/decisions/ADR-001-base-system.md`
+- Removed non-target directory `decisions` after archiving contents.
+- Removed non-target directory `07_operations` after archiving contents.
+- Archived to `archive/deprecated/02_docs/visual/threat_models/strategic_goal_mapping.png` and removed source: `02_docs/visual/threat_models/strategic_goal_mapping.png`
+- Archived to `archive/deprecated/02_docs/visual/architecture/phoenix_matrix_map.svg` and removed source: `02_docs/visual/architecture/phoenix_matrix_map.svg`
+- Archived to `archive/deprecated/02_docs/visual/architecture/agentic_control_flow.png` and removed source: `02_docs/visual/architecture/agentic_control_flow.png`
+- Archived to `archive/deprecated/02_docs/visual/ui_refs/phoenix_shield_logo.png` and removed source: `02_docs/visual/ui_refs/phoenix_shield_logo.png`
+- Archived to `archive/deprecated/02_docs/visual/telemetry/ebpf_ingestion_path.png` and removed source: `02_docs/visual/telemetry/ebpf_ingestion_path.png`
+- Archived to `archive/deprecated/02_docs/visual/telemetry/kprobe_event_flow.png` and removed source: `02_docs/visual/telemetry/kprobe_event_flow.png`
+- Archived to `archive/deprecated/02_docs/visual/replay/memory_hot_warm_cold.png` and removed source: `02_docs/visual/replay/memory_hot_warm_cold.png`
+- Removed non-target directory `visual` after archiving contents.
+- Removed non-target directory `03_agents` after archiving contents.
+- Removed non-target directory `11_emergency` after archiving contents.
+- Removed non-target directory `10_runtime_ai` after archiving contents.
+- Removed non-target directory `06_research` after archiving contents.
+- Archived to `archive/deprecated/02_docs/reports/GEMINI_validation.md` and removed source: `02_docs/reports/GEMINI_validation.md`
+- Removed non-target directory `reports` after archiving contents.
+- Removed non-target directory `08_deployment` after archiving contents.

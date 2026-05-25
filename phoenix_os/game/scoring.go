@@ -15,10 +15,10 @@ type ScoreState struct {
 
 func NewScoreState() *ScoreState {
 	return &ScoreState{
-		Score:      0,
-		Level:      "Novice SOC Analyst",
-		Multiplier: 1.0,
-		Badges:     []string{},
+		Score:               0,
+		Level:               "Novice SOC Analyst",
+		Multiplier:          1.0,
+		Badges:              []string{},
 		CompletedChallenges: []string{},
 	}
 }

@@ -2,21 +2,40 @@ package ai
 
 import (
 	"fmt"
+	"os"
 	"time"
 
-	"phoenix/arbiter"
-	"phoenix/bus"
-	"phoenix/common/serialization"
-	"phoenix/ledger/src"
-	"phoenix/monitor"
-	"phoenix/tcs"
-	"phoenix/trace"
-	"phoenix/warden"
+	"github.com/fallofpheonix/phoenix-control/arbiter"
+	"github.com/fallofpheonix/phoenix-control/warden"
+	"github.com/fallofpheonix/phoenix-logic/monitor"
+	"github.com/fallofpheonix/phoenix-logic/tcs"
+	"github.com/fallofpheonix/phoenix-logic/trace"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/bus"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/common/serialization"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/truth_ledger/src"
+	"github.com/fallofpheonix/phoenix-os/phoenix_os/telemetry/process_graphs"
 )
 
 // Feature represents a modular subsystem of PhoenixOS acting under the AI Orchestrator.
 type Feature interface {
 	Name() string
+}
+
+// GraphFeature wraps the real-time causal process graph.
+type GraphFeature struct {
+	Graph *process_graphs.Graph
+}
+
+func (gf *GraphFeature) Name() string {
+	return "graph"
+}
+
+func (gf *GraphFeature) AddEvent(event bus.TelemetryEvent) {
+	nodeID := fmt.Sprintf("evt-%d", event.SeqID)
+	gf.Graph.AddNode(nodeID, process_graphs.Process, event.WallTimeUnix)
+	if event.CausalID != "" {
+		gf.Graph.AddEdge(event.CausalID, nodeID)
+	}
 }
 
 // TraceFeature wraps the L4 Graph Intelligence / Trace storage.
@@ -107,13 +126,30 @@ func (wf *WardenFeature) Name() string {
 
 func (wf *WardenFeature) Actuate(targetState warden.SystemState, class warden.ActuationClass, tcsScore float64, seqID int64, wallTime int64, tick uint64, evLedger *ledger.Ledger) {
 	stateBefore := string(wf.Warden.State)
-	transitioned := wf.Warden.Actuate(targetState, class, tcsScore, seqID, wallTime, tick)
+	transitioned := wf.Warden.Actuate(targetState, class, tcsScore, int(seqID), wallTime, tick)
 	if transitioned {
 		payload, _ := serialization.CanonicalJSON(map[string]interface{}{
 			"state": string(wf.Warden.State),
 		})
-		evLedger.AddEntryV2(fmt.Sprintf("WARDEN-ACTION-%d", seqID), "POLICY-ACTUATION", payload, stateBefore, string(wf.Warden.State), "1.0.0")
+		evLedger.AddEntryV2(fmt.Sprintf("WARDEN-ACTION-%d", seqID), "POLICY-ACTUATION", payload, "", stateBefore, string(wf.Warden.State), "1.0.0")
 	}
+}
+
+// RealityFeature wraps the project audit records to allow PhoenixMind to see its own completion status.
+type RealityFeature struct {
+	AuditPath string
+}
+
+func (rf *RealityFeature) Name() string {
+	return "reality"
+}
+
+func (rf *RealityFeature) ReadAudit() string {
+	content, err := os.ReadFile(rf.AuditPath)
+	if err != nil {
+		return "Audit report missing"
+	}
+	return string(content)
 }
 
 // LedgerFeature wraps the cryptographic evidence ledger.
