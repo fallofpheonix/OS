@@ -1,3 +1,8 @@
 09_telemetry/replay_events_large.jsonl filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.jsonl filter=lfs diff=lfs merge=lfs -text
+*.idx filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
 phoenix_os/telemetry/replay_events_large.jsonl !text !filter !merge !diff
 archive/research/future/quantum/rejected/pack-3a6dc78981994429543e710c4585823e5b725d0c.idx !text !filter !merge !diff
