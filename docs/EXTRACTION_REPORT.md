@@ -1,0 +1,1 @@
+This file will contain details about extracted assets. It will be populated during the extraction phase.
