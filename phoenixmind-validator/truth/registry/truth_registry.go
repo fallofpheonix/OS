@@ -2,7 +2,7 @@ package registry
 
 import (
 	"sync"
-	"github.com/fallofpheonix/phoenix-os/phoenixmind-validator/truth/evidence"
+	"github.com/fallofpheonix/phoenixmind-validator/truth/evidence"
 )
 
 // Entity represents an object being tracked, along with its consolidated truth state.

@@ -2,16 +2,15 @@ package truth_test
 
 import (
 	"testing"
-	"github.com/fallofpheonix/os/phoenix_os/truth/evidence"
+	"github.com/fallofpheonix/phoenixmind-validator/truth/evidence"
 )
 
 func TestEvidenceRegistry(t *testing.T) {
 	registry := evidence.NewEvidenceRegistry()
 	
 	e := &evidence.Evidence{
-		Entity:     "arbiter",
-		Status:     evidence.VALIDATED,
-		Confidence: 0.91,
+		EntityID: "arbiter",
+		State:    evidence.VALIDATED,
 	}
 
 	registry.Add(e)
@@ -21,7 +20,7 @@ func TestEvidenceRegistry(t *testing.T) {
 		t.Fatal("expected evidence to be found")
 	}
 
-	if got.Status != evidence.VALIDATED {
-		t.Errorf("expected status %s, got %s", evidence.VALIDATED, got.Status)
+	if got.State != evidence.VALIDATED {
+		t.Errorf("expected state %s, got %s", evidence.VALIDATED, got.State)
 	}
 }

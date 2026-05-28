@@ -1,6 +1,6 @@
 package resolver
 
-import "github.com/fallofpheonix/phoenix-os/phoenixmind-validator/truth/evidence"
+import "github.com/fallofpheonix/phoenixmind-validator/truth/evidence"
 
 // Priority map for truth states. Higher value is higher priority.
 var statePriority = map[evidence.TruthState]int{

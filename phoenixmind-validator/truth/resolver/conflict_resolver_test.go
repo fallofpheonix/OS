@@ -2,7 +2,7 @@ package resolver
 
 import (
 	"testing"
-	"github.com/fallofpheonix/phoenix-os/phoenixmind-validator/truth/evidence"
+	"github.com/fallofpheonix/phoenixmind-validator/truth/evidence"
 )
 
 func TestConflictResolver(t *testing.T) {

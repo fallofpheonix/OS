@@ -2,15 +2,19 @@ go 1.26
 
 use (
 	.
-	./pheonixmind-core
-	./pheonixmind-memory
-	./pheonixmind-validator
-	./phoenixmind-agents
-	./phoenixmind-datasets
-	./phoenixmind-model-router
-	./phoenixmind-observability
-	./phoenixmind-runtime
-	./phoenixmind-sandbox
-	./phoenixmind-security
-	./phoenixmind-training
+	../PheonixDistributed
+	../PheonixSimulation
+	../PheonixTruth
+	./agents/phoenixmind-agents
+	./core/pheonixmind-core
+	./core/phoenix_os
+	./datasets/phoenixmind-datasets
+	./memory/pheonixmind-memory
+	./model_router
+	./observability
+	./phoenixmind-validator
+	./replay
+	./runtime
+	./sandbox
+	./training/phoenixmind-training
 )

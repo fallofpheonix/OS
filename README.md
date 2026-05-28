@@ -1,55 +1,69 @@
 # PhoenixOS
 
-**PhoenixOS** is a **Deterministic Cybernetic Security Runtime**. It implements a unified **Mathematical-Physical-Game Architecture** to achieve autonomous system integrity through mathematically reproducible replay and bounded control.
+## Status: v0.1.0-alpha-hardened (STAGE A COMPLETE)
 
-## 1. Project Dimensions
-
-### Structural Roots (The 8 Directories)
-*   `phoenix_os/`: Active runtime core (Telemetry, Kernel, Security).
-*   `tests/`: Centralized verification labs.
-*   `tools/`: Build systems and CLI interface.
-*   `02_docs/`: Canonical governance and architecture.
-*   `external/`: Categorized third-party repositories.
-*   `research/`: Verified studies and theoretical foundations.
-*   `experimental/`: Isolated sandboxes for future-phase systems.
-*   `archive/`: Historical artifacts and deprecated code.
-
-### The Phoenix Matrix (Functional Stack)
-*   **L7: Phoenix Nexus**: Swarm Coordination.
-*   **L6: Phoenix Sentinel**: System Physics (Entropy/SDI).
-*   **L5.5: Phoenix Arbiter**: Strategic Policy (Game Theory).
-*   **L5: Phoenix Warden**: Actuation & Control (FSM).
-*   **L4: Phoenix Trace**: Graph Intelligence (Causal DAG).
-*   **L3: Phoenix Monitor**: Telemetry Math (Kalman/Signal).
-*   **L2: Phoenix Kernel**: Runtime Probes (eBPF).
-*   **L1: Phoenix Guard**: Platform Integrity (Fast-Path).
-
-## 2. Quick Start (Workable System)
-
-### Prerequisites
-- Go 1.25+
-- Linux with eBPF support (for kernel probes)
-
-### Build the Runtime
-```sh
-go build ./phoenix_os/...
-```
-
-### Run the Replay Identity Lab
-```sh
-go test ./tests/replay/...
-```
-
-### Documentation
-See the [Documentation Index](02_docs/README.md) for detailed architecture and models.
-
-## 3. Core Axioms
-1. **Determinism is sacred.**
-2. **Replay is authoritative.**
-3. **AI is advisory.**
-4. **Control must remain bounded.**
-5. **Telemetry correctness > AI sophistication.**
-6. **Never scale instability.**
+PhoenixOS is a deterministic security-control operating substrate. It implements a thermodynamic approach to system protection, "quenching" high-entropy anomalies into low-entropy, policy-enforced states.
 
 ---
-*For development instructions and contribution guidelines, see [CLAUDE.md](CLAUDE.md).*
+
+## The Hardened Substrate (Stage A Genesis)
+
+The core architecture is now verified and hardened. The system successfully demonstrates:
+- **Mechanical Determinism:** Warden FSM enforces state transitions (SAFE -> WATCH -> SUSPICIOUS -> CRITICAL -> COMPROMISED).
+- **Thermodynamic Guardrails:** Policy-gated actuation via `redlines.json`.
+- **Causal Lineage:** Every event is captured in a Merkle-DAG via the Phoenix Ledger.
+- **L7 Neural-Mechanical Bridge:** AI directives are filtered through a deterministic safety layer before actuation.
+
+---
+
+## System Layers (Phoenix Matrix)
+
+| Layer | Component | Status |
+| :--- | :--- | :--- |
+| **L7** | Phoenix Nexus | **ACTIVE** (Oracle Bridge) |
+| **L6** | Phoenix Sentinel | **ACTIVE** |
+| **L5.5** | Phoenix Arbiter | **ACTIVE** |
+| **L5** | Phoenix Warden | **ACTIVE** (Hardened FSM) |
+| **L4** | Phoenix Trace | **ACTIVE** |
+| **L3** | Phoenix Monitor | **ACTIVE** |
+| **L2/L1**| Phoenix Guard | **ACTIVE** (<100ms Fast-Path) |
+
+---
+
+## Core Principles
+1. **Determinism is sacred.** No race conditions. Monotonic logical clocks.
+2. **Replay is authoritative.** System state can be reconstructed from the Ledger.
+3. **AI is advisory.** The AI (G0DM0D3) proposes; the Substrate (Warden) disposes.
+
+---
+
+## Build & Audit
+
+```bash
+# Build the core services
+go build ./...
+
+# Run the Stage A Genesis Audit
+go run tools/full_system_audit.go
+```
+
+## Validation
+
+```bash
+# Verify race safety
+go test -race ./...
+
+# Run fuzz testing on the Ledger
+go test -fuzz ./...
+```
+
+---
+
+## Project Roadmap
+- **Stage A: Hardening** [COMPLETE]
+- **Stage B: Formal Invariants** [PLANNED]
+- **Stage C: OS Primitives** [PLANNED]
+- **Stage D: Distributed Coordination** [PLANNED]
+
+See `docs/PHASE_STATUS.md` and `STAGE_A_HARDENING_REPORT.md` for details.
+

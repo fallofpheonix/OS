@@ -1,6 +1,6 @@
 package scoring
 
-import "github.com/fallofpheonix/phoenix-os/phoenixmind-validator/truth/evidence"
+import "github.com/fallofpheonix/phoenixmind-validator/truth/evidence"
 
 // Score represents the calculated belief in a piece of evidence.
 type Score struct {

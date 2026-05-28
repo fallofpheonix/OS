@@ -68,7 +68,7 @@ agents/
 
 Extract:
 
-agents
+agents (documentation only)
 
 prompts
 
@@ -116,7 +116,9 @@ detailed review
 
 Extract:
 
-unknown
+core files (main.go, go.mod, INVARIANTS.md)
+security module
+observability (no functional assets found)
 
 Keep:
 
@@ -128,4 +130,48 @@ blocked
 
 Status:
 
-pending detailed review
+in progress: core files and security module extracted
+
+---
+
+## External VPN Components (Integration Target)
+
+### OpenVPN
+
+Target: `pheonixos/external/openvpn`
+
+Source: `https://github.com/openvpn/openvpn.git`
+
+Status: Cloned, pending integration strategy implementation
+
+### ProtonVPN Go VPN Library
+
+Target: `pheonixos/external/protonvpn-go-vpn-lib`
+
+Source: `https://github.com/ProtonVPN/go-vpn-lib.git`
+
+Status: Cloned, pending integration strategy implementation
+
+### ProtonVPN Python API Core
+
+Target: `pheonixos/external/protonvpn-python-api-core`
+
+Source: `https://github.com/ProtonVPN/python-proton-vpn-api-core.git`
+
+Status: Cloned, pending integration strategy implementation
+
+### ProtonVPN Daemon
+
+Target: `pheonixos/external/protonvpn-daemon`
+
+Source: `https://github.com/ProtonVPN/proton-vpn-daemon.git`
+
+Status: Cloned, pending integration strategy implementation
+
+### ProtonVPN Local Agent (Rust)
+
+Target: `pheonixos/external/protonvpn-local-agent-rs`
+
+Source: `https://github.com/ProtonVPN/local-agent-rs.git`
+
+Status: Cloned, pending integration strategy implementation
