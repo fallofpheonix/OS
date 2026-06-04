@@ -1,0 +1,4 @@
+# ./...
+pattern ./...: main module (github.com/fallofpheonix/Phoenix.Crucible) does not contain package github.com/fallofpheonix/Phoenix.Crucible/PhoenixStimulation/external/upstream/gitnexus/test/fixtures/cross-file-binding/go-consumer-before-provider/app
+FAIL	./... [setup failed]
+FAIL

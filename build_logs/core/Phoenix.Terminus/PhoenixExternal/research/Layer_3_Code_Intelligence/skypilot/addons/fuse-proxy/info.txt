@@ -1,0 +1,1 @@
+module: module github.com/skypilot-org/skypilot/addons/fuse-proxy

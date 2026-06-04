@@ -1,0 +1,35 @@
+go 1.26
+
+use (
+	// Governance / Policy & Arbiter
+	./governance/arbiter
+	./governance/truth
+
+	// Cognition / AI Layer
+	./cognition
+	./cognition/mind
+
+	// Labs / Crucible Test Harnesses
+	./labs/crucible
+	./labs/crucible/PhoenixRedteam
+
+	// Foundation Layer
+	./foundation/contracts
+	./foundation/events
+	./foundation/ledger
+	./foundation/runtime
+	./foundation/distributed
+	./foundation/runtime/kernel
+	./foundation/observability
+
+	// Assurance Layer
+	./assurance/security
+	./assurance/validation
+
+	// Platform Interfaces
+	./platform/os
+	./platform/ui/Service
+
+	// Contract Compatibility Tests
+	./contract-tests
+)

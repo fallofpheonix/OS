@@ -1,0 +1,3 @@
+module: github.com/fallofpheonix/Phoenix.Arbiter
+path: core/Phoenix.Arbiter
+in_go_work: Y

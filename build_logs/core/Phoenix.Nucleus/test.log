@@ -1,0 +1,5 @@
+	github.com/fallofpheonix/Phoenix.Nucleus/PhoenixMind/security		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/Phoenix.Nucleus/authority	0.651s	coverage: 25.7% of statements
+ok  	github.com/fallofpheonix/Phoenix.Nucleus/capability	0.297s	coverage: 100.0% of statements
+ok  	github.com/fallofpheonix/Phoenix.Nucleus/ledger	0.473s	coverage: 66.7% of statements
+	github.com/fallofpheonix/Phoenix.Nucleus/recovery		coverage: 0.0% of statements

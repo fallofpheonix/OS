@@ -1,0 +1,14 @@
+ok  	github.com/fallofpheonix/Phoenix.Crucible/PhoenixChampions/src/pscript	1.591s	coverage: 74.0% of statements
+	github.com/fallofpheonix/Phoenix.Crucible/PhoenixVirtualization/frontend/node_modules/flatted/golang/pkg/flatted		coverage: 0.0% of statements
+	github.com/fallofpheonix/Phoenix.Crucible/game/bitburner-src/node_modules/flatted/golang/pkg/flatted		coverage: 0.0% of statements
+	github.com/fallofpheonix/Phoenix.Crucible/game/context		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/ecs	1.081s	coverage: 63.4% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/engines	2.103s	coverage: 62.9% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/entities	0.547s	coverage: 71.4% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/simulation	2.571s	coverage: 88.5% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/simulation/hash	2.850s	coverage: 42.3% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/game/simulation/omega	3.310s	coverage: 100.0% of statements
+ok  	github.com/fallofpheonix/Phoenix.Crucible/hypothesis	3.805s	coverage: 88.9% of statements
+?   	github.com/fallofpheonix/Phoenix.Crucible/security	[no test files]
+ok  	github.com/fallofpheonix/Phoenix.Crucible/simulation	3.889s	coverage: 89.5% of statements
+	github.com/fallofpheonix/Phoenix.Crucible/verification		coverage: 0.0% of statements

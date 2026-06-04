@@ -1,0 +1,65 @@
+?   	github.com/fallofpheonix/PhoenixCore/ai/agents	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/ai/causal	0.516s
+ok  	github.com/fallofpheonix/PhoenixCore/arbiter	1.020s
+?   	github.com/fallofpheonix/PhoenixCore/auth	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/bus	1.523s
+ok  	github.com/fallofpheonix/PhoenixCore/bus/normalizer	2.526s
+ok  	github.com/fallofpheonix/PhoenixCore/bus/src	2.018s
+ok  	github.com/fallofpheonix/PhoenixCore/common/artifacts	3.089s
+?   	github.com/fallofpheonix/PhoenixCore/common/concurrency	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/config	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/common/hash	3.622s
+?   	github.com/fallofpheonix/PhoenixCore/common/logical_clock	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/math	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/math/kalman	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/resource	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/security	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/common/serialization	4.048s
+?   	github.com/fallofpheonix/PhoenixCore/common/snapshot	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/common/tooling	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/compliance	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/constitution	4.124s
+?   	github.com/fallofpheonix/PhoenixCore/containment	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/containment/file	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/containment/network	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/containment/rollback	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/contracts	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/event	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/game	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/governance_engine	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/hardening	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/ledger	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/ledger/src	3.901s
+ok  	github.com/fallofpheonix/PhoenixCore/monitor	4.027s
+ok  	github.com/fallofpheonix/PhoenixCore/monitor/src	4.050s
+?   	github.com/fallofpheonix/PhoenixCore/monitoring	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/nexus_coordination	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/advisory	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/distributed	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/enforcement	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/event	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/fsm	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/ledger	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/memory	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/simulation	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/trace	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/truth	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/proto/v1/validation	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/recovery	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/runtime_lab	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/scheduler	3.936s
+?   	github.com/fallofpheonix/PhoenixCore/security/control	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/security/game/stackelberg	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/security/integrated_model/src	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/security/physics	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/security/physics/disorder	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/state	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/tcs	4.010s
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/collectors/file_metadata	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/collectors/process_exec	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/detector	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/entropy_engine_go	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/events	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/normalizer	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/testing	4.016s [no tests to run]
+?   	github.com/fallofpheonix/PhoenixCore/truth	[no test files]

@@ -1,0 +1,9 @@
+# github.com/fallofpheonix/PhoenixValidation/chaos_test
+# [github.com/fallofpheonix/PhoenixValidation/chaos_test]
+vet: chaos/fuzz_test.go:35:20: cannot use evt (variable of type *"github.com/fallofpheonix/PhoenixCore/proto/v1/event".EventEnvelope) as "github.com/fallofpheonix/PhoenixCore/event".Event value in argument to engine.Apply
+# github.com/fallofpheonix/PhoenixValidation/invariants_test
+# [github.com/fallofpheonix/PhoenixValidation/invariants_test]
+vet: invariants/clock_test.go:30:25: cannot use evt1 (variable of type *"github.com/fallofpheonix/PhoenixCore/proto/v1/event".EventEnvelope) as "github.com/fallofpheonix/PhoenixCore/event".Event value in argument to engine.Apply
+# github.com/fallofpheonix/PhoenixValidation/replay
+# [github.com/fallofpheonix/PhoenixValidation/replay]
+vet: replay/engine_test.go:35:27: engine.Reconstruct undefined (type *Engine has no field or method Reconstruct)

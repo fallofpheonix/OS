@@ -1,0 +1,3 @@
+# github.com/fallofpheonix/PhoenixGuard
+# [github.com/fallofpheonix/PhoenixGuard]
+vet: ./warden_compat_test.go:131:21: cannot use a1 (variable of type *stubActuator) as Actuator value in argument to w.RegisterActuator: *stubActuator does not implement Actuator (missing method Kill)

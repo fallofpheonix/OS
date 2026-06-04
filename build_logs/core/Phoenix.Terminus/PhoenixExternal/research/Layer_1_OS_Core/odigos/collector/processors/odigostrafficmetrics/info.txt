@@ -1,0 +1,1 @@
+module: module github.com/open-telemetry/opentelemetry-collector-contrib/odigos/processor/odigostrafficmetrics

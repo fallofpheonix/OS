@@ -1,0 +1,11 @@
+mode: set
+sentinel/telemetry/process_graphs/src/main.go:27.24,32.2 1 1
+sentinel/telemetry/process_graphs/src/main.go:34.48,37.31 3 1
+sentinel/telemetry/process_graphs/src/main.go:37.31,39.3 1 1
+sentinel/telemetry/process_graphs/src/main.go:42.42,46.2 3 1
+sentinel/telemetry/process_graphs/src/main.go:48.48,56.2 6 1
+sentinel/telemetry/process_graphs/src/main.go:58.76,59.17 1 1
+sentinel/telemetry/process_graphs/src/main.go:59.17,61.3 1 0
+sentinel/telemetry/process_graphs/src/main.go:62.2,64.39 3 1
+sentinel/telemetry/process_graphs/src/main.go:64.39,66.3 1 1
+sentinel/telemetry/process_graphs/src/main.go:69.13,75.2 5 0

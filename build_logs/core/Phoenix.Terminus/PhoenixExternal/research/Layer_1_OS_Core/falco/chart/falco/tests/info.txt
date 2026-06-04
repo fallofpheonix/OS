@@ -1,0 +1,1 @@
+module: module github.com/falcosecurity/falco/chart/falco/tests

@@ -1,0 +1,65 @@
+	github.com/fallofpheonix/PhoenixCore/ai/agents		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/ai/causal	0.262s	coverage: 82.8% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/arbiter	0.342s	coverage: 73.3% of statements
+?   	github.com/fallofpheonix/PhoenixCore/auth	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/bus	0.594s	coverage: 65.7% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/bus/normalizer	0.799s	coverage: 80.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/bus/src	1.021s	coverage: 72.2% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/common/artifacts	1.286s	coverage: 80.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/concurrency		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/config		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/common/hash	1.493s	coverage: 94.1% of statements
+	github.com/fallofpheonix/PhoenixCore/common/logical_clock		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/math		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/math/kalman		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/resource		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/security		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/common/serialization	1.345s	coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/snapshot		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/common/tooling		coverage: 0.0% of statements
+?   	github.com/fallofpheonix/PhoenixCore/compliance	[no test files]
+ok  	github.com/fallofpheonix/PhoenixCore/constitution	1.352s	coverage: 56.2% of statements
+	github.com/fallofpheonix/PhoenixCore/containment		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/containment/file		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/containment/network		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/containment/rollback		coverage: 0.0% of statements
+?   	github.com/fallofpheonix/PhoenixCore/contracts	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/event	[no test files]
+	github.com/fallofpheonix/PhoenixCore/game		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/governance_engine		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/hardening		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/ledger		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/ledger/src	1.089s	coverage: 75.5% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/monitor	1.312s	coverage: 39.1% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/monitor/src	1.571s	coverage: 85.7% of statements
+	github.com/fallofpheonix/PhoenixCore/monitoring		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/nexus_coordination		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/advisory		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/distributed		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/enforcement		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/event		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/fsm		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/ledger		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/memory		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/simulation		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/trace		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/truth		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/proto/v1/validation		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/recovery		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/runtime_lab		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/scheduler	0.347s	coverage: 86.7% of statements
+	github.com/fallofpheonix/PhoenixCore/security/control		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/security/game/stackelberg		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/security/integrated_model/src		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/security/physics		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/security/physics/disorder		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/state		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/tcs	0.520s	coverage: 70.3% of statements
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/collectors/file_metadata	[no test files]
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/collectors/process_exec	[no test files]
+	github.com/fallofpheonix/PhoenixCore/telemetry/detector		coverage: 0.0% of statements
+	github.com/fallofpheonix/PhoenixCore/telemetry/entropy_engine_go		coverage: 0.0% of statements
+?   	github.com/fallofpheonix/PhoenixCore/telemetry/events	[no test files]
+	github.com/fallofpheonix/PhoenixCore/telemetry/normalizer		coverage: 0.0% of statements
+ok  	github.com/fallofpheonix/PhoenixCore/testing	0.390s	coverage: [no statements] [no tests to run]
+	github.com/fallofpheonix/PhoenixCore/truth		coverage: 0.0% of statements

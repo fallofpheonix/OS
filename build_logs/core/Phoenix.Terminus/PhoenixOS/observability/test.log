@@ -1,0 +1,4 @@
+# ./...
+pattern ./...: main module (github.com/fallofpheonix/phoenix-os) does not contain package github.com/fallofpheonix/phoenix-os/observability/drift
+FAIL	./... [setup failed]
+FAIL

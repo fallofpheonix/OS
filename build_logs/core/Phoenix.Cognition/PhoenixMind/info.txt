@@ -1,0 +1,3 @@
+module: github.com/fallofpheonix/PhoenixMind
+path: core/Phoenix.Cognition/PhoenixMind
+in_go_work: Y
