@@ -1,1 +1,39 @@
----\nStatus: Draft\nImplementation: 0%\nConfidence: High\n---\n# Game World State Specification (SPEC)\n\n> This document defines the formal, implementable representation of the Game World State.\n\n## 1. Authority & Ownership Model\n\n- **Authoritative Simulation**: The simulation running on the "Primary" node (as designated by the Ledger) is the source of truth.\n- **Entity Ownership**: Each entity is owned by exactly one `IdentityID`. Only the owner can issue move/action events for that entity.\n- **System Authority**: Environmental entities (Terrain, Spawners) are owned by the `System` identity.\n\n## 2. Entity Lifecycle\n\n1. **Spawn**: `SpawnEvent` defines `EntityType`, `InitialState`, and `OwnerID`.\n2. **Update**: `ActionEvents` modify components/transform. Must pass owner validation.\n3. **Destroy**: `DestroyEvent` removes entity from active map and releases resources.\n\n## 3. Versioning & Migration\n\n- **Snapshot Versioning**: Every state snapshot contains a `SchemaVersion`. \n- **Migration Rules**: To replay a `v1.0` snapshot on a `v1.1` engine, the `Runtime` must apply an immutable `MigrationAdapter` defined in the `contracts` layer.\n- **Cross-Version Replay**: Replay must be bit-perfect for the version it was recorded in. If the engine logic changes, the old version of the logic must be preserved for replay compatibility (e.g., via versioned plugins or WASM modules).\n\n## 4. Canonical Schema (JSON Path Representation)\n\n```json\n{\n  \"world\": {\n    \"tick\": \"uint64\",\n    \"seed\": \"uint64\",\n    \"entities\": {\n      \"<EntityID>\": {\n        \"type\": \"string\",\n        \"owner\": \"IdentityID\",\n        \"transform\": { \"p\": [\"f64\", \"f64\", \"f64\"], \"r\": [\"f64\", \"f64\", \"f64\", \"f64\"] },\n        \"components\": \"Map<string, bytes>\"\n      }\n    }\n  }\n}\n```\n\n--- \n*Refer to [SAVE_FORMAT.md](./SAVE_FORMAT.md) for binary encoding.* \n
+# WorldState Specification (Authoritative)
+
+**Status:** DRAFT (Vertical Slice Step 5)
+**Confidence:** High
+**Owner:** Phoenix.Nucleus / Game Layer
+
+## 1. Structure
+The `WorldState` is the authoritative snapshot of the game universe at a specific discrete time ($T$).
+
+```go
+type WorldState struct {
+	Tick          uint64            `json:"tick"`           // Monotonic time step
+	Seed          int64             `json:"seed"`           // Base entropy for the session
+	Entities      map[string]*Entity `json:"entities"`       // Unordered storage (Map)
+	LastEventHash string            `json:"last_event_hash"` // causal link to ledger
+	StateHash     string            `json:"state_hash"`     // Cryptographic commitment to this state
+}
+```
+
+## 2. Canonical Hashing (Determinism)
+To ensure identical states produce identical hashes regardless of memory layout:
+
+1. **Sort Entities:** Entities must be sorted by `ID` (string, ascending).
+2. **Serialize:** Each entity is serialized to JSON with deterministic field ordering.
+3. **Concatenate:** Tick + Seed + LastEventHash + SortedEntityHashes.
+4. **Hash:** SHA-256 of the concatenated string.
+
+## 3. State Transitions
+A state transition $S_{T} \rightarrow S_{T+1}$ is ONLY valid if:
+1. It is produced by a deterministic execution of the P-Script VM.
+2. The `LastEventHash` at $T+1$ matches the hash of the event that triggered the transition.
+3. The `StateHash` is re-calculated and verified.
+
+## 4. Initialization
+- **Genesis State ($T=0$):**
+  - Tick: 0
+  - Seed: Defined in Simulation Manifest
+  - LastEventHash: Genesis Block Hash
+  - Entities: Initial set defined in Manifest

@@ -1,17 +1,21 @@
----\nStatus: Planned\nImplementation: 0%\nConfidence: Conceptual\n---\n# Phoenix Game Layer
+---\nStatus: In Development\nImplementation: 5%\nConfidence: Alpha\n---\n# Phoenix Game Layer
 
-> **Layer**: Game | **Maturity**: Conceptual | **Owner**: Gameplay Team
+> **Layer**: Game | **Maturity**: Alpha | **Owner**: Gameplay Team
 
-This directory is designated for the Phoenix Game Layer, which will contain the core game loop, simulation systems, warden gameplay mechanics, and active environment simulations.
+This directory contains the Phoenix Game Layer, featuring a deterministic game loop and the `pscript` virtual machine.
 
-Currently, this layer is in the **Conceptual** stage with no active code implementation in the main branch.
+## Current Status
 
-## Roadmap & Target State
+- **pscript VM**: Initial implementation of a stack-based VM for agent logic.
+- **pscript Parser**: Minimal lexer and recursive-descent parser for programmable scripts.
+- **Determinism**: Integrated with `foundation/ledger` for bit-perfect fixed-point simulation.
+- **WebSocket Bridge**: Real-time world state broadcasting to Godot clients.
+- **Vertical Slice**: "Deterministic Proximity Probe" implemented, verified, and renderable.
 
-Refer to [docs/roadmap/MASTER_PHOENIX_ROADMAP.md](../docs/roadmap/MASTER_PHOENIX_ROADMAP.md) for details on when this layer will be populated. Planned subprojects include:
-- `game/loop`: High-performance deterministic game loop.
-- `game/warden`: Implementation of warden behaviors and constraints.
-- `game/simulation`: Physics, agent environment, and state synchronization.
+## Subprojects
+
+- `game/pkg/vm`: Core pscript virtual machine and world state management.
+- `game/docs`: Architectural specifications and research.
 
 ---
 *Part of the [Phoenix Master Architecture](../docs/MASTER_SYSTEM_MAP.md)*
