@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/fallofpheonix/phoenix/foundation/runtime/common/hash"
-	"github.com/fallofpheonix/phoenix/foundation/runtime/common/serialization"
 	eventsv1 "github.com/fallofpheonix/phoenix/foundation/contracts/events/v1"
 	replayv1 "github.com/fallofpheonix/phoenix/foundation/contracts/replay/v1"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/common/hash"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/common/serialization"
 )
 
 // STATUS: ACTIVE
@@ -71,7 +71,7 @@ func (e *Engine) Replay(ctx context.Context, envelopes []eventsv1.EventEnvelope)
 // Apply updates the engine's internal state based on an event.
 func (e *Engine) Apply(env eventsv1.EventEnvelope) error {
 	var payload []byte
-	
+
 	// Attempt to retrieve payload via interface checks
 	if pEv, ok := env.(interface{ GetPayload() []byte }); ok {
 		payload = pEv.GetPayload()
@@ -121,7 +121,7 @@ func (e *Engine) CalculateStateHash() string {
 	b, _ := serialization.StableMarshal(e.State)
 	stateHash := fmt.Sprintf("%x", sha256.Sum256(b))
 	subsystemHashes := map[string]string{"State": stateHash}
-	
+
 	return hasher.ComputeHash(subsystemHashes)
 }
 

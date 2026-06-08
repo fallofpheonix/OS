@@ -1,1 +1,0 @@
-module: module github.com/envoyproxy/envoy/contrib/golang/filters/network/test/test_data

@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	eventsv1 "github.com/fallofpheonix/phoenix/foundation/contracts/events/v1"
 	"github.com/fallofpheonix/phoenix/assurance/validation/replay"
+	eventsv1 "github.com/fallofpheonix/phoenix/foundation/contracts/events/v1"
 )
 
 type clockEnvelopeWrapper struct {
@@ -21,26 +21,26 @@ type clockEnvelopeWrapper struct {
 	seq uint64
 }
 
-func (w *clockEnvelopeWrapper) GetEventID() string            { return w.id }
-func (w *clockEnvelopeWrapper) GetEventVersion() string       { return "1.0.0" }
-func (w *clockEnvelopeWrapper) GetEventType() string          { return "clock" }
-func (w *clockEnvelopeWrapper) GetTimestamp() time.Time       { return time.Now() }
-func (w *clockEnvelopeWrapper) GetMonotonicTime() uint64      { return w.seq }
-func (w *clockEnvelopeWrapper) GetSourceRepo() string         { return "" }
-func (w *clockEnvelopeWrapper) GetSourceComponent() string    { return "" }
-func (w *clockEnvelopeWrapper) GetParentEvent() string        { return "" }
-func (w *clockEnvelopeWrapper) GetCorrelationID() string      { return "" }
-func (w *clockEnvelopeWrapper) GetCausalChain() []string      { return nil }
-func (w *clockEnvelopeWrapper) GetReplaySequence() uint64     { return w.seq }
-func (w *clockEnvelopeWrapper) GetEvidenceHash() string       { return "" }
-func (w *clockEnvelopeWrapper) GetTrustScore() float64        { return 1.0 }
-func (w *clockEnvelopeWrapper) GetSignature() string         { return "" }
-func (w *clockEnvelopeWrapper) GetPayloadHash() string       { return "" }
-func (w *clockEnvelopeWrapper) GetSchemaVersion() string      { return "" }
-func (w *clockEnvelopeWrapper) GetCreatedAt() time.Time       { return time.Now() }
-func (w *clockEnvelopeWrapper) GetUpdatedAt() time.Time       { return time.Now() }
-func (w *clockEnvelopeWrapper) GetValidationHash() string    { return "" }
-func (w *clockEnvelopeWrapper) GetPayload() []byte            { return nil }
+func (w *clockEnvelopeWrapper) GetEventID() string         { return w.id }
+func (w *clockEnvelopeWrapper) GetEventVersion() string    { return "1.0.0" }
+func (w *clockEnvelopeWrapper) GetEventType() string       { return "clock" }
+func (w *clockEnvelopeWrapper) GetTimestamp() time.Time    { return time.Now() }
+func (w *clockEnvelopeWrapper) GetMonotonicTime() uint64   { return w.seq }
+func (w *clockEnvelopeWrapper) GetSourceRepo() string      { return "" }
+func (w *clockEnvelopeWrapper) GetSourceComponent() string { return "" }
+func (w *clockEnvelopeWrapper) GetParentEvent() string     { return "" }
+func (w *clockEnvelopeWrapper) GetCorrelationID() string   { return "" }
+func (w *clockEnvelopeWrapper) GetCausalChain() []string   { return nil }
+func (w *clockEnvelopeWrapper) GetReplaySequence() uint64  { return w.seq }
+func (w *clockEnvelopeWrapper) GetEvidenceHash() string    { return "" }
+func (w *clockEnvelopeWrapper) GetTrustScore() float64     { return 1.0 }
+func (w *clockEnvelopeWrapper) GetSignature() string       { return "" }
+func (w *clockEnvelopeWrapper) GetPayloadHash() string     { return "" }
+func (w *clockEnvelopeWrapper) GetSchemaVersion() string   { return "" }
+func (w *clockEnvelopeWrapper) GetCreatedAt() time.Time    { return time.Now() }
+func (w *clockEnvelopeWrapper) GetUpdatedAt() time.Time    { return time.Now() }
+func (w *clockEnvelopeWrapper) GetValidationHash() string  { return "" }
+func (w *clockEnvelopeWrapper) GetPayload() []byte         { return nil }
 
 func TestMonotonicClockInvariant(t *testing.T) {
 	engine := replay.NewEngine()

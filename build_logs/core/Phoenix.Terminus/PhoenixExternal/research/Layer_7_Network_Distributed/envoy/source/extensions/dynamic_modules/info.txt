@@ -1,1 +1,0 @@
-module: module github.com/envoyproxy/envoy/source/extensions/dynamic_modules

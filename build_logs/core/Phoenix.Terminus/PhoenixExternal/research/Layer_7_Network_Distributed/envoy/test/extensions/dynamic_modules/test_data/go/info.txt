@@ -1,1 +1,0 @@
-module: module github.com/envoyproxy/envoy/test/extensions/dynamic_modules/test_data/go

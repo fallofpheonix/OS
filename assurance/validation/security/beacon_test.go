@@ -9,6 +9,7 @@ package security
 
 import (
 	"fmt"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/containment"
 	"testing"
@@ -20,12 +21,12 @@ func TestBeaconMitigation(t *testing.T) {
 	// Simulate beacon detection (Severity 0.85)
 	event := bus.TelemetryEvent{
 		SeqID:     1,
-		Severity:  0.85,
+		Severity:  phxmath.FixedPoint{V: 850000},
 		EventType: "beacon_detected",
 	}
 
 	// Trigger containment transition based on advisory (simulated)
-	if event.Severity >= 0.8 {
+	if event.Severity.V >= 800000 {
 		err := engine.Transition(containment.StateThrottle, "EV-001", "DEC-001")
 		if err != nil {
 			t.Fatalf("Containment transition failed: %v", err)

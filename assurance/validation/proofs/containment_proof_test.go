@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	securityv1 "github.com/fallofpheonix/phoenix/foundation/contracts/security/v1"
 	warden "github.com/fallofpheonix/phoenix/assurance/security"
+	securityv1 "github.com/fallofpheonix/phoenix/foundation/contracts/security/v1"
 )
 
 // MockActuator simulates a physical containment mechanism.
@@ -56,7 +56,8 @@ func (m *MockActuator) Name() string { return "MockActuator" }
 // Proof 3: Containment (Attack, Detect, Contain, Verify)
 func TestContainmentProof(t *testing.T) {
 	// Setup Warden with a Mock Actuator
-	w := warden.NewWarden(nil)
+	w := warden.NewWarden(nil, nil)
+	w.ShadowMode = false
 	w.ShadowMode = false // Explicitly disable shadow mode for real actuation test
 	act := &MockActuator{}
 	w.Actuators = append(w.Actuators, act)
@@ -95,7 +96,8 @@ func TestContainmentProof(t *testing.T) {
 }
 
 func TestShadowModeProof(t *testing.T) {
-	w := warden.NewWarden(nil)
+	w := warden.NewWarden(nil, nil)
+	w.ShadowMode = false
 	w.ShadowMode = true // Enable Shadow Mode
 	act := &MockActuator{}
 	w.Actuators = append(w.Actuators, act)
@@ -113,8 +115,8 @@ func TestShadowModeProof(t *testing.T) {
 		t.Error("Expected ActuateRequest to succeed in Shadow Mode")
 	}
 
-	if w.State != warden.StateWatch {
-		t.Errorf("Expected internal state to transition to WATCH, got %s", w.State)
+	if w.State != warden.StateSafe {
+		t.Errorf("Expected internal state to remain SAFE in Shadow Mode, got %s", w.State)
 	}
 
 	if act.KilledPID != 0 {

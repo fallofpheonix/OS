@@ -9,6 +9,7 @@ package security
 
 import (
 	"fmt"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	"testing"
 )
@@ -20,7 +21,7 @@ func TestPortScanDetection(t *testing.T) {
 
 	// Simulate port scan events
 	for i := 0; i < 100; i++ {
-		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), EventType: "connection_refused", Severity: 0.4})
+		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), EventType: "connection_refused", Severity: phxmath.FixedPoint{V: 400000}})
 	}
 
 	fmt.Println("[PX-007] Port Scan Detection: Signal recorded in bus")

@@ -1,1 +1,0 @@
-module: module odigosk8scmprovider

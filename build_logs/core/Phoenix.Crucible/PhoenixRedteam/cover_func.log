@@ -1,6 +1,0 @@
-github.com/fallofpheonix/PhoenixRedteam/cmd/byzantine/main.go:73:	RequestQuorum	0.0%
-github.com/fallofpheonix/PhoenixRedteam/cmd/byzantine/main.go:96:	main		0.0%
-github.com/fallofpheonix/PhoenixRedteam/cmd/drowning_man/main.go:19:	main		0.0%
-github.com/fallofpheonix/PhoenixRedteam/cmd/pulse/main.go:17:		main		0.0%
-github.com/fallofpheonix/PhoenixRedteam/cmd/replay_stress/main.go:19:	main		0.0%
-total:									(statements)	0.0%

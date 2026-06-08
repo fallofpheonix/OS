@@ -27,35 +27,35 @@ type Event struct {
 
 var _ eventsv1.EventEnvelope = Event{}
 
-func (e Event) GetEventID() string            { return e.EventID }
-func (e Event) GetEventVersion() string       { return "1.0.0" }
-func (e Event) GetEventType() string          { return "GenericEvent" }
-func (e Event) GetTimestamp() time.Time       { return time.Now() }
-func (e Event) GetMonotonicTime() uint64      { return e.LogicalTime }
-func (e Event) GetSourceRepo() string         { return e.AuthorityID }
-func (e Event) GetSourceComponent() string    { return "Core" }
-func (e Event) GetParentEvent() string        { return e.ParentID }
-func (e Event) GetCorrelationID() string      { return e.IdentityID }
-func (e Event) GetCausalChain() []string      {
+func (e Event) GetEventID() string         { return e.EventID }
+func (e Event) GetEventVersion() string    { return "1.0.0" }
+func (e Event) GetEventType() string       { return "GenericEvent" }
+func (e Event) GetTimestamp() time.Time    { return time.Now() }
+func (e Event) GetMonotonicTime() uint64   { return e.LogicalTime }
+func (e Event) GetSourceRepo() string      { return e.AuthorityID }
+func (e Event) GetSourceComponent() string { return "Core" }
+func (e Event) GetParentEvent() string     { return e.ParentID }
+func (e Event) GetCorrelationID() string   { return e.IdentityID }
+func (e Event) GetCausalChain() []string {
 	if e.ParentID != "" {
 		return []string{e.ParentID}
 	}
 	return nil
 }
-func (e Event) GetReplaySequence() uint64      { return e.LogicalTime }
-func (e Event) GetEvidenceHash() string        {
+func (e Event) GetReplaySequence() uint64 { return e.LogicalTime }
+func (e Event) GetEvidenceHash() string {
 	if len(e.Evidence) > 0 {
 		return e.Evidence[0]
 	}
 	return ""
 }
-func (e Event) GetTrustScore() float64        { return 1.0 }
-func (e Event) GetSignature() string          { return e.Signature }
-func (e Event) GetPayloadHash() string        { return "" }
-func (e Event) GetSchemaVersion() string      { return "1.0.0" }
-func (e Event) GetCreatedAt() time.Time       { return time.Now() }
-func (e Event) GetUpdatedAt() time.Time       { return time.Now() }
-func (e Event) GetValidationHash() string     { return "" }
+func (e Event) GetTrustScore() float64    { return 1.0 }
+func (e Event) GetSignature() string      { return e.Signature }
+func (e Event) GetPayloadHash() string    { return "" }
+func (e Event) GetSchemaVersion() string  { return "1.0.0" }
+func (e Event) GetCreatedAt() time.Time   { return time.Now() }
+func (e Event) GetUpdatedAt() time.Time   { return time.Now() }
+func (e Event) GetValidationHash() string { return "" }
 
 // ArtifactManifest represents an immutable, signed piece of data or code.
 // Internal State: Metadata describing a binary artifact, its dependencies, and retention policy.
@@ -74,8 +74,8 @@ type ArtifactManifest struct {
 // API Scope: Public; used for fast-sync and recovery initialization.
 // Concurrency: Thread-safe (immutable).
 type Checkpoint struct {
-	StateHash          string   `json:"state_hash"`
-	ReplayOffset       uint64   `json:"replay_offset"`
-	ArtifactReferences []string `json:"artifact_references"`
+	StateHash          string    `json:"state_hash"`
+	ReplayOffset       uint64    `json:"replay_offset"`
+	ArtifactReferences []string  `json:"artifact_references"`
 	Timestamp          time.Time `json:"timestamp"`
 }

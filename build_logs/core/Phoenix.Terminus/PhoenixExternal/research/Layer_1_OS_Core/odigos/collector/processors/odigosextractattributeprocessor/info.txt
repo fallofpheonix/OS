@@ -1,1 +1,0 @@
-module: module github.com/odigos-io/odigos/collector/processor/odigosextractattributeprocessor

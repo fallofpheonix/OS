@@ -1,1 +1,0 @@
-module: module example.com/go-variadic-resolution

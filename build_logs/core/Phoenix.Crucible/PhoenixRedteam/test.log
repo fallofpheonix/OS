@@ -1,5 +1,0 @@
-?   	github.com/fallofpheonix/PhoenixRedteam/attacks	[no test files]
-	github.com/fallofpheonix/PhoenixRedteam/cmd/byzantine		coverage: 0.0% of statements
-	github.com/fallofpheonix/PhoenixRedteam/cmd/drowning_man		coverage: 0.0% of statements
-	github.com/fallofpheonix/PhoenixRedteam/cmd/pulse		coverage: 0.0% of statements
-	github.com/fallofpheonix/PhoenixRedteam/cmd/replay_stress		coverage: 0.0% of statements

@@ -13,6 +13,7 @@ import (
 	"testing"
 	"time"
 
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 )
 
@@ -33,7 +34,7 @@ func TestRingOverflow(t *testing.T) {
 		if i > int(bus.QueueCapacity*94/100) {
 			sev = 0.85
 		}
-		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: sev})
+		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: phxmath.FixedPoint{V: int64(sev * 1000000)}})
 	}
 
 	pressure := b.QueuePressure(topic)
@@ -73,7 +74,7 @@ func TestDroppedFrames(t *testing.T) {
 	// Publish more than capacity with low severity
 	total := bus.QueueCapacity + 1000
 	for i := 0; i < total; i++ {
-		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: 0.1})
+		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: phxmath.FixedPoint{V: 100000}})
 	}
 
 	if b.Dropped == 0 {
@@ -110,7 +111,7 @@ func TestKernelBurst(t *testing.T) {
 
 	// Rapid burst of high priority events
 	for i := 0; i < 1000; i++ {
-		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: 0.95})
+		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: phxmath.FixedPoint{V: 950000}})
 	}
 
 	if b.Dropped > 0 {

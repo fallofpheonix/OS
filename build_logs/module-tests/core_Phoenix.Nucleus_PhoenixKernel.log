@@ -1,7 +1,0 @@
-?   	github.com/fallofpheonix/PhoenixKernel	[no test files]
-ok  	github.com/fallofpheonix/PhoenixKernel/bridge	1.035s
-?   	github.com/fallofpheonix/PhoenixKernel/hooks	[no test files]
-ok  	github.com/fallofpheonix/PhoenixKernel/live	1.542s
-?   	github.com/fallofpheonix/PhoenixKernel/probes	[no test files]
-ok  	github.com/fallofpheonix/PhoenixKernel/runtime	0.523s
-?   	github.com/fallofpheonix/PhoenixKernel/sandbox	[no test files]

@@ -3,8 +3,8 @@ module github.com/fallofpheonix/phoenix/assurance/security
 go 1.26
 
 replace (
-	github.com/fallofpheonix/phoenix/foundation/runtime => ../../foundation/runtime
-	github.com/fallofpheonix/phoenix/foundation/runtime/kernel => ../../foundation/runtime/kernel
+	github.com/fallofpheonix/phoenix/foundation/runtime => ../../internal/runtime
+	github.com/fallofpheonix/phoenix/foundation/runtime/kernel => ../../internal/runtime/kernel
 )
 
 require (

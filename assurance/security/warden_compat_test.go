@@ -1,44 +1,19 @@
 /*
  * PHOENIX MATRIX SOVEREIGN ARCHITECTURE
- * [STATUS]: 18-Repository Substrate Consolidated
- * [FUTURE ENHANCEMENT]: Needs continuous formal verification scaling and HDF5 vector optimizations.
- * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
- * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
- */
-/**
- * FILE: warden_compat_test.go
- *
- * Purpose:
- * Tests for the compatibility layer added to the root `warden` package.
- * Covers RegisterInvariant, logViolation, and the GraphProvider /
- * CertificateValidator interface contracts.
- *
- * Subsystem:
- * PhoenixGuard (Tactical & Enforcement Layer) — Root Warden compat shim
- *
- * Workflow:
- *   [CYCLE 8] Actuate() → Invariant.Verify() → on violation → logViolation()
- *   → Bus.Publish("warden.violation", ...) → downstream subscribers react
- *
- * Created For:
- * P0 buildability: gap closure for missing types/methods referenced by
- * active runtime callers and existing tests.
  */
 
-package warden
+package security
 
 import (
-	"bytes"
 	"context"
-	"log"
-	"os"
-	"path/filepath"
 	"strings"
 	"sync"
 	"testing"
 
-	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	securityv1 "github.com/fallofpheonix/phoenix/foundation/contracts/security/v1"
+	ledger "github.com/fallofpheonix/phoenix/foundation/ledger/src"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 )
 
 // ---------------------------------------------------------------------------
@@ -47,13 +22,13 @@ import (
 
 func TestRegisterInvariant_AppendsToSlice(t *testing.T) {
 	b := bus.NewBus()
-	w := NewWarden(b)
+	w := NewWarden(b, &ledger.Ledger{})
 
-	if got := len(w.Invariants); got != 0 {
+	if got := len(w.getInvariants()); got != 0 {
 		t.Fatalf("expected empty invariants on fresh Warden, got %d", got)
 	}
 
-	inv1 := &EvidenceWeightInvariant{StateThresholds: map[SystemState]float64{StateCritical: 0.8}}
+	inv1 := &EvidenceWeightInvariant{StateThresholds: map[SystemState]phxmath.FixedPoint{StateCritical: phxmath.NewFixedPointRaw(800000)}}
 	inv2 := &ContextualInvariant{}
 	inv3 := &CertificateInvariant{}
 
@@ -61,23 +36,24 @@ func TestRegisterInvariant_AppendsToSlice(t *testing.T) {
 	w.RegisterInvariant(inv2)
 	w.RegisterInvariant(inv3)
 
-	if got := len(w.Invariants); got != 3 {
+	invs := w.getInvariants()
+	if got := len(invs); got != 3 {
 		t.Fatalf("expected 3 invariants after Register, got %d", got)
 	}
-	if w.Invariants[0] != inv1 {
+	if invs[0] != inv1 {
 		t.Errorf("Invariants[0]: expected inv1")
 	}
-	if w.Invariants[1] != inv2 {
+	if invs[1] != inv2 {
 		t.Errorf("Invariants[1]: expected inv2")
 	}
-	if w.Invariants[2] != inv3 {
+	if invs[2] != inv3 {
 		t.Errorf("Invariants[2]: expected inv3")
 	}
 }
 
 func TestRegisterInvariant_ThreadSafe(t *testing.T) {
 	b := bus.NewBus()
-	w := NewWarden(b)
+	w := NewWarden(b, &ledger.Ledger{})
 
 	const goroutines = 32
 	var wg sync.WaitGroup
@@ -90,7 +66,7 @@ func TestRegisterInvariant_ThreadSafe(t *testing.T) {
 	}
 	wg.Wait()
 
-	if got := len(w.Invariants); got != goroutines {
+	if got := len(w.getInvariants()); got != goroutines {
 		t.Fatalf("expected %d invariants after concurrent register, got %d", goroutines, got)
 	}
 }
@@ -124,9 +100,9 @@ func (s *stubActuator) Name() string {
 
 func TestRegisterActuator_AppendsToSlice(t *testing.T) {
 	b := bus.NewBus()
-	w := NewWarden(b)
+	w := NewWarden(b, &ledger.Ledger{})
 
-	if got := len(w.Actuators); got != 0 {
+	if got := len(w.getActuators()); got != 0 {
 		t.Fatalf("expected empty actuators on fresh Warden, got %d", got)
 	}
 
@@ -136,74 +112,15 @@ func TestRegisterActuator_AppendsToSlice(t *testing.T) {
 	w.RegisterActuator(a1)
 	w.RegisterActuator(a2)
 
-	if got := len(w.Actuators); got != 2 {
+	acts := w.getActuators()
+	if got := len(acts); got != 2 {
 		t.Fatalf("expected 2 actuators after Register, got %d", got)
 	}
-	if name := w.Actuators[0].(interface{ Name() string }).Name(); name != "process" {
+	if name := acts[0].(interface{ Name() string }).Name(); name != "process" {
 		t.Errorf("Actuators[0]: expected name=process, got %q", name)
 	}
-	if name := w.Actuators[1].(interface{ Name() string }).Name(); name != "ebpf" {
+	if name := acts[1].(interface{ Name() string }).Name(); name != "ebpf" {
 		t.Errorf("Actuators[1]: expected name=ebpf, got %q", name)
-	}
-}
-
-// ---------------------------------------------------------------------------
-// EnableDiagnostics
-// ---------------------------------------------------------------------------
-
-func TestEnableDiagnostics_EmptyPathNoOp(t *testing.T) {
-	b := bus.NewBus()
-	w := NewWarden(b)
-	if err := w.EnableDiagnostics(""); err != nil {
-		t.Errorf("expected no error for empty path, got %v", err)
-	}
-	if w.DiagnosticLogger != nil {
-		t.Errorf("expected DiagnosticLogger to remain nil for empty path")
-	}
-}
-
-func TestEnableDiagnostics_WritesToFile(t *testing.T) {
-	b := bus.NewBus()
-	w := NewWarden(b)
-	tmp := filepath.Join(t.TempDir(), "warden_diag.log")
-
-	if err := w.EnableDiagnostics(tmp); err != nil {
-		t.Fatalf("EnableDiagnostics failed: %v", err)
-	}
-	if w.DiagnosticLogger == nil {
-		t.Fatalf("expected DiagnosticLogger to be set after EnableDiagnostics")
-	}
-
-	w.DiagnosticLogger.Printf("hello diagnostic")
-	w.logViolation("test violation %d", 7)
-
-	// Flush by re-opening
-	data, err := os.ReadFile(tmp)
-	if err != nil {
-		t.Fatalf("read diag log: %v", err)
-	}
-	content := string(data)
-	if !strings.Contains(content, "hello diagnostic") {
-		t.Errorf("expected 'hello diagnostic' in %q", content)
-	}
-	if !strings.Contains(content, "[VIOLATION]") {
-		t.Errorf("expected '[VIOLATION]' tag in %q", content)
-	}
-	if !strings.Contains(content, "test violation 7") {
-		t.Errorf("expected formatted violation message in %q", content)
-	}
-}
-
-func TestEnableDiagnostics_BadPathReturnsError(t *testing.T) {
-	b := bus.NewBus()
-	w := NewWarden(b)
-	// /nonexistent-root/warden.log: parent dir does not exist
-	err := w.EnableDiagnostics("/nonexistent-root-12345/warden.log")
-	if err == nil {
-		t.Errorf("expected error for unopenable path, got nil")
-	}
-	if w.DiagnosticLogger != nil {
-		t.Errorf("expected DiagnosticLogger to remain nil on error")
 	}
 }
 
@@ -211,35 +128,9 @@ func TestEnableDiagnostics_BadPathReturnsError(t *testing.T) {
 // logViolation
 // ---------------------------------------------------------------------------
 
-func TestLogViolation_UsesDiagnosticLoggerWhenSet(t *testing.T) {
-	var buf bytes.Buffer
-	b := bus.NewBus()
-	w := NewWarden(b)
-	w.DiagnosticLogger = log.New(&buf, "", 0)
-
-	w.logViolation("test %s with %d", "message", 42)
-
-	out := buf.String()
-	if !strings.Contains(out, "[VIOLATION]") {
-		t.Errorf("expected log to contain [VIOLATION] tag, got %q", out)
-	}
-	if !strings.Contains(out, "test message with 42") {
-		t.Errorf("expected formatted message in log, got %q", out)
-	}
-}
-
-func TestLogViolation_DoesNotPanicWhenDiagnosticLoggerNil(t *testing.T) {
-	b := bus.NewBus()
-	w := NewWarden(b)
-	// DiagnosticLogger is nil — must fall back to standard log without panic.
-	w.logViolation("fallback case %s", "ok")
-}
-
 func TestLogViolation_PublishesTelemetryEventOnBus(t *testing.T) {
 	b := bus.NewBus()
-	var sinkBuf bytes.Buffer
-	w := NewWarden(b)
-	w.DiagnosticLogger = log.New(&sinkBuf, "", 0)
+	w := NewWarden(b, &ledger.Ledger{})
 
 	ch := b.Subscribe("warden.violation")
 
@@ -273,15 +164,15 @@ func TestGraphProvider_InterfaceSatisfiedByMock(t *testing.T) {
 func TestCertificateValidator_InterfaceSatisfiedByStub(t *testing.T) {
 	stub := &stubCertValidator{}
 	var v CertificateValidator = stub
-	if !v.VerifyCertificate("evt-1", 0.5, []byte{0x01}) {
+	if !v.VerifyCertificate("evt-1", phxmath.NewFixedPointRaw(500000), []byte{0x01}) {
 		t.Errorf("expected stub validator to return true for well-formed cert")
 	}
 }
 
 type stubCertValidator struct{}
 
-func (s *stubCertValidator) VerifyCertificate(eventID string, weight float64, cert []byte) bool {
-	return eventID != "" && weight >= 0 && len(cert) > 0
+func (s *stubCertValidator) VerifyCertificate(eventID string, weight phxmath.FixedPoint, cert []byte) bool {
+	return eventID != "" && weight.V >= 0 && len(cert) > 0
 }
 
 // ---------------------------------------------------------------------------

@@ -17,8 +17,8 @@ const (
 
 // ILedger defines the canonical interface for the Phoenix Ledger.
 type ILedger interface {
-	AddEntry(eventID, causeID string, payload []byte) error
-	AddEntryV2(eventID, causeID string, payload []byte, traceHash, stateBefore, stateAfter, policyVersion string) error
+	AddEntry(eventID, causeID string, tick uint64, payload []byte) error
+	AddEntryV2(eventID, causeID string, tick uint64, payload []byte, traceHash string, stateBefore, stateAfter []byte, policyVersion string) error
 	GenerateCertificate(eventID string, weight float64) ([]byte, error)
 	Verify() error
 }

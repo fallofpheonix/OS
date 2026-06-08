@@ -1,17 +1,14 @@
 /*
  * PHOENIX MATRIX SOVEREIGN ARCHITECTURE
- * [STATUS]: 18-Repository Substrate Consolidated
- * [FUTURE ENHANCEMENT]: Needs continuous formal verification scaling and HDF5 vector optimizations.
- * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
- * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
  */
-package warden
+package security
 
 import (
 	"testing"
 
-	"github.com/fallofpheonix/phoenix/foundation/runtime/common/resource"
 	ledger "github.com/fallofpheonix/phoenix/foundation/ledger/src"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/common/resource"
 )
 
 func TestCertificateInvariant(t *testing.T) {
@@ -19,9 +16,9 @@ func TestCertificateInvariant(t *testing.T) {
 	l := ledger.NewLedger(alloc)
 
 	eventID := "TEST-EVENT"
-	l.AddEntry(eventID, "CAUSE", []byte("payload"))
+	l.AddEntry(eventID, "CAUSE", 1, []byte("payload"))
 
-	weight := 0.9
+	weight := phxmath.NewFixedPointRaw(900000)
 	cert, err := l.GenerateCertificate(eventID, weight)
 	if err != nil {
 		t.Fatalf("GenerateCertificate failed: %v", err)
@@ -34,7 +31,9 @@ func TestCertificateInvariant(t *testing.T) {
 		Certificate:    cert,
 	}
 
-	if err := inv.Verify(req, StateSafe); err != nil {
+	snap := PostureSnapshot{State: StateSafe}
+
+	if err := inv.Verify(req, snap); err != nil {
 		t.Errorf("Certificate verification failed: %v", err)
 	}
 }

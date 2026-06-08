@@ -1,5 +1,0 @@
-	github.com/fallofpheonix/PhoenixDistributed/consensus		coverage: 0.0% of statements
-	github.com/fallofpheonix/PhoenixDistributed/discovery		coverage: 0.0% of statements
-ok  	github.com/fallofpheonix/PhoenixDistributed/identity	0.244s	coverage: 47.5% of statements
-	github.com/fallofpheonix/PhoenixDistributed/ledger		coverage: 0.0% of statements
-ok  	github.com/fallofpheonix/PhoenixDistributed/replication	0.425s	coverage: 82.4% of statements

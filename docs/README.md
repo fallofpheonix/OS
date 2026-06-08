@@ -1,1 +1,26 @@
----\nStatus: Implemented\nImplementation: 100%\nConfidence: Proven\n---\n# PhoenixOS Documentation Root\n\nWelcome to the centralized documentation for PhoenixOS. This directory is organized into logical domains to support both human operators and autonomous agents.\n\n## 1. Core Authority\n- **[`MASTER_INVARIANTS.md`](./MASTER_INVARIANTS.md)**: The supreme laws and absolute constraints of the system.\n- **[`MASTER_DOCUMENTATION_INDEX.md`](./MASTER_DOCUMENTATION_INDEX.md)**: The authoritative index of all documentation.\n- **[`MASTER_SYSTEM_MAP.md`](./MASTER_SYSTEM_MAP.md)**: Visual layer and dependency graph.\n- **[`adr/ADR_INDEX.md`](./adr/ADR_INDEX.md)**: Architecture Decision Records and decision framework.\n\n## 2. Formal Specifications (SPEC)\n- **[`specifications/SPEC-001-System-State.md`](./specifications/SPEC-001-System-State.md)**: Canonical hierarchical state.\n- **[`specifications/SPEC-002-Runtime-State.md`](./specifications/SPEC-002-Runtime-State.md)**: Virtual memory and VM state.\n- **[`specifications/SPEC-003-Ledger-State.md`](./specifications/SPEC-003-Ledger-State.md)**: Block structure and consensus.\n- **[`specifications/SPEC-004-Memory-State.md`](./specifications/SPEC-004-Memory-State.md)**: Truth model and fact schema.\n- **[`specifications/SPEC-005-Governance-State.md`](./specifications/SPEC-005-Governance-State.md)**: Policy engine state.\n- **[`specifications/SPEC-006-Intent-State.md`](./specifications/SPEC-006-Intent-State.md)**: Intent and actuation schema.\n- **[`specifications/SPEC-007-Capability-Model.md`](./specifications/SPEC-007-Capability-Model.md)**: Security and token model.\n\n## 3. Verification & Traceability\n- **[`verification/INVARIANT_MATRIX.md`](./verification/INVARIANT_MATRIX.md)**: Maps invariants to automated tests.\n- **[`verification/FAILURE_TO_TEST_MATRIX.md`](./verification/FAILURE_TO_TEST_MATRIX.md)**: Maps failure modes to recovery tests.\n- **[`specifications/VERIFICATION_MANDATE.md`](./specifications/VERIFICATION_MANDATE.md)**: Formal requirements and acceptance criteria.\n\n## 4. Maintenance & Operations\n- **[`roadmap/MASTER_PHOENIX_ROADMAP.md`](./roadmap/MASTER_PHOENIX_ROADMAP.md)**: Current project status and milestones.\n- **[`governance/REPOSITORY_CONSTITUTION.md`](./governance/REPOSITORY_CONSTITUTION.md)**: Mandatory rules for code and documentation.\n- **[`maintenance/CHANGELOG.md`](./maintenance/CHANGELOG.md)**: Version history.\n\n---\n**Current Phase:** Phase 4 (Formalization) - Transitioning to implementable specifications.\n
+# PhoenixOS Documentation
+
+> **Authority Model**: Canonical-Reference-Audit-Research-Archive (CRARA)
+> **Governance Phase**: 4A.6 Documentation Authority Cleanup
+
+This directory serves as the centralized repository for all system documentation, governed by the [DOCUMENT_AUTHORITY_MATRIX.md](./DOCUMENT_AUTHORITY_MATRIX.md).
+
+## 1. Documentation Hierarchy
+
+| Directory | Purpose | Authority |
+| :--- | :--- | :--- |
+| **[`canonical/`](./canonical/)** | The single source of truth for architecture, specs, and laws. | CANONICAL |
+| **[`reference/`](./reference/)** | Derived data, reports, guides, and API documentation. | REFERENCE |
+| **[`audit/`](./audit/)** | Verification reports, coverage matrices, and implementation audits. | AUDIT |
+| **[`research/`](./research/)** | Conceptual, speculative, and exploratory work. | RESEARCH |
+| **[`archive/`](./archive/)** | Superseded, historical, or deprecated documentation. | ARCHIVE |
+
+## 2. Governance Rules
+
+1. **Single Source of Truth**: Every concept must have exactly one Canonical document.
+2. **Derived Authority**: Reference and Audit documents must point back to Canonical sources.
+3. **Isolation**: Research and Archive documents must not be cited as authoritative for implementation.
+4. **Move Policy**: As research matures, it may be promoted to Canonical via an ADR.
+
+---
+*For a detailed mapping of all files, see [DOCUMENT_AUTHORITY_MATRIX.md](./DOCUMENT_AUTHORITY_MATRIX.md).*

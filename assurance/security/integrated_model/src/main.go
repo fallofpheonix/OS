@@ -1,72 +1,46 @@
 /*
  * PHOENIX MATRIX SOVEREIGN ARCHITECTURE
- * [STATUS]: 18-Repository Substrate Consolidated
- * [FUTURE ENHANCEMENT]: Needs continuous formal verification scaling and HDF5 vector optimizations.
- * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
- * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
+ * 
+ * FILE: main.go
+ * PATH: assurance/security/integrated_model/src/main.go
  */
+
 package main
 
 import (
+	"crypto/rand" // RECTIFIED: math/rand removed
 	"fmt"
-	"math/rand"
+	"log"
+	"time"
 
-	"github.com/fallofpheonix/phoenix/foundation/runtime/security/physics"
-	"github.com/fallofpheonix/phoenix/foundation/runtime/telemetry/entropy_engine"
-	"github.com/fallofpheonix/phoenix/foundation/observability/engine/process_graphs"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 )
 
-type TelemetryEvent struct {
-	PID  string
-	Data []byte
-}
-
-type ModelResult struct {
-	Entropy float64
-	SDI     float64
-	Alert   bool
-}
-
-type SentinelModel struct {
-	Graph   *process_graphs.Graph
-	Physics *physics.StateVector
-}
-
 func main() {
-	fmt.Println("Starting Sentinel Integrated Model (L3-L6)...")
-
-	// Initialize components
-	graph := process_graphs.NewGraph()
-
-	// Simulation of events
-	pids := []string{"1001", "1002", "1003"}
-	for _, pid := range pids {
-		graph.AddNode(pid, process_graphs.Process)
+	fmt.Println("PHOENIX INTEGRATED SECURITY MODEL - SIMULATION HARNESS")
+	
+	// Simulation configuration
+	eventCount := 100
+	simBus := bus.NewBus()
+	
+	for i := 0; i < eventCount; i++ {
+		// Generate high-entropy ransomware simulation data
+		ransomwareData := make([]byte, 1024)
+		_, err := rand.Read(ransomwareData) // Deterministic entropy source not required for harness
+		if err != nil {
+			log.Fatal(err)
+		}
+		
+		// Simulate event publishing
+		event := bus.TelemetryEvent{
+			SeqID: int64(i),
+			Source: "simulation_harness",
+			EventType: "RANSOMWARE_HEURISTIC",
+		}
+		simBus.Publish("security.telemetry", event)
+		
+		time.Sleep(10 * time.Millisecond)
 	}
-	graph.AddEdge("1001", "1002")
-	graph.AddEdge("1002", "1003")
-
-	// Simulated Event: Ransomware activity on PID 1003
-	ransomwareData := make([]byte, 1024)
-	rand.Read(ransomwareData) // High entropy
-
-	// 1. L3: Entropy Calculation
-	entRes := entropy_engine.CalculateEntropy(ransomwareData, nil)
-	fmt.Printf("Event PID 1003 -> Entropy: %.4f (Anomaly: %v)\n", entRes.Entropy, entRes.IsAnomaly)
-
-	// 2. L4: Graph Analysis
-	lineage := graph.GetLineage("1001")
-	fmt.Printf("Process Lineage 1001: %v\n", lineage)
-
-	// 3. L6: Physics (SDI)
-	// Map anomalies to state vector: +1 benign, -1 compromised
-	states := physics.StateVector{1, 1, -1} // 1001, 1002, 1003 (anomaly)
-	sdi := physics.CalculateSDI(states)
-	energy := physics.CalculateEnergy(states, 1.0, 0.5)
-
-	fmt.Printf("Global System State -> SDI: %.4f, Energy: %.4f\n", sdi, energy)
-
-	if entRes.IsAnomaly && sdi > 0.5 {
-		fmt.Println("!!! CRITICAL ALERT: COORDINATED ANOMALY DETECTED !!!")
-	}
+	
+	fmt.Println("Simulation Complete")
 }

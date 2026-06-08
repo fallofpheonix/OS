@@ -1,5 +1,0 @@
-github.com/fallofpheonix/PhoenixTruth/engine/contradiction.go:44:	DetectContradiction	80.0%
-github.com/fallofpheonix/PhoenixTruth/engine/evaluator.go:56:		NewEvaluator		100.0%
-github.com/fallofpheonix/PhoenixTruth/engine/evaluator.go:64:		IngestEvidence		75.0%
-github.com/fallofpheonix/PhoenixTruth/engine/evaluator.go:73:		Assess			87.5%
-total:									(statements)		84.6%

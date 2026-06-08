@@ -1,1 +1,0 @@
-module: module go.opentelemetry.io/collector/config/configgrpc

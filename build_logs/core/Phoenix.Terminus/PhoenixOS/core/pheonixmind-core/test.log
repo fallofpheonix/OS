@@ -1,4 +1,0 @@
-# ./...
-pattern ./...: main module (github.com/fallofpheonix/phoenix-os) does not contain package github.com/fallofpheonix/phoenix-os/core/pheonixmind-core/contracts
-FAIL	./... [setup failed]
-FAIL

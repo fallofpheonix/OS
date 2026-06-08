@@ -27,7 +27,7 @@ func TestMutationRace(t *testing.T) {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()
-			l.AddEntry(fmt.Sprintf("evt-%d", id), "test", []byte("data"))
+			l.AddEntry(fmt.Sprintf("evt-%d", id), "test", uint64(id), []byte("data"))
 		}(i)
 	}
 	wg.Wait()
@@ -39,7 +39,7 @@ func TestMutationRace(t *testing.T) {
 func TestSnapshotRepeat(t *testing.T) {
 	l := ledger.NewLedger(&MockAllocator{})
 	for i := 0; i < 100; i++ {
-		l.AddEntry(fmt.Sprintf("evt-%d", i), "test", []byte("data"))
+		l.AddEntry(fmt.Sprintf("evt-%d", i), "test", uint64(i), []byte("data"))
 		l.Checkpoint()
 	}
 }
@@ -54,7 +54,7 @@ func TestForkRecovery(t *testing.T) {
 
 func TestHashRepeat(t *testing.T) {
 	l := ledger.NewLedger(&MockAllocator{})
-	l.AddEntry("e1", "c1", []byte("d1"))
+	l.AddEntry("e1", "c1", 1, []byte("d1"))
 	h1 := fmt.Sprintf("%x", l.Heads[0])
 	l.Verify()
 	h2 := fmt.Sprintf("%x", l.Heads[0])

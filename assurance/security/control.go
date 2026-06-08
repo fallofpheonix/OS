@@ -5,7 +5,7 @@
  * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
  * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
  */
-package warden
+package security
 
 import (
 	"log"
@@ -20,6 +20,6 @@ func (w *Warden) HandleControlDirective(cmd string) {
 		log.Println("[Warden Control] Received UNLOAD_PROBE. Reverting to Baseline...")
 		// Cleanup logic goes here
 	case "STATUS":
-		log.Printf("[Warden Control] Current State: %s, Policies: %s", w.State, w.Policies.Actuation.Mode)
+		log.Printf("[Warden Control] Current State: %s, Policies: %s", w.GetState(), w.policies.Load().Actuation.Mode)
 	}
 }

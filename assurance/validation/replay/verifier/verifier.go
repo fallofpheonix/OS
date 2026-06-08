@@ -20,34 +20,34 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	"github.com/fallofpheonix/phoenix/assurance/validation/replay"
+	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 )
 
 type telemetryEventEnvelope struct {
 	telem bus.TelemetryEvent
 }
 
-func (w *telemetryEventEnvelope) GetEventID() string            { return fmt.Sprintf("REPLAY-%d", w.telem.SeqID) }
-func (w *telemetryEventEnvelope) GetEventVersion() string       { return "1.0.0" }
-func (w *telemetryEventEnvelope) GetEventType() string          { return w.telem.EventType }
-func (w *telemetryEventEnvelope) GetTimestamp() time.Time       { return time.Now() }
-func (w *telemetryEventEnvelope) GetMonotonicTime() uint64      { return uint64(w.telem.SeqID) }
-func (w *telemetryEventEnvelope) GetSourceRepo() string         { return "" }
-func (w *telemetryEventEnvelope) GetSourceComponent() string    { return "" }
-func (w *telemetryEventEnvelope) GetParentEvent() string        { return "" }
-func (w *telemetryEventEnvelope) GetCorrelationID() string      { return "" }
-func (w *telemetryEventEnvelope) GetCausalChain() []string      { return nil }
-func (w *telemetryEventEnvelope) GetReplaySequence() uint64     { return uint64(w.telem.SeqID) }
-func (w *telemetryEventEnvelope) GetEvidenceHash() string       { return "" }
-func (w *telemetryEventEnvelope) GetTrustScore() float64        { return 1.0 }
-func (w *telemetryEventEnvelope) GetSignature() string         { return "" }
-func (w *telemetryEventEnvelope) GetPayloadHash() string       { return "" }
-func (w *telemetryEventEnvelope) GetSchemaVersion() string      { return "" }
-func (w *telemetryEventEnvelope) GetCreatedAt() time.Time       { return time.Now() }
-func (w *telemetryEventEnvelope) GetUpdatedAt() time.Time       { return time.Now() }
-func (w *telemetryEventEnvelope) GetValidationHash() string    { return "" }
-func (w *telemetryEventEnvelope) GetPayload() []byte            { return []byte(w.telem.Payload) }
+func (w *telemetryEventEnvelope) GetEventID() string         { return fmt.Sprintf("REPLAY-%d", w.telem.SeqID) }
+func (w *telemetryEventEnvelope) GetEventVersion() string    { return "1.0.0" }
+func (w *telemetryEventEnvelope) GetEventType() string       { return w.telem.EventType }
+func (w *telemetryEventEnvelope) GetTimestamp() time.Time    { return time.Now() }
+func (w *telemetryEventEnvelope) GetMonotonicTime() uint64   { return uint64(w.telem.SeqID) }
+func (w *telemetryEventEnvelope) GetSourceRepo() string      { return "" }
+func (w *telemetryEventEnvelope) GetSourceComponent() string { return "" }
+func (w *telemetryEventEnvelope) GetParentEvent() string     { return "" }
+func (w *telemetryEventEnvelope) GetCorrelationID() string   { return "" }
+func (w *telemetryEventEnvelope) GetCausalChain() []string   { return nil }
+func (w *telemetryEventEnvelope) GetReplaySequence() uint64  { return uint64(w.telem.SeqID) }
+func (w *telemetryEventEnvelope) GetEvidenceHash() string    { return "" }
+func (w *telemetryEventEnvelope) GetTrustScore() float64     { return 1.0 }
+func (w *telemetryEventEnvelope) GetSignature() string       { return "" }
+func (w *telemetryEventEnvelope) GetPayloadHash() string     { return "" }
+func (w *telemetryEventEnvelope) GetSchemaVersion() string   { return "" }
+func (w *telemetryEventEnvelope) GetCreatedAt() time.Time    { return time.Now() }
+func (w *telemetryEventEnvelope) GetUpdatedAt() time.Time    { return time.Now() }
+func (w *telemetryEventEnvelope) GetValidationHash() string  { return "" }
+func (w *telemetryEventEnvelope) GetPayload() []byte         { return []byte(w.telem.Payload) }
 
 type ContinuousVerifier struct {
 	Engine   *replay.Engine

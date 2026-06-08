@@ -1,4 +1,0 @@
-# ./...
-pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies
-FAIL	./... [setup failed]
-FAIL

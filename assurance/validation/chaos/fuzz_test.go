@@ -19,26 +19,26 @@ type fuzzEnvelopeWrapper struct {
 	seq uint64
 }
 
-func (w *fuzzEnvelopeWrapper) GetEventID() string            { return w.id }
-func (w *fuzzEnvelopeWrapper) GetEventVersion() string       { return "1.0.0" }
-func (w *fuzzEnvelopeWrapper) GetEventType() string          { return "fuzz" }
-func (w *fuzzEnvelopeWrapper) GetTimestamp() time.Time       { return time.Now() }
-func (w *fuzzEnvelopeWrapper) GetMonotonicTime() uint64      { return w.seq }
-func (w *fuzzEnvelopeWrapper) GetSourceRepo() string         { return "" }
-func (w *fuzzEnvelopeWrapper) GetSourceComponent() string    { return "" }
-func (w *fuzzEnvelopeWrapper) GetParentEvent() string        { return "" }
-func (w *fuzzEnvelopeWrapper) GetCorrelationID() string      { return "" }
-func (w *fuzzEnvelopeWrapper) GetCausalChain() []string      { return nil }
-func (w *fuzzEnvelopeWrapper) GetReplaySequence() uint64     { return w.seq }
-func (w *fuzzEnvelopeWrapper) GetEvidenceHash() string       { return "" }
-func (w *fuzzEnvelopeWrapper) GetTrustScore() float64        { return 1.0 }
-func (w *fuzzEnvelopeWrapper) GetSignature() string         { return "" }
-func (w *fuzzEnvelopeWrapper) GetPayloadHash() string       { return "" }
-func (w *fuzzEnvelopeWrapper) GetSchemaVersion() string      { return "" }
-func (w *fuzzEnvelopeWrapper) GetCreatedAt() time.Time       { return time.Now() }
-func (w *fuzzEnvelopeWrapper) GetUpdatedAt() time.Time       { return time.Now() }
-func (w *fuzzEnvelopeWrapper) GetValidationHash() string    { return "" }
-func (w *fuzzEnvelopeWrapper) GetPayload() []byte            { return nil }
+func (w *fuzzEnvelopeWrapper) GetEventID() string         { return w.id }
+func (w *fuzzEnvelopeWrapper) GetEventVersion() string    { return "1.0.0" }
+func (w *fuzzEnvelopeWrapper) GetEventType() string       { return "fuzz" }
+func (w *fuzzEnvelopeWrapper) GetTimestamp() time.Time    { return time.Now() }
+func (w *fuzzEnvelopeWrapper) GetMonotonicTime() uint64   { return w.seq }
+func (w *fuzzEnvelopeWrapper) GetSourceRepo() string      { return "" }
+func (w *fuzzEnvelopeWrapper) GetSourceComponent() string { return "" }
+func (w *fuzzEnvelopeWrapper) GetParentEvent() string     { return "" }
+func (w *fuzzEnvelopeWrapper) GetCorrelationID() string   { return "" }
+func (w *fuzzEnvelopeWrapper) GetCausalChain() []string   { return nil }
+func (w *fuzzEnvelopeWrapper) GetReplaySequence() uint64  { return w.seq }
+func (w *fuzzEnvelopeWrapper) GetEvidenceHash() string    { return "" }
+func (w *fuzzEnvelopeWrapper) GetTrustScore() float64     { return 1.0 }
+func (w *fuzzEnvelopeWrapper) GetSignature() string       { return "" }
+func (w *fuzzEnvelopeWrapper) GetPayloadHash() string     { return "" }
+func (w *fuzzEnvelopeWrapper) GetSchemaVersion() string   { return "" }
+func (w *fuzzEnvelopeWrapper) GetCreatedAt() time.Time    { return time.Now() }
+func (w *fuzzEnvelopeWrapper) GetUpdatedAt() time.Time    { return time.Now() }
+func (w *fuzzEnvelopeWrapper) GetValidationHash() string  { return "" }
+func (w *fuzzEnvelopeWrapper) GetPayload() []byte         { return nil }
 
 // FuzzEventIngestion attacks the Replay Engine with high-entropy sequences.
 func FuzzEventIngestion(f *testing.F) {

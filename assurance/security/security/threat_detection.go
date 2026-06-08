@@ -61,10 +61,10 @@ type ThreatDetector interface {
 type ThreatStatus string
 
 const (
-	ThreatStatusDetected   ThreatStatus = "detected"
-	ThreatStatusAssessed   ThreatStatus = "assessed"
-	ThreatStatusMitigated  ThreatStatus = "mitigated"
-	ThreatStatusIgnored    ThreatStatus = "ignored"
+	ThreatStatusDetected  ThreatStatus = "detected"
+	ThreatStatusAssessed  ThreatStatus = "assessed"
+	ThreatStatusMitigated ThreatStatus = "mitigated"
+	ThreatStatusIgnored   ThreatStatus = "ignored"
 )
 
 // ThreatType categorizes the nature of the detected risk.

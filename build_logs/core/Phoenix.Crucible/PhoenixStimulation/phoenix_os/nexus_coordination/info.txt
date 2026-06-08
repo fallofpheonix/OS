@@ -1,1 +1,0 @@
-module: module github.com/fallofpheonix/PhoenixCore/nexus_coordination

@@ -1,60 +1,68 @@
 /*
  * PHOENIX MATRIX SOVEREIGN ARCHITECTURE
- * [STATUS]: 18-Repository Substrate Consolidated
- * [FUTURE ENHANCEMENT]: Needs continuous formal verification scaling and HDF5 vector optimizations.
- * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
- * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
+ *
+ * FILE: fsm.go
+ * PATH: assurance/security/control/fsm.go
  */
+
 package control
 
 import (
 	"fmt"
-	"math/rand"
 	"time"
 )
 
-// SecurityState represents the Phoenix Matrix security states.
-type SecurityState string
+type SecurityState uint8
 
 const (
-	StateSafe        SecurityState = "SAFE"
-	StateWatch       SecurityState = "WATCH"
-	StateSuspicious  SecurityState = "SUSPICIOUS"
-	StateCritical    SecurityState = "CRITICAL"
-	StateCompromised SecurityState = "COMPROMISED"
+	StateSafe SecurityState = iota
+	StateWatch
+	StateSuspicious
+	StateCritical
+	StateCompromised
 )
 
-// Controller manages security state transitions and actuation.
+func (s SecurityState) String() string {
+	switch s {
+	case StateSafe:
+		return "SAFE"
+	case StateWatch:
+		return "WATCH"
+	case StateSuspicious:
+		return "SUSPICIOUS"
+	case StateCritical:
+		return "CRITICAL"
+	case StateCompromised:
+		return "COMPROMISED"
+	default:
+		return fmt.Sprintf("UNKNOWN(%d)", s)
+	}
+}
+
+// Controller implements a tactical security enforcement state machine.
 type Controller struct {
-	CurrentState   SecurityState
-	LastAction     string
-	ReactionTime   time.Duration
-	StochasticMode bool
-	rng            *rand.Rand
+	CurrentState SecurityState
+	ReactionTime time.Duration
 }
 
 // NewController initializes a new finite-state controller.
 func NewController() *Controller {
 	return &Controller{
-		CurrentState:   StateSafe,
-		ReactionTime:   50 * time.Millisecond,
-		StochasticMode: true,
-		rng:            rand.New(rand.NewSource(time.Now().UnixNano())),
+		CurrentState: StateSafe,
+		ReactionTime: 50 * time.Millisecond,
 	}
 }
 
 // UpdateState transitions the controller based on an importance score.
 func (c *Controller) UpdateState(score float64) (state SecurityState, action string) {
+	// WHY: Stochastic behavior removed. math/rand seeded from wall clock time
+	// breaks replay determinism (BLOCKER-006). The system cannot produce two
+	// identical audit trails if security decisions depend on time-seeded randomness.
+	// RESOLUTION PATH: Replace with ledger-derived entropy once the ledger is
+	// fully wired into the security path (T3.4 prerequisite).
+
 	var nextState SecurityState
 	var nextAction string
-
-	// 1. Stochastic Nuance for Uncertainty Zone (0.4 - 0.8)
-	if c.StochasticMode && score >= 0.4 && score < 0.8 {
-		// Use probability to decide if we should escalate early
-		if c.rng.Float64() < score {
-			score += 0.1 // Probabilistic escalation
-		}
-	}
 
 	switch {
 	case score >= 0.95:
@@ -73,16 +81,7 @@ func (c *Controller) UpdateState(score float64) (state SecurityState, action str
 		nextState = StateSafe
 		nextAction = "NONE"
 	}
-	if nextState != c.CurrentState {
-		c.CurrentState = nextState
-		c.LastAction = nextAction
-		return nextState, nextAction
-	}
 
-	return c.CurrentState, "NONE"
-}
-
-// GetStatus returns the current controller status.
-func (c *Controller) GetStatus() string {
-	return fmt.Sprintf("State: %s, Last Action: %s", c.CurrentState, c.LastAction)
+	c.CurrentState = nextState
+	return nextState, nextAction
 }

@@ -1,0 +1,12 @@
+go 1.26
+
+use (
+	.
+	./PhoenixCore
+	./PhoenixDistributed
+	./PhoenixGuard
+	./PhoenixKernel
+	./PhoenixTrace
+	./PhoenixTruth
+	./PhoenixValidation
+)

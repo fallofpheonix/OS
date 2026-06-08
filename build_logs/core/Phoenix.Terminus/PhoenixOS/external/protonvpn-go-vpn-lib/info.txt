@@ -1,1 +1,0 @@
-module: module github.com/ProtonVPN/go-vpn-lib

@@ -43,7 +43,7 @@ func TestFederationProof(t *testing.T) {
 
 	// 4. Reputation & Revocation: Lower reputation and verify isolation
 	registry.AdjustReputation(nodeID, -0.45) // Reputation drops from 0.5 to 0.05
-	
+
 	err = registry.ExchangeProof(nodeID, []byte("valid-state-signature"), "0xabcd")
 	if err == nil {
 		t.Error("Expected proof exchange to fail for low-reputation node")

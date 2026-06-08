@@ -1,11 +1,7 @@
 /*
  * PHOENIX MATRIX SOVEREIGN ARCHITECTURE
- * [STATUS]: 18-Repository Substrate Consolidated
- * [FUTURE ENHANCEMENT]: Needs continuous formal verification scaling and HDF5 vector optimizations.
- * [POTENTIAL LOOPHOLE]: Ensure strict hardware isolation when deploying to bare-metal. Watch for timing side-channels.
- * [ERROR PRONE AREA]: Concurrency bottlenecks in event bus and race conditions in cross-domain memory mappings.
  */
-package warden
+package security
 
 import (
 	"fmt"
@@ -23,14 +19,17 @@ func TestContextualInvariant_NamespaceBreakout(t *testing.T) {
 	req := AuthorityEscalationRequest{
 		EventID:       "test-event-001",
 		TargetNsproxy: 9999, // Malicious target namespace
+		TargetTgid:    1,
 		GraphProof: &GraphProof{
 			Path:            []string{"node1", "node2"},
 			ExpectedNsproxy: 1234, // Legitimate expected namespace
 		},
 	}
 
+	snap := PostureSnapshot{State: StateSafe}
+
 	// 4. Verify that the invariant vetoes the request
-	err := invariant.Verify(req, StateSafe)
+	err := invariant.Verify(req, snap)
 	if err == nil {
 		t.Fatal("Expected invariant violation due to namespace mismatch, but request was authorized!")
 	}

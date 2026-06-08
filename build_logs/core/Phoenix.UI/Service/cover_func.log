@@ -1,6 +1,0 @@
-phoenix/ui/service/main.go:44:	main		0.0%
-phoenix/ui/service/main.go:61:	corsMiddleware	0.0%
-phoenix/ui/service/main.go:74:	handleStatus	0.0%
-phoenix/ui/service/main.go:92:	handleDomains	0.0%
-phoenix/ui/service/main.go:106:	handleTerminal	0.0%
-total:				(statements)	0.0%

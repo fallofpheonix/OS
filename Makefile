@@ -7,7 +7,7 @@
 WORKSPACE := $(shell pwd)
 MODULES   := $(shell grep -oE '\./[^ ]+' go.work)
 
-.PHONY: build build-one test test-race vet lint cover ci clean ignite logs help
+.PHONY: build build-one test test-race vet lint fmt tidy cover ci clean ignite logs help
 
 # ---------------------------------------------------------------------------
 # Build
@@ -25,6 +25,22 @@ build-one:
 		exit 1; \
 	fi
 	go build ./$(MODULE)/...
+
+# ---------------------------------------------------------------------------
+# Hygiene & Analysis
+# ---------------------------------------------------------------------------
+
+fmt:
+	@for mod in $(MODULES); do \
+		echo "=== Formatting $$mod ==="; \
+		(cd $$mod && go fmt ./...) || exit 1; \
+	done
+
+tidy:
+	@for mod in $(MODULES); do \
+		echo "=== Tidying $$mod ==="; \
+		(cd $$mod && go mod tidy) || exit 1; \
+	done
 
 # ---------------------------------------------------------------------------
 # Test
@@ -125,7 +141,15 @@ ci: vet test-race lint check-invariants
 # ---------------------------------------------------------------------------
 
 clean:
-	docker compose down -v
+	@echo "Cleaning up workspace..."
+	-docker compose down -v
+	rm -rf bin/
+	rm -rf build_logs/
+	rm -f *.out
+	rm -f all_md_files.txt all_packages.txt all_referenced_packages.txt cycles_analysis.txt dependency_analysis.txt dependency_raw.txt
+	find . -name "*.log" -type f -not -path '*/.*' -delete
+	find . -name "*.out" -type f -not -path '*/.*' -delete
+	@echo "--- Cleanup complete ---"
 
 ignite:
 	docker compose up -d --build

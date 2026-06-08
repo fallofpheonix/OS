@@ -9,6 +9,7 @@ package security
 
 import (
 	"fmt"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	"testing"
 )
@@ -20,7 +21,7 @@ func TestForkBombThrottling(t *testing.T) {
 
 	// Simulate fork bomb by flooding the bus with low-severity events
 	for i := 0; i < bus.QueueCapacity+100; i++ {
-		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: 0.1})
+		b.Publish(topic, bus.TelemetryEvent{SeqID: int64(i), Severity: phxmath.FixedPoint{V: 100000}})
 	}
 
 	// Bus should throttle (drop) the excess events

@@ -1,7 +1,0 @@
-	github.com/fallofpheonix/PhoenixKernel		coverage: 0.0% of statements
-ok  	github.com/fallofpheonix/PhoenixKernel/bridge	0.434s	coverage: 0.0% of statements
-	github.com/fallofpheonix/PhoenixKernel/hooks		coverage: 0.0% of statements
-ok  	github.com/fallofpheonix/PhoenixKernel/live	0.610s	coverage: 0.0% of statements
-?   	github.com/fallofpheonix/PhoenixKernel/probes	[no test files]
-ok  	github.com/fallofpheonix/PhoenixKernel/runtime	0.246s	coverage: 10.5% of statements
-	github.com/fallofpheonix/PhoenixKernel/sandbox		coverage: 0.0% of statements

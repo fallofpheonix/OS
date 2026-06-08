@@ -1,1 +1,0 @@
-module: module github.com/alibaba/OpenSandbox/sandbox-k8s

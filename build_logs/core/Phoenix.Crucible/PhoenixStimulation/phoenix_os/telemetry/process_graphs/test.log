@@ -1,4 +1,0 @@
-# ./...
-pattern ./...: main module (github.com/fallofpheonix/Phoenix.Crucible) does not contain package github.com/fallofpheonix/Phoenix.Crucible/PhoenixStimulation/phoenix_os/telemetry/process_graphs
-FAIL	./... [setup failed]
-FAIL

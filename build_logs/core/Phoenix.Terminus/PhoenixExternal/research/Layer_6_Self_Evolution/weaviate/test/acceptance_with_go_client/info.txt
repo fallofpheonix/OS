@@ -1,1 +1,0 @@
-module: module acceptance_tests_with_client

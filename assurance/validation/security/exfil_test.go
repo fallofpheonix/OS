@@ -9,6 +9,7 @@ package security
 
 import (
 	"fmt"
+	phxmath "github.com/fallofpheonix/phoenix/foundation/math"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/bus"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/containment"
 	"testing"
@@ -20,12 +21,12 @@ func TestExfiltrationMitigation(t *testing.T) {
 	// Simulate exfiltration attempt (Severity 0.95)
 	event := bus.TelemetryEvent{
 		SeqID:     2,
-		Severity:  0.95,
+		Severity:  phxmath.FixedPoint{V: 950000},
 		EventType: "exfil_attempt",
 	}
 
 	// High severity triggers immediate isolation
-	if event.Severity >= 0.9 {
+	if event.Severity.V >= 900000 {
 		engine.Transition(containment.StateThrottle, "EV-002", "DEC-002")
 		err := engine.Transition(containment.StateIsolate, "EV-002", "DEC-003")
 		if err != nil {

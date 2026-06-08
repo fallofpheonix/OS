@@ -1,4 +1,0 @@
-# ./...
-pattern ./...: main module (github.com/fallofpheonix/Phoenix.Crucible) does not contain package github.com/fallofpheonix/Phoenix.Crucible/PhoenixStimulation/archive/custom/hardening
-FAIL	./... [setup failed]
-FAIL

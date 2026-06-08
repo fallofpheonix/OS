@@ -112,7 +112,7 @@ type Classification struct {
 
 // Response represents the actions taken to address an incident.
 type Response struct {
-	Actions []string
+	Actions   []string
 	AppliedAt time.Time
 }
 

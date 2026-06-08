@@ -14,26 +14,26 @@ type stubEnvelope struct {
 	payload []byte
 }
 
-func (e *stubEnvelope) GetEventID() string            { return e.id }
-func (e *stubEnvelope) GetEventVersion() string       { return "1.0.0" }
-func (e *stubEnvelope) GetEventType() string          { return "test" }
-func (e *stubEnvelope) GetTimestamp() time.Time       { return time.Now() }
-func (e *stubEnvelope) GetMonotonicTime() uint64      { return e.seq }
-func (e *stubEnvelope) GetSourceRepo() string         { return "" }
-func (e *stubEnvelope) GetSourceComponent() string    { return "" }
-func (e *stubEnvelope) GetParentEvent() string        { return "" }
-func (e *stubEnvelope) GetCorrelationID() string      { return "" }
-func (e *stubEnvelope) GetCausalChain() []string      { return nil }
-func (e *stubEnvelope) GetReplaySequence() uint64     { return e.seq }
-func (e *stubEnvelope) GetEvidenceHash() string       { return "" }
-func (e *stubEnvelope) GetTrustScore() float64        { return 1.0 }
-func (e *stubEnvelope) GetSignature() string         { return "" }
-func (e *stubEnvelope) GetPayloadHash() string       { return "" }
-func (e *stubEnvelope) GetSchemaVersion() string      { return "" }
-func (e *stubEnvelope) GetCreatedAt() time.Time       { return time.Now() }
-func (e *stubEnvelope) GetUpdatedAt() time.Time       { return time.Now() }
-func (e *stubEnvelope) GetValidationHash() string    { return "" }
-func (e *stubEnvelope) GetPayload() []byte            { return e.payload }
+func (e *stubEnvelope) GetEventID() string         { return e.id }
+func (e *stubEnvelope) GetEventVersion() string    { return "1.0.0" }
+func (e *stubEnvelope) GetEventType() string       { return "test" }
+func (e *stubEnvelope) GetTimestamp() time.Time    { return time.Now() }
+func (e *stubEnvelope) GetMonotonicTime() uint64   { return e.seq }
+func (e *stubEnvelope) GetSourceRepo() string      { return "" }
+func (e *stubEnvelope) GetSourceComponent() string { return "" }
+func (e *stubEnvelope) GetParentEvent() string     { return "" }
+func (e *stubEnvelope) GetCorrelationID() string   { return "" }
+func (e *stubEnvelope) GetCausalChain() []string   { return nil }
+func (e *stubEnvelope) GetReplaySequence() uint64  { return e.seq }
+func (e *stubEnvelope) GetEvidenceHash() string    { return "" }
+func (e *stubEnvelope) GetTrustScore() float64     { return 1.0 }
+func (e *stubEnvelope) GetSignature() string       { return "" }
+func (e *stubEnvelope) GetPayloadHash() string     { return "" }
+func (e *stubEnvelope) GetSchemaVersion() string   { return "" }
+func (e *stubEnvelope) GetCreatedAt() time.Time    { return time.Now() }
+func (e *stubEnvelope) GetUpdatedAt() time.Time    { return time.Now() }
+func (e *stubEnvelope) GetValidationHash() string  { return "" }
+func (e *stubEnvelope) GetPayload() []byte         { return e.payload }
 
 func TestDeterministicReconstruction(t *testing.T) {
 	engine := NewEngine()

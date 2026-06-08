@@ -13,24 +13,26 @@ package main
 
 import (
 	"bufio"
+	"crypto/rand"
 	"fmt"
 	"os"
 	"strings"
 	"time"
 
-	"github.com/fallofpheonix/phoenix/labs/crucible/game/context"
-	"github.com/fallofpheonix/phoenix/labs/crucible/game/ecs"
-	"github.com/fallofpheonix/phoenix/labs/crucible/game/engines"
-	"github.com/fallofpheonix/phoenix/labs/crucible/game/simulation"
+	"github.com/fallofpheonix/phoenix/platform/crucible/game/context"
+	"github.com/fallofpheonix/phoenix/platform/crucible/game/ecs"
+	"github.com/fallofpheonix/phoenix/platform/crucible/game/engines"
+	"github.com/fallofpheonix/phoenix/platform/crucible/game/simulation"
 	"github.com/fallofpheonix/phoenix/foundation/runtime/authority"
 )
 
 // Env holds the shared state for the CLI commands.
 type Env struct {
-	Bus        *simulation.SimulationBus
-	Ctx        *context.ApplicationContext
-	Entropy    *engines.EntropyEngine
-	Court      *engines.CourtEngine
+	Bus         *simulation.SimulationBus
+	Ctx         *context.ApplicationContext
+	Entropy     *engines.EntropyEngine
+	Court       *engines.CourtEngine
+	ActiveToken string
 }
 
 // Command defines the interface for all CLI commands.
@@ -70,13 +72,14 @@ func (c *StatusCommand) Execute(env *Env, args []string) bool {
 type AuthCommand struct{}
 
 func (c *AuthCommand) Name() string        { return "auth" }
-func (c *AuthCommand) Description() string { return "Authenticate as a Sovereign Auditor" }
+func (c *AuthCommand) Description() string { return "Authenticate as a Sovereign Auditor (Usage: auth <token>)" }
 func (c *AuthCommand) Execute(env *Env, args []string) bool {
 	if len(args) < 2 {
-		fmt.Println("Usage: auth <identity>")
+		fmt.Println("Usage: auth <token>")
 		return true
 	}
-	fmt.Printf("IDENTITY %s VERIFIED. WELCOME, WARDEN.\n", args[1])
+	env.ActiveToken = args[1]
+	fmt.Printf("IDENTITY REGISTERED LOCALLY. ACTIVE TOKEN: %s\n", args[1])
 	return true
 }
 
@@ -131,8 +134,12 @@ func (c *VerdictCommand) Execute(env *Env, args []string) bool {
 		ev, v := env.Court.Adjudicate(anomaly, nil)
 		fmt.Println(env.Court.Summary(anomaly, v))
 
-		// 2. Validate Capability (Mocked)
-		if err := env.Ctx.Auth().Validate("TOKEN-WARDEN-001", "ENFORCE"); err != nil {
+		// 2. Validate Capability
+		if env.ActiveToken == "" {
+			fmt.Println("Authority denied: No active token. Use 'auth <token>' first.")
+			return true
+		}
+		if err := env.Ctx.Auth().Validate(env.ActiveToken, "ENFORCE"); err != nil {
 			fmt.Printf("Authority denied: %v\n", err)
 			return true
 		}
@@ -163,6 +170,11 @@ func (c *ExitCommand) Execute(env *Env, args []string) bool {
 }
 
 func main() {
+	// Generate random root authority token
+	b := make([]byte, 16)
+	rand.Read(b)
+	rootToken := fmt.Sprintf("ROOT-%x", b)
+
 	// 1. Initialize Engines
 	entropy := engines.NewEntropyEngine(0.12, 0.001)
 	trust := engines.NewTrustEngine()
@@ -171,7 +183,7 @@ func main() {
 	validator := engines.NewSemanticValidator()
 	authMgr := authority.NewManager()
 	authMgr.RegisterToken(&authority.CapabilityToken{
-		ID:    "TOKEN-WARDEN-001",
+		ID:    rootToken,
 		Scope: []string{"ENFORCE"},
 	})
 	projs := &context.Projections{
@@ -215,6 +227,8 @@ func main() {
 	fmt.Println("########################################")
 	fmt.Println("BOOTING...")
 	time.Sleep(1 * time.Second)
+	fmt.Printf("ROOT AUTHORITY TOKEN GENERATED: %s\n", rootToken)
+	fmt.Println("Store this token securely. It is required to issue verdicts.")
 	fmt.Println("SUBSTRATE STATUS: ACTIVE")
 	fmt.Printf("ENTROPY: %.2f%% (STABLE)\n", env.Entropy.GlobalValue()*100)
 	fmt.Println("----------------------------------------")
